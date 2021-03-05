@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,13 +20,17 @@ import javax.persistence.TemporalType;
 public class Employee {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long empID;
+	private Long id;
 	private String firstName;
 	private String lastName;
-	private Long desId;
+	
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinColumn(name = "desId", nullable = false)
+	private Designation designation;
+	
 	private String email;
 	private String address;
 	private String contactNumber;
@@ -35,15 +42,15 @@ public class Employee {
 	private Date timeStamp;
 
 	private String gender;
-	
-	
-	public Long getEmpID() {
-		return empID;
+
+
+	public Long getId() {
+		return id;
 	}
 
 
-	public void setEmpID(Long empID) {
-		this.empID = empID;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
@@ -67,13 +74,13 @@ public class Employee {
 	}
 
 
-	public Long getDesId() {
-		return desId;
+	public Designation getDesignation() {
+		return designation;
 	}
 
 
-	public void setDesId(Long desId) {
-		this.desId = desId;
+	public void setDesignation(Designation designation) {
+		this.designation = designation;
 	}
 
 
@@ -145,10 +152,10 @@ public class Employee {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
-
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 
 }
