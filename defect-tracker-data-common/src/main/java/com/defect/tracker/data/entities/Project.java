@@ -13,15 +13,16 @@ public class Project {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long proID;
+	private Long id;
 	private String proName;
 	private String abbrevation;
 	
-	public Long getProID() {
-		return proID;
+	
+	public Long getId() {
+		return id;
 	}
-	public void setProID(Long proID) {
-		this.proID = proID;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getProName() {
 		return proName;
