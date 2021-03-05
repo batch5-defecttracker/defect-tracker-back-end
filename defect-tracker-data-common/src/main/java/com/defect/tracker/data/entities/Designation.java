@@ -11,13 +11,15 @@ import javax.persistence.Table;
 public class Designation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    private long desId;
+    private long id;
 	private String DesName;
-	public long getDesId() {
-		return desId;
+	
+	
+	public long getId() {
+		return id;
 	}
-	public void setDesId(long desId) {
-		this.desId = desId;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getDesName() {
 		return DesName;
