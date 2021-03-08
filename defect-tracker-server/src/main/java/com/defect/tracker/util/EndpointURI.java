@@ -10,6 +10,12 @@ public final class EndpointURI {
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
 
+
+	
+//getAllStatus
+	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
+
 	private EndpointURI() {
 	}
 }
+
