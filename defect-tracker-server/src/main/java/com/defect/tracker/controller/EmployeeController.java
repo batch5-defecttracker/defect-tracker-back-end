@@ -3,6 +3,8 @@ package com.defect.tracker.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,4 +40,11 @@ public class EmployeeController {
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
 	}
+	
+	@DeleteMapping(value = EndpointURI.DELETE_EMPLOYEE)
+	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
+		employeeService.deleteEmployee(id);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_DELETE_SUCCESS, HttpStatus.OK);
+	}
+	
 }
