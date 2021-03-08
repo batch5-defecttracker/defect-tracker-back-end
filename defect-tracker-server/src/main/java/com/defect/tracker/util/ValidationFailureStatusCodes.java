@@ -17,7 +17,11 @@ public class ValidationFailureStatusCodes {
 	private String emailAlreadyExist;
 	
 	@Value("${validation.employee.notExist}")
+
 	private String employeeNotExist;
+
+	private String employeeNotFound;
+
 
 	public String getEmailAlreadyExist() {
 		return emailAlreadyExist;
@@ -35,6 +39,17 @@ public class ValidationFailureStatusCodes {
 		this.employeeNotExist = employeeNotExist;
 	}
 	
+
+
+	public String getEmployeeNotFound() {
+		return employeeNotFound;
+	}
+
+	public void setEmployeeNotFound(String employeeNotFound) {
+		this.employeeNotFound = employeeNotFound;
+	}
+	
+
 	
 
 

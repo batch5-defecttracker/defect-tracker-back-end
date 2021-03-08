@@ -1,6 +1,11 @@
 package com.defect.tracker.services;
 
+
 import java.util.Optional;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 
+
 	public Optional<Employee> findById(Long id) {
 		
 		return employeeRepository.findById(id);
@@ -38,6 +44,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	
 
+
+	public List<Employee> getAll() {
+		
+		return employeeRepository.findAll();
+	}
+
+
+
 	public void deleteEmployee(Long id) {
 		employeeRepository.deleteById(id);
 		
@@ -50,5 +64,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	
+
 }
 
