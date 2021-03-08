@@ -1,5 +1,8 @@
 package com.defect.tracker.services;
 
+import java.util.Optional;
+
+
 
 import java.util.Optional;
 
@@ -7,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.repositories.EmployeeRepository;
 
@@ -27,6 +30,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public boolean isEmailAlreadyExist(String email) {
 		return employeeRepository.existsByEmail(email);
 	}
+
+
+	
+	
+	@Override
+	public Optional<Employee> findByFirstName(String firstName) {
+		return employeeRepository.findByFirstName(firstName);
+	}
+
+	
+	/*
+	 * @Override public boolean firstnameExist(String firstName) {
+	 * return employeeRepository.existsByFirstName(firstName); }
+	 */
+
+	
+
+	
+	
 
 	@Override
 
@@ -64,6 +86,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	
+
 
 }
 
