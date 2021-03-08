@@ -9,6 +9,12 @@ public final class EndpointURI {
 //Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 
+
+	
+//getAllStatus
+	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
+
 	private EndpointURI() {
 	}
 }
+
