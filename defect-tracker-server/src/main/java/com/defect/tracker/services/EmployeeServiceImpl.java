@@ -21,4 +21,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.existsByEmail(email);
 	}
 
+	@Override
+	public void deleteEmployee(Long id) {
+		employeeRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public boolean isEmployeeExists(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+	
+
 }
