@@ -1,8 +1,11 @@
 package com.defect.tracker.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,4 +41,21 @@ public class EmployeeController {
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = EndpointURI.EMPLOYEE)
+	public ResponseEntity<Object> getAllEmp(){
+		if (employeeService.getAll().isEmpty()) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMPTY,
+					validationFailureStatusCodes.getEmployeeNotFound()), HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Object>(employeeService.getAll(), HttpStatus.OK);
+	}
+	
+
+	/*
+	 * @GetMapping(value = EndpointURI.EMPLOYEE) public List<Employee> getAllEmp(){
+	 * 
+	 * return employeeService.getAll(); }
+	 */
 }
