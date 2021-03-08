@@ -2,16 +2,10 @@ package com.defect.tracker.data.dto;
 
 public class ProjectDto {
 
-	private Long proID;
+	private Long id;
 	private String proName;
 	private String abbrevation;
 	
-	public Long getProID() {
-		return proID;
-	}
-	public void setProID(Long proID) {
-		this.proID = proID;
-	}
 	
 	public String getProName() {
 		return proName;
@@ -25,6 +19,12 @@ public class ProjectDto {
 	}
 	public void setAbbrevation(String abbrevation) {
 		this.abbrevation = abbrevation;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

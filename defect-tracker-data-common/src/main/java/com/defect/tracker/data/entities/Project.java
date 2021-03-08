@@ -13,16 +13,11 @@ public class Project {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long proID;
+	private Long id;
 	private String proName;
 	private String abbrevation;
 	
-	public Long getProID() {
-		return proID;
-	}
-	public void setProID(Long proID) {
-		this.proID = proID;
-	}
+	
 	public String getProName() {
 		return proName;
 	}
@@ -38,6 +33,12 @@ public class Project {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	
