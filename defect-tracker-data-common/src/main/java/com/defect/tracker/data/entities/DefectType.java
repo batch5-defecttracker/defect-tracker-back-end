@@ -12,13 +12,15 @@ public class DefectType {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long defTypeId;
+	private long id;
 	private String defTypeName;
-	public long getDefTypeId() {
-		return defTypeId;
+	
+	
+	public long getId() {
+		return id;
 	}
-	public void setDefTypeId(long defTypeId) {
-		this.defTypeId = defTypeId;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getDefTypeName() {
 		return defTypeName;
