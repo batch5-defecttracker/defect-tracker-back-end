@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -20,7 +20,7 @@ public class Module {
 	@GeneratedValue(strategy  = GenerationType.AUTO)
 	private Long id;
 	private String moduleName;
-	@OneToMany(fetch=FetchType.LAZY )
+	@ManyToOne(fetch=FetchType.LAZY )
 	@JoinColumn(name="projectId" ,nullable = false)
 	private Project project;
 	
