@@ -9,6 +9,12 @@ public interface EmployeeService {
 
 	public boolean isEmailAlreadyExist(String email);
 	
+<<<<<<< HEAD
 	public List<Employee> getAll();
 	
+=======
+	public void deleteEmployee(Long id);
+	
+	public boolean isEmployeeExists(Long id);
+>>>>>>> 7f68da36fed15ea7a54bf643bf4473de8f620bf1
 }

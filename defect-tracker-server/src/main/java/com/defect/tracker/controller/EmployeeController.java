@@ -5,7 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.GetMapping;
+=======
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+>>>>>>> 7f68da36fed15ea7a54bf643bf4473de8f620bf1
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +47,7 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
 	}
 	
+<<<<<<< HEAD
 	@GetMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> getAllEmp(){
 		if (employeeService.getAll().isEmpty()) {
@@ -58,4 +64,12 @@ public class EmployeeController {
 	 * 
 	 * return employeeService.getAll(); }
 	 */
+=======
+	@DeleteMapping(value = EndpointURI.DELETE_EMPLOYEE)
+	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
+		employeeService.deleteEmployee(id);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_DELETE_SUCCESS, HttpStatus.OK);
+	}
+	
+>>>>>>> 7f68da36fed15ea7a54bf643bf4473de8f620bf1
 }

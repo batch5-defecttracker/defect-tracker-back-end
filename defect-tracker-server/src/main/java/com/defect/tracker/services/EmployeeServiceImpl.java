@@ -25,11 +25,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public List<Employee> getAll() {
 		
 		return employeeRepository.findAll();
 	}
 
 
+=======
+	public void deleteEmployee(Long id) {
+		employeeRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public boolean isEmployeeExists(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+	
+>>>>>>> 7f68da36fed15ea7a54bf643bf4473de8f620bf1
 
 }
