@@ -21,6 +21,11 @@ public final class EndpointURI {
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
 
+	
+
+//DefectType
+	public static final String DEFECTTYPE = BASE_API_PATH + "defecttype";
+
 	private EndpointURI() {
 	}
 }
