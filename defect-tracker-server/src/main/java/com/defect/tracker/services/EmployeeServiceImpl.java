@@ -37,6 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	
+
 	public void deleteEmployee(Long id) {
 		employeeRepository.deleteById(id);
 		
@@ -49,7 +50,5 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	
-	
-
-
 }
+
