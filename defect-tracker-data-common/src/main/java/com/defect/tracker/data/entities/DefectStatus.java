@@ -13,14 +13,15 @@ public class DefectStatus {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long defStId;
+	private long id;
 	private String defStIdName;
 	
-	public long getDefStId() {
-		return defStId;
+	
+	public long getId() {
+		return id;
 	}
-	public void setDefStId(long defStId) {
-		this.defStId = defStId;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getDefStIdName() {
 		return defStIdName;
