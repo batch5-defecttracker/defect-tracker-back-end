@@ -1,5 +1,7 @@
 package com.defect.tracker.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public boolean isEmailAlreadyExist(String email) {
 		return employeeRepository.existsByEmail(email);
 	}
+
+	@Override
+	public Optional<Employee> findById(Long id) {
+		
+		return employeeRepository.findById(id);
+	}
+
+	@Override
+	public boolean idExist(Long id) {
+	
+		return employeeRepository.existsById(id);
+	}
+
+	
 
 }

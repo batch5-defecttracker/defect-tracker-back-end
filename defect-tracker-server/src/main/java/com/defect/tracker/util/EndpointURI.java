@@ -9,6 +9,7 @@ public final class EndpointURI {
 //Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 
+	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
 	private EndpointURI() {
 	}
 }
