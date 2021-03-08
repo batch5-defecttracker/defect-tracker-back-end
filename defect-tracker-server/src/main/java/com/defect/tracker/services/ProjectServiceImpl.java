@@ -31,4 +31,15 @@ public class ProjectServiceImpl implements ProjectService{
 		return projectRepository.existsById(id);
 	}
 
+	@Override
+	public boolean isProNameAlreadyExist(String proName) {
+		return projectRepository.existsByproName(proName);
+	}
+
+	@Override
+	public void createProject(Project project) {
+		projectRepository.save(project);
+		
+	}
+
 }
