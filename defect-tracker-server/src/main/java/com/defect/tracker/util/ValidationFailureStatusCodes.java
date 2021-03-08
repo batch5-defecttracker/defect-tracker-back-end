@@ -21,6 +21,9 @@ public class ValidationFailureStatusCodes {
 	
 	@Value("${validation.module.alreadyExist}")
 	private String moduleAlreadyExist;
+	
+	@Value("${validation.employee.alreadyExist}")
+	private String employeeAlreadyExist;
 
 	public String getEmailAlreadyExist() {
 		return emailAlreadyExist;
@@ -44,5 +47,13 @@ public class ValidationFailureStatusCodes {
 
 	public void setModuleAlreadyExist(String moduleAlreadyExist) {
 		this.moduleAlreadyExist = moduleAlreadyExist;
+	}
+
+	public String getEmployeeAlreadyExist() {
+		return employeeAlreadyExist;
+	}
+
+	public void setEmployeeAlreadyExist(String employeeAlreadyExist) {
+		this.employeeAlreadyExist = employeeAlreadyExist;
 	}
 }

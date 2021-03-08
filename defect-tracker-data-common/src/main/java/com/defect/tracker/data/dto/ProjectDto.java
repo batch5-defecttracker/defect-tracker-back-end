@@ -7,6 +7,16 @@ public class ProjectDto {
 	private String abbrevation;
 	
 	
+<<<<<<< HEAD
+=======
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+>>>>>>> a166bfb7b0316749b459ba56df22fe00de9606f3
 	public String getProName() {
 		return proName;
 	}
