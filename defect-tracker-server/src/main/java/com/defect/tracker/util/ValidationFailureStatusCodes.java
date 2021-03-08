@@ -36,5 +36,17 @@ public class ValidationFailureStatusCodes {
 	}
 	
 	
+
+	@Value("${validation.employee.alreadyExist}")
+	private String employeeAlreadyExist;
+
+	public String getEmployeeAlreadyExist() {
+		return employeeAlreadyExist;
+	}
+
+	public void setEmployeeAlreadyExist(String employeeAlreadyExist) {
+		this.employeeAlreadyExist = employeeAlreadyExist;
+	}
+
 	
 }

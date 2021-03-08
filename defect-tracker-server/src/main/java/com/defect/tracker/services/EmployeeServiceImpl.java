@@ -24,6 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+
 	public Optional<Employee> findById(Long id) {
 		
 		return employeeRepository.findById(id);
@@ -36,5 +37,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	
+	public void deleteEmployee(Long id) {
+		employeeRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public boolean isEmployeeExists(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+	
+
 
 }

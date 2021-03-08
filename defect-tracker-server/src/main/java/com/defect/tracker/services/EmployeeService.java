@@ -8,8 +8,14 @@ public interface EmployeeService {
 
 	public boolean isEmailAlreadyExist(String email);
 	
+
 	public Optional <Employee> findById(Long id);
 	
 	public boolean idExist(Long id);
 	
+
+	public void deleteEmployee(Long id);
+	
+	public boolean isEmployeeExists(Long id);
+
 }
