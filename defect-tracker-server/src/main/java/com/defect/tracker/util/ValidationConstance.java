@@ -21,7 +21,7 @@ public class ValidationConstance {
 	public static final String PRIORITY_NOTEXIST = "priority not exist";
 
 
-	public static final String PROJECT_EMP_NOT_EXISTS="Projectemp not present in table";
+	public static final String PROJECT_EMPLOYEE_NOT_AVAILABLE="Project employee id not present in table";
 
 	private ValidationConstance() {
 	}

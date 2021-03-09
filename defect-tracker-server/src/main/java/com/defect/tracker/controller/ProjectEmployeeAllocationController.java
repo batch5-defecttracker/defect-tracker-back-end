@@ -8,34 +8,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.defect.tracker.data.repositories.ProjectEmpRepository;
+import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
-import com.defect.tracker.services.ProjectEmpService;
+import com.defect.tracker.services.ProjectEmployeeAllocationService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
 import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
-public class ProjectEmpController {
+public class ProjectEmployeeAllocationController {
 
 	@Autowired
-	ProjectEmpRepository projectempRepository;
+	ProjectEmployeeAllocationRepository projectemployeeallocationRepository;
 	
 	@Autowired
-	ProjectEmpService projectempService;
+	ProjectEmployeeAllocationService projectemployeeallocationService;
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
 	
-	@DeleteMapping(value=EndpointURI.DeallocateSubModule)
+	@DeleteMapping(value=EndpointURI.EMPLOYEE_DEALLOCATION_FOR_SUBMODULE)
 	public ResponseEntity<Object> deleteEmployeeSubModule(@PathVariable Long id){
-		if (!projectempService.isProjectempExists(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EMP_NOT_EXISTS,
+		if (!projectemployeeallocationService.isProjectempExists(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EMPLOYEE_NOT_AVAILABLE,
 					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		projectempService.DeleteProjectEmp(id);
-		return new ResponseEntity<Object>(Constants.EMPLOYEE_DELETE_SubModule_SUCCESS, HttpStatus.OK);	
+		projectemployeeallocationService.DeleteProjectEmp(id);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE, HttpStatus.OK);	
 	}
 	
 }

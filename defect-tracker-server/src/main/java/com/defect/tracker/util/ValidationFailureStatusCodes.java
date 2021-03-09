@@ -38,7 +38,6 @@ public class ValidationFailureStatusCodes {
 	@Value("{validation.project.AlreadyExists}")
 	 private String proNameAlreadyExists;
 	
-<<<<<<< HEAD
 	@Value("{validation.projectemp.isProjectempExists}")
 	private String projectempAlreadyExists;
 
@@ -51,9 +50,6 @@ public class ValidationFailureStatusCodes {
 		this.projectempAlreadyExists = projectempAlreadyExists;
 	}
 
-=======
-	
->>>>>>> 3b1a46c5dfb1a2d245e5490d3514b687dbb1f1c7
 
 	@Value("${validation.subModule.notExist}")
 	private String subModuleNotExist;

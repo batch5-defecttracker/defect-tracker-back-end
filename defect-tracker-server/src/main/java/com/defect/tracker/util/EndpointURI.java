@@ -22,8 +22,6 @@ public final class EndpointURI {
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
 
 	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
-
-	public static final String PROJECT = BASE_API_PATH + "project";
 	
 	public static final String GET_EMPLOYEE_BY_DESIGNATION = BASE_API_PATH + "getEmployeebyDesignation/{designationId}";
 	
@@ -55,10 +53,9 @@ public final class EndpointURI {
 
 	//getEmployee	
 
-<<<<<<< HEAD
-	public static final String DeallocateSubModule=BASE_API_PATH +"Proemp/{id}";
-=======
->>>>>>> 3b1a46c5dfb1a2d245e5490d3514b687dbb1f1c7
+
+	public static final String EMPLOYEE_DEALLOCATION_FOR_SUBMODULE=BASE_API_PATH +"ProjectEmployee/{id}";
+
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
 
