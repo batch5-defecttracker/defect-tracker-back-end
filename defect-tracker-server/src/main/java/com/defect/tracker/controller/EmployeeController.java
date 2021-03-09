@@ -1,9 +1,5 @@
 package com.defect.tracker.controller;
-<<<<<<< HEAD
-
-=======
 import java.util.List;
->>>>>>> 27217b919c2c0a241effcac84bf64f9c57fefe39
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

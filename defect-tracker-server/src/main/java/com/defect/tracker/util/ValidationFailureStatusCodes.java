@@ -28,17 +28,11 @@ public class ValidationFailureStatusCodes {
 	private String projectNotExist;
 
 
-	@Value("${validation.employee.notExist}")
-	private String employeeNotExist;
-
-	private String employeeNotFound;
+	
+	
 	
 
-	@Value("${validation.severity.notExist}")
-	private String severityNotExist;
 
-	@Value("${validation.project.notExist}")
-	private String projectNotExist;
 
 	@Value("${validation.module.notExist}")
 	private String moduleNotExist;
@@ -107,13 +101,6 @@ public class ValidationFailureStatusCodes {
 
 
 
-	public String getSeverityNotExist() {
-		return severityNotExist;
-	}
-
-	public void setSeverityNotExist(String severityNotExist) {
-		this.severityNotExist = severityNotExist;
-	}
 
 	public String getProjectNotExist() {
 		return projectNotExist;
