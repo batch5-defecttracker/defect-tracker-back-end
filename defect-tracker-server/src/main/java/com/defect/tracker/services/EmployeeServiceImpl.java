@@ -43,8 +43,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public boolean isEmployeeExists(Long id) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return employeeRepository.existsByDesignationId(id);
 	}
 	
 	public List<Employee> getAll() {
@@ -56,6 +56,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void deleteEmployee(Long id) {
 		employeeRepository.deleteById(id);	
 	}
+
+	@Override
+	public List<Employee> findByDes(Long id) {
+		return employeeRepository.findByDesignationId(id);
+	}
+
+	
+
+	
 
 }
 
