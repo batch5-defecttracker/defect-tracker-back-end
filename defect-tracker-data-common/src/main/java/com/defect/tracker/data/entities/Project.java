@@ -17,7 +17,6 @@ public class Project {
 	private String proName;
 	private String abbrevation;
 	
-	
 	public Long getId() {
 		return id;
 	}

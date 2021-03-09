@@ -7,7 +7,6 @@ public class ProjectDto {
 	private String abbrevation;
 	
 	
-	
 	public Long getId() {
 		return id;
 	}
@@ -27,7 +26,5 @@ public class ProjectDto {
 	public void setAbbrevation(String abbrevation) {
 		this.abbrevation = abbrevation;
 	}
-	
-	
 	
 }
