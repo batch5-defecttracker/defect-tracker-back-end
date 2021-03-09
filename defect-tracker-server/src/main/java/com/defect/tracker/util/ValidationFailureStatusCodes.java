@@ -15,6 +15,7 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.email.alreadyExist}")
 	private String emailAlreadyExist;
 
+	
 	@Value("${validation.employee.notExist}")
 	private String employeeNotExist;
 

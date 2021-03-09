@@ -2,30 +2,30 @@ package com.defect.tracker.data.dto;
 
 public class SubModuleDto {
 	
-	private Long subModId;
+	private Long id;
 	private String subModuleName;
-	private Long modId;
+	private Long moduleId;
 	
-	
-	public Long getSubModId() {
-		return subModId;
+	public Long getId() {
+		return id;
 	}
-	public void setSubModId(Long subModId) {
-		this.subModId = subModId;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	
 	public String getSubModuleName() {
 		return subModuleName;
 	}
 	public void setSubModuleName(String subModuleName) {
 		this.subModuleName = subModuleName;
 	}
+	public Long getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(Long moduleId) {
+		this.moduleId = moduleId;
+	}
 	
-	public Long getModId() {
-		return modId;
-	}
-	public void setModId(Long modId) {
-		this.modId = modId;
-	}
+	
+	
 
 }
