@@ -18,16 +18,17 @@ public class ValidationFailureStatusCodes {
 	
 
 	@Value("${validation.employee.notExist}")
-
 	private String employeeNotExist;
 
 	private String employeeNotFound;
+
 
 	@Value("${validation.severity.notExist}")
 	private String severityNotExist;
 
 	@Value("${validation.project.notExist}")
 	private String projectNotExist;
+
 
 
 	@Value("${validation.module.notExist}")
@@ -41,13 +42,13 @@ public class ValidationFailureStatusCodes {
 	private String employeeAlreadyExist;
 
 
+
 	@Value("{validation.project.AlreadyExists}")
 	 private String proNameAlreadyExists;
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
-
 
 
 	public String getEmailAlreadyExist() {
@@ -57,8 +58,6 @@ public class ValidationFailureStatusCodes {
 	public void setEmailAlreadyExist(String emailAlreadyExist) {
 		this.emailAlreadyExist = emailAlreadyExist;
 	}
-
-	
 
 	@Value("${validation.firstName.notExist}")
 	private String employeeNotExists;
@@ -73,6 +72,7 @@ public class ValidationFailureStatusCodes {
 
 
 	}
+
 	public String getEmployeeNotExist() {
 		return employeeNotExist;
 	}
@@ -91,10 +91,6 @@ public class ValidationFailureStatusCodes {
 		this.employeeNotFound = employeeNotFound;
 	}
 	
-
-	
-
-
 //	@Value("${validation.employee.alreadyExist}")
 //	private String employeeAlreadyExist;
 
@@ -114,7 +110,6 @@ public class ValidationFailureStatusCodes {
 	public void setProjectNotExist(String projectNotExist) {
 		this.projectNotExist = projectNotExist;
 	}
-
 
 	public String getModuleNotExist() {
 		return moduleNotExist;

@@ -31,28 +31,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.existsByEmail(email);
 	}
 
-
-	
-	
 	@Override
 	public Optional<Employee> findByFirstName(String firstName) {
 		return employeeRepository.findByFirstName(firstName);
 	}
 
-	
-	/*
-	 * @Override public boolean firstnameExist(String firstName) {
-	 * return employeeRepository.existsByFirstName(firstName); }
-	 */
-
-	
-
-	
-	
-
 	@Override
-
-
 	public Optional<Employee> findById(Long id) {
 		
 		return employeeRepository.findById(id);
@@ -63,30 +47,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 		return employeeRepository.existsById(id);
 	}
-
 	
-
-
-	public List<Employee> getAll() {
-		
-		return employeeRepository.findAll();
-	}
-
-
-
-	public void deleteEmployee(Long id) {
-		employeeRepository.deleteById(id);
-		
-	}
-
 	@Override
 	public boolean isEmployeeExists(Long id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 	
+	public List<Employee> getAll() {
+		
+		return employeeRepository.findAll();
+	}
 
-
+	public void deleteEmployee(Long id) {
+		employeeRepository.deleteById(id);	
+	}
 }
 
