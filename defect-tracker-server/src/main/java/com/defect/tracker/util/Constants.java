@@ -1,5 +1,4 @@
 package com.defect.tracker.util;
-
 import org.springframework.util.MultiValueMap;
 
 public class Constants {
@@ -17,8 +16,9 @@ public class Constants {
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
     
 	public static final String UpdateSubmodule= "SubModule updated successfully ";
+	public static final String SUBMODULE_DELETED ="SubModule Deleted";
 
-
+	
 	// encaptulate constructor to restrict modification from outside
 	
 	public static final String Get_All_Severity = "Severity got Successfully";

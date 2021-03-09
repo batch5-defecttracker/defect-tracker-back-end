@@ -1,4 +1,5 @@
 package com.defect.tracker.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -6,18 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
-import com.defect.tracker.services.SeverityService;
+import com.defect.tracker.services.PriorityService;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
 import com.defect.tracker.util.ValidationFailureStatusCodes;
 
-
-
 @RestController
-public class SeverityController {
-	
+public class PriorityController {
+
 	@Autowired
-	private SeverityService severityservice;
+	private PriorityService priorityService;
 	
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
@@ -25,16 +24,15 @@ public class SeverityController {
 	@Autowired
 	private Mapper mapper;
 	
-	@GetMapping(value = EndpointURI.getAllSeverity) 
+	@GetMapping(value = EndpointURI.getAllPriority) 
 	public ResponseEntity<Object> getAllSeverity() {
-		if (severityservice.getAllSeverity().isEmpty()) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOTEXIST,
-					validationFailureStatusCodes.getSeverityNotExist()), HttpStatus.BAD_REQUEST);
+		if (priorityService.getAllPriority().isEmpty()) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_NOTEXIST,
+					validationFailureStatusCodes.getPriorityNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		
-		return new ResponseEntity<Object>(severityservice.getAllSeverity(), HttpStatus.OK);
+		return new ResponseEntity<Object>(priorityService.getAllPriority(), HttpStatus.OK);
 	 
-
+	}
+	
 }
-}
-
