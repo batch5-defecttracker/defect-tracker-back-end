@@ -15,12 +15,22 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.email.alreadyExist}")
 	private String emailAlreadyExist;
+<<<<<<< HEAD
+=======
+	
+
+	@Value("${validation.employee.notExist}")
+>>>>>>> 5c271634221168e42c8ab6415cfa6243b3cf93bf
 
 	@Value("${validation.employee.notExist}")
 	private String employeeNotExist;
 
 	private String employeeNotFound;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 5c271634221168e42c8ab6415cfa6243b3cf93bf
 	@Value("${validation.module.notExist}")
 	private String moduleNotExist;
 	
@@ -29,6 +39,11 @@ public class ValidationFailureStatusCodes {
 	
 	@Value("${validation.employee.alreadyExist}")
 	private String employeeAlreadyExist;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5c271634221168e42c8ab6415cfa6243b3cf93bf
 
 	public String getEmailAlreadyExist() {
 		return emailAlreadyExist;
@@ -38,6 +53,24 @@ public class ValidationFailureStatusCodes {
 		this.emailAlreadyExist = emailAlreadyExist;
 	}
 
+<<<<<<< HEAD
+=======
+	
+
+	@Value("${validation.firstName.notExist}")
+	private String employeeNotExists;
+	
+	
+	public String getEmployeeNotExists() {
+		return employeeNotExists;
+	}
+
+	public void setEmployeeNotExists(String employeeNotExists) {
+		this.employeeNotExists = employeeNotExists;
+
+
+	}
+>>>>>>> 5c271634221168e42c8ab6415cfa6243b3cf93bf
 	public String getEmployeeNotExist() {
 		return employeeNotExist;
 	}
@@ -56,6 +89,16 @@ public class ValidationFailureStatusCodes {
 		this.employeeNotFound = employeeNotFound;
 	}
 	
+<<<<<<< HEAD
+=======
+
+	
+
+
+//	@Value("${validation.employee.alreadyExist}")
+//	private String employeeAlreadyExist;
+
+>>>>>>> 5c271634221168e42c8ab6415cfa6243b3cf93bf
 	public String getModuleNotExist() {
 		return moduleNotExist;
 	}
@@ -71,6 +114,10 @@ public class ValidationFailureStatusCodes {
 	public void setModuleAlreadyExist(String moduleAlreadyExist) {
 		this.moduleAlreadyExist = moduleAlreadyExist;
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5c271634221168e42c8ab6415cfa6243b3cf93bf
 
 	public String getEmployeeAlreadyExist() {
 		return employeeAlreadyExist;
@@ -78,5 +125,6 @@ public class ValidationFailureStatusCodes {
 
 	public void setEmployeeAlreadyExist(String employeeAlreadyExist) {
 		this.employeeAlreadyExist = employeeAlreadyExist;
+
 	}
 }
