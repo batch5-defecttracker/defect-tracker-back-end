@@ -16,6 +16,8 @@ public final class EndpointURI {
 	public static final String PROJECT_FIND = BASE_API_PATH + "find/{id}";
 	
 	public static final String PROJECT_DELETE = BASE_API_PATH + "delete/{id}";
+	
+	public static final String UPDATE_PROJECT = BASE_API_PATH + "update";
 
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
 
