@@ -11,11 +11,29 @@ public class SubModuleServiceImpl implements SubModuleService{
 	private SubModuleRepository subModuleUpdateRepository;
 
 	
+	
+	
+	
 	@Override
 	public void Update(SubModule submodule) {
 		subModuleUpdateRepository.save(submodule);
 		
 	}
+
+
+	@Override
+	public void deleteSubModuleById(Long id) {
+		subModuleUpdateRepository.deleteById(id);
+		
+	}
+
+
+	@Override
+	public boolean existsSubModule(Long id) {
+		return subModuleUpdateRepository.existsById(id);
+	}
+
+
 
 
 
