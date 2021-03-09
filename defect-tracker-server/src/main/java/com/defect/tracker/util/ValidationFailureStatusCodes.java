@@ -14,14 +14,12 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.email.alreadyExist}")
 	private String emailAlreadyExist;
-	
-
 
 	@Value("${validation.employee.notExist}")
 	private String employeeNotExist;
 
 	private String employeeNotFound;
-	
+
 
 	@Value("${validation.severity.notExist}")
 	private String severityNotExist;
@@ -30,23 +28,26 @@ public class ValidationFailureStatusCodes {
 	private String projectNotExist;
 
 
+
+
 	@Value("${validation.module.notExist}")
 	private String moduleNotExist;
 	
 	@Value("${validation.module.alreadyExist}")
 	private String moduleAlreadyExist;
-	
 
-	@Value("${validation.employee.alreadyExist}")
-	private String employeeAlreadyExist;
+
 
 	@Value("{validation.project.AlreadyExists}")
 	 private String proNameAlreadyExists;
-
+	
+	
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
 
+	@Value("${validation.employee.alreadyExist}")
+	private String employeeAlreadyExist;
 
 	public String getEmailAlreadyExist() {
 		return emailAlreadyExist;
@@ -56,10 +57,9 @@ public class ValidationFailureStatusCodes {
 		this.emailAlreadyExist = emailAlreadyExist;
 	}
 
-
 	@Value("${validation.firstName.notExist}")
 	private String employeeNotExists;
-	
+
 	
 	public String getEmployeeNotExists() {
 		return employeeNotExists;
@@ -67,8 +67,7 @@ public class ValidationFailureStatusCodes {
 
 	public void setEmployeeNotExists(String employeeNotExists) {
 		this.employeeNotExists = employeeNotExists;
-
-
+		
 	}
 
 	public String getEmployeeNotExist() {
@@ -88,7 +87,10 @@ public class ValidationFailureStatusCodes {
 	public void setEmployeeNotFound(String employeeNotFound) {
 		this.employeeNotFound = employeeNotFound;
 	}
+
 	
+//	@Value("${validation.employee.alreadyExist}")
+//	private String employeeAlreadyExist;
 
 
 	public String getSeverityNotExist() {
@@ -99,6 +101,11 @@ public class ValidationFailureStatusCodes {
 		this.severityNotExist = severityNotExist;
 	}
 	
+
+
+
+
+
 	public String getProjectNotExist() {
 		return projectNotExist;
 	}
@@ -134,9 +141,9 @@ public class ValidationFailureStatusCodes {
 
 	}
 
-
 	public String getProNameAlreadyExists() {
 		return proNameAlreadyExists;
+
 	}
 
 
