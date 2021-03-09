@@ -21,6 +21,12 @@ public class ValidationFailureStatusCodes {
 	private String employeeNotExist;
 
 	private String employeeNotFound;
+	
+	@Value("${validation.severity.notExist}")
+	private String severityNotExist;
+
+	@Value("${validation.project.notExist}")
+	private String projectNotExist;
 
 	@Value("${validation.module.notExist}")
 	private String moduleNotExist;
@@ -28,6 +34,19 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.module.alreadyExist}")
 	private String moduleAlreadyExist;
 	
+	@Value("${validation.firstName.notExist}")
+	private String employeeNotExists;
+
+	@Value("{validation.project.AlreadyExists}")
+	 private String proNameAlreadyExists;
+
+	@Value("${validation.employee.alreadyExist}")
+	private String employeeAlreadyExist;
+	
+	
+	public void setProNameAlreadyExists(String proNameAlreadyExists) {
+		this.proNameAlreadyExists = proNameAlreadyExists;
+	}
 
 
 	public String getEmailAlreadyExist() {
@@ -37,11 +56,6 @@ public class ValidationFailureStatusCodes {
 	public void setEmailAlreadyExist(String emailAlreadyExist) {
 		this.emailAlreadyExist = emailAlreadyExist;
 	}
-
-	
-
-	@Value("${validation.firstName.notExist}")
-	private String employeeNotExists;
 	
 	
 	public String getEmployeeNotExists() {
@@ -71,11 +85,21 @@ public class ValidationFailureStatusCodes {
 	}
 	
 
+	public String getSeverityNotExist() {
+		return severityNotExist;
+	}
+
+	public void setSeverityNotExist(String severityNotExist) {
+		this.severityNotExist = severityNotExist;
+	}
 	
+	public String getProjectNotExist() {
+		return projectNotExist;
+	}
 
-
-	@Value("${validation.employee.alreadyExist}")
-	private String employeeAlreadyExist;
+	public void setProjectNotExist(String projectNotExist) {
+		this.projectNotExist = projectNotExist;
+	}
 
 
 	public String getModuleNotExist() {
@@ -103,4 +127,11 @@ public class ValidationFailureStatusCodes {
 		this.employeeAlreadyExist = employeeAlreadyExist;
 
 	}
+
+
+	public String getProNameAlreadyExists() {
+		return proNameAlreadyExists;
+	}
+
+
 }
