@@ -5,14 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.entities.Employee;
@@ -46,19 +41,10 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
 	}
 	
+
 	
 	@GetMapping(value= EndpointURI.GetEmployeebyName )
 	public ResponseEntity<Object> findEmployeeByName(@PathVariable String firstName){
-	
-		/*
-		 * if (!employeeService.firstnameExist(firstName)) { return new
-		 * ResponseEntity<>(new
-		 * ValidationFailureResponse(ValidationConstance.EMPLOYEE_NAME_NOT_EXISTS,
-		 * validationFailureStatusCodes.getEmployeeNotExists()),
-		 * HttpStatus.BAD_REQUEST); }
-		 */
-		
-		//Employee employee= mapper.map(EmployeeDto, Employee.class);
 		return new ResponseEntity<Object>(employeeService.findByFirstName(firstName), HttpStatus.OK);
 
 	} 
@@ -86,11 +72,6 @@ public class EmployeeController {
 	}
 	
 
-	/*
-	 * @GetMapping(value = EndpointURI.EMPLOYEE) public List<Employee> getAllEmp(){
-	 * 
-	 * return employeeService.getAll(); }
-	 */
 
 	@DeleteMapping(value = EndpointURI.DELETE_EMPLOYEE)
 	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
