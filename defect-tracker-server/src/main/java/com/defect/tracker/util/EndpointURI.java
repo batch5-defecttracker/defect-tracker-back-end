@@ -22,21 +22,19 @@ public final class EndpointURI {
 	public static final String MODULE = BASE_API_PATH + "module";
 	public static final String MODULE_ADD = BASE_API_PATH + "addmodule";
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
-
-
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
-
-
-
+	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
 	
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
 
-	
-
 //DefectType
 	public static final String DEFECTTYPE = BASE_API_PATH + "defecttype";
 
+//GetAllSeverity
+	public static final String getAllSeverity = BASE_API_PATH + "severity";
+
+	
 	private EndpointURI() {
 	}
 }

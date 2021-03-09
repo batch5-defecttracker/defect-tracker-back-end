@@ -14,11 +14,15 @@ public class Constants {
 
 	public static final String EMPLOYEE_DELETE_SUCCESS = "Employee Deleted Successfully";
 
-	public static final MultiValueMap<String, String> PROJECT_ADDED_SUCCESS = null;
-
+	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
+    
+	public static final String UpdateSubmodule= "SubModule updated successfully ";
 
 
 	// encaptulate constructor to restrict modification from outside
+	
+	public static final String Get_All_Severity = "Severity got Successfully";
+	
 	private Constants() {
 	}
 }
