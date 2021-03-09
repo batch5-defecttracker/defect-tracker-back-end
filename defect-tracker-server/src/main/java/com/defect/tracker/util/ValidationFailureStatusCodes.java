@@ -38,7 +38,7 @@ public class ValidationFailureStatusCodes {
 	 private String proNameAlreadyExists;
 	
 	
-<<<<<<< HEAD
+
 	@Value("${validation.subModule.notExist}")
 	private String subModuleNotExist;
 
@@ -51,7 +51,7 @@ public class ValidationFailureStatusCodes {
 		this.subModuleNotExist = subModuleNotExist;
 	}
 
-=======
+
 	@Value("${validation.priority.notExist}")
 	private String priorityNotExist;
 	
@@ -62,7 +62,7 @@ public class ValidationFailureStatusCodes {
 	public void setPriorityNotExist(String priorityNotExist) {
 		this.priorityNotExist = priorityNotExist;
 	}
->>>>>>> 384fbbb9e9df6cf2275a51ddf97863232ade24ee
+
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
