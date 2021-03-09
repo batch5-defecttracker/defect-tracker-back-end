@@ -8,6 +8,7 @@ public final class EndpointURI {
 	private static final String BASE_API_PATH = "/api/v1/";
 //Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
+
 	
 	public static final String PROJECT = BASE_API_PATH + "project";
 
@@ -22,14 +23,24 @@ public final class EndpointURI {
 	public static final String MODULE = BASE_API_PATH + "module";
 	public static final String MODULE_ADD = BASE_API_PATH + "addmodule";
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
+
+
+
+//getEmployee
+	public static final String GetEmployeebyName = BASE_API_PATH + "getEmployeebyName/{firstName}";
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
+	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
+
+	
 	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
+
 	
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
 
 //DefectType
 	public static final String DEFECTTYPE = BASE_API_PATH + "defecttype";
+
 
 //GetAllSeverity
 	public static final String getAllSeverity = BASE_API_PATH + "severity";
