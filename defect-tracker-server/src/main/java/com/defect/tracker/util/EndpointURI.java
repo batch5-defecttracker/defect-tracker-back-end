@@ -13,6 +13,12 @@ public final class EndpointURI {
 //getEmployee
 	public static final String GetEmployeebyName = BASE_API_PATH + "getEmployeebyName/{firstName}";
 	
+
+	public static final String PROJECT = BASE_API_PATH + "project";
+
+//GetEmployeeByStatus
+	public static final String LOGINSTATUS = BASE_API_PATH + "loginstatus";
+
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
 
 	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
@@ -64,6 +70,7 @@ public final class EndpointURI {
 		public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
 
 	private EndpointURI() {
+		
 	}
 }
 
