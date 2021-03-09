@@ -20,7 +20,7 @@ public class ValidationConstance {
 
 	
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
-
+	public static final String 	SUBMODULE_DOES_NOT_EXISTS = "SubModule doesn't Exist ";
 
 
 	private ValidationConstance() {

@@ -32,8 +32,9 @@ public final class EndpointURI {
 	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
 
 	
+	//SubModule
 	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
-
+	public static final String SUBMODULE_DELETE = BASE_API_PATH + "deleteSubModule/{id}";
 	
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
