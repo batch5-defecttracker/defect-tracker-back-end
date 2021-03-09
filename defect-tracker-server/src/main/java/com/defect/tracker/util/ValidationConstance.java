@@ -14,6 +14,7 @@ public class ValidationConstance {
 
 
 	public static final String SEVERITY_NOTEXIST = "Severity not exist";
+	
 	public static final String PROJECT_DOES_NOT_EXISTS= "Project not Exist";
 
 
@@ -23,8 +24,7 @@ public class ValidationConstance {
 
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
 	
-
-
+	public static final String PRIORITY_NOTEXIST = "priority not exist";
 
 
 

@@ -28,20 +28,27 @@ public class ValidationFailureStatusCodes {
 	private String projectNotExist;
 
 
-
-
 	@Value("${validation.module.notExist}")
 	private String moduleNotExist;
 	
 	@Value("${validation.module.alreadyExist}")
 	private String moduleAlreadyExist;
 
-
-
 	@Value("{validation.project.AlreadyExists}")
 	 private String proNameAlreadyExists;
 	
 	
+	@Value("${validation.priority.notExist}")
+	private String priorityNotExist;
+	
+	public String getPriorityNotExist() {
+		return priorityNotExist;
+	}
+
+	public void setPriorityNotExist(String priorityNotExist) {
+		this.priorityNotExist = priorityNotExist;
+	}
+
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
@@ -57,18 +64,6 @@ public class ValidationFailureStatusCodes {
 		this.emailAlreadyExist = emailAlreadyExist;
 	}
 
-	@Value("${validation.firstName.notExist}")
-	private String employeeNotExists;
-
-	
-	public String getEmployeeNotExists() {
-		return employeeNotExists;
-	}
-
-	public void setEmployeeNotExists(String employeeNotExists) {
-		this.employeeNotExists = employeeNotExists;
-		
-	}
 
 	public String getEmployeeNotExist() {
 		return employeeNotExist;
@@ -101,10 +96,6 @@ public class ValidationFailureStatusCodes {
 		this.severityNotExist = severityNotExist;
 	}
 	
-
-
-
-
 
 	public String getProjectNotExist() {
 		return projectNotExist;

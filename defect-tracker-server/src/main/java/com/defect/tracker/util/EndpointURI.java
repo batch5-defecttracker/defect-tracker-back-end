@@ -63,6 +63,8 @@ public final class EndpointURI {
 //GetAllSeverity
 	public static final String getAllSeverity = BASE_API_PATH + "severity";
 
+//GetAllPriority
+		public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
 
 	private EndpointURI() {
 	}
