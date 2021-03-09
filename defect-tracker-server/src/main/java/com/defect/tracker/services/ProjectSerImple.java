@@ -39,6 +39,12 @@ public class ProjectSerImple  implements ProjectService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void updateProject(Project project) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 	

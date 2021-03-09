@@ -25,6 +25,9 @@ public class ValidationConstance {
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
 
 	public static final String 	SUBMODULE_DOES_NOT_EXISTS = "SubModule doesn't Exist ";
+	
+	public static final String DESIGNATION_NOT_EXIST = "Designation not exist";
+	public static final String SUBMODULE_NOT_EXIST = "Submodule not exist";
 
 	
 	public static final String PRIORITY_NOTEXIST = "priority not exist";

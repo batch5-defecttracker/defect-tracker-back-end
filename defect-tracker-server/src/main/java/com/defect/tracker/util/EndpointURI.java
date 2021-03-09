@@ -37,7 +37,7 @@ public final class EndpointURI {
 
 	
 
-
+	
 
 
 //getEmployee
@@ -52,14 +52,16 @@ public final class EndpointURI {
 	
 	//SubModule
 	
+	public static final String UpdateSubModule = BASE_API_PATH+ "subModule";
 	public static final String SUBMODULE_DELETE = BASE_API_PATH + "deleteSubModule/{id}";
-
+	
 	//getEmployee
 
 //getEmployee
 
 
-	
+	//designation
+	public static final String getAllDesignation = BASE_API_PATH + "designation";
 
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
@@ -73,6 +75,7 @@ public final class EndpointURI {
 
 //GetAllPriority
 		public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
+		
 
 	private EndpointURI() {
 	}

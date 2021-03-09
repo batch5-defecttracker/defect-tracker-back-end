@@ -37,6 +37,15 @@ public class SubModuleController {
 	
 	@PutMapping(value= EndpointURI.UpdateSubModule)
 	public ResponseEntity<Object> updateSubModule(@RequestBody SubModuleDto subModuleDto){
+		/*
+		 * if(!subModuleService.existSubModule(subModuleDto.getId())) { return new
+		 * ResponseEntity<> (new
+		 * ValidationFailureResponse(ValidationConstance.SUBMODULE_NOT_EXIST,
+		 * validationFailureStatusCodes.getSubModuleNotExists()),HttpStatus.BAD_REQUEST)
+		 * ; }
+		 */
+		
+		
 		SubModule submodule =  mapper.map(subModuleDto ,SubModule.class);
 		subModuleService.Update(submodule);
 		return new ResponseEntity<Object>(Constants.UpdateSubmodule, HttpStatus.OK);

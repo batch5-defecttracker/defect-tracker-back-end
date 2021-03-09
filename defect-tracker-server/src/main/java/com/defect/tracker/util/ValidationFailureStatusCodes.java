@@ -51,6 +51,18 @@ public class ValidationFailureStatusCodes {
 		this.subModuleNotExist = subModuleNotExist;
 	}
 
+	@Value("${validation.submodule.notExist}")
+	private String subModuleNotExists;
+
+	
+
+	public String getSubModuleNotExists() {
+		return subModuleNotExists;
+	}
+
+	public void setSubModuleNotExists(String subModuleNotExists) {
+		this.subModuleNotExists = subModuleNotExists;
+	}
 
 	@Value("${validation.priority.notExist}")
 	private String priorityNotExist;
@@ -151,6 +163,20 @@ public class ValidationFailureStatusCodes {
 		return proNameAlreadyExists;
 
 	}
+	
+	
+	@Value("${validation.designation.notExist}")
+	private String designationNotExist;
+
+
+			public String getDesignationNotExist() {
+		return designationNotExist;
+	}
+
+	public void setDesignationNotExist(String designationNotExist) {
+		this.designationNotExist = designationNotExist;
+	}
+
 
 
 }
