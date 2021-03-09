@@ -50,7 +50,7 @@ public final class EndpointURI {
 
 	
 	//SubModule
-	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
+	
 	public static final String SUBMODULE_DELETE = BASE_API_PATH + "deleteSubModule/{id}";
 
 	//getEmployee
