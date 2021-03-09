@@ -22,11 +22,11 @@ public class ProjectSerImple  implements ProjectService{
 			return projectRepository.existsByproName(proName);
 	}
 
-	@Override
-	public Optional<Project> findById(Long id) {
+	//@Override
+	//public Optional<Project> findById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		//return null;
+	//}
 
 	@Override
 	public boolean existProject(Long id) {
@@ -36,6 +36,18 @@ public class ProjectSerImple  implements ProjectService{
 
 	@Override
 	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Project findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateProject(Project project) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,11 +1,8 @@
 package com.defect.tracker.services;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.defect.tracker.data.entities.SubModule;
-import com.defect.tracker.data.repositories.EmployeeRepository;
 import com.defect.tracker.data.repositories.SubModuleRepository;
 
 @Service
@@ -13,14 +10,7 @@ public class SubModuleServiceImpl implements SubModuleService{
 
 	@Autowired
 	private SubModuleRepository subModuleUpdateRepository;
-<<<<<<< HEAD
-	
-	
-	
-	
-=======
 
->>>>>>> 3b1a46c5dfb1a2d245e5490d3514b687dbb1f1c7
 	@Override
 	public void Update(SubModule submodule) {
 		subModuleUpdateRepository.save(submodule);	
@@ -41,16 +31,13 @@ public class SubModuleServiceImpl implements SubModuleService{
 	}
 
 
-<<<<<<< HEAD
-	
-=======
 	@Override
 	public boolean existsSubModule(Long id) {
 		return subModuleUpdateRepository.existsById(id);
 	}
 
 
->>>>>>> 3b1a46c5dfb1a2d245e5490d3514b687dbb1f1c7
+
 
 
 
