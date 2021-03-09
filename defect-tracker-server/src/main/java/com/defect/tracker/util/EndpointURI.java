@@ -9,7 +9,12 @@ public final class EndpointURI {
 //Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 	
+<<<<<<< Updated upstream
 	public static final String PROJECT = BASE_API_PATH + "project";
+=======
+//GetEmployeeByStatus
+	public static final String LOGINSTATUS = BASE_API_PATH + "loginstatus";
+>>>>>>> Stashed changes
 
 	
 	
@@ -36,6 +41,7 @@ public final class EndpointURI {
 
 	
 	private EndpointURI() {
+		
 	}
 }
 
