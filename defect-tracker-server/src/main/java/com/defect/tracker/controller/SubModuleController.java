@@ -2,6 +2,8 @@ package com.defect.tracker.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +11,7 @@ import com.defect.tracker.data.dto.SubModuleDto;
 import com.defect.tracker.data.entities.SubModule;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.SubModuleRepository;
+import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.SubModuleService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
@@ -24,8 +27,6 @@ public class SubModuleController {
 	
 	@Autowired
 	SubModuleService subModuleService;
-
-
 	
 	@PutMapping(value= EndpointURI.UpdateSubModule)
 	public ResponseEntity<Object> updateSubModule(@RequestBody SubModuleDto subModuleDto){
@@ -34,7 +35,7 @@ public class SubModuleController {
 		return new ResponseEntity<Object>(Constants.UpdateSubmodule, HttpStatus.OK);
 		
 	}
-			
+	
 	
 	
 

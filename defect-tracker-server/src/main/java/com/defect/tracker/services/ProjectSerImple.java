@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.repositories.ProjectRepository;
 
-@Service
+
 public class ProjectSerImple  implements ProjectService{
 	@Autowired
 	ProjectRepository projectRepository;

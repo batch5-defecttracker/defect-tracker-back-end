@@ -6,7 +6,8 @@ import com.defect.tracker.data.entities.SubModule;
 public interface SubModuleService {
 	
 	public void Update(SubModule submodule);
-
+	
+	
 	
 
 }
