@@ -1,5 +1,4 @@
 package com.defect.tracker.util;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -21,6 +20,20 @@ public class ValidationFailureStatusCodes {
 
 	private String employeeNotFound;
 	
+
+	@Value("${validation.severity.notExist}")
+	private String severityNotExist;
+
+	@Value("${validation.project.notExist}")
+	private String projectNotExist;
+
+
+	@Value("${validation.employee.notExist}")
+	private String employeeNotExist;
+
+	private String employeeNotFound;
+	
+
 	@Value("${validation.severity.notExist}")
 	private String severityNotExist;
 
@@ -90,6 +103,18 @@ public class ValidationFailureStatusCodes {
 		this.severityNotExist = severityNotExist;
 	}
 	
+
+
+
+
+	public String getSeverityNotExist() {
+		return severityNotExist;
+	}
+
+	public void setSeverityNotExist(String severityNotExist) {
+		this.severityNotExist = severityNotExist;
+	}
+
 	public String getProjectNotExist() {
 		return projectNotExist;
 	}
@@ -97,6 +122,7 @@ public class ValidationFailureStatusCodes {
 	public void setProjectNotExist(String projectNotExist) {
 		this.projectNotExist = projectNotExist;
 	}
+
 
 	public String getModuleNotExist() {
 		return moduleNotExist;

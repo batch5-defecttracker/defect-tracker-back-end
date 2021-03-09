@@ -32,7 +32,17 @@ public final class EndpointURI {
 	
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
 
+
 	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
+
+
+
+
+//getEmployee
+	public static final String GetEmployeebyName = BASE_API_PATH + "getEmployeebyName/{firstName}";
+	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
+	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
+
 	
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
@@ -40,9 +50,12 @@ public final class EndpointURI {
 //DefectType
 	public static final String DEFECTTYPE = BASE_API_PATH + "defecttype";
 
+
 //GetAllSeverity
 	public static final String getAllSeverity = BASE_API_PATH + "severity";
 
+//GetAllSeverity
+	public static final String getAllSeverity = BASE_API_PATH + "severity";
 
 	
 	private EndpointURI() {
