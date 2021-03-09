@@ -1,6 +1,5 @@
 package com.defect.tracker.services;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -12,4 +11,10 @@ public interface SubModuleService {
 	public void Update(SubModule submodule);
 	public List<SubModule> findSubModule(Long id);
 	public boolean existById(Long id);
+	public void deleteSubModuleById(Long  id);
+	public boolean existsSubModule(Long id);
+	
+
+	
+
 }

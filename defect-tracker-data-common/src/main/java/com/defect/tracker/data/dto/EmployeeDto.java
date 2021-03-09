@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class EmployeeDto {
 	
-	private Long empID;
+	private Long id;
 	private String firstName;
 	private String lastName;
-	private Long desId;
+	private Long designationId;
 	private String email;
 	private String address;
 	private String contactNumber;
@@ -15,12 +15,11 @@ public class EmployeeDto {
 	private String image;
 	private Date timeStamp;
 	private String gender;
-	
-	public Long getEmpID() {
-		return empID;
+	public Long getId() {
+		return id;
 	}
-	public void setEmpID(Long empID) {
-		this.empID = empID;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -34,11 +33,12 @@ public class EmployeeDto {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Long getDesId() {
-		return desId;
+
+	public Long getDesignationId() {
+		return designationId;
 	}
-	public void setDesId(Long desId) {
-		this.desId = desId;
+	public void setDesignationId(Long designationId) {
+		this.designationId = designationId;
 	}
 	public String getEmail() {
 		return email;
@@ -82,4 +82,7 @@ public class EmployeeDto {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	
+	
+
 }

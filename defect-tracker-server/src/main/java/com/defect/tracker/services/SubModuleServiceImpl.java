@@ -27,6 +27,23 @@ public class SubModuleServiceImpl implements SubModuleService{
 	public boolean existById(Long id) {
 		return subModuleUpdateRepository.existsByModuleId(id);
 	}
+	public void deleteSubModuleById(Long id) {
+		subModuleUpdateRepository.deleteById(id);
+		
+	}
+
+
+	@Override
+	public boolean existsSubModule(Long id) {
+		return subModuleUpdateRepository.existsById(id);
+	}
+
+
+
+
+
+	
+	
 	
 	
 }
