@@ -1,17 +1,16 @@
 package com.defect.tracker.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.dto.ProjectDto;
-import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
@@ -25,13 +24,34 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 public class ProjectController {
 
 	@Autowired
-	private ProjectService projectService;
+	ProjectService  projectService;
+	
 	
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-
+	
 	@Autowired
 	private Mapper mapper;
+	
+	
+	
+	
+	@PostMapping(value= EndpointURI.PROJECT)
+	public ResponseEntity<Object> addProject(@RequestBody ProjectDto proDto){
+		if(projectService.isProNameAlreadyExist(proDto.getProName())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS, 
+					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+		}
+		
+		Project project = mapper.map(proDto, Project.class);
+		projectService.createProject(project);
+		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS,HttpStatus.OK);
+		
+	}
+
+
+
+	
 	
 	@GetMapping(value = EndpointURI.PROJECT_FIND)
 	public ResponseEntity<Object> findById(@PathVariable Long id){
@@ -56,4 +76,5 @@ public class ProjectController {
 		return new ResponseEntity<Object>(Constants.PROJECT_DELETED, HttpStatus.OK);
 		
 	}
+
 }

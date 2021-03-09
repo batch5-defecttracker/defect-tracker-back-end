@@ -15,9 +15,33 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.email.alreadyExist}")
 	private String emailAlreadyExist;
+<<<<<<< HEAD
+=======
+	
+	@Value("${validation.severity.notExist}")
+	private String severityNotExist;
+>>>>>>> d4839a85d9c878273346bb7b178745f905596f95
 
 	@Value("${validation.project.notExist}")
 	private String projectNotExist;
+
+	@Value("${validation.module.notExist}")
+	private String moduleNotExist;
+	
+	@Value("${validation.module.alreadyExist}")
+	private String moduleAlreadyExist;
+	
+
+	@Value("${validation.employee.alreadyExist}")
+	private String employeeAlreadyExist;
+
+	@Value("{validation.project.AlreadyExists}")
+	 private String proNameAlreadyExists;
+
+	public void setProNameAlreadyExists(String proNameAlreadyExists) {
+		this.proNameAlreadyExists = proNameAlreadyExists;
+	}
+
 
 	public String getEmailAlreadyExist() {
 		return emailAlreadyExist;
@@ -27,6 +51,15 @@ public class ValidationFailureStatusCodes {
 		this.emailAlreadyExist = emailAlreadyExist;
 	}
 
+
+	public String getSeverityNotExist() {
+		return severityNotExist;
+	}
+
+	public void setSeverityNotExist(String severityNotExist) {
+		this.severityNotExist = severityNotExist;
+	}
+	
 	public String getProjectNotExist() {
 		return projectNotExist;
 	}
@@ -35,8 +68,26 @@ public class ValidationFailureStatusCodes {
 		this.projectNotExist = projectNotExist;
 	}
 
+<<<<<<< HEAD
 	@Value("${validation.employee.alreadyExist}")
 	private String employeeAlreadyExist;
+=======
+	public String getModuleNotExist() {
+		return moduleNotExist;
+	}
+
+	public void setModuleNotExist(String moduleNotExist) {
+		this.moduleNotExist = moduleNotExist;
+	}
+
+	public String getModuleAlreadyExist() {
+		return moduleAlreadyExist;
+	}
+
+	public void setModuleAlreadyExist(String moduleAlreadyExist) {
+		this.moduleAlreadyExist = moduleAlreadyExist;
+	}
+>>>>>>> d4839a85d9c878273346bb7b178745f905596f95
 
 	public String getEmployeeAlreadyExist() {
 		return employeeAlreadyExist;
@@ -46,4 +97,13 @@ public class ValidationFailureStatusCodes {
 		this.employeeAlreadyExist = employeeAlreadyExist;
 	}
 
+<<<<<<< HEAD
+=======
+
+	public String getProNameAlreadyExists() {
+		return proNameAlreadyExists;
+	}
+
+
+>>>>>>> d4839a85d9c878273346bb7b178745f905596f95
 }
