@@ -1,6 +1,5 @@
 package com.defect.tracker.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +16,11 @@ public class DefectStatusController {
 	@Autowired
 	private DefectStatusService defectStatusService;
 	
-	@GetMapping(value = EndpointURI.DEFECTSTATUS)
+	/*@GetMapping(value = EndpointURI.DEFECTSTATUS)
 	public List<DefectStatus> getAllDefectStatus(){
-		return defectStatusService.getAllDefectStatus();
+		return defectStatusService.getAllDefectStatus();*/
 		
-	}
+	//}
 	
 	
 }

@@ -9,31 +9,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "prority")
 public class Priority {
-	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String prioName;
-	
-	
 
+	
+	private Long Id;
+	public Long getId() {
+		return Id;
+	}
+	public void setId(Long id) {
+		Id = id;
+	}
 	public String getPrioName() {
 		return prioName;
 	}
 	public void setPrioName(String prioName) {
 		this.prioName = prioName;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	
 
 }
