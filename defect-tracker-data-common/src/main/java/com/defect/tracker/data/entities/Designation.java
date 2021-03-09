@@ -9,6 +9,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "designation")
 public class Designation {
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -27,5 +29,6 @@ public class Designation {
 	public void setDesName(String desName) {
 		DesName = desName;
 	}
+	
 	
 }

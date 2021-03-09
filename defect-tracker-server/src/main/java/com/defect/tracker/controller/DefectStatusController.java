@@ -17,11 +17,11 @@ public class DefectStatusController {
 	@Autowired
 	private DefectStatusService defectStatusService;
 	
-	@GetMapping(value = EndpointURI.DEFECTSTATUS)
+	/*@GetMapping(value = EndpointURI.DEFECTSTATUS)
 	public List<DefectStatus> getAllDefectStatus(){
-		return defectStatusService.getAllDefectStatus();
+		return defectStatusService.getAllDefectStatus();*/
 		
-	}
+	//}
 	
 	
 }
