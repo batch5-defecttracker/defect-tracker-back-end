@@ -17,7 +17,9 @@ public final class EndpointURI {
 	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
 
 	public static final String PROJECT = BASE_API_PATH + "project";
-
+	
+	public static final String GET_EMPLOYEE_BY_DESIGNATION = BASE_API_PATH + "getEmployeebyDesignation/{designationId}";
+	
 	
 //Project	
 	public static final String PROJECT_FIND = BASE_API_PATH + "find/{id}";
