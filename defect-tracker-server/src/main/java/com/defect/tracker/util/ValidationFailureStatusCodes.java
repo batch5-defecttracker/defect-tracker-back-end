@@ -15,17 +15,21 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.email.alreadyExist}")
 	private String emailAlreadyExist;
-	
-<<<<<<< HEAD
-=======
+
 	@Value("${validation.employee.notExist}")
 
 	private String employeeNotExist;
 
 	private String employeeNotFound;
 
+	@Value("${validation.module.notExist}")
+	private String moduleNotExist;
+	
+	@Value("${validation.module.alreadyExist}")
+	private String moduleAlreadyExist;
+	
 
->>>>>>> afb5b6f437eedf3792edacbac1e5e89a0ae62570
+
 	public String getEmailAlreadyExist() {
 		return emailAlreadyExist;
 	}
@@ -33,7 +37,7 @@ public class ValidationFailureStatusCodes {
 	public void setEmailAlreadyExist(String emailAlreadyExist) {
 		this.emailAlreadyExist = emailAlreadyExist;
 	}
-<<<<<<< HEAD
+
 	
 
 	@Value("${validation.firstName.notExist}")
@@ -46,7 +50,7 @@ public class ValidationFailureStatusCodes {
 
 	public void setEmployeeNotExists(String employeeNotExists) {
 		this.employeeNotExists = employeeNotExists;
-=======
+	}
 
 	public String getEmployeeNotExist() {
 		return employeeNotExist;
@@ -73,14 +77,30 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.employee.alreadyExist}")
 	private String employeeAlreadyExist;
 
+
+	public String getModuleNotExist() {
+		return moduleNotExist;
+	}
+
+	public void setModuleNotExist(String moduleNotExist) {
+		this.moduleNotExist = moduleNotExist;
+	}
+
+	public String getModuleAlreadyExist() {
+		return moduleAlreadyExist;
+	}
+
+	public void setModuleAlreadyExist(String moduleAlreadyExist) {
+		this.moduleAlreadyExist = moduleAlreadyExist;
+	}
+
+
 	public String getEmployeeAlreadyExist() {
 		return employeeAlreadyExist;
 	}
 
 	public void setEmployeeAlreadyExist(String employeeAlreadyExist) {
 		this.employeeAlreadyExist = employeeAlreadyExist;
->>>>>>> afb5b6f437eedf3792edacbac1e5e89a0ae62570
-	}
 
-	
+	}
 }

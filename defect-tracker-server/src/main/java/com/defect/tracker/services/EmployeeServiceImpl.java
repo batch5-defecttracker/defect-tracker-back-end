@@ -1,16 +1,9 @@
 package com.defect.tracker.services;
-<<<<<<< HEAD
-import java.util.Optional;
-=======
-
 
 import java.util.Optional;
-
+import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
-
-
->>>>>>> afb5b6f437eedf3792edacbac1e5e89a0ae62570
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.defect.tracker.data.entities.Employee;
@@ -31,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.existsByEmail(email);
 	}
 
-<<<<<<< HEAD
+
 	
 	
 	@Override
@@ -40,19 +33,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	
-	/*
-	 * @Override public boolean firstnameExist(String firstName) {
-	 * return employeeRepository.existsByFirstName(firstName); }
-	 */
 
-	
-
-	
-	
-=======
 	@Override
-
-
 	public Optional<Employee> findById(Long id) {
 		
 		return employeeRepository.findById(id);
@@ -87,6 +69,5 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	
 
->>>>>>> afb5b6f437eedf3792edacbac1e5e89a0ae62570
 }
 

@@ -1,37 +1,28 @@
 package com.defect.tracker.controller;
 
 
-import java.util.List;
+
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-=======
 
 
-
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
-
-
 import org.springframework.web.bind.annotation.DeleteMapping;
-
 import org.springframework.web.bind.annotation.PathVariable;
-
->>>>>>> afb5b6f437eedf3792edacbac1e5e89a0ae62570
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.mapper.Mapper;
@@ -64,7 +55,7 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
 	}
 	
-<<<<<<< HEAD
+
 	
 	
 	
@@ -83,7 +74,7 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(employeeService.findByFirstName(firstName), HttpStatus.OK);
 
 	} 
-=======
+
 
 
 
@@ -126,5 +117,4 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_DELETE_SUCCESS, HttpStatus.OK);
 	}
 	
->>>>>>> afb5b6f437eedf3792edacbac1e5e89a0ae62570
 }
