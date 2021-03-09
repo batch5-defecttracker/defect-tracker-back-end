@@ -3,8 +3,6 @@ package com.defect.tracker.services;
 
 import java.util.Optional;
 import java.util.List;
-import java.util.Optional;
-import java.util.List;
 import com.defect.tracker.data.entities.Employee;
 
 public interface EmployeeService {
@@ -17,11 +15,17 @@ public interface EmployeeService {
 	public boolean idExist(Long id);
 
 
+
 	//public void deleteEmployee(Long id);
 	
-	public List<Employee> getAll();
-	public void deleteEmployee(Long id);
+
+	
 	public boolean isEmployeeExists(Long id);
+
+
+	public List<Employee> getAll();
+
+	public void deleteEmployee(Long id);
 
 
 }

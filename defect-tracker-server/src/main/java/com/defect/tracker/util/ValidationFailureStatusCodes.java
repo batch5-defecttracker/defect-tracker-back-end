@@ -19,7 +19,7 @@ public class ValidationFailureStatusCodes {
 	private String employeeNotExist;
 
 	private String employeeNotFound;
-	
+
 
 	@Value("${validation.severity.notExist}")
 	private String severityNotExist;
@@ -28,10 +28,6 @@ public class ValidationFailureStatusCodes {
 	private String projectNotExist;
 
 
-	
-	
-	
-
 
 
 	@Value("${validation.module.notExist}")
@@ -39,6 +35,8 @@ public class ValidationFailureStatusCodes {
 	
 	@Value("${validation.module.alreadyExist}")
 	private String moduleAlreadyExist;
+
+
 
 	@Value("{validation.project.AlreadyExists}")
 	 private String proNameAlreadyExists;
@@ -89,6 +87,12 @@ public class ValidationFailureStatusCodes {
 	public void setEmployeeNotFound(String employeeNotFound) {
 		this.employeeNotFound = employeeNotFound;
 	}
+
+	
+//	@Value("${validation.employee.alreadyExist}")
+//	private String employeeAlreadyExist;
+
+
 	public String getSeverityNotExist() {
 		return severityNotExist;
 	}

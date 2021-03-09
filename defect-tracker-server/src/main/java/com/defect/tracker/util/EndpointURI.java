@@ -38,6 +38,7 @@ public final class EndpointURI {
 
 
 
+
 //getEmployee
 	/*
 	 * public static final String GetEmployeebyName = BASE_API_PATH +
@@ -46,7 +47,12 @@ public final class EndpointURI {
 	 * EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
 	 */
 
+	//getEmployee
+
+//getEmployee
+
 	
+
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
 
@@ -57,12 +63,7 @@ public final class EndpointURI {
 //GetAllSeverity
 	public static final String getAllSeverity = BASE_API_PATH + "severity";
 
-	/*
-	 * //GetAllSeverity public static final String getAllSeverity = BASE_API_PATH +
-	 * "severity";
-	 */
 
-	
 	private EndpointURI() {
 	}
 }
