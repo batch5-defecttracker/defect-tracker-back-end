@@ -19,7 +19,6 @@ public final class EndpointURI {
 	public static final String PROJECT = BASE_API_PATH + "project";
 
 	
-	
 //Project	
 	public static final String PROJECT_FIND = BASE_API_PATH + "find/{id}";
 	
@@ -34,7 +33,6 @@ public final class EndpointURI {
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
 
 	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
-
 	
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
@@ -44,6 +42,7 @@ public final class EndpointURI {
 
 //GetAllSeverity
 	public static final String getAllSeverity = BASE_API_PATH + "severity";
+
 
 	
 	private EndpointURI() {

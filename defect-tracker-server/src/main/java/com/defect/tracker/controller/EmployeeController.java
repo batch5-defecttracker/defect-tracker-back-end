@@ -1,6 +1,5 @@
 package com.defect.tracker.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,17 +43,13 @@ public class EmployeeController {
 	
 
 	
-	
-	
 	@GetMapping(value= EndpointURI.GetEmployeebyName )
 	public ResponseEntity<Object> findEmployeeByName(@PathVariable String firstName){
 		return new ResponseEntity<Object>(employeeService.findByFirstName(firstName), HttpStatus.OK);
 
 	} 
 
-
-
-
+	
 	@GetMapping(value=EndpointURI.EMPLOYEE_GET)
 	public ResponseEntity<Object> findEmployeeById(@PathVariable Long id){
 		if (!employeeService.idExist(id)) {
@@ -64,10 +59,8 @@ public class EmployeeController {
 		
 		return new ResponseEntity<Object>(employeeService.findById(id), HttpStatus.OK);
 	}
-	
-	
-	
 
+	
 	@GetMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> getAllEmp(){
 		if (employeeService.getAll().isEmpty()) {
@@ -86,4 +79,5 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_DELETE_SUCCESS, HttpStatus.OK);
 	}
 	
+
 }
