@@ -33,8 +33,7 @@ public final class EndpointURI {
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
 
 
-	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
-
+	
 
 
 
