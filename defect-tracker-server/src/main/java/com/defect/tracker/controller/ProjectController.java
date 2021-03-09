@@ -7,10 +7,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.ProjectDto;
+import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
@@ -49,9 +53,6 @@ public class ProjectController {
 		
 	}
 
-
-
-	
 	
 	@GetMapping(value = EndpointURI.PROJECT_FIND)
 	public ResponseEntity<Object> findById(@PathVariable Long id){
@@ -75,6 +76,18 @@ public class ProjectController {
 		projectService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.PROJECT_DELETED, HttpStatus.OK);
 		
+	}
+	
+	@PutMapping(value = EndpointURI.UPDATE_PROJECT)
+	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
+		if (!projectService.existProject(projectDto.getId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
+					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		Project project = mapper.map(projectDto, Project.class);
+		projectService.updateProject(project);
+		return new ResponseEntity<Object>(Constants.PROJECT_UPDATED, HttpStatus.OK);
 	}
 
 }
