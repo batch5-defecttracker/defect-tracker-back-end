@@ -13,17 +13,11 @@ public class Priority {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
-	private Long prioId;
+	private Long id;
 	private String prioName;
 	
 	
-	public Long getPrioId() {
-		return prioId;
-	}
-	public void setPrioId(Long prioId) {
-		this.prioId = prioId;
-	}
+
 	public String getPrioName() {
 		return prioName;
 	}
@@ -32,6 +26,12 @@ public class Priority {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

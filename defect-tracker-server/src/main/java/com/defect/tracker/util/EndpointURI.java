@@ -35,7 +35,9 @@ public final class EndpointURI {
 
 	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
 
-
+//Defect
+	public static final String DEFECT_ADD = BASE_API_PATH + "addDefect";
+	public static final String DEFECT_UPDATE = BASE_API_PATH + "updateDefect";
 
 
 
