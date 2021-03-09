@@ -9,12 +9,23 @@ public final class EndpointURI {
 //Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 	
+	public static final String PROJECT = BASE_API_PATH + "project";
+
+	
+	
+//Project	
+	public static final String PROJECT_FIND = BASE_API_PATH + "find/{id}";
+	
+	public static final String PROJECT_DELETE = BASE_API_PATH + "delete/{id}";
+
 //Module
 	public static final String MODULE = BASE_API_PATH + "module";
 	public static final String MODULE_ADD = BASE_API_PATH + "addmodule";
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
 
+
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
+
 
 
 	
