@@ -21,7 +21,7 @@ public class ValidationConstance {
 	
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
 
-
+	public static final String PROJECT_EMP_NOT_EXISTS="Projectemp not present in table";
 
 	private ValidationConstance() {
 	}

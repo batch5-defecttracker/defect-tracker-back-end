@@ -34,7 +34,7 @@ public final class EndpointURI {
 	
 	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
 
-	
+	public static final String DeallocateSubModule=BASE_API_PATH +"Proemp/{id}";
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
 

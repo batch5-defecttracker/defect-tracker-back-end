@@ -42,6 +42,19 @@ public class ValidationFailureStatusCodes {
 
 	@Value("{validation.project.AlreadyExists}")
 	 private String proNameAlreadyExists;
+	
+	@Value("{validation.projectemp.isProjectempExists}")
+	private String projectempAlreadyExists;
+
+	public String getProjectempAlreadyExists() {
+		return projectempAlreadyExists;
+	}
+
+
+	public void setProjectempAlreadyExists(String projectempAlreadyExists) {
+		this.projectempAlreadyExists = projectempAlreadyExists;
+	}
+
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
