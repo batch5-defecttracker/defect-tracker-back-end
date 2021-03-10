@@ -1,10 +1,10 @@
 package com.defect.tracker.data.dto;
 
 public class SubModuleDto {
-	
 	private Long id;
 	private String submoduleName;
 	private Long moduleId;
+	
 	public Long getId() {
 		return id;
 	}
@@ -23,5 +23,8 @@ public class SubModuleDto {
 	public void setModuleId(Long moduleId) {
 		this.moduleId = moduleId;
 	}
-	
+
+
+
+
 }
