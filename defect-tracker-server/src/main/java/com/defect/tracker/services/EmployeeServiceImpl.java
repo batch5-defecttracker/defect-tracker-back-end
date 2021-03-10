@@ -63,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public boolean isEmployeeNotExists(Long id) {
+	public boolean isEmployeeAlreadyExists(Long id) {
 		return employeeRepository.existsById(id);
 	}
 
