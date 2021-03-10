@@ -95,6 +95,13 @@ public class DefectDto {
 	public void setFile(String file) {
 		this.file = file;
 	}
-	
+
+	public long getSeverityId() {
+		return severityId;
+	}
+
+	public void setSeverityId(long severityId) {
+		this.severityId = severityId;
+	}
 
 }

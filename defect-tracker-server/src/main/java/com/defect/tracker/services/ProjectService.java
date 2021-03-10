@@ -1,5 +1,4 @@
 package com.defect.tracker.services;
-
 import com.defect.tracker.data.entities.Project;
 public interface ProjectService {
 
