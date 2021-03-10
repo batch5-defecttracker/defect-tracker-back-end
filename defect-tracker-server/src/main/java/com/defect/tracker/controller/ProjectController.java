@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,9 +34,6 @@ public class ProjectController {
 	@Autowired
 	private Mapper mapper;
 	
-	
-	
-	
 	@PostMapping(value= EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@RequestBody ProjectDto proDto){
 		if(projectService.isProNameAlreadyExist(proDto.getProName())) {
@@ -48,10 +46,6 @@ public class ProjectController {
 		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS,HttpStatus.OK);
 		
 	}
-
-
-
-	
 	
 	@GetMapping(value = EndpointURI.PROJECT_FIND)
 	public ResponseEntity<Object> findById(@PathVariable Long id){
@@ -61,7 +55,7 @@ public class ProjectController {
 		}
 		
 		//projectService.findById(id);
-		return new ResponseEntity<Object>(projectService.findById(id), HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(projectService.findById(id), ProjectDto.class), HttpStatus.OK);
 		
 	}
 	
@@ -75,6 +69,18 @@ public class ProjectController {
 		projectService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.PROJECT_DELETED, HttpStatus.OK);
 		
+	}
+	
+	@PutMapping(value = EndpointURI.UPDATE_PROJECT)
+	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
+		if (!projectService.existProject(projectDto.getId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
+					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		Project project = mapper.map(projectDto, Project.class);
+		projectService.updateProject(project);
+		return new ResponseEntity<Object>(Constants.PROJECT_UPDATED, HttpStatus.OK);
 	}
 
 }
