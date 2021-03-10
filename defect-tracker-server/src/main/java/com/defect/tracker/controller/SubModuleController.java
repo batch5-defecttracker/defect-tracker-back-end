@@ -31,8 +31,8 @@ public class SubModuleController {
 	SubModuleService subModuleService;
 
 	
-	@PutMapping(value= EndpointURI.UpdateSubModule)
-	public ResponseEntity<Object> updateSubModule(@RequestBody SubModuleDto subModuleDto){
+	@PutMapping(value= EndpointURI.UPDATE_SUB_MODULE)
+	public ResponseEntity<Object> updateSubModule(@RequestBody SubModuleDto subModuleDto){		
 		SubModule submodule =  mapper.map(subModuleDto ,SubModule.class);
 		subModuleService.Update(submodule);
 		return new ResponseEntity<Object>(Constants.UpdateSubmodule, HttpStatus.OK);

@@ -9,12 +9,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "designation")
 public class Designation {
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 	private String designationName;
+	
 	public long getId() {
 		return id;
 	}
