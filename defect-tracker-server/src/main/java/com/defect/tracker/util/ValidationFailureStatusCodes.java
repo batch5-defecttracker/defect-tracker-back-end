@@ -73,6 +73,12 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.subModule.notExist}")
 	private String subModuleNotExist;
+	
+	@Value("${validation.projectAllocation.notExist}")
+	private String projectAllocationNotExist;
+	
+	@Value("${validation.projectAllocation.failed}")
+	private String projectAllocationFailed;
 
 	public String getSubModuleNotExist() {
 		return subModuleNotExist;
@@ -176,5 +182,27 @@ public class ValidationFailureStatusCodes {
 	}
 
 	
+
+	public String getProjectAllocationNotExist() {
+		return projectAllocationNotExist;
+	}
+
+
+	public void setProjectAllocationNotExist(String projectAllocationNotExist) {
+		this.projectAllocationNotExist = projectAllocationNotExist;
+	}
+
+
+	public String getProjectAllocationFailed() {
+		return projectAllocationFailed;
+	}
+
+
+	public void setProjectAllocationFailed(String projectAllocationFailed) {
+		this.projectAllocationFailed = projectAllocationFailed;
+	}
+	
+	
+
 
 }

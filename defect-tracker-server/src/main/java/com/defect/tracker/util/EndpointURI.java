@@ -68,6 +68,12 @@ public final class EndpointURI {
 	public static final String getAllSeverity = BASE_API_PATH + "severity";
 
 //GetAllPriority
+		public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
+		
+//Project Deallocation
+		
+		public static final String DEALLOCATE_PROJECT = BASE_API_PATH + "deallocateProject/{id}";
+		public static final String PROJECT_ALLOCATION = BASE_API_PATH + "projectAllocation";
 	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
 		
 //Defect
