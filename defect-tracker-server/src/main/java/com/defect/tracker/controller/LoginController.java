@@ -23,7 +23,7 @@ public class LoginController {
 	
 	@GetMapping(value = EndpointURI.LOGINSTATUS)
 	public List<Login> getEmployee(){
-		vah = loginService.getEmployee();
+		//vah = loginService.getEmployee();
 		return vah;
 		
 	}
