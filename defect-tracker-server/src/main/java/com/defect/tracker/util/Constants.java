@@ -13,6 +13,7 @@ public class Constants {
 	public static final String MODULE_ADD_SUCCESS = "Module Added Successfully";
 
 	public static final String EMPLOYEE_DELETE_SUCCESS = "Employee Deleted Successfully";
+	public static final String EMPLOYEE_UPDATE_SUCCESS = "Employee Update Successfully";
 
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
     

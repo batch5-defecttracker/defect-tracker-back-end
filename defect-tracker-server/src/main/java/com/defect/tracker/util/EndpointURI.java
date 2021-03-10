@@ -8,7 +8,7 @@ public final class EndpointURI {
 	private static final String BASE_API_PATH = "/api/v1/";
 //Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
-	
+	public static final String UPDATE_EMPLOYEE =  BASE_API_PATH + "updateEmployee";
 	public static final String PROJECT = BASE_API_PATH + "project";
 
 	
@@ -33,7 +33,9 @@ public final class EndpointURI {
 
 //GetAllSeverity
 	public static final String getAllSeverity = BASE_API_PATH + "severity";
+	
 
+	
 	
 	private EndpointURI() {
 	}

@@ -7,6 +7,7 @@ import com.defect.tracker.data.repositories.SubModuleRepository;
 @Service
 public class SubModuleServiceImpl implements SubModuleService{
 
+		
 	@Autowired
 	private SubModuleRepository subModuleUpdateRepository;
 
