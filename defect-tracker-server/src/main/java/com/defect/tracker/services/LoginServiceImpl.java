@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.repositories.LoginRepository;
+<<<<<<< HEAD
+
+=======
+>>>>>>> c098f265ddb76d47e97191336a9ab02e4c6615d9
 @Service
 public class LoginServiceImpl implements LoginService {
 	@Autowired LoginRepository loginRepository;
