@@ -14,8 +14,7 @@ public class DesignationServiceImpl implements DesignationService {
 	
 	@Override
 	public List<Designation> getAlldesignation() {
-		return designationRepository.findAll();
-		
+		return designationRepository.findAll();		
 	}
 
 }
