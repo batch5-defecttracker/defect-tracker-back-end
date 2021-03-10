@@ -10,19 +10,14 @@ import com.defect.tracker.util.EndpointURI;
 
 @RestController
 public class LoginController {
-	private List<Login>vah;
+private List<Login>vah;
 	
 	
 	@Autowired LoginService loginService ;
 	
 	@GetMapping(value = EndpointURI.LOGINSTATUS)
-
-	public List<Login> getEmployee(String status){
-		vah = loginService.getEmployee( status);
-
 	public List<Login> getEmployee(){
-		vah = loginService.getEmployee();
-
+		//vah = loginService.getEmployee();
 		return vah;
 		
 	}
