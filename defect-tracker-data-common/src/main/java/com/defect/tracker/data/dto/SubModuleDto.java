@@ -4,11 +4,14 @@ public class SubModuleDto {
 	
 	private Long id;
 	private String subModuleName;
-	private Long modId;
+	private Long moduleId;
+	
+<<<<<<< HEAD
 	
 	
 	
-	
+=======
+>>>>>>> 3b1a46c5dfb1a2d245e5490d3514b687dbb1f1c7
 	public Long getId() {
 		return id;
 	}
@@ -21,12 +24,14 @@ public class SubModuleDto {
 	public void setSubModuleName(String subModuleName) {
 		this.subModuleName = subModuleName;
 	}
+	public Long getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(Long moduleId) {
+		this.moduleId = moduleId;
+	}
 	
-	public Long getModId() {
-		return modId;
-	}
-	public void setModId(Long modId) {
-		this.modId = modId;
-	}
+	
+	
 
 }

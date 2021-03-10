@@ -37,9 +37,6 @@ public class ProjectController {
 	@Autowired
 	private Mapper mapper;
 	
-	
-	
-	
 	@PostMapping(value= EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@RequestBody ProjectDto proDto){
 		if(projectService.isProNameAlreadyExist(proDto.getProName())) {
@@ -52,7 +49,6 @@ public class ProjectController {
 		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS,HttpStatus.OK);
 		
 	}
-
 	
 	@GetMapping(value = EndpointURI.PROJECT_FIND)
 	public ResponseEntity<Object> findById(@PathVariable Long id){
@@ -62,7 +58,7 @@ public class ProjectController {
 		}
 		
 		//projectService.findById(id);
-		return new ResponseEntity<Object>(projectService.findById(id), HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(projectService.findById(id), ProjectDto.class), HttpStatus.OK);
 		
 	}
 	

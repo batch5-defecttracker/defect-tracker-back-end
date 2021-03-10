@@ -9,15 +9,24 @@ public final class EndpointURI {
 //Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 
+
 //getEmployee
 	public static final String GetEmployeebyName = BASE_API_PATH + "getEmployeebyName/{firstName}";
 	
+
+	public static final String PROJECT = BASE_API_PATH + "project";
+
+//GetEmployeeByStatus
+	public static final String LOGINSTATUS = BASE_API_PATH + "loginstatus";
+
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
 
 	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
 
 	public static final String PROJECT = BASE_API_PATH + "project";
-
+	
+	public static final String GET_EMPLOYEE_BY_DESIGNATION = BASE_API_PATH + "getEmployeebyDesignation/{designationId}";
+	
 	
 //Project	
 	public static final String PROJECT_FIND = BASE_API_PATH + "find/{id}";
@@ -27,6 +36,7 @@ public final class EndpointURI {
 	public static final String UPDATE_PROJECT = BASE_API_PATH + "update";
 
 
+	
 //Module
 	public static final String MODULE = BASE_API_PATH + "module";
 	
@@ -34,6 +44,7 @@ public final class EndpointURI {
 	
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
 
+<<<<<<< HEAD
 
 	
 
@@ -47,6 +58,10 @@ public final class EndpointURI {
 	 * BASE_API_PATH + "deleteEmployee/{id}"; public static final String
 	 * EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
 	 */
+=======
+//SubModule
+	public static final String getSubModule = BASE_API_PATH + "SubModule/{moduleId}";
+>>>>>>> 3b1a46c5dfb1a2d245e5490d3514b687dbb1f1c7
 
 
 	
@@ -54,6 +69,7 @@ public final class EndpointURI {
 	
 	public static final String UpdateSubModule = BASE_API_PATH+ "subModule";
 	public static final String SUBMODULE_DELETE = BASE_API_PATH + "deleteSubModule/{id}";
+<<<<<<< HEAD
 	
 	//getEmployee
 
@@ -62,9 +78,14 @@ public final class EndpointURI {
 
 	//designation
 	public static final String getAllDesignation = BASE_API_PATH + "designation";
+=======
+
+	//getEmployee	
+>>>>>>> 3b1a46c5dfb1a2d245e5490d3514b687dbb1f1c7
 
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
+
 
 //DefectType
 	public static final String DEFECTTYPE = BASE_API_PATH + "defecttype";
@@ -78,6 +99,7 @@ public final class EndpointURI {
 		
 
 	private EndpointURI() {
+		
 	}
 }
 
