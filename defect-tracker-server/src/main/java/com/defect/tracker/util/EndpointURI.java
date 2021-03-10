@@ -40,6 +40,8 @@ public final class EndpointURI {
 	public static final String MODULE_ADD = BASE_API_PATH + "addmodule";
 	
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
+	
+	public static final String MODULE_UPDATE = BASE_API_PATH + "updateModule";
 
 //SubModule
 	public static final String getSubModule = BASE_API_PATH + "SubModule/{moduleId}";
@@ -63,6 +65,9 @@ public final class EndpointURI {
 
 //GetAllPriority
 	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
+	
+// Login
+	public static final String EMPLOYEE_STATUS = BASE_API_PATH + "employeeStatusUpdate";
 
 	private EndpointURI() {
 		

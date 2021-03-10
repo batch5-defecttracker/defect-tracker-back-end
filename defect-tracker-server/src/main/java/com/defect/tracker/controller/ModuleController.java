@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.defect.tracker.data.dto.ModuleDto;
@@ -51,4 +52,16 @@ public class ModuleController {
 		moduleService.addModule(module);
 		return new ResponseEntity<Object>(Constants.MODULE_ADD_SUCCESS, HttpStatus.OK);
 	}
+	
+	@PutMapping(value = EndpointURI.MODULE_UPDATE)
+	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {
+		if (!moduleService.isModuleExists(moduleDto.getId())) {
+			return new ResponseEntity<> (new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		Module module = mapper.map(moduleDto, Module.class);
+		moduleService.updateModule(module);
+		return new ResponseEntity<Object>(Constants.MODULE_UPDATE_SUCCESS, HttpStatus.OK);
+	}
 }
+

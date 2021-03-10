@@ -11,5 +11,7 @@ public interface ModuleService {
 	public void addModule(Module module);
 	
 	public boolean isModuleExistsByName(String name);
+	
+	public void updateModule(Module module);
 
 }

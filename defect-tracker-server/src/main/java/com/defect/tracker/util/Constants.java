@@ -26,6 +26,10 @@ public class Constants {
 	public static final String SUBMODULE_DELETED ="SubModule Deleted";
 	
 	public static final String Get_All_Severity = "Severity got Successfully";
+	
+	public static final String EMPLOYEE_STATUS_UPDATED = "Employee Status Updated Successfully";
+	
+	public static final String MODULE_UPDATE_SUCCESS = "Module Successfully Updated";
 
 	// encaptulate constructor to restrict modification from outside
 	

@@ -33,6 +33,13 @@ public class ModuleServiceImpl implements ModuleService {
 	public boolean isModuleExistsByName(String name) {
 		return moduleRepository.existsByModuleName(name);
 	}
+
+	@Override
+	public void updateModule(Module module) {
+		moduleRepository.save(module);
+	}
+
+	
 	
 	
 }
