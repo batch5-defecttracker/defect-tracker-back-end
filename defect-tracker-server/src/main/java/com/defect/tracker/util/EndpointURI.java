@@ -68,7 +68,11 @@ public final class EndpointURI {
 
 //GetAllPriority
 	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
+	
+//GetAPIsubModuleAllocation
+	public static final String GETAPI_SUBMODULEALLOCATION = BASE_API_PATH + "SubmoduleAllocation/{SubModuleId}";
 
+		
 	private EndpointURI() {
 		
 	}

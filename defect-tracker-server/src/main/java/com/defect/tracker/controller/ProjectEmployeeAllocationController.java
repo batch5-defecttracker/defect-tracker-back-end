@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.defect.tracker.data.dto.EmployeeDto;
+import com.defect.tracker.data.dto.Project_EmpDto;
+import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ProjectEmployeeAllocationService;
@@ -26,7 +29,8 @@ public class ProjectEmployeeAllocationController {
 	ProjectEmployeeAllocationService projectemployeeallocationService;
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-
+	@Autowired
+	private Mapper mapper;
 	
 	@DeleteMapping(value=EndpointURI.EMPLOYEE_DEALLOCATION_FOR_SUBMODULE)
 	public ResponseEntity<Object> deleteEmployeeSubModule(@PathVariable Long id){
@@ -37,5 +41,17 @@ public class ProjectEmployeeAllocationController {
 		projectemployeeallocationService.DeleteProjectEmp(id);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE, HttpStatus.OK);	
 	}
+	
+	@GetMapping(value= EndpointURI.GETAPI_SUBMODULEALLOCATION )
+	public ResponseEntity<Object> getAPISubmoduleAllocation(@PathVariable Long SubModuleId){
+		if (!projectemployeeallocationService.isProjectEmployeeExistsByProjectId(SubModuleId)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMPTY,
+					validationFailureStatusCodes.getEmployeeNotFound()), HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Object>(mapper.map(projectemployeeallocationService.getAPISubmoduleAllocation(SubModuleId), Project_EmpDto.class), HttpStatus.OK);
+
+	} 
+	
 	
 }
