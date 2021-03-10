@@ -38,6 +38,8 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.project.AlreadyExists}")
 	 private String proNameAlreadyExists;
 	
+	@Value("${validation.defect.notExist}")
+	private String defectNotExist;
 
 	@Value("{validation.projectemp.isProjectempExists}")
 	private String projectempAlreadyExists;
@@ -62,9 +64,9 @@ public class ValidationFailureStatusCodes {
 	public void setProjectemployeeNotExists(String projectemployeeNotExists) {
 		this.projectemployeeNotExists = projectemployeeNotExists;
 	}
+	
 
-	@Value("${validation.defect.notExists}")
-	 private String defectNotExist;
+
 	
 	@Value("${validation.employee.alreadyExist}")
 	private String employeeAlreadyExist;
@@ -94,7 +96,6 @@ public class ValidationFailureStatusCodes {
 	public String getPriorityNotExist() {
 		return priorityNotExist;
 	}
-
 	public void setPriorityNotExist(String priorityNotExist) {
 		this.priorityNotExist = priorityNotExist;
 	}
@@ -102,7 +103,6 @@ public class ValidationFailureStatusCodes {
 	public String getEmailAlreadyExist() {
 		return emailAlreadyExist;
 	}
-
 	public void setEmailAlreadyExist(String emailAlreadyExist) {
 		this.emailAlreadyExist = emailAlreadyExist;
 	}
@@ -110,7 +110,6 @@ public class ValidationFailureStatusCodes {
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
-	
 	public String getProNameAlreadyExists() {
 		return proNameAlreadyExists;
 	}
@@ -118,12 +117,10 @@ public class ValidationFailureStatusCodes {
 	public String getEmployeeNotExists() {
 		return employeeNotExists;
 	}
-
 	public void setEmployeeNotExists(String employeeNotExists) {
 		this.employeeNotExists = employeeNotExists;
 		
 	}
-
 	public String getEmployeeNotExist() {
 		return employeeNotExist;
 	}
@@ -135,7 +132,6 @@ public class ValidationFailureStatusCodes {
 	public String getEmployeeNotFound() {
 		return employeeNotFound;
 	}
-
 	public void setEmployeeNotFound(String employeeNotFound) {
 		this.employeeNotFound = employeeNotFound;
 	}
@@ -143,7 +139,6 @@ public class ValidationFailureStatusCodes {
 	public String getSeverityNotExist() {
 		return severityNotExist;
 	}
-
 	public void setSeverityNotExist(String severityNotExist) {
 		this.severityNotExist = severityNotExist;
 	}
@@ -151,7 +146,6 @@ public class ValidationFailureStatusCodes {
 	public String getProjectNotExist() {
 		return projectNotExist;
 	}
-
 	public void setProjectNotExist(String projectNotExist) {
 		this.projectNotExist = projectNotExist;
 	}
@@ -160,7 +154,6 @@ public class ValidationFailureStatusCodes {
 	public String getModuleNotExist() {
 		return moduleNotExist;
 	}
-
 	public void setModuleNotExist(String moduleNotExist) {
 		this.moduleNotExist = moduleNotExist;
 	}
@@ -168,7 +161,6 @@ public class ValidationFailureStatusCodes {
 	public String getModuleAlreadyExist() {
 		return moduleAlreadyExist;
 	}
-
 	public void setModuleAlreadyExist(String moduleAlreadyExist) {
 		this.moduleAlreadyExist = moduleAlreadyExist;
 	}
@@ -177,7 +169,6 @@ public class ValidationFailureStatusCodes {
 	public String getEmployeeAlreadyExist() {
 		return employeeAlreadyExist;
 	}
-
 	public void setEmployeeAlreadyExist(String employeeAlreadyExist) {
 		this.employeeAlreadyExist = employeeAlreadyExist;
 
@@ -186,11 +177,11 @@ public class ValidationFailureStatusCodes {
 	public String getDefectNotExist() {
 		return defectNotExist;
 	}
-
 	public void setDefectNotExist(String defectNotExist) {
 		this.defectNotExist = defectNotExist;
 	}
 
+	
 
 	public String getProjectAllocationNotExist() {
 		return projectAllocationNotExist;

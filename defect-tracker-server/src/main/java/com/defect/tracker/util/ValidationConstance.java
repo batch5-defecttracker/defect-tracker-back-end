@@ -12,7 +12,9 @@ public class ValidationConstance {
 	public static final String EMPLOYEE_NAME_NOT_EXISTS= "Employee name does not exist";
 	
 	public static final String EMPLOYEE_EMPTY = "Employee not exist";
-	
+
+	public static final String MODULE_EMPTY = "Module not exist";
+
 	public static final String MODULE_NOT_EXISTS = "Module not exist";
 	
 	public static final String MODULE_EXISTS = "Module already exist";
@@ -25,11 +27,15 @@ public class ValidationConstance {
 	public static final String PRIORITY_NOTEXIST = "priority not exist";
 	public static final String EMPTY_PROJECT_ALLOCATION = "Employee Not Exist";
 	
+	
+	public static final String DEFECT_DOES_NOT_EXISTS= "Defect not Exist";
 
 	public static final String PROJECT_EMPLOYEE_NOT_AVAILABLE="Project employee id not exists";
 
 	public static final String DEFECT_NOT_EXISTS = "Defect not Exist";
 
+	public static final String DEFECT_ID_NOT_EXISTS= "Defect id not Exists";
+	
 
 	private ValidationConstance() {
 	}
