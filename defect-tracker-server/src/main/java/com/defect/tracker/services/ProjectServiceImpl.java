@@ -31,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService{
 
 	@Override
 	public boolean isProNameAlreadyExist(String proName) {
-		return projectRepository.existsByproName(proName);
+		return projectRepository.existsByprojectName(proName);
 	}
 
 	@Override

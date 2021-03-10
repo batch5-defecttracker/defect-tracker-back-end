@@ -57,7 +57,6 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		
 		return new ResponseEntity<Object>(employeeService.findById(id), HttpStatus.OK);
 	}
 
