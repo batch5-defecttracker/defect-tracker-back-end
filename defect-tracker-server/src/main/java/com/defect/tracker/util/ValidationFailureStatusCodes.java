@@ -38,7 +38,8 @@ public class ValidationFailureStatusCodes {
 	@Value("{validation.project.AlreadyExists}")
 	 private String proNameAlreadyExists;
 	
-	
+	@Value("${validation.defect.notExist}")
+	private String defectNotExist;
 
 	@Value("${validation.subModule.notExist}")
 	private String subModuleNotExist;
@@ -153,5 +154,16 @@ public class ValidationFailureStatusCodes {
 
 	}
 
+
+	public String getDefectNotExist() {
+		return defectNotExist;
+	}
+
+
+	public void setDefectNotExist(String defectNotExist) {
+		this.defectNotExist = defectNotExist;
+	}
+
+	
 
 }

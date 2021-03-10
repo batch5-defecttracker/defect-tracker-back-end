@@ -19,6 +19,8 @@ public class ValidationConstance {
 
 	
 	public static final String PRIORITY_NOTEXIST = "priority not exist";
+	
+	public static final String DEFECT_DOES_NOT_EXISTS= "Defect not Exist";
 
 
 

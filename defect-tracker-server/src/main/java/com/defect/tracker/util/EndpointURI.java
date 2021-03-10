@@ -14,8 +14,6 @@ public final class EndpointURI {
 	public static final String GetEmployeebyName = BASE_API_PATH + "getEmployeebyName/{firstName}";
 	
 
-	public static final String PROJECT = BASE_API_PATH + "project";
-
 //GetEmployeeByStatus
 	public static final String LOGINSTATUS = BASE_API_PATH + "loginstatus";
 
@@ -46,14 +44,12 @@ public final class EndpointURI {
 
 //SubModule
 	public static final String getSubModule = BASE_API_PATH + "SubModule/{moduleId}";
-
-
 	
-	//SubModule
+//SubModule
 	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
 	public static final String SUBMODULE_DELETE = BASE_API_PATH + "deleteSubModule/{id}";
 
-	//getEmployee	
+//getEmployee	
 
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
@@ -68,6 +64,9 @@ public final class EndpointURI {
 
 //GetAllPriority
 		public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
+		
+//Defect
+	public static final String DEFECT = BASE_API_PATH + "defect";
 
 	private EndpointURI() {
 		

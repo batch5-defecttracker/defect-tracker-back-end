@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -22,8 +23,8 @@ public class LoginController {
 	@Autowired LoginService loginService ;
 	
 	@GetMapping(value = EndpointURI.LOGINSTATUS)
-	public List<Login> getEmployee(){
-		vah = loginService.getEmployee();
+	public List<Login> getEmployee(@PathVariable String status){
+		vah = loginService.getEmployee(status);
 		return vah;
 		
 	}
