@@ -37,6 +37,8 @@ public final class EndpointURI {
 	public static final String MODULE_ADD = BASE_API_PATH + "addmodule";
 	
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
+	
+	public static final String GET_MODULE_BY_PROJECT = BASE_API_PATH + "getModulebyProject/{projectId}";
 
 //SubModule
 	public static final String getSubModule = BASE_API_PATH + "SubModule/{moduleId}";
