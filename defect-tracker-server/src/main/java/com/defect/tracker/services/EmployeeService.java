@@ -26,7 +26,7 @@ public interface EmployeeService {
 
 	public void deleteEmployee(Long id);
 	
-	public boolean isEmployeeAlreadyExists(Long id);
+	public boolean isEmployeeNotExists(Long id);
 
 
 }
