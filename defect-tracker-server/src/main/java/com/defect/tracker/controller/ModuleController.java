@@ -5,10 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.mapper.Mapper;
@@ -51,4 +53,15 @@ public class ModuleController {
 		moduleService.addModule(module);
 		return new ResponseEntity<Object>(Constants.MODULE_ADD_SUCCESS, HttpStatus.OK);
 	}
+	
+	@GetMapping(value= EndpointURI.GET_MODULE_BY_PROJECT )
+	public ResponseEntity<Object> findModuleByProject(@PathVariable Long projectId){
+		if (!moduleService.isModuleExistsByProjectId(projectId)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EMPTY,
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Object>(mapper.map(moduleService.findByProject(projectId), ModuleDto.class), HttpStatus.OK);
+
+	} 
 }

@@ -36,7 +36,7 @@ public class ProjectController {
 	
 	@PostMapping(value= EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@RequestBody ProjectDto proDto){
-		if(projectService.isProNameAlreadyExist(proDto.getProName())) {
+		if(projectService.isProNameAlreadyExist(proDto.getProjectName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS, 
 					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
@@ -53,10 +53,7 @@ public class ProjectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		
-		//projectService.findById(id);
-		return new ResponseEntity<Object>(mapper.map(projectService.findById(id), ProjectDto.class), HttpStatus.OK);
-		
+		return new ResponseEntity<Object>(mapper.map(projectService.findById(id), ProjectDto.class), HttpStatus.OK);	
 	}
 	
 	@DeleteMapping(value = EndpointURI.PROJECT_DELETE)

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.defect.tracker.data.dto.SubModuleDto;
 import com.defect.tracker.data.entities.SubModule;
 import com.defect.tracker.data.mapper.Mapper;
@@ -40,6 +39,7 @@ public class SubModuleController {
 		
 	}
 	
+
 	@GetMapping(value = EndpointURI.getSubModule)
 	public ResponseEntity<Object> getSubmodule(@PathVariable Long moduleId) {
 		if (!subModuleService.existById(moduleId)) {
@@ -60,6 +60,7 @@ public class SubModuleController {
 		return new ResponseEntity<Object>(Constants.SUBMODULE_DELETED, HttpStatus.OK);
 		
 	}
+
 	
 	
 

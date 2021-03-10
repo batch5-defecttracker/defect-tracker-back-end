@@ -14,19 +14,19 @@ public class Severity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String sevName;
-	
+	private String severityName;
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getSevName() {
-		return sevName;
+	public String getSeverityName() {
+		return severityName;
 	}
-	public void setSevName(String sevName) {
-		this.sevName = sevName;
+	public void setSeverityName(String severityName) {
+		this.severityName = severityName;
 	}
+	
 	
 }

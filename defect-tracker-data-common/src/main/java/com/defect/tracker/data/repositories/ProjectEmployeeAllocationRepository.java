@@ -1,9 +1,11 @@
 package com.defect.tracker.data.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.defect.tracker.data.entities.ProjectEmp;
+import org.springframework.stereotype.Repository;
 
-public interface ProjectEmployeeAllocationRepository extends JpaRepository<ProjectEmp,Long>{
+@Repository
+public interface ProjectEmployeeAllocationRepository extends JpaRepository<ProjectEmp, Long> {
+
 
 }

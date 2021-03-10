@@ -1,4 +1,5 @@
 package com.defect.tracker.services;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ public class ProjectSerImple  implements ProjectService{
 		
 	}
 
-	@Override
-	public boolean isProNameAlreadyExist(String proName) {
-			return projectRepository.existsByproName(proName);
-	}
+//	@Override
+//	public boolean isProNameAlreadyExist(String proName) {
+//			return projectRepository.existsByproName(proName);
+//	}
 
 	@Override
 	public Project findById(Long id) {
@@ -44,6 +45,18 @@ public class ProjectSerImple  implements ProjectService{
 	public void updateProject(Project project) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean isProNameAlreadyExist(String proName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Project> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
