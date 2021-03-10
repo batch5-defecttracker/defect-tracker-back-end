@@ -1,5 +1,7 @@
 package com.defect.tracker.services;
 
+import java.util.List;
+
 import com.defect.tracker.data.entities.Module;
 
 public interface ModuleService {
@@ -11,5 +13,7 @@ public interface ModuleService {
 	public void addModule(Module module);
 	
 	public boolean isModuleExistsByName(String name);
+	
+	public List<Module> findAll();
 
 }
