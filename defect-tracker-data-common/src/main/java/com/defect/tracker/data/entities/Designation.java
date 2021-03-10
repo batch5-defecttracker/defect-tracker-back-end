@@ -13,18 +13,19 @@ public class Designation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    private long desId;
+    private long id;
 	private String DesName;
-	public long getDesId() {
-		return desId;
-	}
-	public void setDesId(long desId) {
-		this.desId = desId;
-	}
+	
 	public String getDesName() {
 		return DesName;
 	}
 	public void setDesName(String desName) {
 		DesName = desName;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 }

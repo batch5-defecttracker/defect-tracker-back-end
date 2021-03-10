@@ -35,7 +35,6 @@ public class DefectController {
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADD_SUCCESS, HttpStatus.OK);
-		//return new ResponseEntity<Object>(defect, HttpStatus.OK);
 	}
 	
 	@PutMapping(value= EndpointURI.DEFECT_UPDATE)
@@ -45,7 +44,7 @@ public class DefectController {
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		Defect defect =  mapper.map(defectDto , Defect.class);
-		defectService.updateDefect(defect);
+		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 		
 	}

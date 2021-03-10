@@ -14,14 +14,11 @@ public class Priority {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String prioName;
-
-	
-	private Long Id;
 	public Long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 	public String getPrioName() {
 		return prioName;

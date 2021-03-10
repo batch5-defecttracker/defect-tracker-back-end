@@ -19,12 +19,6 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public void updateDefect(Defect defect) {
-		defectRepository.save(defect);
-		
-	}
-
-	@Override
 	public boolean isDefectExists(Long id) {
 		return defectRepository.existsById(id);
 	}
