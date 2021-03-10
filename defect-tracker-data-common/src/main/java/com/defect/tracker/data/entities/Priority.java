@@ -12,24 +12,19 @@ public class Priority {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
-	private Long Id;
+	private Long id;
+	private String prioName;
 	public Long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
-	private String prioName;
-	
-	
 	public String getPrioName() {
 		return prioName;
 	}
 	public void setPrioName(String prioName) {
 		this.prioName = prioName;
 	}
-	
-	
 
 }

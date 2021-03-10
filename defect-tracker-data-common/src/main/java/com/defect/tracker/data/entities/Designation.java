@@ -16,19 +16,16 @@ public class Designation {
     private long id;
 	private String DesName;
 	
-	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public String getDesName() {
 		return DesName;
 	}
 	public void setDesName(String desName) {
 		DesName = desName;
 	}
-	
-	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 }
