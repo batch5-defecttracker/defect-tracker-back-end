@@ -47,6 +47,8 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
 		}
+		java.sql.Date date = new Date(System.currentTimeMillis());
+		defectDto.setTimeStamp(date);
 		Defect defect =  mapper.map(defectDto , Defect.class);
 		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
