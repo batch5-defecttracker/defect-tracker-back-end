@@ -9,4 +9,8 @@ public interface DefectService {
 	
 	public List<Defect> getAllDefect();
 	boolean isDefectAlreadyExist(Long id);
+
+	public void addDefect(Defect defect);
+	
+	public boolean isDefectExists(Long id);
 }
