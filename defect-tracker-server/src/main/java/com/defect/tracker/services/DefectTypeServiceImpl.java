@@ -11,11 +11,13 @@ import com.defect.tracker.data.repositories.DefectTypeRepository;
 public class DefectTypeServiceImpl implements DefectTypeService {
 	@Autowired DefectTypeRepository defectTypeRepository;
 
-
-
 	@Override
-	public List<DefectType> getAllDefectType(DefectType defectType) {
+	public List<DefectType> getAllDefectType() {
 		return defectTypeRepository.findAll();
 	}
+
+
+
+	
 
 }
