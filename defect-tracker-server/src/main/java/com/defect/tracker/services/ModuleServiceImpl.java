@@ -38,7 +38,6 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Override
 	public List<Module> findAll() {
-		
 		return moduleRepository.findAll();
 	}
 	

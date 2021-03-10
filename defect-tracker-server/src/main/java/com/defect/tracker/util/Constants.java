@@ -10,7 +10,7 @@ public class Constants {
 	public static final String EMPLOYEE_DELETE_SUCCESS = "Employee Deleted Successfully";
 	
 	public static final String PROJECT_UPDATED = "Project Updated";
-	public static final String PROJECT_DEALLOCATED = "Project Deallocated";
+	public static final String PROJECT_DEALLOCATED = "Project Deallocated Successfully";
 	public static final String MODULE_DELETE_SUCCESS = "Module Deleted Successfully";
 	
 	public static final String MODULE_ADD_SUCCESS = "Module Added Successfully";
