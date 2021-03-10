@@ -18,9 +18,6 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class ProjectEmployeeAllocationController {
-
-	@Autowired
-	ProjectEmployeeAllocationRepository projectemployeeallocationRepository;
 	
 	@Autowired
 	ProjectEmployeeAllocationService projectemployeeallocationService;

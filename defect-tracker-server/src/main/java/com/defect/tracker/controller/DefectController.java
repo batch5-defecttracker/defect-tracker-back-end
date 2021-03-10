@@ -5,6 +5,9 @@ import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,7 +23,6 @@ import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
 import com.defect.tracker.util.ValidationFailureStatusCodes;
-
 
 
 @RestController
@@ -64,4 +66,16 @@ public class DefectController {
 		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 		
 	}
+
+	
+	@GetMapping(value = EndpointURI.DEFECT_GET_BY_ID)
+	public ResponseEntity<Object> getDefectById(@PathVariable Long id){
+		if(!defectService.isDefectExists(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_EXISTS,
+					validationFailureStatusCodes.getDefectNotExist()),HttpStatus.BAD_REQUEST);
+		}
+		DefectDto defectDto =  mapper.map(defectService.findById(id) , DefectDto.class);
+		return new ResponseEntity<Object>(defectDto,HttpStatus.OK);
+	}
 }
+
