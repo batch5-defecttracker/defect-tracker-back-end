@@ -183,7 +183,22 @@ public class ValidationFailureStatusCodes {
 
 	public void setDefectNotExist(String defectNotExist) {
 		this.defectNotExist = defectNotExist;
+		
 	}
+	
+	
+	@Value("${validation.subModule.AlreadyExist}")
+	private String subModuleAlreadyExist;
+
+	public String getSubModuleAlreadyExist() {
+		return subModuleAlreadyExist;
+	}
+
+
+	public void setSubModuleAlreadyExist(String subModuleAlreadyExist) {
+		this.subModuleAlreadyExist = subModuleAlreadyExist;
+	}
+	
 
 
 }

@@ -36,6 +36,17 @@ public class SubModuleServiceImpl implements SubModuleService{
 		return subModuleUpdateRepository.existsById(id);
 	}
 
+	@Override
+	public void createSubModule(SubModule subModule) {
+		subModuleUpdateRepository.save(subModule);
+		
+	}
+
+	@Override
+	public boolean isSubModuleExistsByName(String name) {
+		return subModuleUpdateRepository.existsBySubModuleName( name);
+	}
+
 
 
 

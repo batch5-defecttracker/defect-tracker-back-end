@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,6 +63,19 @@ public class SubModuleController {
 	}
 
 	
+	
+	@PostMapping(value = EndpointURI.SUBMODULE_ADD)
+	public ResponseEntity<Object> createSubModule(@RequestBody SubModuleDto subModuleDto){
+		if(subModuleService.isSubModuleExistsByName(subModuleDto.getSubModuleName())) {
+			  return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_ALREADY_EXIST,
+					  validationFailureStatusCodes.getSubModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
+		  }
+		 
+		SubModule subModule = mapper.map(subModuleDto, SubModule.class);
+		subModuleService.createSubModule(subModule);
+		return new ResponseEntity<Object>(Constants.SUBMODULE_ADDED, HttpStatus.OK);
+		
+	}
 	
 
 }

@@ -27,7 +27,7 @@ public class Constants {
 	public static final String EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE="Submodule employee deallocation successfully";
 
 	public static final String SUBMODULE_DELETED ="SubModule Deleted";
-
+	public static final String SUBMODULE_ADDED = "SubModule Added Successfully";
 
 	public static final String DEFECT_ADD_SUCCESS = "Defect added successfully";
 	
