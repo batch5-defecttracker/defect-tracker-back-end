@@ -24,13 +24,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.existsByEmail(email);
 	}
 
-
 	@Override
 	public Optional<Employee> findByFirstName(String firstName) {
 		return employeeRepository.findByFirstName(firstName);
 	}
-
-
 
 	@Override
 	public boolean idExist(Long id) {
@@ -48,7 +45,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		return employeeRepository.findAll();
 	}
-
 
 	public void deleteEmployee(Long id) {
 		employeeRepository.deleteById(id);	
@@ -76,7 +72,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findById(id).get().getImage(); 
 	}
 
-	
-
+	@Override
+	public boolean isEmployeeAlreadyExists(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 

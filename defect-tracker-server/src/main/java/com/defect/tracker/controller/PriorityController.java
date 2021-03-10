@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.PriorityService;
 import com.defect.tracker.util.EndpointURI;
@@ -20,9 +19,6 @@ public class PriorityController {
 	
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-	
-	@Autowired
-	private Mapper mapper;
 	
 	@GetMapping(value = EndpointURI.getAllPriority) 
 	public ResponseEntity<Object> getAllSeverity() {

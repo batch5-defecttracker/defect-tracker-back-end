@@ -2,20 +2,19 @@ package com.defect.tracker.data.dto;
 
 public class DefectStatusDto {
 	
-	private long defStId;
-	private String defStIdName;
+	private long id;
+	private String defectStatusName;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getDefectStatusName() {
+		return defectStatusName;
+	}
+	public void setDefectStatusName(String defectStatusName) {
+		this.defectStatusName = defectStatusName;
+	}
 	
-	public long getDefStId() {
-		return defStId;
-	}
-	public void setDefStId(long defStId) {
-		this.defStId = defStId;
-	}
-	public String getDefStIdName() {
-		return defStIdName;
-	}
-	public void setDefStIdName(String defStIdName) {
-		this.defStIdName = defStIdName;
-	}
-
 }

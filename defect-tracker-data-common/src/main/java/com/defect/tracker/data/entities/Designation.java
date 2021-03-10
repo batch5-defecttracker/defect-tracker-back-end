@@ -9,13 +9,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "designation")
 public class Designation {
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-	private String DesName;
-	
+	private String designationName;
 	
 	public long getId() {
 		return id;
@@ -23,12 +20,11 @@ public class Designation {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getDesName() {
-		return DesName;
+	public String getDesignationName() {
+		return designationName;
 	}
-	public void setDesName(String desName) {
-		DesName = desName;
+	public void setDesignationName(String designationName) {
+		this.designationName = designationName;
 	}
-	
 	
 }
