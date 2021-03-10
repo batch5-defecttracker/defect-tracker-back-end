@@ -23,7 +23,10 @@ public class ValidationConstance {
 	
 	public static final String PRIORITY_NOTEXIST = "priority not exist";
 
+	public static final String PROJECT_EMPLOYEE_NOT_AVAILABLE="Project employee id not exists";
+
 	public static final String DEFECT_NOT_EXISTS = "Defect not Exist";
+
 
 	private ValidationConstance() {
 	}

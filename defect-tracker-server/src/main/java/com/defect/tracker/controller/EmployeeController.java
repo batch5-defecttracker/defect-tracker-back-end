@@ -79,6 +79,10 @@ public class EmployeeController {
 
 	@DeleteMapping(value = EndpointURI.DELETE_EMPLOYEE)
 	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
+		if (!employeeService.isEmployeeAlreadyExists(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()),HttpStatus.BAD_REQUEST);
+		}
 		employeeService.deleteEmployee(id);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_DELETE_SUCCESS, HttpStatus.OK);
 	}

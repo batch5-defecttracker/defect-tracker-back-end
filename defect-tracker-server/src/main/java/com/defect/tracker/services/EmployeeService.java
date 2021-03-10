@@ -26,6 +26,8 @@ public interface EmployeeService {
 	public List<Employee> getAll();
 
 	public void deleteEmployee(Long id);
+	
+	public boolean isEmployeeAlreadyExists(Long id);
 
 
 }
