@@ -62,6 +62,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findByDesignationId(id);
 	}
 
+	@Override
+	public boolean isEmployeeAlreadyExists(Long id) {
+		return employeeRepository.existsById(id);
+	}
+
 	
 
 	
