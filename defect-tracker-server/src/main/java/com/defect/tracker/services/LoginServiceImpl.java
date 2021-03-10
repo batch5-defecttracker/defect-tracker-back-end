@@ -9,17 +9,13 @@ import com.defect.tracker.data.repositories.LoginRepository;
 @Service
 
 public class LoginServiceImpl implements LoginService {
-	@Autowired LoginRepository loginRepository;
+	@Autowired
+	LoginRepository loginRepository;
 
 	@Override
 	public List<Login> getEmployee(String status) {
-		
+
 		return loginRepository.getByStatus(status);
 	}
-
-	
-	
-	
-	
 
 }
