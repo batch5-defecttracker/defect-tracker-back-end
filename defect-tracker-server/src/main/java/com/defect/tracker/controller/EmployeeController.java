@@ -107,7 +107,7 @@ public class EmployeeController {
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		employeeDto.setTimeStamp(date);
 		Employee employee = mapper.map(employeeDto, Employee.class);
-		employeeService.UpdateEmployee(employee);
+		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
 	

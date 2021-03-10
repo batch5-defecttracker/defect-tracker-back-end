@@ -20,7 +20,7 @@ public interface EmployeeService {
 	
 	public boolean isEmployeeExists(Long id);
 	
-	public void UpdateEmployee(Employee employee);
+
 
 
 	public List<Employee> getAll();
