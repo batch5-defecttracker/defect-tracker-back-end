@@ -1,7 +1,9 @@
 package com.defect.tracker.data.repositories;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.defect.tracker.data.entities.Employee;
 
 
@@ -11,6 +13,12 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	public Optional<Employee>  findByFirstName(String firstName);
 	public List<Employee> findByDesignationId(Long desId);
 	boolean existsByDesignationId(Long id);
+	
+	//@Query("select image from employee where id = ")
+	public Optional<Employee> findByImage(Long id);
+	boolean existsByImage(String image);
+
+	
 
 	/* boolean existsByFirstName(String firstName); */
 	

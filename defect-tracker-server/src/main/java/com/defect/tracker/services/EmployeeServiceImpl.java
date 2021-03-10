@@ -1,9 +1,11 @@
 package com.defect.tracker.services;
 
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.repositories.EmployeeRepository;
 
@@ -29,11 +31,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 
-	@Override
-	public Optional<Employee> findById(Long id) {
-		
-		return employeeRepository.findById(id);
-	}
 
 	@Override
 	public boolean idExist(Long id) {
@@ -62,7 +59,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findByDesignationId(id);
 	}
 
-	
+	@Override
+	public boolean imageExist(Long id) {
+		
+		return employeeRepository.existsById(id);
+	}
+
+	@Override
+	public Employee findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String findImage(Long id) {
+		return employeeRepository.findById(id).get().getImage(); 
+	}
 
 	
 

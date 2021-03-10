@@ -1,4 +1,6 @@
 package com.defect.tracker.controller;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,9 @@ public class EmployeeController {
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
+//	@Autowired
+//	Employee employee;
+	
 	@Autowired
 	private Mapper mapper;
 
@@ -89,6 +94,19 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(mapper.map(employeeService.findByDes(designationId), EmployeeDto.class), HttpStatus.OK);
 
 	} 
+	
+	
+	@GetMapping(value=EndpointURI.getImage)
+	//@RequestMapping(value="/getImage/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Object> getallImage(@PathVariable Long id ){
+		if (!employeeService.imageExist(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Object>(employeeService.findImage(id), HttpStatus.OK);
+		
+	}
 	
 
 }
