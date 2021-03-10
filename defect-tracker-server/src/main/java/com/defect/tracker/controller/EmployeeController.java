@@ -1,5 +1,7 @@
 package com.defect.tracker.controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -90,6 +93,19 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(mapper.map(employeeService.findByDes(designationId), EmployeeDto.class), HttpStatus.OK);
 
 	} 
+	
+	@PutMapping(value = EndpointURI.UPDATE_EMPLOYEE)
+	public ResponseEntity<Object> UpdateEmployee(@RequestBody EmployeeDto employeeDto) {
+		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_EXISTS,
+					validationFailureStatusCodes.getEmailAlreadyExist()), HttpStatus.BAD_REQUEST);
+		}
+		java.sql.Date date = new Date(System.currentTimeMillis());
+		employeeDto.setTimeStamp(date);
+		Employee employee = mapper.map(employeeDto, Employee.class);
+		employeeService.UpdateEmployee(employee);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
+	}
 	
 
 }
