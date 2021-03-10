@@ -5,7 +5,6 @@ public class SubModuleDto {
 	private Long id;
 	private String subModuleName;
 	private Long moduleId;
-	
 	public Long getId() {
 		return id;
 	}
