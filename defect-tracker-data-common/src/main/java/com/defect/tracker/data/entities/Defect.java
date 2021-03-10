@@ -18,7 +18,7 @@ public class Defect {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String defDescription;
+	private String defectDescription;
 	private String str;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "moduleId", nullable = false)
@@ -55,12 +55,12 @@ public class Defect {
 		this.id = id;
 	}
 
-	public String getDefDescription() {
-		return defDescription;
+	public String getDefectDescription() {
+		return defectDescription;
 	}
 
-	public void setDefDescription(String defDescription) {
-		this.defDescription = defDescription;
+	public void setDefectDescription(String defectDescription) {
+		this.defectDescription = defectDescription;
 	}
 
 	public String getStr() {

@@ -6,7 +6,7 @@ public class LoginDto {
 	private String userName;
 	private String password;
 	private String status;
-	private Long empId;
+	private Long employeeId;
 	
 	public String getEmail() {
 		return email;
@@ -32,10 +32,11 @@ public class LoginDto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Long getEmpId() {
-		return empId;
+	public Long getEmployeeId() {
+		return employeeId;
 	}
-	public void setEmpId(Long empId) {
-		this.empId = empId;
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
 	}
+	
 }

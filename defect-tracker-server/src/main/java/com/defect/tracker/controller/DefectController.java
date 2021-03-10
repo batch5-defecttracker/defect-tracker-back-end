@@ -1,5 +1,7 @@
 package com.defect.tracker.controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +34,8 @@ public class DefectController {
 	
 	@PostMapping(value = EndpointURI.DEFECT_ADD)
 	public ResponseEntity<Object> addDefect(@RequestBody DefectDto defectDto) {
+		java.sql.Date date = new Date(System.currentTimeMillis());
+		defectDto.setTimeStamp(date);
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADD_SUCCESS, HttpStatus.OK);
