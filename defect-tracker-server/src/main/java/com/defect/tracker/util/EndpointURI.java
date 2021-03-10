@@ -12,9 +12,6 @@ public final class EndpointURI {
 
 //getEmployee
 	public static final String GetEmployeebyName = BASE_API_PATH + "getEmployeebyName/{firstName}";
-	
-
-	public static final String PROJECT = BASE_API_PATH + "project";
 
 //GetEmployeeByStatus
 	public static final String LOGINSTATUS = BASE_API_PATH + "loginstatus";
@@ -23,12 +20,13 @@ public final class EndpointURI {
 
 	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
 
-	//public static final String PROJECT = BASE_API_PATH + "project";
 	
 	public static final String GET_EMPLOYEE_BY_DESIGNATION = BASE_API_PATH + "getEmployeebyDesignation/{designationId}";
 	
 	
 //Project	
+	public static final String PROJECT = BASE_API_PATH + "project";
+	
 	public static final String PROJECT_FIND = BASE_API_PATH + "find/{id}";
 	
 	public static final String PROJECT_DELETE = BASE_API_PATH + "delete/{id}";
@@ -62,26 +60,20 @@ public final class EndpointURI {
 //SubModule
 	public static final String getSubModule = BASE_API_PATH + "SubModule/{moduleId}";
 
-
-
-	
 	//SubModule
 	
 	public static final String UPDATE_SUB_MODULE = BASE_API_PATH+ "subModule";
+
+	public static final String UpdateSubModule = BASE_API_PATH + "SubModule";
+
 	public static final String SUBMODULE_DELETE = BASE_API_PATH + "deleteSubModule/{id}";
-
-	
-	//getEmployee
-
-//getEmployee
+//Defect
+	public static final String DEFECT_ADD = BASE_API_PATH + "addDefect";
+	public static final String DEFECT_UPDATE = BASE_API_PATH + "updateDefect";
 
 
 	//designation
 	public static final String getAllDesignation = BASE_API_PATH + "designation";
-
-
-	//getEmployee	
-
 
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
@@ -95,7 +87,8 @@ public final class EndpointURI {
 	public static final String getAllSeverity = BASE_API_PATH + "severity";
 
 //GetAllPriority
-		public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
+
+	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
 		
 
 	private EndpointURI() {
