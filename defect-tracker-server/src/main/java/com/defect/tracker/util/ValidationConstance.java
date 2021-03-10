@@ -10,6 +10,7 @@ public class ValidationConstance {
 	
 
 	public static final String EMPLOYEE_EMPTY = "Employee not exist";
+	public static final String MODULE_EMPTY = "Module not exist";
 	public static final String MODULE_NOT_EXISTS = "Module not exist";
 	
 	public static final String MODULE_EXISTS = "Module already exist";
