@@ -38,6 +38,31 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.project.AlreadyExists}")
 	 private String proNameAlreadyExists;
 	
+
+	@Value("{validation.projectemp.isProjectempExists}")
+	private String projectempAlreadyExists;
+
+	public String getProjectempAlreadyExists() {
+		return projectempAlreadyExists;
+	}
+
+
+	public void setProjectempAlreadyExists(String projectempAlreadyExists) {
+		this.projectempAlreadyExists = projectempAlreadyExists;
+	}
+	
+	@Value("{validation.project.getProjectempNotExist}")
+	private String projectemployeeNotExists;
+	
+	public String getProjectemployeeNotExists() {
+		return projectemployeeNotExists;
+	}
+
+
+	public void setProjectemployeeNotExists(String projectemployeeNotExists) {
+		this.projectemployeeNotExists = projectemployeeNotExists;
+	}
+
 	@Value("${validation.defect.notExists}")
 	 private String defectNotExist;
 	
