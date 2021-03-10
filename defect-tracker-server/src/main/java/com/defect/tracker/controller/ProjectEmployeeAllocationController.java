@@ -32,7 +32,7 @@ public class ProjectEmployeeAllocationController {
 	public ResponseEntity<Object> deleteEmployeeSubModule(@PathVariable Long id){
 		if (!projectemployeeallocationService.isProjectempExists(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EMPLOYEE_NOT_AVAILABLE,
-					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getProjectemployeeNotExists()), HttpStatus.BAD_REQUEST);
 		}
 		projectemployeeallocationService.DeleteProjectEmp(id);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE, HttpStatus.OK);	
