@@ -18,7 +18,7 @@ public class Login {
 	private String status;
 	
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="empId",nullable=false)
+	@JoinColumn(name="employeeId",nullable=false)
 	private Employee employee;
 
 	public String getEmail() {

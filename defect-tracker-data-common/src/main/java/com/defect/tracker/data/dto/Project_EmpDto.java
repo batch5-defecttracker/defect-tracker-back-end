@@ -3,49 +3,47 @@ package com.defect.tracker.data.dto;
 public class Project_EmpDto {
 	
 	
-	private long proEmpId;
-	private long proId;
-	private long modId;
-	private long empId;
-	private long desId;
-	private long subModId;
-	
-	
-	public long getProEmpId() {
-		return proEmpId;
+	private long id;
+	private long projectId;
+	private long moduleId;
+	private long employeeId;
+	private long designationId;
+	private long submoduleId;
+	public long getId() {
+		return id;
 	}
-	public void setProEmpId(long proEmpId) {
-		this.proEmpId = proEmpId;
+	public void setId(long id) {
+		this.id = id;
 	}
-	public long getProId() {
-		return proId;
+	public long getProjectId() {
+		return projectId;
 	}
-	public void setProId(long proId) {
-		this.proId = proId;
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
 	}
-	public long getModId() {
-		return modId;
+	public long getModuleId() {
+		return moduleId;
 	}
-	public void setModId(long modId) {
-		this.modId = modId;
+	public void setModuleId(long moduleId) {
+		this.moduleId = moduleId;
 	}
-	public long getEmpId() {
-		return empId;
+	public long getEmployeeId() {
+		return employeeId;
 	}
-	public void setEmpId(long empId) {
-		this.empId = empId;
+	public void setEmployeeId(long employeeId) {
+		this.employeeId = employeeId;
 	}
-	public long getDesId() {
-		return desId;
+	public long getDesignationId() {
+		return designationId;
 	}
-	public void setDesId(long desId) {
-		this.desId = desId;
+	public void setDesignationId(long designationId) {
+		this.designationId = designationId;
 	}
-	public long getSubModId() {
-		return subModId;
+	public long getSubmoduleId() {
+		return submoduleId;
 	}
-	public void setSubModId(long subModId) {
-		this.subModId = subModId;
+	public void setSubmoduleId(long submoduleId) {
+		this.submoduleId = submoduleId;
 	}
 	
 
