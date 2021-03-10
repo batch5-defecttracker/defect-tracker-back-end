@@ -53,11 +53,11 @@ public class DefectController {
 	
 	@GetMapping(value = EndpointURI.DEFECT_GET_BY_ID)
 	public ResponseEntity<Object> getDefectById(@PathVariable Long id){
-		if(!defectService.isIdExists(id)) {
+		if(!defectService.isDefectExists(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_EXISTS,
-					validationFailureStatusCodes.getDefectIdNotExists()),HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getDefectNotExist()),HttpStatus.BAD_REQUEST);
 		}
-		
-		return new ResponseEntity<Object>(defectService.findById(id),HttpStatus.OK);
+		DefectDto defectDto =  mapper.map(defectService.findById(id) , DefectDto.class);
+		return new ResponseEntity<Object>(defectDto,HttpStatus.OK);
 	}
 }

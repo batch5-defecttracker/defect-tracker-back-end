@@ -9,6 +9,6 @@ public interface DefectService {
 	public void addDefect(Defect defect);
 	public boolean isDefectExists(Long id);
 	public Optional <Defect> findById(Long id);
-	public boolean isIdExists(Long id);
+	
 	
 }
