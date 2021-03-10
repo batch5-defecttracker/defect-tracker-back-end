@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,5 +49,15 @@ public class DefectController {
 		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 		
+	}
+	
+	@GetMapping(value = EndpointURI.DEFECT_GET_BY_ID)
+	public ResponseEntity<Object> getDefectById(@PathVariable Long id){
+		if(!defectService.isIdExists(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_EXISTS,
+					validationFailureStatusCodes.getDefectIdNotExists()),HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Object>(defectService.findById(id),HttpStatus.OK);
 	}
 }

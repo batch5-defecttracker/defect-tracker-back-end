@@ -1,5 +1,7 @@
 package com.defect.tracker.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,16 @@ public class DefectServiceImpl implements DefectService {
 
 	@Override
 	public boolean isDefectExists(Long id) {
+		return defectRepository.existsById(id);
+	}
+
+	@Override
+	public Optional<Defect> findById(Long id) {
+		return defectRepository.findById(id) ;
+	}
+
+	@Override
+	public boolean isIdExists(Long id) {
 		return defectRepository.existsById(id);
 	}
 

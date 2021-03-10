@@ -62,6 +62,18 @@ public class ValidationFailureStatusCodes {
 	public void setProjectemployeeNotExists(String projectemployeeNotExists) {
 		this.projectemployeeNotExists = projectemployeeNotExists;
 	}
+	@Value("${validation.defect.idnotExists}")
+	private String defectIdNotExists;
+	
+
+	public String getDefectIdNotExists() {
+		return defectIdNotExists;
+	}
+
+
+	public void setDefectIdNotExists(String defectIdNotExists) {
+		this.defectIdNotExists = defectIdNotExists;
+	}
 
 	@Value("${validation.defect.notExists}")
 	 private String defectNotExist;
