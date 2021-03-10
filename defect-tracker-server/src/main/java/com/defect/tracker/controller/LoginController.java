@@ -23,8 +23,8 @@ public class LoginController {
 	@Autowired LoginService loginService ;
 	
 	@GetMapping(value = EndpointURI.LOGINSTATUS)
-	public List<Login> getEmployee(@PathVariable String status){
-		vah = loginService.getEmployee(status);
+	public List<Login> getEmployee(){
+		//vah = loginService.getEmployee();
 		return vah;
 		
 	}
