@@ -17,7 +17,7 @@ public class SubModule {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String subModuleName;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="moduleId" , nullable=false)
 	private Module module;
 	
