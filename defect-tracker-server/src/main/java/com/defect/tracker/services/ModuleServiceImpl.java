@@ -1,5 +1,7 @@
 package com.defect.tracker.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,25 @@ public class ModuleServiceImpl implements ModuleService {
 	public boolean isModuleExistsByName(String name) {
 		return moduleRepository.existsByModuleName(name);
 	}
+
+
 	
+	@Override
+	public List<Module> findAll() {
+		return moduleRepository.findAll();
+	}
+	public List<Module> findByProject(Long projectId) {
+		return moduleRepository.findByProjectId(projectId);
+	}
+
+	@Override
+	public boolean isModuleExistsByProjectId(Long projectId) {
+		return moduleRepository.existsByProjectId(projectId);
+	}
+
+	
+
+	
+
 	
 }

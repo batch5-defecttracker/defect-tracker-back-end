@@ -14,22 +14,18 @@ public class DefectStatus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String defStIdName;
-	
-	
+	private String defectStatusName;
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getDefStIdName() {
-		return defStIdName;
+	public String getDefectStatusName() {
+		return defectStatusName;
 	}
-	public void setDefStIdName(String defStIdName) {
-		this.defStIdName = defStIdName;
+	public void setDefectStatusName(String defectStatusName) {
+		this.defectStatusName = defectStatusName;
 	}
 	
-	
-
 }

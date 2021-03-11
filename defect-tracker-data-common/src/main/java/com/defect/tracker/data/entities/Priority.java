@@ -7,24 +7,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "prority")
+@Table(name = "priority")
 public class Priority {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String prioName;
+	private String priorityName;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getPrioName() {
-		return prioName;
+	public String getPriorityName() {
+		return priorityName;
 	}
-	public void setPrioName(String prioName) {
-		this.prioName = prioName;
+	public void setPriorityName(String priorityName) {
+		this.priorityName = priorityName;
 	}
-
+	
 }
