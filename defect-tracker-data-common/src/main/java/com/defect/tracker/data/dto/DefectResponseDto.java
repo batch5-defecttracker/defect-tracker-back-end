@@ -2,27 +2,19 @@ package com.defect.tracker.data.dto;
 
 import java.util.Date;
 
-import com.defect.tracker.data.entities.DefectStatus;
-import com.defect.tracker.data.entities.DefectType;
-import com.defect.tracker.data.entities.Employee;
-import com.defect.tracker.data.entities.Priority;
-import com.defect.tracker.data.entities.Severity;
-import com.defect.tracker.data.entities.SubModule;
-import com.defect.tracker.data.entities.Module;
-
 public class DefectResponseDto {	
 	
 	private long id;
 	private String defectDescription;
 	private String str;
-	private Module module;
-	private SubModule submodule;
-	private Employee employee;
-	private Employee employee2;
-	private Priority priority;
-	private Severity severity;
-	private DefectStatus defectStatus;
-	private DefectType defectType;
+	private ModuleDto module;
+	private SubModuleDto submodule;
+	private EmployeeDto employee;
+	private EmployeeDto employee2;
+	private PriorityDto priority;
+	private SeverityDto severity;
+	private DefectStatusDto defectStatus;
+	private DefectTypeDto defectType;
 	private Date timeStamp;
 	private String file;
 	public long getId() {
@@ -43,52 +35,52 @@ public class DefectResponseDto {
 	public void setStr(String str) {
 		this.str = str;
 	}
-	public Module getModule() {
+	public ModuleDto getModule() {
 		return module;
 	}
-	public void setModule(Module module) {
+	public void setModule(ModuleDto module) {
 		this.module = module;
 	}
-	public SubModule getSubmodule() {
+	public SubModuleDto getSubmodule() {
 		return submodule;
 	}
-	public void setSubmodule(SubModule submodule) {
+	public void setSubmodule(SubModuleDto submodule) {
 		this.submodule = submodule;
 	}
-	public Employee getEmployee() {
+	public EmployeeDto getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee employee) {
+	public void setEmployee(EmployeeDto employee) {
 		this.employee = employee;
 	}
-	public Employee getEmployee2() {
+	public EmployeeDto getEmployee2() {
 		return employee2;
 	}
-	public void setEmployee2(Employee employee2) {
+	public void setEmployee2(EmployeeDto employee2) {
 		this.employee2 = employee2;
 	}
-	public Priority getPriority() {
+	public PriorityDto getPriority() {
 		return priority;
 	}
-	public void setPriority(Priority priority) {
+	public void setPriority(PriorityDto priority) {
 		this.priority = priority;
 	}
-	public Severity getSeverity() {
+	public SeverityDto getSeverity() {
 		return severity;
 	}
-	public void setSeverity(Severity severity) {
+	public void setSeverity(SeverityDto severity) {
 		this.severity = severity;
 	}
-	public DefectStatus getDefectStatus() {
+	public DefectStatusDto getDefectStatus() {
 		return defectStatus;
 	}
-	public void setDefectStatus(DefectStatus defectStatus) {
+	public void setDefectStatus(DefectStatusDto defectStatus) {
 		this.defectStatus = defectStatus;
 	}
-	public DefectType getDefectType() {
+	public DefectTypeDto getDefectType() {
 		return defectType;
 	}
-	public void setDefectType(DefectType defectType) {
+	public void setDefectType(DefectTypeDto defectType) {
 		this.defectType = defectType;
 	}
 	public Date getTimeStamp() {
@@ -104,6 +96,4 @@ public class DefectResponseDto {
 		this.file = file;
 	}
 	
-	
-
 }
