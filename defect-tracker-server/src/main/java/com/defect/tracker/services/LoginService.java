@@ -8,7 +8,7 @@ import com.defect.tracker.data.entities.Login;
 
 
 public interface LoginService {
-//	public Login findByEmployeeId(String status);
+	public List<Login> findByEmployeeId(String status);
 	
 	
 	

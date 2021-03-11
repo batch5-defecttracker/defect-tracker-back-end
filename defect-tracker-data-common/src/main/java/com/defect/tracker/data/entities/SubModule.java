@@ -16,18 +16,10 @@ public class SubModule {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private String subModuleName;
+	private String submoduleName;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="moduleId" , nullable=false)
 	private Module module;
-	
-
-	public Module getModule() {
-		return module;
-	}
-	public void setModule(Module module) {
-		this.module = module;
-	}
 	
 	
 	public Long getId() {
@@ -36,16 +28,18 @@ public class SubModule {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getSubModuleName() {
-		return subModuleName;
+	public String getSubmoduleName() {
+		return submoduleName;
 	}
-	public void setSubModuleName(String subModuleName) {
-		this.subModuleName = subModuleName;
+	public void setSubmoduleName(String submoduleName) {
+		this.submoduleName = submoduleName;
 	}
-	
-	
-	
-	
+	public Module getModule() {
+		return module;
+	}
+	public void setModule(Module module) {
+		this.module = module;
+	}
 	
 
 }
