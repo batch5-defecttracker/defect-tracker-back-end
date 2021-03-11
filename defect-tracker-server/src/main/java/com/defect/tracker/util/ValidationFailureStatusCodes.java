@@ -64,6 +64,7 @@ public class ValidationFailureStatusCodes {
 	public void setProjectemployeeNotExists(String projectemployeeNotExists) {
 		this.projectemployeeNotExists = projectemployeeNotExists;
 	}
+	
 
 
 	
@@ -72,6 +73,12 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.subModule.notExist}")
 	private String subModuleNotExist;
+	
+	@Value("${validation.projectAllocation.notExist}")
+	private String projectAllocationNotExist;
+	
+	@Value("${validation.projectAllocation.failed}")
+	private String projectAllocationFailed;
 
 	public String getSubModuleNotExist() {
 		return subModuleNotExist;
@@ -82,6 +89,18 @@ public class ValidationFailureStatusCodes {
 		this.subModuleNotExist = subModuleNotExist;
 	}
 
+	@Value("${validation.submodule.notExist}")
+	private String subModuleNotExists;
+
+	
+
+	public String getSubModuleNotExists() {
+		return subModuleNotExists;
+	}
+
+	public void setSubModuleNotExists(String subModuleNotExists) {
+		this.subModuleNotExists = subModuleNotExists;
+	}
 
 	@Value("${validation.priority.notExist}")
 	private String priorityNotExist;
@@ -173,7 +192,43 @@ public class ValidationFailureStatusCodes {
 	public void setDefectNotExist(String defectNotExist) {
 		this.defectNotExist = defectNotExist;
 	}
+	
+	
+	@Value("${validation.designation.notExist}")
+	private String designationNotExist;
+
+
+			public String getDesignationNotExist() {
+		return designationNotExist;
+	}
+
+	public void setDesignationNotExist(String designationNotExist) {
+		this.designationNotExist = designationNotExist;
+	}
+
 
 	
+
+	public String getProjectAllocationNotExist() {
+		return projectAllocationNotExist;
+	}
+
+
+	public void setProjectAllocationNotExist(String projectAllocationNotExist) {
+		this.projectAllocationNotExist = projectAllocationNotExist;
+	}
+
+
+	public String getProjectAllocationFailed() {
+		return projectAllocationFailed;
+	}
+
+
+	public void setProjectAllocationFailed(String projectAllocationFailed) {
+		this.projectAllocationFailed = projectAllocationFailed;
+	}
+	
+	
+
 
 }

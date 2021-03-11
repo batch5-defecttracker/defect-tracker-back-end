@@ -1,7 +1,6 @@
 package com.defect.tracker.data.dto;
 
 public class DesignationDto {
-	
 	 private long id;
 		private String DesignationName;
 		public long getId() {
@@ -16,5 +15,4 @@ public class DesignationDto {
 		public void setDesignationName(String designationName) {
 			DesignationName = designationName;
 		}
-		
 }

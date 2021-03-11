@@ -9,6 +9,7 @@ public class Project_EmpDto {
 	private long employeeId;
 	private long designationId;
 	private long submoduleId;
+
 	public long getId() {
 		return id;
 	}
@@ -45,6 +46,9 @@ public class Project_EmpDto {
 	public void setSubmoduleId(long submoduleId) {
 		this.submoduleId = submoduleId;
 	}
+
+	
+
 	
 
 }
