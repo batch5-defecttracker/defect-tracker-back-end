@@ -43,7 +43,6 @@ public class Constants {
 	//severity
 	public static final String Get_All_Severity = "Severity got Successfully";
 
-	public static final MultiValueMap<String, String> EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE = null;
 	
 	public static final String PROJECT_EMP_UPDATE = "updateProjectEmp SuccessFully";
 

@@ -25,11 +25,6 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class ProjectEmployeeAllocationController {
-
-
-	
-	 @Autowired ProjectEmployeeAllocationRepository
-	 projectemployeeallocationRepository;
 	
 
 	@Autowired
@@ -44,11 +39,12 @@ public class ProjectEmployeeAllocationController {
 
 	@Autowired
 	EmployeeService employeeService;
+	
 
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
- HEAD
+ 
 
 
 //	@DeleteMapping(value=EndpointURI.EMPLOYEE_DEALLOCATION_FOR_SUBMODULE)
@@ -92,29 +88,19 @@ public class ProjectEmployeeAllocationController {
 	
 	
 	
+	
+	
 	@GetMapping(value = EndpointURI.GET_PROJECT_ALLOCATION)
 	public ResponseEntity<Object> getAllProjectAllocation(){
 		if (projectemployeeallocationService.getAll().isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_ALLOCATED,
 					validationFailureStatusCodes.getProjectAllocationNotExist()), HttpStatus.BAD_REQUEST);
 		}
+		
 		return new ResponseEntity<Object>(mapper.map(projectemployeeallocationService.getAll(), ProjectEmp_ResponseDto.class ), HttpStatus.OK);
 	}
 	
-	
-	
-	
 
-
-		if (!employeeService.idExist(project_EmpDto.getEmployeeId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPTY_PROJECT_ALLOCATION,
-					validationFailureStatusCodes.getProjectAllocationFailed()), HttpStatus.BAD_REQUEST);
-		}
-
-		ProjectEmp projectEmp = mapper.map(project_EmpDto, ProjectEmp.class);
-		projectemployeeallocationService.addProjectAllocation(projectEmp);
-		return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATED, HttpStatus.OK);
-	}
 
 
 	@DeleteMapping(value = EndpointURI.DEALLOCATE_PROJECT)
@@ -153,7 +139,7 @@ public class ProjectEmployeeAllocationController {
 	
 
 	@PutMapping(value = EndpointURI.UPDATE_PROJECT_EMP)
-	public ResponseEntity<Object> updateProjectAllocation(@RequestBody Project_EmpDto project_EmpDto) {
+	public ResponseEntity<Object> updateProjectAllocation(@RequestBody Project_EmpDto project_EmpDto){
 		if (!projectemployeeallocationService.existsByid(project_EmpDto.getId())) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.PROJECT_EMPLOYEE_NOT_AVAILABLE,
@@ -166,6 +152,8 @@ public class ProjectEmployeeAllocationController {
 		projectemployeeallocationService.update(projectEmp);
 		return new ResponseEntity<Object>(Constants.PROJECT_EMP_UPDATE, HttpStatus.OK);
 
+	
+	}
 	}
 
-}
+
