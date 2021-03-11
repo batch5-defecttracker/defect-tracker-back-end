@@ -1,6 +1,7 @@
 package com.defect.tracker.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,21 @@ public class DefectStatusServiceImpl implements DefectStatusService{
 
 	@Override
 	public List<DefectStatus> getAllDefectStatus() {
-		
 		return defectStatusRepository.findAll();
 	}
+
+
+	@Override
+	public DefectStatus getDefectStatusByName(String name) {
+		return defectStatusRepository.findByDefectStatusName(name);
+	}
+
+
+	@Override
+	public Optional<DefectStatus> getDefectStatusById(Long id) {
+		return defectStatusRepository.findById(id);
+	}
+	
+	
 
 }
