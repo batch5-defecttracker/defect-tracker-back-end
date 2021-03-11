@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProjectEmployeeAllocationRepository extends JpaRepository<ProjectEmp, Long> {
 
-	public boolean existsByName(String name);
+	/* public boolean existsByName(String name) */;
 }

@@ -32,16 +32,12 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 	  @Override public List<ProjectEmp> getAll() { return
 	  projectemployeeallocationRepository.findAll(); 
 	  }
+	  
 	  @Override
-		public List<ProjectEmp> getAllModuleAllocations() {
-			return projectemployeeallocationRepository.findAll();
+		public void update(ProjectEmp projectEmp) {
+			projectemployeeallocationRepository.save(projectEmp);
+			
 		}
-
-
-		/*
-		 * @Override public boolean isModuleNotExist(String name) { ((Object)
-		 * projectemployeeallocationRepository).existsByName(name); return false; }
-		 */
 
 		
 }
