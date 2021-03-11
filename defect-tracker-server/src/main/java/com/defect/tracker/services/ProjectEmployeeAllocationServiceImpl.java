@@ -42,6 +42,12 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 		 * @Override public boolean isModuleNotExist(String name) { ((Object)
 		 * projectemployeeallocationRepository).existsByName(name); return false; }
 		 */
+	  
+	  @Override
+		public void update(ProjectEmp projectEmp) {
+			projectemployeeallocationRepository.save(projectEmp);
+			
+		}
 
 		
 }
