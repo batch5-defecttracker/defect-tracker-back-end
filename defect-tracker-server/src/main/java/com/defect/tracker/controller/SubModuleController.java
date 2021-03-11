@@ -66,10 +66,15 @@ public class SubModuleController {
 	
 	@PostMapping(value = EndpointURI.SUBMODULE_ADD)
 	public ResponseEntity<Object> createSubModule(@RequestBody SubModuleDto subModuleDto){
-		if(subModuleService.isSubModuleExistsByName(subModuleDto.getSubModuleName())) {
-			  return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_ALREADY_EXIST,
-					  validationFailureStatusCodes.getSubModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
-		  }
+		/*
+		 * if(subModuleService.existsBySubModuleName(subModuleDto.getSubmoduleName())) {
+		 * return new ResponseEntity<>(new
+		 * ValidationFailureResponse(ValidationConstance.SUBMODULE_ALREADY_EXIST,
+		 * validationFailureStatusCodes.getSubModuleAlreadyExist()),
+		 * HttpStatus.BAD_REQUEST); }
+		 */
+		
+		 
 		 
 		SubModule subModule = mapper.map(subModuleDto, SubModule.class);
 		subModuleService.createSubModule(subModule);

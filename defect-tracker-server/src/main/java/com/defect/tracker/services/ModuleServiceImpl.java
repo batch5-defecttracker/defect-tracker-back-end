@@ -40,14 +40,18 @@ public class ModuleServiceImpl implements ModuleService {
 	public List<Module> findAll() {
 		return moduleRepository.findAll();
 	}
-	public List<Module> findByProject(Long projectId) {
-		return moduleRepository.findByProjectId(projectId);
-	}
+	
+	
+	  public List<Module> findByProject(Long projectId) { return
+	  moduleRepository.findByProjectId(projectId); }
+	 
 
 	@Override
 	public boolean isModuleExistsByProjectId(Long projectId) {
-		return moduleRepository.existsByProjectId(projectId);
+		return moduleRepository.existsById(projectId);
 	}
+
+	
 
 	
 

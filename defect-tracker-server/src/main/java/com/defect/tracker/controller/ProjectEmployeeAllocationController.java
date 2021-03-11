@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
+//import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ProjectEmployeeAllocationService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +31,10 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 @RestController
 public class ProjectEmployeeAllocationController {
 
-	@Autowired
-	ProjectEmployeeAllocationRepository projectemployeeallocationRepository;
+	/*
+	 * @Autowired ProjectEmployeeAllocationRepository
+	 * projectemployeeallocationRepository;
+	 */
 	
 	@Autowired
 	ProjectEmployeeAllocationService projectemployeeallocationService;
@@ -75,10 +77,13 @@ public class ProjectEmployeeAllocationController {
 	
 	@PostMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> addPojectAllocation(@RequestBody Project_EmpDto project_EmpDto) {
-		if (!employeeService.idExist(project_EmpDto.getEmployeeId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPTY_PROJECT_ALLOCATION,
-					validationFailureStatusCodes.getProjectAllocationFailed()), HttpStatus.BAD_REQUEST);
-		}
+		
+		  if (!employeeService.idExist(project_EmpDto.getEmployeeId())) { return new
+		  ResponseEntity<>(new
+		  ValidationFailureResponse(ValidationConstance.EMPTY_PROJECT_ALLOCATION,
+		  validationFailureStatusCodes.getProjectAllocationFailed()),
+		  HttpStatus.BAD_REQUEST); }
+		 
 		ProjectEmp projectEmp = mapper.map(project_EmpDto, ProjectEmp.class);
 		projectemployeeallocationService.addProjectAllocation(projectEmp);
 		return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATED, HttpStatus.OK);

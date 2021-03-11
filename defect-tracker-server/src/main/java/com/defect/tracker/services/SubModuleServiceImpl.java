@@ -43,10 +43,33 @@ public class SubModuleServiceImpl implements SubModuleService{
 	}
 
 	@Override
-	public boolean isSubModuleExistsByName(String name) {
-		return subModuleUpdateRepository.existsBySubModuleName( name);
+	public boolean subModuleexistByModuleId(Long id) {
+		return 	subModuleUpdateRepository.existsByModuleId(id);
+		
 	}
 
+	@Override
+	public boolean alreadyExistsBySUbModule(String name) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/*
+	 * @Override public boolean alreadyExistsBySUbModule(String name) { return
+	 * subModuleUpdateRepository.existBysubmodulename(name);
+	 * 
+	 * }
+	 */
+	/*
+	 * @Override public boolean existsBySubModuleName(String name) { return
+	 * subModuleUpdateRepository.existsBySubModuleName(name);
+	 * 
+	 * }
+	 */
+
+	
+	  
+	 
 
 
 
