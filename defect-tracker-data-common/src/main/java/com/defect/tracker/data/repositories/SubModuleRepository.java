@@ -6,6 +6,11 @@ import com.defect.tracker.data.entities.SubModule;
 public interface SubModuleRepository extends JpaRepository<SubModule, Long>{
 	public List<SubModule> findByModuleId(Long id);
 	boolean existsByModuleId(Long id);
-	/* boolean existsBySubModuleName(String name); */
-	/* boolean existBysubmodulename(String name); */
+	public boolean existsBysubmoduleName(String name);
+	public boolean existsBySubmoduleNameAndModuleId(String name,Long id);
+	
+	
+	
+	
+	
 }

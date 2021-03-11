@@ -32,10 +32,11 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 	  @Override public List<ProjectEmp> getAll() { return
 	  projectemployeeallocationRepository.findAll(); 
 	  }
-	  @Override
-		public List<ProjectEmp> getAllModuleAllocations() {
-			return projectemployeeallocationRepository.findAll();
-		}
+	  
+		/*
+		 * @Override public List<ProjectEmp> getAllModuleAllocations() { return
+		 * projectemployeeallocationRepository.findAll(); }
+		 */
 
 
 		/*
