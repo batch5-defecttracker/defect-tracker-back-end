@@ -85,7 +85,11 @@ public final class EndpointURI {
 	public static final String DEFECT = BASE_API_PATH + "defect";
 
 	public static final String MODULE_ALLOCATION = BASE_API_PATH + "moduleAllocation";
-
+	
+	
+	
+	//projectEmp
+		public static final String UPDATE_PROJECT_EMP=BASE_API_PATH+"updateProjectEmp";
 
 	private EndpointURI() {
 		

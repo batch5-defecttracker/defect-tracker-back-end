@@ -11,6 +11,7 @@ import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ProjectEmployeeAllocationService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -104,16 +105,34 @@ public class ProjectEmployeeAllocationController {
 	
 	@GetMapping(value=EndpointURI.MODULE_ALLOCATION)
 		public ResponseEntity<Object> getAllModulesByAllocation(){
-			
-			  if(projectemployeeallocationService.getAllModuleAllocations().isEmpty()) {
-			  return new ResponseEntity<Object>(new
-			  ValidationFailureResponse(ValidationConstance.SUBMODULE_DOES_NOT_EXISTS,
-			  validationFailureStatusCodes.getSubModuleNotExist()),
-			  HttpStatus.BAD_REQUEST); }
+			/*
+			 * if(projectemployeeallocationService.getAllModuleAllocations().isEmpty()) {
+			 * return new ResponseEntity<Object>(new
+			 * ValidationFailureResponse(ValidationConstance.SUBMODULE_DOES_NOT_EXISTS,
+			 * validationFailureStatusCodes.getSubModuleNotExist()),
+			 * HttpStatus.BAD_REQUEST); }
+			 */
 			 
 			
 			return new ResponseEntity<Object>(projectemployeeallocationService.getAllModuleAllocations(), HttpStatus.OK);
 			
 		}
+	
+	
+		
+		  @PutMapping(value = EndpointURI.UPDATE_PROJECT_EMP) public
+		  ResponseEntity<Object> updateProjectAllocation(@RequestBody Project_EmpDto
+		  project_EmpDto ){
+			  	if(!projectemployeeallocationService.existsByid(project_EmpDto.getId())) {
+			  		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EMPLOYEE_NOT_AVAILABLE, 
+			  				validationFailureStatusCodes.getProjectemployeeNotExists()), HttpStatus.BAD_REQUEST);
+			  	}
+		  
+				  ProjectEmp projectEmp = mapper.map(project_EmpDto, ProjectEmp.class);
+				  projectemployeeallocationService.update(projectEmp); return new
+				  ResponseEntity<Object>(Constants.PROJECT_EMP_UPDATE, HttpStatus.OK);
+		  
+		  }
+		 
 
 }

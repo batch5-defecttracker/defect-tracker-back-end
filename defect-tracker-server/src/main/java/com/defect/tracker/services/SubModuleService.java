@@ -14,8 +14,10 @@ public interface SubModuleService {
 	public boolean existsSubModule(Long id);
 	public void createSubModule(SubModule subModule);
 	/* public boolean existsBySubModuleName(String name); */
-	public boolean subModuleexistByModuleId(Long id);
-	public boolean alreadyExistsBySUbModule(String name) ;
+	/*
+	 * public boolean subModuleexistByModuleId(Long id); public boolean
+	 * alreadyExistsBySUbModule(String name) ;
+	 */
 	
 
 	

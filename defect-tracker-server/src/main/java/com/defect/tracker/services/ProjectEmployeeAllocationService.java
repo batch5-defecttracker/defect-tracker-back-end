@@ -11,5 +11,6 @@ public interface ProjectEmployeeAllocationService {
 	public List<ProjectEmp> getAll();
 	public List<ProjectEmp> getAllModuleAllocations();
 	//public boolean isModuleNotExist(String name);
+	public void update(ProjectEmp projectEmp);
 
 }
