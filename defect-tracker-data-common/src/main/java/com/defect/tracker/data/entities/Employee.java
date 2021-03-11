@@ -29,7 +29,7 @@ public class Employee{
 	private String lastName;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "desId", nullable = false)
+	@JoinColumn(name = "designationId", nullable = false)
 	private Designation designation;
 	
 	private String email;
