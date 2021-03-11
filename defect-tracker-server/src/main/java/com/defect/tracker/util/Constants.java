@@ -20,6 +20,10 @@ public class Constants {
 	public static final String DEFECT_ADD_SUCCESS = "Defect added successfully";
 	public static final String UPDATE_DEFECT = "Defect update successfully";
 	public static final String Get_All_Severity = "Severity got Successfully";
+	
+	public static final String EMPLOYEE_STATUS_UPDATED = "Employee Status Updated Successfully";
+	
+	public static final String MODULE_UPDATE_SUCCESS = "Module Successfully Updated";
 	public static final MultiValueMap<String, String> EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE = null;
 
 	// encaptulate constructor to restrict modification from outside

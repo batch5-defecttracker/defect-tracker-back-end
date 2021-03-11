@@ -8,14 +8,17 @@ import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.repositories.LoginRepository;
 
 @Service
-public class LoginServiceImpl implements LoginService {
+public class LoginServiceImpl implements LoginService{
+	
 	@Autowired
-	LoginRepository loginRepository;
+	private LoginRepository loginRepositroy;
 
 	@Override
 	public List<Login> findByEmployeeId(String status) {
 		
 		return loginRepository.findByStatus(status);
+	public void updateEmployeeStatus(Login login) {
+		loginRepositroy.save(login);	
 	}
 
 }
