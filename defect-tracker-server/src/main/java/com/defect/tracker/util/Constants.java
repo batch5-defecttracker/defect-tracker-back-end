@@ -25,6 +25,7 @@ public class Constants {
 	
 	public static final String MODULE_UPDATE_SUCCESS = "Module Successfully Updated";
 	public static final MultiValueMap<String, String> EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE = null;
+	public static final String EMPLOYEE_PHOTO_UPDATE_SUCCESS = "Employee Photo Successfully Updated";
 
 	// encaptulate constructor to restrict modification from outside
 	

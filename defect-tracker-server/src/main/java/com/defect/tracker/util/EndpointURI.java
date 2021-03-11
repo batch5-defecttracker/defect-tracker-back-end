@@ -85,6 +85,9 @@ public final class EndpointURI {
 		
 //Defect
 	public static final String DEFECT = BASE_API_PATH + "defect";
+	
+//Update Employee Photo
+	public static final String EMPLOYEE_PHOTO_UPDATE = BASE_API_PATH + "employeePhotoUpdate/{id}";
 
 
 	private EndpointURI() {
