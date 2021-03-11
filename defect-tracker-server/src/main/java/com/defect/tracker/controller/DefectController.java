@@ -97,7 +97,7 @@ public class DefectController {
 						validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
 		}
 
-		 Defect defect=defectService.findById(id).get();
+		 Defect defect=defectService.findById(id);
 		 DefectStatus ds=defectStatusRepository.getOne(status);
 		 defect.setDefectStatus(ds);
 		 defectService.addDefect(defect);
