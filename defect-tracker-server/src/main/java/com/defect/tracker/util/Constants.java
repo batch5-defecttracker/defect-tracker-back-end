@@ -23,6 +23,8 @@ public class Constants {
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
 	
 	public static final String UpdateSubmodule= "SubModule updated successfully ";
+	
+	public static final String ADD_EMPLOYEE_PHOTO_SUCCESS = " Employee Photo Add Successfully";
 
 
 
@@ -36,6 +38,8 @@ public class Constants {
 	public static final String UPDATE_DEFECT = "Defect update successfully";
 	
 	public static final String Get_All_Severity = "Severity got Successfully";
+	
+	public static final String EMPLOYEE_PHOTO_DELETE_SUCCESS = "Employee Photo Delete Successfully";
 
 	// encaptulate constructor to restrict modification from outside
 	

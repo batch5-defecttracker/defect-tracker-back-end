@@ -9,6 +9,9 @@ public final class EndpointURI {
 //Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 	
+	public static final String DELETE_EMPLOYEE_PHOTO =  BASE_API_PATH + "deleteEmployeePhoto/{id}";
+	public static final String ADD_EMPLOYEE_PHOTO =  BASE_API_PATH + "addEmployeePhoto/{id}";
+	
 	public static final String UPDATE_EMPLOYEE =  BASE_API_PATH + "updateEmployee";
 //getEmployee
 	public static final String GetEmployeebyName = BASE_API_PATH + "getEmployeebyName/{firstName}";

@@ -1,6 +1,11 @@
 package com.defect.tracker.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.entities.Employee;
@@ -25,6 +33,9 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class EmployeeController {
+	private static String UPLOADED_FOLDER = "D://DefectNew/defect-tracker-back-end/defect-tracker-server/src/main/resources/";
+	private String UPLOADED_FOLDER_1="D://DefectNew/defect-tracker-back-end/defect-tracker-server/src/main/resources/img.jpg/";
+	
 	@Autowired
 	EmployeeService employeeService;
 
@@ -41,7 +52,10 @@ public class EmployeeController {
 					validationFailureStatusCodes.getEmailAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
 		Employee employee = mapper.map(employeeDto, Employee.class);
-		employeeService.createEmployee(employee);
+		 Long empId;
+		 empId =employeeService.createEmployee(employee);
+		
+		
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
 	}
 	
@@ -110,6 +124,42 @@ public class EmployeeController {
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
+	
+	@DeleteMapping(value = EndpointURI.DELETE_EMPLOYEE_PHOTO)
+	public ResponseEntity<Object> DeleteEmployeePhotoById(@PathVariable Long id){
+		
+		Employee employee = employeeService.findById(id).get();
+		EmployeeDto employeedto = mapper.map(employee, EmployeeDto.class);
+		employeedto.setImage(null);
+		employee = mapper.map(employeedto, Employee.class);
+		employeeService.createEmployee(employee);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_DELETE_SUCCESS, HttpStatus.OK);
+	
+	}
+	
+	@PostMapping(value = EndpointURI.ADD_EMPLOYEE_PHOTO)
+	public ResponseEntity<Object> AddEmployeePhoto(@PathVariable Long id,@RequestParam("EmployeePhoto") MultipartFile file,RedirectAttributes redirectAttributes) throws IOException{
+		if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+		    }
+		
+            byte[] bytes = file.getBytes();
+		    Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Files.write(path, bytes);
+           
+            Path path1 = Paths.get(UPLOADED_FOLDER_1);
+            Employee employee = employeeService.findById(id).get();
+            EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
+            employeeDto.setImage(path1.toString());
+            employee = mapper.map(employeeDto, Employee.class);
+            employeeService.createEmployee(employee);
+            
+            return new ResponseEntity<Object>(Constants.ADD_EMPLOYEE_PHOTO_SUCCESS, HttpStatus.OK);
+            
+		   
+	}
+	
+	
 	
 
 }
