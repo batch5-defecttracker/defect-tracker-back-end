@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.ProjectDto;
-import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
@@ -39,7 +36,7 @@ public class ProjectController {
 	
 	@PostMapping(value= EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@RequestBody ProjectDto proDto){
-		if(projectService.isProNameAlreadyExist(proDto.getProName())) {
+		if(projectService.isProNameAlreadyExist(proDto.getProjectName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS, 
 					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
@@ -49,21 +46,14 @@ public class ProjectController {
 		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS,HttpStatus.OK);
 		
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> d5ab6ddfb365ab1b2aff6db4d56aa549f1709399
-	
 	@GetMapping(value = EndpointURI.PROJECT_FIND)
 	public ResponseEntity<Object> findById(@PathVariable Long id){
 		if(!projectService.existProject(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		
-		//projectService.findById(id);
-		return new ResponseEntity<Object>(mapper.map(projectService.findById(id), ProjectDto.class), HttpStatus.OK);
-		
+		return new ResponseEntity<Object>(mapper.map(projectService.findById(id), ProjectDto.class), HttpStatus.OK);	
 	}
 	
 	@DeleteMapping(value = EndpointURI.PROJECT_DELETE)

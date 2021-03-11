@@ -7,7 +7,7 @@ import com.defect.tracker.data.entities.Project;
 @Repository
 public interface ProjectRepository  extends JpaRepository<Project, Long>{
 
-	boolean existsByproName(String proName);
+	boolean existsByprojectName(String projectName);
 
 	/*
 	 * boolean existsByProject(String proName);
