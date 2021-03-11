@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-//import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
+import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ProjectEmployeeAllocationService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,10 +31,11 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 @RestController
 public class ProjectEmployeeAllocationController {
 
-	/*
-	 * @Autowired ProjectEmployeeAllocationRepository
-	 * projectemployeeallocationRepository;
-	 */
+	
+	  @Autowired ProjectEmployeeAllocationRepository
+	  projectemployeeallocationRepository;
+	  
+	 
 	
 	@Autowired
 	ProjectEmployeeAllocationService projectemployeeallocationService;
