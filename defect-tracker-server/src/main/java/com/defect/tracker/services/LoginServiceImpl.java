@@ -1,24 +1,35 @@
 package com.defect.tracker.services;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.repositories.LoginRepository;
-<<<<<<< HEAD
 
-=======
->>>>>>> c098f265ddb76d47e97191336a9ab02e4c6615d9
 @Service
 public class LoginServiceImpl implements LoginService {
 	@Autowired LoginRepository loginRepository;
 
-	@Override
-	public List<Login> getEmployee(String status) {
-		
-		return loginRepository.getByStatus(status);
-	}
+//	@Override
+//	public List<Login> findByEmployeeId(String status) {
+//		
+////		return loginRepository.findByStatus(status);
+//		
+//		List<Login> loginList=loginRepository.findByStatus(status);
+//		
+////		ArrayList<Long> loginIdList=new ArrayList<>();
+//		ArrayList<Long> loginIdList = new ArrayList<>(); 
+//		for (Login long1 : loginList) {
+//			loginIdList=long1.getEmployee().getId();
+//		}
+//		
+//		return null;
+//	}
 
+	
+
+	
 	
 	
 	
