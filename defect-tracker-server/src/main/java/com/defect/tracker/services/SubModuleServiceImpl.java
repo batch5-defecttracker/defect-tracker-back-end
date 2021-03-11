@@ -54,29 +54,6 @@ public class SubModuleServiceImpl implements SubModuleService{
 		return false;
 	}
 
-	/*
-	 * @Override public boolean alreadyExistsBySUbModule(String name) { return
-	 * subModuleUpdateRepository.existBysubmodulename(name);
-	 * 
-	 * }
-	 */
-	/*
-	 * @Override public boolean existsBySubModuleName(String name) { return
-	 * subModuleUpdateRepository.existsBySubModuleName(name);
-	 * 
-	 * }
-	 */
-
-	
-	  
-	 
-
-
-
-
-
-	
-	
 	
 	
 }
