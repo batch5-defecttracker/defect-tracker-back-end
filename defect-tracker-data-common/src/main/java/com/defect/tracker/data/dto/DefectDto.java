@@ -95,7 +95,4 @@ public class DefectDto {
 	public void setFile(String file) {
 		this.file = file;
 	}
-
-
-
 }
