@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
@@ -99,5 +100,20 @@ public class ProjectEmployeeAllocationController {
 		projectemployeeallocationService.deAllocateProject(id);
 		return new ResponseEntity<Object>(Constants.PROJECT_DEALLOCATED, HttpStatus.OK);
 	}
+	
+	
+	@GetMapping(value=EndpointURI.MODULE_ALLOCATION)
+		public ResponseEntity<Object> getAllModulesByAllocation(){
+			
+			  if(projectemployeeallocationService.getAllModuleAllocations().isEmpty()) {
+			  return new ResponseEntity<Object>(new
+			  ValidationFailureResponse(ValidationConstance.SUBMODULE_DOES_NOT_EXISTS,
+			  validationFailureStatusCodes.getSubModuleNotExist()),
+			  HttpStatus.BAD_REQUEST); }
+			 
+			
+			return new ResponseEntity<Object>(projectemployeeallocationService.getAllModuleAllocations(), HttpStatus.OK);
+			
+		}
 
 }

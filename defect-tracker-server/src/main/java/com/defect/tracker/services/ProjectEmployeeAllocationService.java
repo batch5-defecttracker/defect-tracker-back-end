@@ -9,5 +9,7 @@ public interface ProjectEmployeeAllocationService {
 	boolean existsByid(Long id);
 	public void addProjectAllocation(ProjectEmp projectEmp);
 	public List<ProjectEmp> getAll();
+	public List<ProjectEmp> getAllModuleAllocations();
+	//public boolean isModuleNotExist(String name);
 
 }

@@ -84,6 +84,8 @@ public final class EndpointURI {
 //Defect
 	public static final String DEFECT = BASE_API_PATH + "defect";
 
+	public static final String MODULE_ALLOCATION = BASE_API_PATH + "moduleAllocation";
+
 
 	private EndpointURI() {
 		
