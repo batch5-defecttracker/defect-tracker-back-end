@@ -60,7 +60,7 @@ public class ModuleController {
 					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		Module module = mapper.map(moduleDto, Module.class);
-		moduleService.updateModule(module);
+		moduleService.addModule(module);
 		return new ResponseEntity<Object>(Constants.MODULE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
 }

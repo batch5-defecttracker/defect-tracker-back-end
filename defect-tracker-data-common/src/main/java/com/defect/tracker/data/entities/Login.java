@@ -17,7 +17,7 @@ public class Login {
 	private String password;
 	private String status;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name="empId",nullable=false)
 	private Employee employee;
 

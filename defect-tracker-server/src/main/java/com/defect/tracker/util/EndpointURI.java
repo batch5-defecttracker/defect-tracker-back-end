@@ -67,7 +67,7 @@ public final class EndpointURI {
 	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
 	
 // Login
-	public static final String EMPLOYEE_STATUS = BASE_API_PATH + "employeeStatusUpdate";
+	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employeeStatusUpdate";
 
 	private EndpointURI() {
 		

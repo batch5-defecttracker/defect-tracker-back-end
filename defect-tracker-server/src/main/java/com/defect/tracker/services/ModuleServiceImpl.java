@@ -34,10 +34,6 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleRepository.existsByModuleName(name);
 	}
 
-	@Override
-	public void updateModule(Module module) {
-		moduleRepository.save(module);
-	}
 
 	
 	

@@ -12,6 +12,5 @@ public interface ModuleService {
 	
 	public boolean isModuleExistsByName(String name);
 	
-	public void updateModule(Module module);
 
 }

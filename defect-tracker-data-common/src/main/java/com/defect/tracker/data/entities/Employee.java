@@ -1,6 +1,7 @@
 package com.defect.tracker.data.entities;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee{
 
 	private static final long serialVersionUID = 1L;
 	
