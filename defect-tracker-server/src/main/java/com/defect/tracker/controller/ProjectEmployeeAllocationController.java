@@ -6,11 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
+import com.defect.tracker.data.response.ValidationFailureResponse;
+import com.defect.tracker.services.ProjectEmployeeAllocationService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.ProjectEmp_ResponseDto;
 import com.defect.tracker.data.dto.Project_EmpDto;
@@ -31,6 +34,9 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 public class ProjectEmployeeAllocationController {
 
 	@Autowired
+	ProjectEmployeeAllocationRepository projectemployeeallocationRepository;
+	
+	@Autowired
 	ProjectEmployeeAllocationService projectemployeeallocationService;
 	
 	@Autowired
@@ -41,6 +47,29 @@ public class ProjectEmployeeAllocationController {
 	
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
+
+
+//	@DeleteMapping(value=EndpointURI.EMPLOYEE_DEALLOCATION_FOR_SUBMODULE)
+//	public ResponseEntity<Object> deleteEmployeeSubModule(@PathVariable Long id){
+//		if (!projectemployeeallocationService.isProjectempExists(id)) {
+//			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EMPLOYEE_NOT_AVAILABLE,
+//					validationFailureStatusCodes.getProjectemployeeNotExists()), HttpStatus.BAD_REQUEST);
+//		}
+//		projectemployeeallocationService.DeleteProjectEmp(id);
+//		return new ResponseEntity<Object>(Constants.EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE, HttpStatus.OK);	
+//	}
+//	
+//	
+//	@DeleteMapping(value=EndpointURI.EMPLOYEE_DEALLOCATION_FOR_MODULE)
+//	public ResponseEntity<Object> deleteEmployeeModule(@PathVariable Long id){
+//		if (!projectemployeeallocationService.isProjectempExists(id)) {
+//			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EMPLOYEE_NOT_AVAILABLE,
+//					validationFailureStatusCodes.getProjectemployeeNotExists()), HttpStatus.BAD_REQUEST);
+//		}
+//		projectemployeeallocationService.DeleteProjectEmp(id);
+//		return new ResponseEntity<Object>(Constants.EMPLOYEE_DEALLOCATION_SUCCESS_TO_MODULE, HttpStatus.OK);	
+//	} 
+//	
 
 	@Autowired
 	private Mapper mapper;
@@ -77,4 +106,5 @@ public class ProjectEmployeeAllocationController {
 		return new ResponseEntity<Object>(mapper.map(projectemployeeallocationService.getAll(), ProjectEmp_ResponseDto.class ), HttpStatus.OK);
 	}
 	
+
 }
