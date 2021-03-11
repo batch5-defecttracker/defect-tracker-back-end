@@ -16,8 +16,4 @@ public class DefectTypeServiceImpl implements DefectTypeService {
 		return defectTypeRepository.findAll();
 	}
 
-
-
-	
-
 }

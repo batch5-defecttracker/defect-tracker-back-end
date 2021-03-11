@@ -33,7 +33,7 @@ public class DefectTypeController {
 		
 		return new ResponseEntity<Object>(mapper.map(defectTypeService.getAllDefectType(), DefectTypeDto.class),HttpStatus.OK);
 	}
-		
+	
 
 }
-	
+
