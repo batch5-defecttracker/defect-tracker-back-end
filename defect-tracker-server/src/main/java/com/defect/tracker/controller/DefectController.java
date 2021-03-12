@@ -80,7 +80,7 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectNotExist()),HttpStatus.BAD_REQUEST);
 		}
-		DefectDto defectDto =  mapper.map(defectService.findById(id) , DefectDto.class);
+		DefectResponseDto defectDto =  mapper.map(defectService.findById(id) , DefectResponseDto.class);
 		return new ResponseEntity<Object>(defectDto,HttpStatus.OK);
 	}
 	
@@ -88,15 +88,15 @@ public class DefectController {
 	public ResponseEntity<Object> updateDefectStatus(@PathVariable Long id , @PathVariable Long status){
 		if(defectService.isDefectExists(id)){
 				if(!defectStatusRepository.existsById(status)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
-					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,
+					validationFailureStatusCodes.getDefectStatusNotExist()), HttpStatus.BAD_REQUEST);
 		}
 				}else {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
 						validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
 		}
 
-		 Defect defect=defectService.findById(id).get();
+		 Defect defect=defectService.findById(id);
 		 DefectStatus ds=defectStatusRepository.getOne(status);
 		 defect.setDefectStatus(ds);
 		 defectService.addDefect(defect);
