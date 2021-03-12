@@ -1,6 +1,4 @@
 package com.defect.tracker.services;
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +12,7 @@ public interface EmployeeService {
 	public boolean idExist(Long id);
 	public List<Employee> findByDes(Long id);
 	public boolean isEmployeeExists(Long id);
+	
 	public List<Employee> getAll();
 	public void deleteEmployee(Long id);
 	public boolean isEmployeeAlreadyExists(Long id);

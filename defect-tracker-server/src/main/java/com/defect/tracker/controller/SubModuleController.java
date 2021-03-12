@@ -64,7 +64,7 @@ public class SubModuleController {
 	
 	@PutMapping(value= EndpointURI.UPDATE_SUB_MODULE)
 	public ResponseEntity<Object> updateSubModule(@RequestBody SubModuleDto subModuleDto){	
-		if(!subModuleService.existById(subModuleDto.getId())){
+		if(!subModuleService.existsSubModule(subModuleDto.getId())){
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_DOES_NOT_EXISTS, 
 					validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}

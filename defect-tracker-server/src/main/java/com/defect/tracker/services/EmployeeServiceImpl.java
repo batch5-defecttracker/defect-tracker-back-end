@@ -11,12 +11,18 @@ import com.defect.tracker.data.repositories.EmployeeRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+	
+
+	
+	
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
 	@Override
 	public void createEmployee(Employee employee) {
 		employeeRepository.save(employee);
+		
+		
 	}
 
 	@Override
@@ -63,6 +69,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+
+
 	public boolean isEmployeeAlreadyExists(Long id) {
 		
 		return employeeRepository.existsById(id);
