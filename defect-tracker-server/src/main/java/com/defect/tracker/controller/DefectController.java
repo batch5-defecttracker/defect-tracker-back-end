@@ -85,7 +85,7 @@ public class DefectController {
 	}
 	
 	@PutMapping(value = EndpointURI.UPDATE_DEFECT_STATUS)
-	public ResponseEntity<Object> updateDefectStatus(@RequestBody DefectDto defectDto,@PathVariable Long id , @PathVariable Long status){
+	public ResponseEntity<Object> updateDefectStatus(@PathVariable Long id , @PathVariable Long status){
 		if(defectService.isDefectExists(id)){
 				if(!defectStatusRepository.existsById(status)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
