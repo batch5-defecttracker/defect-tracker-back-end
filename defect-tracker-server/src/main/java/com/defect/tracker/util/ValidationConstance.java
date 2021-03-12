@@ -15,6 +15,7 @@ public class ValidationConstance {
 
 	public static final String MODULE_EMPTY = "Module not exist";
 	public static final String MODULE_NOT_EXISTS = "Module not exist";
+	public static final String SUB_MODULE_NOT_EXISTS = "SubModule not exist";
 
 	public static final String MODULE_EXISTS = "Module already exist";
 
@@ -37,6 +38,7 @@ public class ValidationConstance {
 
 	public static final String DEFECT_NOT_EXISTS = "Defect not Exist";
 	
+	public static final String EMPLOYEEID_EMPTY = "Employeeid not exist";
 	public static final String SUBMODULE_ALREADY_EXIST = "The Name You enterd SubModule is Already Exists In Module";
 
 	public static final String DEFECT_ID_NOT_EXISTS= "Defect id not Exists";

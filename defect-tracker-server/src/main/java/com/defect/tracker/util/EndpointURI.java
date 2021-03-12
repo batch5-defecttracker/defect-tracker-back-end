@@ -88,17 +88,22 @@ public final class EndpointURI {
 	public static final String GET_PROJECT_ALLOCATION = BASE_API_PATH + "getProjectAllocation";
 	public static final String MODULE_ALLOCATION = BASE_API_PATH + "moduleAllocation";
 
-		
+	/*
+	 * public static final String DEALLOCATE_PROJECT = BASE_API_PATH +
+	 * "deallocateProject/{id}"; public static final String PROJECT_ALLOCATION =
+	 * BASE_API_PATH + "projectAllocation"; public static final String
+	 * GET_PROJECT_ALLOCATION = BASE_API_PATH + "getProjectAllocation";
+	 */
+
 	
+
+	
+//Update Employee Photo
+	public static final String EMPLOYEE_PHOTO_UPDATE = BASE_API_PATH + "employeePhotoUpdate/{id}";
 
 	//projectEmp
 	public static final String UPDATE_PROJECT_EMP=BASE_API_PATH+"updateProjectEmp";
 
-	/*
-	 * public static final String MODULE_ALLOCATION = BASE_API_PATH +
-	 * "moduleAllocation";
-	 */
-	
 	private EndpointURI() {
 		
 	}
