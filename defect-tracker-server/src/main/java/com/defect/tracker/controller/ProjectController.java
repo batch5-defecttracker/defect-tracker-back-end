@@ -47,12 +47,13 @@ public class ProjectController {
 		
 	}
 	
+	
 	@GetMapping(value = EndpointURI.PROJECT_FIND)
 	public ResponseEntity<Object> findById(@PathVariable Long id){
 		if(!projectService.existProject(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
-		}
+		} 
 		return new ResponseEntity<Object>(mapper.map(projectService.findById(id), ProjectDto.class), HttpStatus.OK);	
 	}
 	
