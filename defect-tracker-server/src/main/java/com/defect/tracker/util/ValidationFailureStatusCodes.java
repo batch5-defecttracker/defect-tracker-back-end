@@ -44,6 +44,8 @@ public class ValidationFailureStatusCodes {
 	@Value("{validation.projectemp.isProjectempExists}")
 	private String projectempAlreadyExists;
 	
+	@Value("${validation.employeeIdType.notExist}")
+	private String employeeIdNotFound;
 	@Value("{validation.defect.statusNotExists}")
 	private String defectStatusNotExist;
 
@@ -252,12 +254,22 @@ public class ValidationFailureStatusCodes {
 	
 	
 	
+	
 
 
+	public String getEmployeeIdNotFound() {
+		return employeeIdNotFound;
+	}
+
+
+	public void setEmployeeIdNotFound(String employeeIdNotFound) {
+		this.employeeIdNotFound = employeeIdNotFound;
+	}
+
+	
 	public void setSubModuleAlreadyExist(String subModuleAlreadyExist) {
 		this.subModuleAlreadyExist = subModuleAlreadyExist;
 	}
 	
-
 
 }

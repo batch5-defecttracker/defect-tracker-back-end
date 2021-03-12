@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.mapper.Mapper;
+import com.defect.tracker.data.repositories.ModuleRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ModuleService;
 import com.defect.tracker.util.Constants;
@@ -24,6 +25,9 @@ public class ModuleController {
 
 	@Autowired
 	ModuleService moduleService;
+	
+	@Autowired
+	ModuleRepository moduleRepository;
 
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
@@ -35,10 +39,10 @@ public class ModuleController {
 	
 	@PostMapping(value = EndpointURI.MODULE_ADD)
 	public ResponseEntity<Object> addModule(@RequestBody ModuleDto moduleDto) {
-		if (moduleService.isModuleExistsByName(moduleDto.getModuleName())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
-					validationFailureStatusCodes.getModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
-		}
+		 if(moduleRepository.existsByModuleNameAndProjectId(moduleDto.getModuleName(), moduleDto.getProjectId())) { 
+					  return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_ALREADY_EXIST,
+							  validationFailureStatusCodes.getSubModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
+				  }
 		Module module = mapper.map(moduleDto, Module.class);
 		moduleService.addModule(module);
 		return new ResponseEntity<Object>(Constants.MODULE_ADD_SUCCESS, HttpStatus.OK);
