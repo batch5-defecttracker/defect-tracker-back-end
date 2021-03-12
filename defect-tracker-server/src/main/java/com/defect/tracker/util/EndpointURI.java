@@ -41,7 +41,6 @@ public final class EndpointURI {
 	public static final String SUBMODULE_ADD = BASE_API_PATH + "submodule";
 	public static final String getSubModule = BASE_API_PATH + "SubModule/{moduleId}";
 	public static final String UPDATE_SUB_MODULE = BASE_API_PATH+ "subModule";
-	public static final String UpdateSubModule = BASE_API_PATH +"SubModule";
 	public static final String SUBMODULE_DELETE = BASE_API_PATH + "deleteSubModule/{id}";
 
 	

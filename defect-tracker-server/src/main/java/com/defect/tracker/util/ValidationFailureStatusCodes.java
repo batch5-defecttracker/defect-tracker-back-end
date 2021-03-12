@@ -58,7 +58,7 @@ public class ValidationFailureStatusCodes {
 		this.projectempAlreadyExists = projectempAlreadyExists;
 	}
 	
-	@Value("{validation.project.getProjectempNotExist}")
+	@Value("${validation.project.getProjectempNotExist}")
 	private String projectemployeeNotExists;
 	
 	public String getProjectemployeeNotExists() {
