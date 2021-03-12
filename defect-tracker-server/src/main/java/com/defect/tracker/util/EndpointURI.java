@@ -68,8 +68,6 @@ public final class EndpointURI {
 //GetAllPriority
 
 	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
-
-	public static final String[] EMPLOYEE_DEALLOCATION_FOR_MODULE = null;
 		
 		
 //Project Deallocation
