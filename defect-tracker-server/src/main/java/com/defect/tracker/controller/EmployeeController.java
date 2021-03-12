@@ -49,6 +49,12 @@ public class EmployeeController {
 	
 	@GetMapping(value= EndpointURI.GetEmployeebyName )
 	public ResponseEntity<Object> findEmployeeByName(@PathVariable String firstName){
+		if (!employeeService.ExistByFirstName(firstName)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		
 		return new ResponseEntity<Object>(employeeService.findByFirstName(firstName), HttpStatus.OK);
 
 	} 
@@ -98,17 +104,6 @@ public class EmployeeController {
 	} 
 	
 	
-	@GetMapping(value=EndpointURI.getImage)
-	//@RequestMapping(value="/getImage/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Object> getallImage(@PathVariable Long id ){
-		if (!employeeService.imageExist(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
-					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
-		}
 		
-		return new ResponseEntity<Object>(employeeService.findImage(id), HttpStatus.OK);
-		
-	}
-	
 
 }

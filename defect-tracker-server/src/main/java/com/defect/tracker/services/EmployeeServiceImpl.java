@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Optional<Employee> findByFirstName(String firstName) {
+	public List<Employee> findByFirstName(String firstName) {
 		return employeeRepository.findByFirstName(firstName);
 	}
 
@@ -55,27 +55,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findByDesignationId(id);
 	}
 
+
 	@Override
-	public boolean imageExist(Long id) {
+	public Optional<Employee> findById(Long id) {
+		
+		return  employeeRepository.findById(id);
+	}
+
+	@Override
+	public boolean isEmployeeAlreadyExists(Long id) {
 		
 		return employeeRepository.existsById(id);
 	}
 
 	@Override
-	public Employee findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String findImage(Long id) {
-		return employeeRepository.findById(id).get().getImage(); 
-	}
-
-	@Override
-	public boolean isEmployeeAlreadyExists(Long id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean ExistByFirstName(String firstName) {
+	
+		return employeeRepository.existsByfirstName(firstName) ;
 	}
 }
 
