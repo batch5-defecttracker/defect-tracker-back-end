@@ -46,7 +46,7 @@ public class ValidationFailureStatusCodes {
 	
 	@Value("${validation.employeeIdType.notExist}")
 	private String employeeIdNotFound;
-	@Value("{validation.defect.statusNotExists}")
+	@Value("${validation.defect.statusNotExists}")
 	private String defectStatusNotExist;
 
 	public String getProjectempAlreadyExists() {
@@ -58,7 +58,7 @@ public class ValidationFailureStatusCodes {
 		this.projectempAlreadyExists = projectempAlreadyExists;
 	}
 	
-	@Value("${validation.project.getProjectempNotExist}")
+	@Value("{validation.project.getProjectempNotExist}")
 	private String projectemployeeNotExists;
 	
 	public String getProjectemployeeNotExists() {
