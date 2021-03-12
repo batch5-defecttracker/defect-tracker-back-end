@@ -1,5 +1,4 @@
 package com.defect.tracker.data.dto;
-
 import java.util.Date;
 
 public class DefectDto {

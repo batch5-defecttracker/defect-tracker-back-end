@@ -33,7 +33,7 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 public class EmployeeController {
 	
 	private static String UPLOADED_FOLDER="C://Users/Admin/OneDrive/Desktop/Cudeson/defect-tracker-back-end/defect-tracker-server/src/main/resources/";
-	private static String UPLOADED_FOLDER_1="C://Users/Admin/OneDrive/Desktop/Cudeson/defect-tracker-back-end/defect-tracker-server/src/main/resources/admin.png/";
+	
 	@Autowired
 	EmployeeService employeeService;
 
@@ -114,14 +114,11 @@ public class EmployeeController {
 					validationFailureStatusCodes.getEmployeeNotExist()),HttpStatus.BAD_REQUEST);
 		}
 		
-		if (file.isEmpty()) {
-	            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-	   }
 	            byte[] bytes = file.getBytes();
 	            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
 	            Files.write(path, bytes);
-	            Path path1 = Paths.get(UPLOADED_FOLDER_1);
-	            
+	           
+	            Path path1 = Paths.get(file.getOriginalFilename());
 	            Employee employee = employeeService.findById(id).get();
 	            EmployeeDto employeedto = mapper.map(employee, EmployeeDto.class);
 	            employeedto.setImage(path1.toString());
