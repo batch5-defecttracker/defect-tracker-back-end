@@ -60,7 +60,16 @@ public class ModuleController {
 	} 
 	
 	
-	
+	@GetMapping(value = EndpointURI.GET_ALL_MODULE)
+	public ResponseEntity<Object> findAllModule(){
+		if(moduleService.findAll().isEmpty()) {
+			return  new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS, 
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Object>(mapper.map(moduleService.findAll(), ModuleDto.class), HttpStatus.OK);
+		
+	}
 	
 	@PutMapping(value = EndpointURI.MODULE_UPDATE)
 	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {

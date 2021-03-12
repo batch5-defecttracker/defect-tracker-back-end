@@ -60,17 +60,18 @@ public class ProjectController {
 		return new ResponseEntity<Object>(mapper.map(projectService.findById(id), ProjectDto.class), HttpStatus.OK);	
 	}
 	
-	@DeleteMapping(value = EndpointURI.PROJECT_DELETE)
-	public ResponseEntity<Object> deleteById(@PathVariable Long id){
-		if(!projectService.existProject(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
+	
+	@GetMapping(value = EndpointURI.PROJECT_ALL)
+	public ResponseEntity<Object> getAllProject(){
+		if(projectService.getAllProject().isEmpty()) {
+			return  new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
+			
 		}
-		
-		projectService.deleteById(id);
-		return new ResponseEntity<Object>(Constants.PROJECT_DELETED, HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(projectService.findAll(), ProjectDto.class),HttpStatus.OK);
 		
 	}
+	
 	
 	@PutMapping(value = EndpointURI.UPDATE_PROJECT)
 	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
@@ -83,5 +84,19 @@ public class ProjectController {
 		projectService.updateProject(project);
 		return new ResponseEntity<Object>(Constants.PROJECT_UPDATED, HttpStatus.OK);
 	}
+	
+	
+	@DeleteMapping(value = EndpointURI.PROJECT_DELETE)
+	public ResponseEntity<Object> deleteById(@PathVariable Long id){
+		if(!projectService.existProject(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
+					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		projectService.deleteById(id);
+		return new ResponseEntity<Object>(Constants.PROJECT_DELETED, HttpStatus.OK);
+		
+	}
+	
 
 }

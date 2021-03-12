@@ -10,6 +10,7 @@ public interface ModuleService {
 	public void addModule(Module module);
 	public boolean isModuleExistsByName(String name);
 	public List<Module> findAll();
+	
 	public List<Module> findByProject(Long projectId);
 	public boolean isModuleExistsByProjectId(Long projectId);
 	

@@ -7,6 +7,7 @@ public interface SubModuleService {
 	
 	public void createSubModule(SubModule subModule);
 	public List<SubModule> findSubModule(Long id);
+	public List<SubModule> findAllSubModule();
 	public void Update(SubModule submodule);
 	public void deleteSubModuleById(Long  id);
 	

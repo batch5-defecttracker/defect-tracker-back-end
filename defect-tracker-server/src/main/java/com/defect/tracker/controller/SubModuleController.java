@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.defect.tracker.data.dto.SubModuleDto;
+import com.defect.tracker.data.dto.SubModuleResponseDto;
 import com.defect.tracker.data.entities.SubModule;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.SubModuleRepository;
@@ -60,6 +61,16 @@ public class SubModuleController {
 		return new ResponseEntity<Object>(mapper.map(subModuleService.findSubModule(moduleId), SubModuleDto.class), HttpStatus.OK);
 	}
 	
+	@GetMapping(value =EndpointURI.GET_ALL_SUBMODULE)
+	public ResponseEntity<Object> findAllSubModule(){
+		if(subModuleService.findAllSubModule().isEmpty()) {
+			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS, 
+			validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
+			
+		}
+		return new ResponseEntity<Object>(mapper.map(subModuleService.findAllSubModule() ,SubModuleResponseDto.class), HttpStatus.OK);
+		
+	}
 	
 	
 	@PutMapping(value= EndpointURI.UPDATE_SUB_MODULE)
