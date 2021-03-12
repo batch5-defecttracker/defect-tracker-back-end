@@ -40,6 +40,9 @@ public class EmployeeController {
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
+//	@Autowired
+//	Employee employee;
+	
 	@Autowired
 	private Mapper mapper;
 
@@ -58,6 +61,12 @@ public class EmployeeController {
 	
 	@GetMapping(value= EndpointURI.GetEmployeebyName )
 	public ResponseEntity<Object> findEmployeeByName(@PathVariable String firstName){
+		if (!employeeService.ExistByFirstName(firstName)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		
 		return new ResponseEntity<Object>(employeeService.findByFirstName(firstName), HttpStatus.OK);
 
 	} 
@@ -129,5 +138,7 @@ public class EmployeeController {
 	
 	}
 	
+	
+		
 
 }

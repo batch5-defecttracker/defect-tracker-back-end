@@ -103,6 +103,9 @@ public final class EndpointURI {
 
 	//projectEmp
 	public static final String UPDATE_PROJECT_EMP=BASE_API_PATH+"updateProjectEmp";
+		
+	//get image
+	public static final String getImage = BASE_API_PATH + "getImage/{id}";
 
 	private EndpointURI() {
 		
