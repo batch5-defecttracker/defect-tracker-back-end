@@ -14,7 +14,7 @@ public final class EndpointURI {
 	public static final String GetEmployeebyName = BASE_API_PATH + "getEmployeebyName/{firstName}";
 
 //GetEmployeeByStatus
-	public static final String LOGINSTATUS = BASE_API_PATH + "loginstatus/{status}";
+	public static final String LOGINSTATUS = BASE_API_PATH + "loginstatus";
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
 	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
 	public static final String GET_EMPLOYEE_BY_DESIGNATION = BASE_API_PATH + "getEmployeebyDesignation/{designationId}";

@@ -13,12 +13,20 @@ public class LoginServiceImpl implements LoginService{
 	@Autowired
 	private LoginRepository loginRepositroy;
 
+	
+	
 	@Override
-	public List<Login> findByEmployeeId(String status) {
-		
-		return loginRepository.findByStatus(status);
 	public void updateEmployeeStatus(Login login) {
 		loginRepositroy.save(login);	
 	}
 
+
+
+	@Override
+	public List<Login> getLoginByStatus(String status) {
+		return loginRepositroy.findByStatus(status);
+	}
+	
+	
 }
+
