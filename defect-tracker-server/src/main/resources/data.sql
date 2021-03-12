@@ -5,9 +5,6 @@ INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('3
 INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('4', 'SQA');
 INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('5', 'TL');
 INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('6', 'PM');
---Project
-INSERT INTO `defect-tracker`.`project` (`id`, `abbrevation`, `project_name`) VALUES ('1', 'SGIC', 'DefectTrackerSystem');
-INSERT INTO `defect-tracker`.`project` (`id`, `abbrevation`, `project_name`) VALUES ('2', 'SGM', 'SuperMix');
 --Priority
 INSERT INTO `defect-tracker`.`priority` (`id`, `priority_name`) VALUES ('1', 'Low');
 INSERT INTO `defect-tracker`.`priority` (`id`, `priority_name`) VALUES ('2', 'Medium');
