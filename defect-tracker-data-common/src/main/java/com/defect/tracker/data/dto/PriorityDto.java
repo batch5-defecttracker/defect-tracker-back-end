@@ -1,8 +1,10 @@
 package com.defect.tracker.data.dto;
 
 public class PriorityDto {
+
 	private Long id;
 	private String priorityName;
+ 
 	public Long getId() {
 		return id;
 	}
