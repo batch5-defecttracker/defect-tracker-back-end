@@ -20,6 +20,19 @@ public class Constants {
 	
 	//module
 	public static final String MODULE_ADD_SUCCESS = "Module Added Successfully";
+	
+	public static final String EMPLOYEE_UPDATE_SUCCESS = "Employee Update Successfully";
+
+	
+	public static final String UpdateSubmodule= "SubModule updated successfully ";
+	
+	public static final String ADD_EMPLOYEE_PHOTO_SUCCESS = " Employee Photo Add Successfully";
+
+
+
+	public static final String EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE="Submodule employee deallocation successfully";
+	
+	//public static final String EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE="Submodule employee deallocation successfully";
 	public static final String MODULE_UPDATE_SUCCESS = "Module Successfully Updated";
 	public static final String MODULE_DELETE_SUCCESS = "Module Deleted Successfully";
 	
@@ -27,7 +40,6 @@ public class Constants {
 	
 	//submodule
 	public static final String SUBMODULE_ADDED = "SubModule Added Successfully";
-	public static final String UpdateSubmodule= "SubModule updated successfully ";
 	public static final String SUBMODULE_DELETED ="SubModule Deleted";
 	
 	
@@ -41,8 +53,7 @@ public class Constants {
     public static final String DEFECT_ADD_SUCCESS = "Defect added successfully";
 	public static final String UPDATE_DEFECT = "Defect update successfully";
 	
-	
-	public static final MultiValueMap<String, String> EMPLOYEE_DEALLOCATION_SUCCESS_TO_SUBMODULE = null;
+	public static final String EMPLOYEE_PHOTO_DELETE_SUCCESS = "Employee Photo Delete Successfully";
 	public static final String EMPLOYEE_PHOTO_UPDATE_SUCCESS = "Employee Photo Successfully Updated";
 	//severity
 	public static final String Get_All_Severity = "Severity got Successfully";

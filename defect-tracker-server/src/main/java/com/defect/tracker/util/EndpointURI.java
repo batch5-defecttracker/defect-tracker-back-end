@@ -9,13 +9,16 @@ public final class EndpointURI {
 	
 	//Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
+	
+	public static final String DELETE_EMPLOYEE_PHOTO =  BASE_API_PATH + "deleteEmployeePhoto/{id}";
+	public static final String ADD_EMPLOYEE_PHOTO =  BASE_API_PATH + "addEmployeePhoto/{id}";
+	public static final String UPDATE_EMPLOYEE =  BASE_API_PATH + "updateEmployee";
 
 
 
 	//getEmployee 
 	public static final String GetEmployeebyName = BASE_API_PATH + "getEmployeebyName/{firstName}";
 
-	//GetEmployeeByStatus
 	public static final String LOGINSTATUS = BASE_API_PATH + "loginstatus";
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
 	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
@@ -49,6 +52,7 @@ public final class EndpointURI {
 	//Defect
 	public static final String DEFECT = BASE_API_PATH + "defect";
 	public static final String DEFECT_ADD = BASE_API_PATH + "addDefect";
+	
 	public static final String DEFECT_UPDATE = BASE_API_PATH + "updateDefect";
 	
 	public static final String UPDATE_DEFECT_STATUS= BASE_API_PATH+ "updateDefectStatus/{id}/status/{status}";
@@ -72,6 +76,7 @@ public final class EndpointURI {
 
 	//GetAllSeverity
 	public static final String getAllSeverity = BASE_API_PATH + "severity";
+	
 
 	//GetAllPriority
 	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
