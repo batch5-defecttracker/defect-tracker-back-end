@@ -32,6 +32,8 @@ public final class EndpointURI {
 	public static final String PROJECT_DELETE = BASE_API_PATH + "delete/{id}";
 	
 	
+	
+	
  
 	//Module
 	public static final String MODULE = BASE_API_PATH + "module";

@@ -6,6 +6,8 @@ public class SubModuleResponseDto {
 	private ModuleDto module;
 	
 	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -25,7 +27,7 @@ public class SubModuleResponseDto {
 		this.module = module;
 	}
 	
-	
+
 	
 
 }

@@ -73,6 +73,7 @@ public class ProjectController {
 	}
 	
 	
+	
 	@PutMapping(value = EndpointURI.UPDATE_PROJECT)
 	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
 		if (!projectService.existProject(projectDto.getId())) {

@@ -54,7 +54,6 @@ public class SubModuleServiceImpl implements SubModuleService{
 	}
 
 
-
 	@Override 
 	public boolean existsBySubModuleName(String name) { 
 		  return subModuleUpdateRepository.existsBysubmoduleName(name);
@@ -65,4 +64,6 @@ public class SubModuleServiceImpl implements SubModuleService{
 	public List<SubModule> findAllSubModule() {
 		return subModuleUpdateRepository.findAll();
 	}
+	
+	
 }

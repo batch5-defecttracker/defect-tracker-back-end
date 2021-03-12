@@ -71,6 +71,8 @@ public class ModuleController {
 		
 	}
 	
+	
+	
 	@PutMapping(value = EndpointURI.MODULE_UPDATE)
 	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {
 		if (!moduleService.isModuleExists(moduleDto.getId())) {
