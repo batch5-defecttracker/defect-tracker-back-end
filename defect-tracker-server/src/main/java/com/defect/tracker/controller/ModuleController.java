@@ -1,5 +1,4 @@
 package com.defect.tracker.controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.mapper.Mapper;
@@ -33,15 +31,7 @@ public class ModuleController {
 	@Autowired
 	private Mapper mapper;
 
-	@DeleteMapping(value = EndpointURI.MODULE_DELETE)
-	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
-		if (!moduleService.isModuleExists(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
-					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
-		}
-		moduleService.deleteModule(id);
-		return new ResponseEntity<Object>(Constants.MODULE_DELETE_SUCCESS, HttpStatus.OK);
-	}
+	
 	
 	@PostMapping(value = EndpointURI.MODULE_ADD)
 	public ResponseEntity<Object> addModule(@RequestBody ModuleDto moduleDto) {
@@ -54,6 +44,20 @@ public class ModuleController {
 		return new ResponseEntity<Object>(Constants.MODULE_ADD_SUCCESS, HttpStatus.OK);
 	}
 	
+	
+	
+	@GetMapping(value= EndpointURI.GET_MODULE_BY_PROJECT )
+	public ResponseEntity<Object> findModuleByProject(@PathVariable Long projectId){
+		if (!moduleService.isModuleExistsByProjectId(projectId)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EMPTY,
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Object>(mapper.map(moduleService.findByProject(projectId), ModuleDto.class), HttpStatus.OK);
+	} 
+	
+	
+	
+	
 	@PutMapping(value = EndpointURI.MODULE_UPDATE)
 	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {
 		if (!moduleService.isModuleExists(moduleDto.getId())) {
@@ -64,15 +68,20 @@ public class ModuleController {
 		moduleService.addModule(module);
 		return new ResponseEntity<Object>(Constants.MODULE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
-	@GetMapping(value= EndpointURI.GET_MODULE_BY_PROJECT )
-	public ResponseEntity<Object> findModuleByProject(@PathVariable Long projectId){
-		if (!moduleService.isModuleExistsByProjectId(projectId)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EMPTY,
+	
+	
+	
+	
+	@DeleteMapping(value = EndpointURI.MODULE_DELETE)
+	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
+		if (!moduleService.isModuleExists(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
 					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		
-		return new ResponseEntity<Object>(mapper.map(moduleService.findByProject(projectId), ModuleDto.class), HttpStatus.OK);
-
-	} 
+		moduleService.deleteModule(id);
+		return new ResponseEntity<Object>(Constants.MODULE_DELETE_SUCCESS, HttpStatus.OK);
+	}
+	
+	
 }
 
