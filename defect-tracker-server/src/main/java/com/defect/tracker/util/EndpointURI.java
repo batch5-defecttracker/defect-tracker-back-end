@@ -30,10 +30,7 @@ public final class EndpointURI {
 	public static final String PROJECT_ALL = BASE_API_PATH + "projectall";
 	public static final String UPDATE_PROJECT = BASE_API_PATH + "update";
 	public static final String PROJECT_DELETE = BASE_API_PATH + "delete/{id}";
-	
-	
-	
-	
+		
  
 	//Module
 	public static final String MODULE = BASE_API_PATH + "module";
