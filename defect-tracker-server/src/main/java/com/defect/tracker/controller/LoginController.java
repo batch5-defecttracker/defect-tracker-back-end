@@ -1,5 +1,5 @@
 package com.defect.tracker.controller;
-import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +16,6 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @Controller
 public class LoginController {
-	private List<Login>vah;
-
 	
 	@Autowired
 	LoginService loginService;
