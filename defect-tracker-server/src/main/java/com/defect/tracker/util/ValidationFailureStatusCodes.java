@@ -254,6 +254,7 @@ public class ValidationFailureStatusCodes {
 	
 	
 	
+	
 
 
 	public String getEmployeeIdNotFound() {
@@ -266,6 +267,12 @@ public class ValidationFailureStatusCodes {
 	}
 
 	
+	public void setSubModuleAlreadyExist(String subModuleAlreadyExist) {
+		this.subModuleAlreadyExist = subModuleAlreadyExist;
+	}
+	
+
+
 	public void setSubModuleAlreadyExist(String subModuleAlreadyExist) {
 		this.subModuleAlreadyExist = subModuleAlreadyExist;
 	}
