@@ -36,10 +36,13 @@ public class ProjectController {
 	
 	@PostMapping(value= EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@RequestBody ProjectDto proDto){
-		if(projectService.isProNameAlreadyExist(proDto.getProjectName())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS, 
-					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
-		}
+		
+		  if(projectService.isProNameAlreadyExist(proDto.getProjectName())) { return
+		  new ResponseEntity<>(new
+		  ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
+		  validationFailureStatusCodes.getProNameAlreadyExists()),
+		  HttpStatus.BAD_REQUEST); }
+		 
 		
 		Project project = mapper.map(proDto, Project.class);
 		projectService.createProject(project);
@@ -47,12 +50,13 @@ public class ProjectController {
 		
 	}
 	
+	
 	@GetMapping(value = EndpointURI.PROJECT_FIND)
 	public ResponseEntity<Object> findById(@PathVariable Long id){
 		if(!projectService.existProject(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
-		}
+		} 
 		return new ResponseEntity<Object>(mapper.map(projectService.findById(id), ProjectDto.class), HttpStatus.OK);	
 	}
 	
