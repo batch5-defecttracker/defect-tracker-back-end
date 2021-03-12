@@ -16,6 +16,7 @@ import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.dto.DefectStatusDto;
 import com.defect.tracker.data.entities.DefectStatus;
 import com.defect.tracker.data.mapper.Mapper;
+import com.defect.tracker.data.repositories.DefectStatusRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DefectStatusService;
 import com.defect.tracker.util.EndpointURI;
@@ -28,6 +29,9 @@ public class DefectStatusController {
 	
 	@Autowired
 	private DefectStatusService defectStatusService;
+	
+	@Autowired
+	private DefectStatusRepository defectStatusRepository;
 	
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
@@ -44,6 +48,7 @@ public class DefectStatusController {
 	@GetMapping(value = EndpointURI.DEFECT_STATUS)
 	public ResponseEntity<Object> getDefectStatusById(@PathVariable Long id){
 		List<DefectStatus> defectStatusList = new ArrayList<>();
+		if(!defectStatusService.getDefectStatusById(id).isEmpty()) {
 		if(defectStatusService.getDefectStatusById(id).get().getDefectStatusName().equalsIgnoreCase("Open")) {
 			DefectStatus defectStatus1=defectStatusService.getDefectStatusByName("Fixed");
 			DefectStatus defectStatus2=defectStatusService.getDefectStatusByName("Reject");
@@ -76,10 +81,10 @@ public class DefectStatusController {
 			DefectStatus defectStatus2=defectStatusService.getDefectStatusByName("Reopen");
 			defectStatusList.add(defectStatus2);
 			return new ResponseEntity<Object>(defectStatusList,HttpStatus.OK);
-		}
-		
+		}}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,
 				validationFailureStatusCodes.getDefectStatusNotExist()), HttpStatus.BAD_REQUEST);
+	
 	} 
 	
 	
