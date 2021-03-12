@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.entities.DefectStatus;
-
-import com.defect.tracker.data.repositories.DefectStatusRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DefectStatusService;
 import com.defect.tracker.util.EndpointURI;
