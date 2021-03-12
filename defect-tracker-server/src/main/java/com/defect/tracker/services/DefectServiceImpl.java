@@ -38,8 +38,8 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public Optional<Defect> findById(Long id) {
-		return defectRepository.findById(id) ;
+	public Defect findById(Long id) {
+		return defectRepository.findById(id).get() ;
 	}
 
 	
