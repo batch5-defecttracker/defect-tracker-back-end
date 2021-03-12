@@ -17,10 +17,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeRepository employeeRepository;
 
 	@Override
-	public Long createEmployee(Employee employee) {
+	public void createEmployee(Employee employee) {
 		employeeRepository.save(employee);
-		Long id=employeeRepository.save(employee).getId();
-		return id;
+		
+		
 	}
 
 	@Override

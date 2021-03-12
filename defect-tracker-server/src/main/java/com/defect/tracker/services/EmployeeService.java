@@ -5,7 +5,7 @@ import java.util.List;
 import com.defect.tracker.data.entities.Employee;
 
 public interface EmployeeService {
-	public Long createEmployee(Employee employee);
+	public void createEmployee(Employee employee);
 	public boolean isEmailAlreadyExist(String email);
 	public Optional<Employee> findByFirstName(String firstName);
 	public Optional <Employee> findById(Long id);

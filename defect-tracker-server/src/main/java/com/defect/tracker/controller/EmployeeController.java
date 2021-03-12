@@ -34,7 +34,7 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 @RestController
 public class EmployeeController {
 	private static String UPLOADED_FOLDER = "D://DefectNew/defect-tracker-back-end/defect-tracker-server/src/main/resources/";
-	private String UPLOADED_FOLDER_1="D://DefectNew/defect-tracker-back-end/defect-tracker-server/src/main/resources/img.jpg/";
+	
 	
 	@Autowired
 	EmployeeService employeeService;
@@ -52,8 +52,7 @@ public class EmployeeController {
 					validationFailureStatusCodes.getEmailAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
 		Employee employee = mapper.map(employeeDto, Employee.class);
-		 Long empId;
-		 empId =employeeService.createEmployee(employee);
+		employeeService.createEmployee(employee);
 		
 		
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
@@ -137,21 +136,26 @@ public class EmployeeController {
 	}
 	
 	@PostMapping(value = EndpointURI.ADD_EMPLOYEE_PHOTO)
-	public ResponseEntity<Object> AddEmployeePhoto(@PathVariable Long id,@RequestParam("EmployeePhoto") MultipartFile file,RedirectAttributes redirectAttributes) throws IOException{
+	public ResponseEntity<Object> AddEmployeePhoto(@PathVariable Long id,@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes) throws IOException{
+		
+		
 		if (file.isEmpty()) {
-            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+			 return new ResponseEntity<Object>(ValidationConstance.EMPLOYEE_PHOTO_EMPTY, HttpStatus.BAD_REQUEST);
+					
 		    }
 		
             byte[] bytes = file.getBytes();
 		    Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
            
-            Path path1 = Paths.get(UPLOADED_FOLDER_1);
+            
+            Path path1 = Paths.get(file.getOriginalFilename());
             Employee employee = employeeService.findById(id).get();
             EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
             employeeDto.setImage(path1.toString());
             employee = mapper.map(employeeDto, Employee.class);
             employeeService.createEmployee(employee);
+            
             
             return new ResponseEntity<Object>(Constants.ADD_EMPLOYEE_PHOTO_SUCCESS, HttpStatus.OK);
             
