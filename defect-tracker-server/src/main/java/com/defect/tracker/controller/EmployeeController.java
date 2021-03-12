@@ -42,6 +42,9 @@ public class EmployeeController {
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
+//	@Autowired
+//	Employee employee;
+	
 	@Autowired
 	private Mapper mapper;
 
@@ -62,6 +65,12 @@ public class EmployeeController {
 	
 	@GetMapping(value= EndpointURI.GetEmployeebyName )
 	public ResponseEntity<Object> findEmployeeByName(@PathVariable String firstName){
+		if (!employeeService.ExistByFirstName(firstName)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		
 		return new ResponseEntity<Object>(employeeService.findByFirstName(firstName), HttpStatus.OK);
 
 	} 
@@ -108,7 +117,7 @@ public class EmployeeController {
 		
 		return new ResponseEntity<Object>(mapper.map(employeeService.findByDes(designationId), EmployeeDto.class), HttpStatus.OK);
 
-	} 
+	}
 	
 	@PutMapping(value = EndpointURI.UPDATE_EMPLOYEE)
 	public ResponseEntity<Object> UpdateEmployee(@RequestBody EmployeeDto employeeDto) {
@@ -162,7 +171,30 @@ public class EmployeeController {
 		   
 	}
 	
+	@PutMapping(value = EndpointURI.EMPLOYEE_PHOTO_UPDATE)
+	public ResponseEntity<Object> updateEmployeePhoto(@PathVariable Long id , @RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes) throws IOException{
+
+            if (!employeeService.isEmployeeAlreadyExists(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()),HttpStatus.BAD_REQUEST);
+		     }
+		
+	            byte[] bytes = file.getBytes();
+	            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+	            Files.write(path, bytes);
+	           
+	            Path path1 = Paths.get(file.getOriginalFilename());
+	            Employee employee = employeeService.findById(id).get();
+	            EmployeeDto employeedto = mapper.map(employee, EmployeeDto.class);
+	            employeedto.setImage(path1.toString());
+	            employee = mapper.map(employeedto, Employee.class);
+	            employeeService.createEmployee(employee);
+
+	           return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_UPDATE_SUCCESS, HttpStatus.OK);
+	
+	}
 	
 	
+		
 
 }

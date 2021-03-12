@@ -31,10 +31,11 @@ public class ProjectServiceImpl implements ProjectService{
 		return projectRepository.existsById(id);
 	}
 
-	@Override
-	public boolean isProNameAlreadyExist(String proName) {
-		return projectRepository.existsByprojectName(proName);
-	}
+	
+	  @Override public boolean isProNameAlreadyExist(String proName) { return
+	  projectRepository.existsByprojectName(proName); }
+	 
+	
 
 	@Override
 	public void createProject(Project project) {
@@ -54,5 +55,7 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		return projectRepository.findAll();
 	}
+
+	
 
 }

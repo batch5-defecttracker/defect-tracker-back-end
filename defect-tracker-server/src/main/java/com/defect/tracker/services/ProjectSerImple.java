@@ -17,11 +17,10 @@ public class ProjectSerImple  implements ProjectService{
 		projectRepository.save(project);
 		
 	}
-
-//	@Override
-//	public boolean isProNameAlreadyExist(String proName) {
-//			return projectRepository.existsByproName(proName);
-//	}
+	/*
+	 * @Override public boolean isProNameAlreadyExist(String proName) { return
+	 * projectRepository.existsByproName(proName); }
+	 */
 
 	@Override
 	public Project findById(Long id) {
@@ -47,16 +46,21 @@ public class ProjectSerImple  implements ProjectService{
 		
 	}
 
-	@Override
-	public boolean isProNameAlreadyExist(String proName) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	/*
+	 * @Override public boolean isProNameAlreadyExist(String proName) { // TODO
+	 * Auto-generated method stub return false; }
+	 */
 
 	@Override
 	public List<Project> findAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean isProNameAlreadyExist(String proName) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 
