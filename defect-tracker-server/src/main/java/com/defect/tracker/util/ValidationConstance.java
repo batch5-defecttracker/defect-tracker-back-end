@@ -2,6 +2,8 @@ package com.defect.tracker.util;
 
 public class ValidationConstance {
 	public static final String EMAIL_EXISTS = "Email already exist";
+	
+	public static final String DEFECT_EMPTY = "Defect not exist";
 
 	public static final String PROJECT_DOES_NOT_EXISTS = "Project not Exist";
 
@@ -45,8 +47,13 @@ public class ValidationConstance {
 	
 	public static final String DEFECT_STATUS_NOT_EXISTS= "Defect Status not Exists";
 	
+	public static final String EMPLOYEE_PHOTO_EMPTY = "Employee Photo is Empty";
+	
+	public static final String MODULE_ALREADY_EXIST = "The Name You enterd Module is Already Exists In Project";
 
 	private ValidationConstance() {
 	}
 
+	
+	
 }
