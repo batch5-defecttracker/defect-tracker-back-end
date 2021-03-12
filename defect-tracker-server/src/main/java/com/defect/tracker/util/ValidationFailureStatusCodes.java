@@ -272,11 +272,4 @@ public class ValidationFailureStatusCodes {
 	}
 	
 
-
-	public void setSubModuleAlreadyExist(String subModuleAlreadyExist) {
-		this.subModuleAlreadyExist = subModuleAlreadyExist;
-	}
-	
-
-
 }
