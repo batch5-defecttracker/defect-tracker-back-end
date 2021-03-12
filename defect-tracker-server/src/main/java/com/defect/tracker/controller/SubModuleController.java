@@ -51,7 +51,7 @@ public class SubModuleController {
 	
 	
 
-	@GetMapping(value = EndpointURI.getSubModule)
+	@GetMapping(value = EndpointURI.GET_SUB_MODULE)
 	public ResponseEntity<Object> getSubmodule(@PathVariable Long moduleId) {
 		if (!subModuleService.existById(moduleId)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS,

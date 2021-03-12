@@ -47,7 +47,7 @@ public class EmployeeController {
 	
 
 	
-	@GetMapping(value= EndpointURI.GetEmployeebyName )
+	@GetMapping(value= EndpointURI.GET_EMPLOYEE_BY_NAME)
 	public ResponseEntity<Object> findEmployeeByName(@PathVariable String firstName){
 		if (!employeeService.ExistByFirstName(firstName)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,

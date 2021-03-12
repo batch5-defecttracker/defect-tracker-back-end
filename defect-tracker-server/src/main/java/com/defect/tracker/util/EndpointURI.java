@@ -9,13 +9,16 @@ public final class EndpointURI {
 	
 	//Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
+	
+	public static final String DELETE_EMPLOYEE_PHOTO =  BASE_API_PATH + "deleteEmployeePhoto/{id}";
+	public static final String ADD_EMPLOYEE_PHOTO =  BASE_API_PATH + "addEmployeePhoto/{id}";
+	public static final String UPDATE_EMPLOYEE =  BASE_API_PATH + "updateEmployee";
 
 
 
 	//getEmployee 
-	public static final String GetEmployeebyName = BASE_API_PATH + "getEmployeebyName/{firstName}";
+	public static final String GET_EMPLOYEE_BY_NAME = BASE_API_PATH + "getEmployeebyName/{firstName}";
 
-	//GetEmployeeByStatus
 	public static final String LOGINSTATUS = BASE_API_PATH + "loginstatus";
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
 	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
@@ -39,7 +42,7 @@ public final class EndpointURI {
 	
 	//SubModule
 	public static final String SUBMODULE_ADD = BASE_API_PATH + "submodule";
-	public static final String getSubModule = BASE_API_PATH + "SubModule/{moduleId}";
+	public static final String GET_SUB_MODULE = BASE_API_PATH + "SubModule/{moduleId}";
 	public static final String UPDATE_SUB_MODULE = BASE_API_PATH+ "subModule";
 	public static final String UpdateSubModule = BASE_API_PATH +"SubModule";
 	public static final String SUBMODULE_DELETE = BASE_API_PATH + "deleteSubModule/{id}";
@@ -49,12 +52,13 @@ public final class EndpointURI {
 	//Defect
 	public static final String DEFECT = BASE_API_PATH + "defect";
 	public static final String DEFECT_ADD = BASE_API_PATH + "addDefect";
+	
 	public static final String DEFECT_UPDATE = BASE_API_PATH + "updateDefect";
 	
 	public static final String UPDATE_DEFECT_STATUS= BASE_API_PATH+ "updateDefectStatus/{id}/status/{status}";
 
 	//designation
-	public static final String getAllDesignation = BASE_API_PATH + "designation";
+	public static final String GET_ALL_DESIGNATION = BASE_API_PATH + "designation";
 	public static final String DEFECT_GET_BY_ID= BASE_API_PATH+ "getDefect/{id}";
 	
 
@@ -71,10 +75,11 @@ public final class EndpointURI {
 	public static final String DEFECTTYPE = BASE_API_PATH + "defecttype";
 
 	//GetAllSeverity
-	public static final String getAllSeverity = BASE_API_PATH + "severity";
+	public static final String GET_ALL_SEVERITY = BASE_API_PATH + "severity";
+	
 
 	//GetAllPriority
-	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
+	public static final String GET_ALL_PRIORITY = BASE_API_PATH + "getAllpriority";
 	
 	// Login
 	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employeeStatusUpdate";
@@ -96,6 +101,10 @@ public final class EndpointURI {
 	 */
 
 	
+
+	
+//Update Employee Photo
+	public static final String EMPLOYEE_PHOTO_UPDATE = BASE_API_PATH + "employeePhotoUpdate/{id}";
 
 	//projectEmp
 	public static final String UPDATE_PROJECT_EMP=BASE_API_PATH+"updateProjectEmp";
