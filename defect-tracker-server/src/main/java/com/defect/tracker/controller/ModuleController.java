@@ -40,8 +40,8 @@ public class ModuleController {
 	@PostMapping(value = EndpointURI.MODULE_ADD)
 	public ResponseEntity<Object> addModule(@RequestBody ModuleDto moduleDto) {
 		 if(moduleRepository.existsByModuleNameAndProjectId(moduleDto.getModuleName(), moduleDto.getProjectId())) { 
-					  return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_ALREADY_EXIST,
-							  validationFailureStatusCodes.getSubModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
+					  return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_ALREADY_EXIST,
+							  validationFailureStatusCodes.getProjectModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
 				  }
 		Module module = mapper.map(moduleDto, Module.class);
 		moduleService.addModule(module);
