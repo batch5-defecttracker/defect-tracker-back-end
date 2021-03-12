@@ -1,8 +1,5 @@
 package com.defect.tracker.data.entities;
-
-
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +14,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +25,7 @@ public class Employee {
 	private String lastName;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "desId", nullable = false)
+	@JoinColumn(name = "designationId", nullable = false)
 	private Designation designation;
 	
 	private String email;
