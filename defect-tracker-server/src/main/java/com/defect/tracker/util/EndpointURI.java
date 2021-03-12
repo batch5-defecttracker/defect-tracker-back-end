@@ -97,6 +97,10 @@ public final class EndpointURI {
 
 	
 
+	
+//Update Employee Photo
+	public static final String EMPLOYEE_PHOTO_UPDATE = BASE_API_PATH + "employeePhotoUpdate/{id}";
+
 	//projectEmp
 	public static final String UPDATE_PROJECT_EMP=BASE_API_PATH+"updateProjectEmp";
 
