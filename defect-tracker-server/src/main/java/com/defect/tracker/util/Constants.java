@@ -6,7 +6,6 @@ public class Constants {
 	public static final String PROJECT_DELETED = "Project Deleted";
 	public static final String EMPLOYEE_DELETE_SUCCESS = "Employee Deleted Successfully";
 	public static final String PROJECT_UPDATED = "Project Updated";
-
 	public static final String PROJECT_DEALLOCATED = "Project Deallocated Successfully";
 	public static final String MODULE_DELETE_SUCCESS = "Module Deleted Successfully";
 	public static final String MODULE_ADD_SUCCESS = "Module Added Successfully";
@@ -18,6 +17,8 @@ public class Constants {
 	public static final String DEFECT_ADD_SUCCESS = "Defect added successfully";
 	public static final String UPDATE_DEFECT = "Defect update successfully";
 	public static final String Get_All_Severity = "Severity got Successfully";
+	public static final String EMPLOYEE_STATUS_UPDATED = "Employee Status Updated Successfully";
+	public static final String MODULE_UPDATE_SUCCESS = "Module Successfully Updated";
 
 	// encaptulate constructor to restrict modification from outside
 	

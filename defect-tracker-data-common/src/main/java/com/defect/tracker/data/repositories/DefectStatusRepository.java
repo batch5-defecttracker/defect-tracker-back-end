@@ -8,4 +8,6 @@ import com.defect.tracker.data.entities.DefectStatus;
 
 public interface DefectStatusRepository extends JpaRepository<DefectStatus, Long>{
 	
+	public DefectStatus findByDefectStatusName(String name);
+	
 }

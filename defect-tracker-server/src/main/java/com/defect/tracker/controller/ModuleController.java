@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.mapper.Mapper;
@@ -54,6 +54,16 @@ public class ModuleController {
 		return new ResponseEntity<Object>(Constants.MODULE_ADD_SUCCESS, HttpStatus.OK);
 	}
 	
+	@PutMapping(value = EndpointURI.MODULE_UPDATE)
+	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {
+		if (!moduleService.isModuleExists(moduleDto.getId())) {
+			return new ResponseEntity<> (new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		Module module = mapper.map(moduleDto, Module.class);
+		moduleService.addModule(module);
+		return new ResponseEntity<Object>(Constants.MODULE_UPDATE_SUCCESS, HttpStatus.OK);
+	}
 	@GetMapping(value= EndpointURI.GET_MODULE_BY_PROJECT )
 	public ResponseEntity<Object> findModuleByProject(@PathVariable Long projectId){
 		if (!moduleService.isModuleExistsByProjectId(projectId)) {
@@ -65,3 +75,4 @@ public class ModuleController {
 
 	} 
 }
+

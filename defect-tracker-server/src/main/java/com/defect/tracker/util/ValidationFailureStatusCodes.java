@@ -43,6 +43,9 @@ public class ValidationFailureStatusCodes {
 
 	@Value("{validation.projectemp.isProjectempExists}")
 	private String projectempAlreadyExists;
+	
+	@Value("{validation.defect.statusNotExists}")
+	private String defectStatusNotExist;
 
 	public String getProjectempAlreadyExists() {
 		return projectempAlreadyExists;
@@ -224,6 +227,17 @@ public class ValidationFailureStatusCodes {
 	public void setProjectAllocationFailed(String projectAllocationFailed) {
 		this.projectAllocationFailed = projectAllocationFailed;
 	}
+
+
+	public String getDefectStatusNotExist() {
+		return defectStatusNotExist;
+	}
+
+
+	public void setDefectStatusNotExist(String defectStatusNotExist) {
+		this.defectStatusNotExist = defectStatusNotExist;
+	}
+	
 	
 	
 
