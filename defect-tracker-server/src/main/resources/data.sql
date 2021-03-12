@@ -1,3 +1,10 @@
+--Designation 
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('1', 'SE');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('2', 'SSE');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('3', 'QA');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('4', 'SQA');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('5', 'TL');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('6', 'PM');
 --Employee
 INSERT INTO `defect-tracker`.`employee` (`id`, `address`, `contact_number`, `email`, `first_name`, `gender`, `image`, `last_name`, `nic`, `time_stamp`, `designation_id`) VALUES ('1', 'Vavuniya', '077123456', 'email@gmail.com', 'Thanuraj', 'male', 'file1', 'Sivakumar', '953031417V', '2021-02-03 00:00:00', '1');
 INSERT INTO `defect-tracker`.`employee` (`id`, `address`, `contact_number`, `email`, `first_name`, `gender`, `image`, `last_name`, `nic`, `time_stamp`, `designation_id`) VALUES ('2', 'Colombo', '011', 'c@gmail.com', 'Thanu', 'male', 'file1', 'Raj', '953031417V', '2021-02-03 00:00:00', '2');
@@ -6,13 +13,6 @@ INSERT INTO `defect-tracker`.`employee` (`id`, `address`, `contact_number`, `ema
 INSERT INTO `defect-tracker`.`employee` (`id`, `address`, `contact_number`, `email`, `first_name`, `gender`, `image`, `last_name`, `nic`, `time_stamp`, `designation_id`) VALUES ('5', 'kilinochi', '021', 'k@gmail.com', 'Ann', 'female', 'file1', 'Liza', '953031417V', '2021-02-03 00:00:00', '5');
 INSERT INTO `defect-tracker`.`employee` (`id`, `address`, `contact_number`, `email`, `first_name`, `gender`, `image`, `last_name`, `nic`, `time_stamp`, `designation_id`) VALUES ('6', 'anuradhpura', '025', 'a@gmail.com', 'Liza', 'female', 'file1', 'Ann', '953031417V', '2021-02-03 00:00:00', '6');
 INSERT INTO `defect-tracker`.`employee` (`id`, `address`, `contact_number`, `email`, `first_name`, `gender`, `image`, `last_name`, `nic`, `time_stamp`, `designation_id`) VALUES ('7', 'galle', '029', 'g@gmail.com', 'Stark', 'male', 'file1', 'Tony', '953031417V', '2021-02-03 00:00:00', '1');
---Designation 
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('1', 'SE');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('2', 'SSE');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('3', 'QA');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('4', 'SQA');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('5', 'TL');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('6', 'PM');
 --Priority
 INSERT INTO `defect-tracker`.`priority` (`id`, `priority_name`) VALUES ('1', 'Low');
 INSERT INTO `defect-tracker`.`priority` (`id`, `priority_name`) VALUES ('2', 'Medium');
