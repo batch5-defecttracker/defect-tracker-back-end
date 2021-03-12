@@ -14,6 +14,5 @@ public interface SubModuleService {
 	public boolean existsSubModule(Long id);
 	public boolean existsByModuleId(Long id);
 	public boolean existsBySubModuleName(String name); 
-	
-		 ;
+
 }
