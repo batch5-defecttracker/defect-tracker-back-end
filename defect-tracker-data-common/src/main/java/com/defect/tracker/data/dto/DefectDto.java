@@ -1,5 +1,4 @@
 package com.defect.tracker.data.dto;
-
 import java.util.Date;
 
 public class DefectDto {
@@ -95,7 +94,4 @@ public class DefectDto {
 	public void setFile(String file) {
 		this.file = file;
 	}
-
-
-
 }

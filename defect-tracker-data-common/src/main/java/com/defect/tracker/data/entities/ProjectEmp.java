@@ -1,5 +1,4 @@
 package com.defect.tracker.data.entities;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,7 +34,7 @@ public class ProjectEmp {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="submoduleId",nullable=true)
-	private SubModule subModule;
+	private SubModule submodule;
 
 	public long getId() {
 		return id;
@@ -77,12 +76,12 @@ public class ProjectEmp {
 		this.designation = designation;
 	}
 
-	public SubModule getSubModule() {
-		return subModule;
+	public SubModule getSubmodule() {
+		return submodule;
 	}
 
 	public void setSubModule(SubModule subModule) {
-		this.subModule = subModule;
+		this.submodule = subModule;
 	}
 
 	
