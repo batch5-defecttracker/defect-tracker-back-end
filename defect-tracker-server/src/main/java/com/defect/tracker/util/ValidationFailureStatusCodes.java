@@ -73,9 +73,6 @@ public class ValidationFailureStatusCodes {
 		this.projectemployeeNotExists = projectemployeeNotExists;
 	}
 	
-
-
-	
 	@Value("${validation.employee.alreadyExist}")
 	private String employeeAlreadyExist;
 
