@@ -39,6 +39,8 @@ public class ValidationConstance {
 
 	public static final String DEFECT_ID_NOT_EXISTS= "Defect id not Exists";
 	
+	public static final String DEFECT_STATUS_NOT_EXISTS= "Defect Status not Exists";
+	
 
 	private ValidationConstance() {
 	}

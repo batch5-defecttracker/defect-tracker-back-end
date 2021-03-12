@@ -29,6 +29,7 @@ public final class EndpointURI {
 	public static final String MODULE_ADD = BASE_API_PATH + "addmodule";
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
 	
+	public static final String MODULE_UPDATE = BASE_API_PATH + "updateModule";
 	public static final String GET_MODULE_BY_PROJECT = BASE_API_PATH + "getModulebyProject/{projectId}";
 
 //SubModule
@@ -43,6 +44,8 @@ public final class EndpointURI {
 //Defect
 	public static final String DEFECT_ADD = BASE_API_PATH + "addDefect";
 	public static final String DEFECT_UPDATE = BASE_API_PATH + "updateDefect";
+	
+	public static final String UPDATE_DEFECT_STATUS= BASE_API_PATH+ "updateDefectStatus/{id}/status/{status}";
 
 
 	//designation
@@ -58,6 +61,7 @@ public final class EndpointURI {
 
 //getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
+	public static final String DEFECT_STATUS = BASE_API_PATH + "getCurrentStatus/{id}";
 
 //DefectType
 	public static final String DEFECTTYPE = BASE_API_PATH + "defecttype";
@@ -68,6 +72,9 @@ public final class EndpointURI {
 //GetAllPriority
 
 	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
+	
+// Login
+	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employeeStatusUpdate";
 
 	public static final String[] EMPLOYEE_DEALLOCATION_FOR_MODULE = null;
 		
@@ -76,6 +83,7 @@ public final class EndpointURI {
 		
 		public static final String DEALLOCATE_PROJECT = BASE_API_PATH + "deallocateProject/{id}";
 		public static final String PROJECT_ALLOCATION = BASE_API_PATH + "projectAllocation";
+		public static final String GET_PROJECT_ALLOCATION = BASE_API_PATH + "getProjectAllocation";
 	
 		
 //Defect

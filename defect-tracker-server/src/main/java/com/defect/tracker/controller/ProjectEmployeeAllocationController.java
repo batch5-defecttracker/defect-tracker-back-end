@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.defect.tracker.data.dto.EmployeeDto;
+import com.defect.tracker.data.dto.ProjectEmp_ResponseDto;
 import com.defect.tracker.data.dto.Project_EmpDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.ProjectEmp;
@@ -93,5 +95,16 @@ public class ProjectEmployeeAllocationController {
 		projectemployeeallocationService.deAllocateProject(id);
 		return new ResponseEntity<Object>(Constants.PROJECT_DEALLOCATED, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = EndpointURI.GET_PROJECT_ALLOCATION)
+	public ResponseEntity<Object> getAllProjectAllocation(){
+		if (projectemployeeallocationService.getAll().isEmpty()) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_ALLOCATED,
+					validationFailureStatusCodes.getProjectAllocationNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Object>(mapper.map(projectemployeeallocationService.getAll(), ProjectEmp_ResponseDto.class ), HttpStatus.OK);
+	}
+	
 
 }
