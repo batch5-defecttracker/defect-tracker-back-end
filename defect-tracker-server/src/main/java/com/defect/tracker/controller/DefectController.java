@@ -64,10 +64,12 @@ public class DefectController {
 	
 	@PutMapping(value= EndpointURI.DEFECT_UPDATE)
 	public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto){
-		if(!defectService.isDefectExists(defectDto.getId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
-					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
-		}
+		
+		  if(!defectService.isDefectExists(defectDto.getId())) { return new
+		  ResponseEntity<>(new
+		  ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
+		  validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST); }
+		 
 		Defect defect =  mapper.map(defectDto , Defect.class);
 		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
