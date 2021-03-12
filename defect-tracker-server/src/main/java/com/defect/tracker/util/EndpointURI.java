@@ -100,11 +100,6 @@ public final class EndpointURI {
 	//projectEmp
 	public static final String UPDATE_PROJECT_EMP=BASE_API_PATH+"updateProjectEmp";
 
-	/*
-	 * public static final String MODULE_ALLOCATION = BASE_API_PATH +
-	 * "moduleAllocation";
-	 */
-	
 	private EndpointURI() {
 		
 	}
