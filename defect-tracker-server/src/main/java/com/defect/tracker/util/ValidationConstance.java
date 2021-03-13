@@ -48,6 +48,8 @@ public class ValidationConstance {
 	public static final String DEFECT_STATUS_NOT_EXISTS= "Defect Status not Exists";
 	
 	public static final String EMPLOYEE_PHOTO_EMPTY = "Employee Photo is Empty";
+	
+	public static final String MODULE_ALREADY_EXIST = "The Name You enterd Module is Already Exists In Project";
 
 	private ValidationConstance() {
 	}
