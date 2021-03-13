@@ -49,7 +49,7 @@ public class ValidationFailureStatusCodes {
 	
 	@Value("${validation.employeeIdType.notExist}")
 	private String employeeIdNotFound;
-	@Value("{validation.defect.statusNotExists}")
+	@Value("${validation.defect.statusNotExists}")
 	private String defectStatusNotExist;
 	
 	@Value("${validation.projectModule.alreadyExist}")

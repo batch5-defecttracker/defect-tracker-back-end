@@ -50,6 +50,8 @@ public class ModuleController {
 	
 	
 	
+	
+	
 	@GetMapping(value= EndpointURI.GET_MODULE_BY_PROJECT )
 	public ResponseEntity<Object> findModuleByProject(@PathVariable Long projectId){
 		if (!moduleService.isModuleExistsByProjectId(projectId)) {
@@ -59,6 +61,17 @@ public class ModuleController {
 		return new ResponseEntity<Object>(mapper.map(moduleService.findByProject(projectId), ModuleDto.class), HttpStatus.OK);
 	} 
 	
+	
+	@GetMapping(value = EndpointURI.GET_ALL_MODULE)
+	public ResponseEntity<Object> findAllModule(){
+		if(moduleService.findAll().isEmpty()) {
+			return  new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS, 
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Object>(mapper.map(moduleService.findAll(), ModuleDto.class), HttpStatus.OK);
+		
+	}
 	
 	
 	

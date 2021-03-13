@@ -27,15 +27,16 @@ public final class EndpointURI {
 	//Project	
 	public static final String PROJECT = BASE_API_PATH + "project";
 	public static final String PROJECT_FIND = BASE_API_PATH + "find/{id}";
+	public static final String PROJECT_ALL = BASE_API_PATH + "projectall";
 	public static final String UPDATE_PROJECT = BASE_API_PATH + "update";
 	public static final String PROJECT_DELETE = BASE_API_PATH + "delete/{id}";
-	
-	
+		
  
 	//Module
 	public static final String MODULE = BASE_API_PATH + "module";
 	public static final String MODULE_ADD = BASE_API_PATH + "addmodule";
 	public static final String GET_MODULE_BY_PROJECT = BASE_API_PATH + "getModulebyProject/{projectId}";
+	public static final String  GET_ALL_MODULE = BASE_API_PATH + "getAllmodule";
 	public static final String MODULE_DELETE = BASE_API_PATH + "deletemodule/{id}";
  	public static final String MODULE_UPDATE = BASE_API_PATH + "updateModule";
 	
@@ -43,8 +44,8 @@ public final class EndpointURI {
 	//SubModule
 	public static final String SUBMODULE_ADD = BASE_API_PATH + "submodule";
 	public static final String getSubModule = BASE_API_PATH + "SubModule/{moduleId}";
+	public static final String GET_ALL_SUBMODULE = BASE_API_PATH + "getAllsubmodule";
 	public static final String UPDATE_SUB_MODULE = BASE_API_PATH+ "subModule";
-	public static final String UpdateSubModule = BASE_API_PATH +"SubModule";
 	public static final String SUBMODULE_DELETE = BASE_API_PATH + "deleteSubModule/{id}";
 
 	
