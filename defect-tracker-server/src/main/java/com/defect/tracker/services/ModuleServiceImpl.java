@@ -19,7 +19,7 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Override
 	public boolean isModuleExists(Long id) {
-		return moduleRepository.existsById(id);
+		return moduleRepository.existsByProjectId(id);
 	}
 
 	@Override
