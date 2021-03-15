@@ -10,6 +10,6 @@ public interface ProjectService {
 	public void createProject(Project project);
 	public List<Project> findAll();
 	public void updateProject(Project project);
+	public List<Project> getAllProject();
 	
-
 }
