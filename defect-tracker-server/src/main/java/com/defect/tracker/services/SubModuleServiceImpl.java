@@ -18,12 +18,12 @@ public class SubModuleServiceImpl implements SubModuleService{
 		subModuleUpdateRepository.save(subModule);
 	}
 	
-	
 	@Override
 	public List<SubModule> findSubModule(Long id) {
 		return subModuleUpdateRepository.findByModuleId(id);
 	}
 
+	
 	
 	@Override
 	public void Update(SubModule submodule) {

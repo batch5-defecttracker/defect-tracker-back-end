@@ -12,5 +12,4 @@ public interface ProjectService {
 	public void updateProject(Project project);
 	public List<Project> getAllProject();
 	
-
 }

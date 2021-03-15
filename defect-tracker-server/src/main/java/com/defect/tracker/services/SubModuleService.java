@@ -11,10 +11,10 @@ public interface SubModuleService {
 	public void Update(SubModule submodule);
 	public void deleteSubModuleById(Long  id);
 	
+	
 	public boolean existById(Long id);
 	public boolean existsSubModule(Long id);
 	public boolean existsByModuleId(Long id);
-	public boolean existsBySubModuleName(String name); 
-
+	public boolean existsBySubModuleName(String name);
 }
 

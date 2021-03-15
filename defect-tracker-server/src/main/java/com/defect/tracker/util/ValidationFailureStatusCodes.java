@@ -1,4 +1,5 @@
 package com.defect.tracker.util;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:ValidationMessages.properties")
 public class ValidationFailureStatusCodes {
+ 
 	
 	
 	//Defect
@@ -51,6 +53,8 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.firstName.notExist}")
 	private String employeeNotExists;
 	
+	
+
 	@Value("${validation.employeeIdType.notExist}")
 	private String employeeIdNotFound;
 	
@@ -63,6 +67,7 @@ public class ValidationFailureStatusCodes {
 	//project
 	@Value("${validation.project.notExist}")
 	private String projectNotExist;
+ 
 	
 	@Value("${validation.project.AlreadyExists}")
 	 private String proNameAlreadyExists;
@@ -70,7 +75,7 @@ public class ValidationFailureStatusCodes {
 	//module
 	@Value("${validation.module.notExist}")
 	private String moduleNotExist;
-	
+
 	@Value("${validation.module.alreadyExist}")
 	private String moduleAlreadyExist;
 	
@@ -96,7 +101,7 @@ public class ValidationFailureStatusCodes {
 	private String emailAlreadyExist;
 
 	
-	//Defect
+	
 	public String getDefectNotExist() {
 		return defectNotExist;
 	}
@@ -104,8 +109,7 @@ public class ValidationFailureStatusCodes {
 	public void setDefectNotExist(String defectNotExist) {
 		this.defectNotExist = defectNotExist;
 	}
-	
-	//priority
+
 	public String getPriorityNotExist() {
 		return priorityNotExist;
 	}
@@ -113,8 +117,7 @@ public class ValidationFailureStatusCodes {
 	public void setPriorityNotExist(String priorityNotExist) {
 		this.priorityNotExist = priorityNotExist;
 	}
-	
-	//severity
+
 	public String getSeverityNotExist() {
 		return severityNotExist;
 	}
@@ -122,9 +125,7 @@ public class ValidationFailureStatusCodes {
 	public void setSeverityNotExist(String severityNotExist) {
 		this.severityNotExist = severityNotExist;
 	}
-	
-	
-	//defect_type
+
 	public String getDefectTypeNotFound() {
 		return defectTypeNotFound;
 	}
@@ -132,9 +133,7 @@ public class ValidationFailureStatusCodes {
 	public void setDefectTypeNotFound(String defectTypeNotFound) {
 		this.defectTypeNotFound = defectTypeNotFound;
 	}
-	
-	
-	//defect_status
+
 	public String getDefectStatusNotExist() {
 		return defectStatusNotExist;
 	}
@@ -143,7 +142,6 @@ public class ValidationFailureStatusCodes {
 		this.defectStatusNotExist = defectStatusNotExist;
 	}
 
-	//designation
 	public String getDesignationNotExist() {
 		return designationNotExist;
 	}
@@ -152,7 +150,6 @@ public class ValidationFailureStatusCodes {
 		this.designationNotExist = designationNotExist;
 	}
 
-	//Allocation
 	public String getProjectAllocationNotExist() {
 		return projectAllocationNotExist;
 	}
@@ -168,8 +165,7 @@ public class ValidationFailureStatusCodes {
 	public void setProjectAllocationFailed(String projectAllocationFailed) {
 		this.projectAllocationFailed = projectAllocationFailed;
 	}
-	
-	//Employee
+
 	public String getEmployeeNotExist() {
 		return employeeNotExist;
 	}
@@ -210,8 +206,6 @@ public class ValidationFailureStatusCodes {
 		this.employeeNotFound = employeeNotFound;
 	}
 
-	
-	//project
 	public String getProjectNotExist() {
 		return projectNotExist;
 	}
@@ -228,8 +222,6 @@ public class ValidationFailureStatusCodes {
 		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
 
-	
-	//module
 	public String getModuleNotExist() {
 		return moduleNotExist;
 	}
@@ -246,7 +238,6 @@ public class ValidationFailureStatusCodes {
 		this.moduleAlreadyExist = moduleAlreadyExist;
 	}
 
-	//submodule
 	public String getSubModuleNotExist() {
 		return subModuleNotExist;
 	}
@@ -263,7 +254,6 @@ public class ValidationFailureStatusCodes {
 		this.subModuleAlreadyExist = subModuleAlreadyExist;
 	}
 
-	//projectEmployee
 	public String getProjectempAlreadyExists() {
 		return projectempAlreadyExists;
 	}
@@ -288,7 +278,6 @@ public class ValidationFailureStatusCodes {
 		this.projectemployeeNotExists = projectemployeeNotExists;
 	}
 
-	//login
 	public String getEmailAlreadyExist() {
 		return emailAlreadyExist;
 	}
@@ -296,9 +285,7 @@ public class ValidationFailureStatusCodes {
 	public void setEmailAlreadyExist(String emailAlreadyExist) {
 		this.emailAlreadyExist = emailAlreadyExist;
 	}
-	
-	
-	
+
 	
 	
 }
