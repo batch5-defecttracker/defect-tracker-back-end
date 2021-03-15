@@ -38,7 +38,7 @@ public class SubModuleController {
 	SubModuleRepository  subModuleRepository;
 	
 	
-	@PostMapping(value = EndpointURI.SUBMODULE_ADD)
+	@PostMapping(value = EndpointURI.SUBMODULE)
 	public ResponseEntity<Object> createSubModule(@RequestBody SubModuleDto subModuleDto){
 		  if(subModuleRepository.existsBySubmoduleNameAndModuleId(subModuleDto.
 		  getSubmoduleName(), subModuleDto.getModuleId())) { 
@@ -53,7 +53,7 @@ public class SubModuleController {
 	
 	
 
-	@GetMapping(value = EndpointURI.getSubModule)
+	@GetMapping(value = EndpointURI.GET_SUBMODULE)
 	public ResponseEntity<Object> getSubmodule(@PathVariable Long moduleId) {
 		if (!subModuleService.existById(moduleId)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS,
@@ -62,7 +62,7 @@ public class SubModuleController {
 		return new ResponseEntity<Object>(mapper.map(subModuleService.findSubModule(moduleId), SubModuleDto.class), HttpStatus.OK);
 	}
 	
-	@GetMapping(value =EndpointURI.GET_ALL_SUBMODULE)
+	@GetMapping(value =EndpointURI.SUBMODULE)
 	public ResponseEntity<Object> findAllSubModule(){
 		if(subModuleService.findAllSubModule().isEmpty()) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS, 
@@ -77,7 +77,7 @@ public class SubModuleController {
 	
 	
 	
-	@PutMapping(value= EndpointURI.UPDATE_SUB_MODULE)
+	@PutMapping(value= EndpointURI.SUBMODULE)
 	public ResponseEntity<Object> updateSubModule(@RequestBody SubModuleDto subModuleDto){	
 		if(!subModuleService.existsSubModule(subModuleDto.getId())){
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_DOES_NOT_EXISTS, 
