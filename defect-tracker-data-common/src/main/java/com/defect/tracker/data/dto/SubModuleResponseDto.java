@@ -2,7 +2,7 @@ package com.defect.tracker.data.dto;
 
 public class SubModuleResponseDto {
 	private Long id;
-	private String subModuleName;
+	private String submoduleName;
 	private ModuleDto module;
 	
 	
@@ -12,11 +12,12 @@ public class SubModuleResponseDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getSubModuleName() {
-		return subModuleName;
+	
+	public String getSubmoduleName() {
+		return submoduleName;
 	}
-	public void setSubModuleName(String subModuleName) {
-		this.subModuleName = subModuleName;
+	public void setSubmoduleName(String submoduleName) {
+		this.submoduleName = submoduleName;
 	}
 	public ModuleDto getModule() {
 		return module;
