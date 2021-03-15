@@ -40,13 +40,15 @@ public class ModuleController {
 	@PostMapping(value = EndpointURI.MODULE_ADD)
 	public ResponseEntity<Object> addModule(@RequestBody ModuleDto moduleDto) {
 		 if(moduleRepository.existsByModuleNameAndProjectId(moduleDto.getModuleName(), moduleDto.getProjectId())) { 
-					  return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_ALREADY_EXIST,
-							  validationFailureStatusCodes.getSubModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
+					  return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_ALREADY_EXIST,
+							  validationFailureStatusCodes.getProjectModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
 				  }
 		Module module = mapper.map(moduleDto, Module.class);
 		moduleService.addModule(module);
 		return new ResponseEntity<Object>(Constants.MODULE_ADD_SUCCESS, HttpStatus.OK);
 	}
+	
+	
 	
 	
 	
@@ -59,6 +61,17 @@ public class ModuleController {
 		return new ResponseEntity<Object>(mapper.map(moduleService.findByProject(projectId), ModuleDto.class), HttpStatus.OK);
 	} 
 	
+	
+	@GetMapping(value = EndpointURI.GET_ALL_MODULE)
+	public ResponseEntity<Object> findAllModule(){
+		if(moduleService.findAll().isEmpty()) {
+			return  new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS, 
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Object>(mapper.map(moduleService.findAll(), ModuleDto.class), HttpStatus.OK);
+		
+	}
 	
 	
 	
