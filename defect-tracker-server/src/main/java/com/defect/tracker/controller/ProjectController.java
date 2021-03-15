@@ -74,11 +74,16 @@ public class ProjectController {
 	
 	@PutMapping(value = EndpointURI.UPDATE_PROJECT)
 	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
-		if (!projectService.existProject(projectDto.getId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
-					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
+		if (projectService.isProNameAlreadyExist(projectDto.getProjectName())) {
+			if (!projectService.existProject(projectDto.getId())) {
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
+						validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
+			}
+			
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NAME_EXISTS,
+					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
-		
+
 		Project project = mapper.map(projectDto, Project.class);
 		projectService.updateProject(project);
 		return new ResponseEntity<Object>(Constants.PROJECT_UPDATED, HttpStatus.OK);

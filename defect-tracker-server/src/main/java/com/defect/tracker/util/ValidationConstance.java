@@ -22,6 +22,7 @@ public class ValidationConstance {
 	public static final String MODULE_EXISTS = "Module already exist";
 
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
+	public static final String PROJECT_NAME_EXISTS = "Project Name Already Exists";
 
 	public static final String SUBMODULE_DOES_NOT_EXISTS = "SubModule doesn't Exist ";
 
