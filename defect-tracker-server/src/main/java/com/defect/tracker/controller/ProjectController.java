@@ -1,5 +1,7 @@
 package com.defect.tracker.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,7 @@ public class ProjectController {
 	private Mapper mapper;
 
 	@PostMapping(value = EndpointURI.PROJECT)
-	public ResponseEntity<Object> addProject(@RequestBody ProjectDto proDto) {
+	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto proDto) {
 
 		if (projectService.isProNameAlreadyExist(proDto.getProjectName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
