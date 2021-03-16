@@ -1,6 +1,7 @@
 package com.defect.tracker.controller;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.defect.tracker.data.dto.DefectAssignDto;
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.dto.DefectResponseDto;
 import com.defect.tracker.data.entities.Defect;
@@ -105,6 +107,17 @@ public class DefectController {
 		 defect.setDefectStatus(ds);
 		 defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = EndpointURI.GET_BY_ASSIGN_ID)
+	public ResponseEntity<Object> findByAssignedBy(@PathVariable Long id) {
+		if(defectService.getByAssignedId(id).isEmpty()) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_DOES_NOT_EXISTS,
+					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Object>(mapper.map(defectService.getByAssignedId(id), DefectAssignDto.class), HttpStatus.OK);	
+	
+		
 	}
 	
 }

@@ -84,8 +84,19 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.designation.notExist}")
 	private String designationNotExist;
 
+	@Value("${validation.defect.notExist}")
+	private String defectEmployeeNotExist;
+	
 	public String getProjectempAlreadyExists() {
 		return projectempAlreadyExists;
+	}
+
+	public String getDefectEmployeeNotExist() {
+		return defectEmployeeNotExist;
+	}
+
+	public void setDefectEmployeeNotExist(String defectEmployeeNotExist) {
+		this.defectEmployeeNotExist = defectEmployeeNotExist;
 	}
 
 	public void setProjectempAlreadyExists(String projectempAlreadyExists) {

@@ -39,6 +39,8 @@ public class ValidationConstance {
 	public static final String EMPTY_PROJECT_ALLOCATION = "Employee Not Exist";
 	
 	public static final String DEFECT_DOES_NOT_EXISTS= "Defect not Exist";
+	
+	public static final String EMPLOYEE_DOES_NOT_EXISTS= "This employee have not defect";
 
 	public static final String PROJECT_EMPLOYEE_NOT_AVAILABLE="Project employee id not exists";
 

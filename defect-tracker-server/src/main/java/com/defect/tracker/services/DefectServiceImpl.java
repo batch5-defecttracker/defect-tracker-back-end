@@ -41,5 +41,10 @@ public class DefectServiceImpl implements DefectService {
 		return defectRepository.findById(id).get() ;
 	}
 
+	@Override
+	public List<Defect> getByAssignedId(Long id) {
+		return defectRepository.findByEmployee2Id(id);
+	}
+
 	
 }
