@@ -2,6 +2,8 @@ package com.defect.tracker.controller;
 
 import java.sql.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +53,7 @@ public class DefectController {
 	}
 		
 		@PostMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> addDefect(@RequestBody DefectDto defectDto) {
+	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		defectDto.setTimeStamp(date);
 		Defect defect = mapper.map(defectDto, Defect.class);
@@ -60,7 +62,7 @@ public class DefectController {
 	}
 	
 	@PutMapping(value= EndpointURI.DEFECT)
-	public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto){
+	public ResponseEntity<Object> updateDefect(@Valid @RequestBody DefectDto defectDto){
 		if(!defectService.isDefectExists(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
