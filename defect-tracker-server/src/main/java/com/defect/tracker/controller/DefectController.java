@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,8 +75,11 @@ public class DefectController {
 				HttpStatus.OK);
 	}
 		
+
+
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@RequestBody DefectDto defectDto) {
+
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		defectDto.setTimeStamp(date);
 		defectDto.setDefectStatusId(6);
@@ -97,9 +102,11 @@ public class DefectController {
 	}	
 	
 	@PutMapping(value= EndpointURI.DEFECT)
+
 	public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto){
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		defectDto.setTimeStamp(date);
+
 		if(!defectService.isDefectExists(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
