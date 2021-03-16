@@ -23,6 +23,7 @@ import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.DefectStatusRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DefectService;
+import com.defect.tracker.services.DefectServiceImpl;
 import com.defect.tracker.services.DefectStatusService;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.MailServiceImpl;
@@ -40,6 +41,9 @@ public class DefectController {
 
 	@Autowired
 	MailServiceImpl mailServiceImpl;
+	
+	@Autowired
+	DefectServiceImpl defectServiceImpl;
 
 	@Autowired
 	EmployeeService employeeService;
@@ -79,11 +83,11 @@ public class DefectController {
 		String module = defectService.findById(defectDto.getModuleId()).getModule().getModuleName();
 		String assignedEmployee = employeeService.findById(defectDto.getEmployeeId()).get().getFirstName();
 		String status = "New";
-		List<ProjectEmp> x = projectEmployeeAllocationService.findbyModule(defectDto.getModuleId());
-		for (ProjectEmp projectEmp : x) {
+		List<ProjectEmp> projectList = projectEmployeeAllocationService.findbyModule(defectDto.getModuleId());
+		for (ProjectEmp projectEmp : projectList) {
 			names.add(projectEmp.getEmployee().getFirstName());
 		}
-		for (ProjectEmp projectEmp : x) {
+		for (ProjectEmp projectEmp : projectList) {
 			mails.add(projectEmp.getEmployee().getEmail());
 		}
 		mailServiceImpl.sendListEmailNew(mails, module, names, assignedEmployee, status);
@@ -101,41 +105,22 @@ public class DefectController {
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Open")) {
-			dataCall(defectDto);
-			Defect defect = mapper.map(defectDto, Defect.class);
-			defectService.addDefect(defect);
-			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
-		}
-		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Closed")) {
-			dataListCall(defectDto);
-			Defect defect = mapper.map(defectDto, Defect.class);
-			defectService.addDefect(defect);
-			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
-		}
-		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Fixed")) {
-			dataCall(defectDto);
-			Defect defect = mapper.map(defectDto, Defect.class);
-			defectService.addDefect(defect);
-			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
-		}
-		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Reopen")) {
-			dataListCall(defectDto);
-			Defect defect = mapper.map(defectDto, Defect.class);
-			defectService.addDefect(defect);
-			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
-		}
-		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+				.equalsIgnoreCase("Open") || defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+				.equalsIgnoreCase("Fixed") || defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
 				.equalsIgnoreCase("Reject")) {
-			dataCall(defectDto);
+			defectServiceImpl.dataCall(defectDto);
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.addDefect(defect);
 			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 		}
-
+		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+				.equalsIgnoreCase("Closed") || defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+				.equalsIgnoreCase("Reopen")) {
+			defectServiceImpl.dataListCall(defectDto);
+			Defect defect = mapper.map(defectDto, Defect.class);
+			defectService.addDefect(defect);
+			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
+		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,
 				validationFailureStatusCodes.getDefectStatusNotExist()), HttpStatus.BAD_REQUEST);
 
@@ -170,33 +155,6 @@ public class DefectController {
 		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 	}
 
-	public void dataCall(DefectDto defectDto) {
-		String mail = defectService.findById(defectDto.getEmployeeId()).getEmployee().getEmail();
-		String module = defectService.findById(defectDto.getModuleId()).getModule().getModuleName();
-		String status = defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get()
-				.getDefectStatusName();
-		String assignedEmployee = employeeService.findById(defectDto.getEmployeeId()).get().getFirstName();
-		String openedEmployee = defectService.findById(defectDto.getEmployee2Id()).getEmployee2().getFirstName();
 
-		mailServiceImpl.sendEmail(mail, module, assignedEmployee, openedEmployee, status);
-	}
-
-	public void dataListCall(DefectDto defectDto) {
-		List<String> mails = new ArrayList<>();
-		List<String> names = new ArrayList<>();
-		String module = defectService.findById(defectDto.getModuleId()).getModule().getModuleName();
-		String status = defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get()
-				.getDefectStatusName();
-		String openedEmployee = defectService.findById(defectDto.getEmployee2Id()).getEmployee2().getFirstName();
-		List<ProjectEmp> x = projectEmployeeAllocationService.findbyModule(defectDto.getModuleId());
-		for (ProjectEmp projectEmp : x) {
-			names.add(projectEmp.getEmployee().getFirstName());
-		}
-		for (ProjectEmp projectEmp : x) {
-			mails.add(projectEmp.getEmployee().getEmail());
-		}
-
-		mailServiceImpl.sendListEmail(mails, module, names, openedEmployee, status);
-	}
 
 }
