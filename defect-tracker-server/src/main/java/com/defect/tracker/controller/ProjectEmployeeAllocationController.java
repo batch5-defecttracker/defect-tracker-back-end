@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.dto.ProjectEmp_ResponseDto;
-import com.defect.tracker.data.dto.ProjectEmp_ResponseDto1;
+import com.defect.tracker.data.dto.ProjectEmp_Module_ResponseDto;
 import com.defect.tracker.data.dto.Project_EmpDto;
 import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.mapper.Mapper;
@@ -123,7 +123,7 @@ public class ProjectEmployeeAllocationController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMPTY,
 					validationFailureStatusCodes.getProjectemployeeNotExists()),HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(mapper.map(projectemployeeallocationService.getEmployeeByModule(id),ProjectEmp_ResponseDto1.class),HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(projectemployeeallocationService.getEmployeeByModule(id),ProjectEmp_Module_ResponseDto.class),HttpStatus.OK);
 	}
 	
 
