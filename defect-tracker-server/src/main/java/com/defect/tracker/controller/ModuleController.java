@@ -37,7 +37,7 @@ public class ModuleController {
 
 	
 	
-	@PostMapping(value = EndpointURI.MODULE_ADD)
+	@PostMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> addModule(@RequestBody ModuleDto moduleDto) {
 		 if(moduleRepository.existsByModuleNameAndProjectId(moduleDto.getModuleName(), moduleDto.getProjectId())) { 
 					  return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_ALREADY_EXIST,
@@ -62,7 +62,7 @@ public class ModuleController {
 	} 
 	
 	
-	@GetMapping(value = EndpointURI.GET_ALL_MODULE)
+	@GetMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> findAllModule(){
 		if(moduleService.findAll().isEmpty()) {
 			return  new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS, 
@@ -75,7 +75,7 @@ public class ModuleController {
 	
 	
 	
-	@PutMapping(value = EndpointURI.MODULE_UPDATE)
+	@PutMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {
 		if (!moduleService.isModuleExists(moduleDto.getId())) {
 			return new ResponseEntity<> (new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
