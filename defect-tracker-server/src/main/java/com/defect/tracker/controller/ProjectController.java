@@ -1,5 +1,7 @@
 package com.defect.tracker.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,11 +35,11 @@ public class ProjectController {
 	private Mapper mapper;
 
 	@PostMapping(value = EndpointURI.PROJECT)
-	public ResponseEntity<Object> addProject(@RequestBody ProjectDto proDto) {
+	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto proDto) {
 
 		if (projectService.isProNameAlreadyExist(proDto.getProjectName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
-					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 
 		Project project = mapper.map(proDto, Project.class);
@@ -46,7 +48,7 @@ public class ProjectController {
 
 	}
 
-	@GetMapping(value = EndpointURI.PROJECT_FIND)
+	@GetMapping(value = EndpointURI.ACT_PROJECT)
 	public ResponseEntity<Object> findById(@PathVariable Long id) {
 		if (!projectService.existProject(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
@@ -55,7 +57,7 @@ public class ProjectController {
 		return new ResponseEntity<Object>(mapper.map(projectService.findById(id), ProjectDto.class), HttpStatus.OK);
 	}
 
-	@GetMapping(value = EndpointURI.PROJECT_ALL)
+	@GetMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> getAllProject() {
 		if (projectService.getAllProject().isEmpty()) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
@@ -66,7 +68,7 @@ public class ProjectController {
 
 	}
 
-	@PutMapping(value = EndpointURI.UPDATE_PROJECT)
+	@PutMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
 		if (!projectService.existProject(projectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
@@ -74,7 +76,7 @@ public class ProjectController {
 		}
 		if (projectService.isProNameAlreadyExist(projectDto.getProjectName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NAME_EXISTS,
-					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 
 		Project project = mapper.map(projectDto, Project.class);
@@ -82,7 +84,7 @@ public class ProjectController {
 		return new ResponseEntity<Object>(Constants.PROJECT_UPDATED, HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = EndpointURI.PROJECT_DELETE)
+	@DeleteMapping(value = EndpointURI.ACT_PROJECT)
 	public ResponseEntity<Object> deleteById(@PathVariable Long id) {
 		if (!projectService.existProject(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,

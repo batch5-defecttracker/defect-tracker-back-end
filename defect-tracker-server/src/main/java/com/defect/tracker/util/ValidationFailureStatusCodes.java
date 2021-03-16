@@ -70,7 +70,7 @@ public class ValidationFailureStatusCodes {
  
 	
 	@Value("${validation.project.AlreadyExists}")
-	 private String proNameAlreadyExists;
+	 private String projectNameAlreadyExists;
 	
 	//module
 	@Value("${validation.module.notExist}")
@@ -88,7 +88,7 @@ public class ValidationFailureStatusCodes {
 	
 	//projectEmployee
 	@Value("{validation.projectemp.isProjectempExists}")
-	private String projectempAlreadyExists;
+	private String projectemployeeAlreadyExists;
 
 	@Value("${validation.projectModule.alreadyExist}")
 	private String projectModuleAlreadyExist;
@@ -214,12 +214,13 @@ public class ValidationFailureStatusCodes {
 		this.projectNotExist = projectNotExist;
 	}
 
-	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
+	
+	public String getProjectNameAlreadyExists() {
+		return projectNameAlreadyExists;
 	}
 
-	public void setProNameAlreadyExists(String proNameAlreadyExists) {
-		this.proNameAlreadyExists = proNameAlreadyExists;
+	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
+		this.projectNameAlreadyExists = projectNameAlreadyExists;
 	}
 
 	public String getModuleNotExist() {
@@ -254,12 +255,14 @@ public class ValidationFailureStatusCodes {
 		this.subModuleAlreadyExist = subModuleAlreadyExist;
 	}
 
-	public String getProjectempAlreadyExists() {
-		return projectempAlreadyExists;
+	
+
+	public String getProjectemployeeAlreadyExists() {
+		return projectemployeeAlreadyExists;
 	}
 
-	public void setProjectempAlreadyExists(String projectempAlreadyExists) {
-		this.projectempAlreadyExists = projectempAlreadyExists;
+	public void setProjectemployeeAlreadyExists(String projectemployeeAlreadyExists) {
+		this.projectemployeeAlreadyExists = projectemployeeAlreadyExists;
 	}
 
 	public String getProjectModuleAlreadyExist() {
