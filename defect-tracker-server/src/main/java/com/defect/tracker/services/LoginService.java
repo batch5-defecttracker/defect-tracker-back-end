@@ -10,6 +10,10 @@ public interface LoginService {
 	
 	public List<Login> getEmployee(String status);
 
+	public String forgotPassword(String email);
+
+	public String resetPassword(String token, String password);
+
 	
 
 }

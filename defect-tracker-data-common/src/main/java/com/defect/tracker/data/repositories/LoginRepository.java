@@ -4,12 +4,13 @@ import java.util.List;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-
 import com.defect.tracker.data.entities.Login;
 
 public interface LoginRepository extends JpaRepository<Login, String> {
 	
 	List<Login> getByStatus(String status);
+	Login findByEmail(String email);
+
+	Login findByToken(String token); 
 
 }
