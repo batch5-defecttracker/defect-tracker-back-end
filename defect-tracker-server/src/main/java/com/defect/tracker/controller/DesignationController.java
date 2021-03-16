@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DesignationService;
 import com.defect.tracker.util.EndpointURI;
@@ -20,11 +19,7 @@ public class DesignationController {
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	
-	@Autowired
-	private Mapper mapper;
-	
-	
-	@GetMapping(value = EndpointURI.getAllDesignation)
+	@GetMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> getAllDesignation(){
 		if (designationService.getAlldesignation().isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXIST,
