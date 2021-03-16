@@ -1,7 +1,12 @@
 package com.defect.tracker.data.dto;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class SubModuleDto {
 	private Long id;
+	
+	@NotNull(message = "{subModuleDto.submoduleName.null}")
+	@NotEmpty(message ="{subModuleDto.submoduleName.empty}")
 	private String submoduleName;
 	private Long moduleId;
 	
