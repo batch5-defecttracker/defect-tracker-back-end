@@ -62,7 +62,7 @@ public class EmployeeController {
 	
 
 	
-	@GetMapping(value= EndpointURI.GetEmployeebyName )
+	@GetMapping(value= EndpointURI.GET_EMPLOYEE_BY_NAME)
 	public ResponseEntity<Object> findEmployeeByName(@PathVariable String firstName){
 		if (!employeeService.ExistByFirstName(firstName)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
@@ -75,7 +75,7 @@ public class EmployeeController {
 	} 
 
 	
-	@GetMapping(value=EndpointURI.EMPLOYEE_GET)
+	@GetMapping(value=EndpointURI.ACT_EMPLOYEE)
 	public ResponseEntity<Object> findEmployeeById(@PathVariable Long id){
 		if (!employeeService.idExist(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
@@ -97,7 +97,7 @@ public class EmployeeController {
 	
 
 
-	@DeleteMapping(value = EndpointURI.DELETE_EMPLOYEE)
+	@DeleteMapping(value = EndpointURI.ACT_EMPLOYEE)
 	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
 		if (!employeeService.isEmployeeAlreadyExists(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
@@ -118,7 +118,7 @@ public class EmployeeController {
 
 	}
 	
-	@PutMapping(value = EndpointURI.UPDATE_EMPLOYEE)
+	@PutMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> UpdateEmployee(@RequestBody EmployeeDto employeeDto) {
 		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_EXISTS,
@@ -131,7 +131,7 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = EndpointURI.DELETE_EMPLOYEE_PHOTO)
+	@DeleteMapping(value = EndpointURI.EMPLOYEE_PHOTO)
 	public ResponseEntity<Object> DeleteEmployeePhotoById(@PathVariable Long id){
 		
 		Employee employee = employeeService.findById(id).get();
@@ -143,7 +143,7 @@ public class EmployeeController {
 	
 	}
 	
-	@PostMapping(value = EndpointURI.ADD_EMPLOYEE_PHOTO)
+	@PostMapping(value = EndpointURI.EMPLOYEE_PHOTO)
 	public ResponseEntity<Object> AddEmployeePhoto(@PathVariable Long id,@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes) throws IOException{
 		
 		
@@ -170,7 +170,7 @@ public class EmployeeController {
 		   
 	}
 	
-	@PutMapping(value = EndpointURI.EMPLOYEE_PHOTO_UPDATE)
+	@PutMapping(value = EndpointURI.EMPLOYEE_PHOTO)
 	public ResponseEntity<Object> updateEmployeePhoto(@PathVariable Long id , @RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes) throws IOException{
 
             if (!employeeService.isEmployeeAlreadyExists(id)) {
