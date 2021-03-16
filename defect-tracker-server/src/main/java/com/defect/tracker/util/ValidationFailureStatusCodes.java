@@ -93,7 +93,7 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.projectModule.alreadyExist}")
 	private String projectModuleAlreadyExist;
 	
-	@Value("${validation.project.getProjectempNotExist}")
+	@Value("${validation.project.getProjectemployeeNotExists}")
 	private String projectemployeeNotExists;
 	
 	//login
