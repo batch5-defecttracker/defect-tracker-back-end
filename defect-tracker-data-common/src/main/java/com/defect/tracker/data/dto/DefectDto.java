@@ -4,7 +4,6 @@ import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 public class DefectDto {
 
@@ -12,7 +11,6 @@ public class DefectDto {
 	@NotEmpty(message = "{defectDto.defectDescription.Empty}")
 	@NotNull(message = "{defectDto.defectDescription.Null}")
 	@NotBlank(message = "{defectDto.defectDescription.Space}")
-	//@Pattern(regexp="^[A-Za-z_.]*$", message = "{defectDto.defectDescription.Space}")
 	private String defectDescription;
 	@NotEmpty(message = "{defectDto.str.Empty}")
 	@NotNull(message = "{defectDto.str.Null}")

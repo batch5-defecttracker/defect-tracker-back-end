@@ -78,7 +78,7 @@ public class ModuleController {
 	
 	
 	@PutMapping(value = EndpointURI.MODULE)
-	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {
+	public ResponseEntity<Object> updateModule(@Valid @RequestBody ModuleDto moduleDto) {
 		if (!moduleService.isModuleExists(moduleDto.getId())) {
 			return new ResponseEntity<> (new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
 					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
