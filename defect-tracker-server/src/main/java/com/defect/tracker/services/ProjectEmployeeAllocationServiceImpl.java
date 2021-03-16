@@ -39,5 +39,11 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 			
 		}
 
+
+	@Override
+	public List<ProjectEmp> findbyModule(Long id) {
+		return projectemployeeallocationRepository.findByModuleId(id);
+	}
+
 		
 }
