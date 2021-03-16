@@ -74,7 +74,7 @@ public class DefectController {
 		return new ResponseEntity<Object>(mapper.map(defectService.getAllDefect(), DefectResponseDto.class),
 				HttpStatus.OK);
 	}
-		
+
 		@PostMapping(value = EndpointURI.DEFECT)
 		public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
 		java.sql.Date date = new Date(System.currentTimeMillis());

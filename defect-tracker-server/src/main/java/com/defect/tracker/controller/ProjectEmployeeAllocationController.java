@@ -12,7 +12,10 @@ import com.defect.tracker.services.ProjectEmployeeAllocationService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.dto.ProjectEmp_ResponseDto;
+import com.defect.tracker.data.dto.ProjectEmp_ResponseDto1;
 import com.defect.tracker.data.dto.Project_EmpDto;
 import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.mapper.Mapper;
@@ -114,29 +117,16 @@ public class ProjectEmployeeAllocationController {
 	}
 
 	
-
+	@GetMapping(value = EndpointURI.GET_EMPLOYEE_BY_MODULE)
+	public ResponseEntity<Object> getEmployeeByModule(@PathVariable Long id){
+		if (!projectemployeeallocationService.existsByModuleId(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMPTY,
+					validationFailureStatusCodes.getProjectemployeeNotExists()),HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Object>(mapper.map(projectemployeeallocationService.getEmployeeByModule(id),ProjectEmp_ResponseDto1.class),HttpStatus.OK);
+	}
 	
 
-	/*
-	 * @GetMapping(value=EndpointURI.MODULE_ALLOCATION) public
-	 * ResponseEntity<Object> getAllModulesByAllocation(){
-	 * 
-	 * if(projectemployeeallocationService.getAllModuleAllocations().isEmpty()) {
-	 * return new ResponseEntity<Object>(new
-	 * ValidationFailureResponse(ValidationConstance.SUBMODULE_DOES_NOT_EXISTS,
-	 * validationFailureStatusCodes.getSubModuleNotExist()),
-	 * HttpStatus.BAD_REQUEST); }
-	 * 
-	 *
-	 * return new ResponseEntity<Object>(projectemployeeallocationService.
-	 * getAllModuleAllocations(), HttpStatus.OK);
-	 * 
-	 * }
-	 */
-
-
-	
-	
 
 	@PutMapping(value = EndpointURI.UPDATE_PROJECT_EMPLOYEE_ALLOCATION)
 	public ResponseEntity<Object> updateProjectAllocation(@RequestBody Project_EmpDto project_EmpDto){
