@@ -1,4 +1,6 @@
 package com.defect.tracker.controller;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +40,7 @@ public class ModuleController {
 	
 	
 	@PostMapping(value = EndpointURI.MODULE)
-	public ResponseEntity<Object> addModule(@RequestBody ModuleDto moduleDto) {
+	public ResponseEntity<Object> addModule(@Valid @RequestBody ModuleDto moduleDto) {
 		 if(moduleRepository.existsByModuleNameAndProjectId(moduleDto.getModuleName(), moduleDto.getProjectId())) { 
 					  return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_ALREADY_EXIST,
 							  validationFailureStatusCodes.getProjectModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
@@ -76,7 +78,7 @@ public class ModuleController {
 	
 	
 	@PutMapping(value = EndpointURI.MODULE)
-	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {
+	public ResponseEntity<Object> updateModule(@Valid @RequestBody ModuleDto moduleDto) {
 		if (!moduleService.isModuleExists(moduleDto.getId())) {
 			return new ResponseEntity<> (new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
 					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
