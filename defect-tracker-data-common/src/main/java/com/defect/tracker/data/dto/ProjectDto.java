@@ -1,6 +1,9 @@
 package com.defect.tracker.data.dto;
+<<<<<<< HEAD
 
 import javax.validation.constraints.NotBlank;
+=======
+>>>>>>> ded266a87943e6996195ec20a9c1ea32f624fe19
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
