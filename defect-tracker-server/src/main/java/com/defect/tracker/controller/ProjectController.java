@@ -49,7 +49,7 @@ public class ProjectController {
 	}
 
 	@GetMapping(value = EndpointURI.ACT_PROJECT)
-	public ResponseEntity<Object> findById(@PathVariable Long id) {
+	public ResponseEntity<Object> findById(@Valid @PathVariable Long id) {
 		if (!projectService.existProject(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
@@ -69,7 +69,7 @@ public class ProjectController {
 	}
 
 	@PutMapping(value = EndpointURI.PROJECT)
-	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
+	public ResponseEntity<Object> updateProject(@Valid @RequestBody ProjectDto projectDto) {
 		if (!projectService.existProject(projectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
