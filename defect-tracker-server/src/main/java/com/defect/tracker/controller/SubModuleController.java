@@ -1,4 +1,6 @@
 package com.defect.tracker.controller;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +41,7 @@ public class SubModuleController {
 	
 	
 	@PostMapping(value = EndpointURI.SUBMODULE)
-	public ResponseEntity<Object> createSubModule(@RequestBody SubModuleDto subModuleDto){
+	public ResponseEntity<Object> createSubModule(@Valid @RequestBody SubModuleDto subModuleDto){
 		  if(subModuleRepository.existsBySubmoduleNameAndModuleId(subModuleDto.
 		  getSubmoduleName(), subModuleDto.getModuleId())) { 
 			  return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_ALREADY_EXIST,
@@ -78,11 +80,12 @@ public class SubModuleController {
 	
 	
 	@PutMapping(value= EndpointURI.SUBMODULE)
-	public ResponseEntity<Object> updateSubModule(@RequestBody SubModuleDto subModuleDto){	
-		if(!subModuleService.existsSubModule(subModuleDto.getId())){
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_DOES_NOT_EXISTS, 
-					validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto){	
+		 if(subModuleRepository.existsBySubmoduleNameAndModuleId(subModuleDto.
+				  getSubmoduleName(), subModuleDto.getModuleId())) { 
+					  return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_ALREADY_EXIST,
+							  validationFailureStatusCodes.getSubModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
+				  }
 		SubModule submodule =  mapper.map(subModuleDto ,SubModule.class);
 		subModuleService.Update(submodule);
 		return new ResponseEntity<Object>(Constants.UpdateSubmodule, HttpStatus.OK);
