@@ -68,8 +68,8 @@ public class DefectController {
 		return new ResponseEntity<Object>(mapper.map(defectService.getAllDefect(), DefectResponseDto.class),
 				HttpStatus.OK);
 	}
-
-	@PostMapping(value = EndpointURI.DEFECT_ADD)
+		
+	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@RequestBody DefectDto defectDto) {
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		defectDto.setTimeStamp(date);
@@ -90,13 +90,13 @@ public class DefectController {
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADD_SUCCESS, HttpStatus.OK);
-	}
-
-	@PutMapping(value = EndpointURI.DEFECT_UPDATE)
-	public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto) {
+	}	
+	
+	@PutMapping(value= EndpointURI.DEFECT)
+	public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto){
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		defectDto.setTimeStamp(date);
-		if (!defectService.isDefectExists(defectDto.getId())) {
+		if(!defectService.isDefectExists(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
 		}

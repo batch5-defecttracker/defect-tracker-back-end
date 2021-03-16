@@ -90,7 +90,7 @@ public class ProjectEmployeeAllocationController {
 	
 	
 	
-	@GetMapping(value = EndpointURI.GET_PROJECT_ALLOCATION)
+	@GetMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> getAllProjectAllocation(){
 		if (projectemployeeallocationService.getAll().isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_ALLOCATED,
@@ -138,7 +138,7 @@ public class ProjectEmployeeAllocationController {
 	
 	
 
-	@PutMapping(value = EndpointURI.UPDATE_PROJECT_EMP)
+	@PutMapping(value = EndpointURI.UPDATE_PROJECT_EMPLOYEE_ALLOCATION)
 	public ResponseEntity<Object> updateProjectAllocation(@RequestBody Project_EmpDto project_EmpDto){
 		if (!projectemployeeallocationService.existsByid(project_EmpDto.getId())) {
 			return new ResponseEntity<>(
