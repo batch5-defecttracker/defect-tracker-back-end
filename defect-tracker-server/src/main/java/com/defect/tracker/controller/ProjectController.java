@@ -39,7 +39,7 @@ public class ProjectController {
 
 		if (projectService.isProNameAlreadyExist(proDto.getProjectName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
-					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 
 		Project project = mapper.map(proDto, Project.class);
@@ -76,7 +76,7 @@ public class ProjectController {
 		}
 		if (projectService.isProNameAlreadyExist(projectDto.getProjectName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NAME_EXISTS,
-					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 
 		Project project = mapper.map(projectDto, Project.class);
