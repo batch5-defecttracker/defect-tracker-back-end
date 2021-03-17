@@ -1,7 +1,6 @@
 package com.defect.tracker.controller;
 
 import java.sql.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,7 +51,7 @@ public class DefectController {
 		return new ResponseEntity<Object>(mapper.map(defectService.getAllDefect(), DefectResponseDto.class), HttpStatus.OK);	
 	}
 		
-		@PostMapping(value = EndpointURI.DEFECT)
+	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@RequestBody DefectDto defectDto) {
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		defectDto.setTimeStamp(date);
@@ -110,15 +109,21 @@ public class DefectController {
 	}
 	
 	@GetMapping(value = EndpointURI.GET_BY_ASSIGN_ID)
-	public ResponseEntity<Object> getDefByAssin(@PathVariable Long id) {
+	public ResponseEntity<Object> getDefByAssinId(@PathVariable Long id) {
 		if(defectService.getByAssignedId(id).isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Object>(mapper.map(defectService.getByAssignedId(id), DefectAssignDto.class), HttpStatus.OK);	
-	
-		
 	}
 	
+	@GetMapping(value = EndpointURI.GET_ALL_DEFECT)
+	public ResponseEntity<Object> getALLDefect(){
+		if(defectService.getAllDefect().isEmpty()) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DOES_NOT_EXISTS,
+					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Object>(mapper.map(defectService.getAllDefect(), DefectAssignDto.class), HttpStatus.OK);	
+	}
 }
 
