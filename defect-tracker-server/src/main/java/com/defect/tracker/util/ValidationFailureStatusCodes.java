@@ -12,84 +12,108 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:ValidationMessages.properties")
 public class ValidationFailureStatusCodes {
-
-	@Value("${validation.firstName.notExist}")
-	private String employeeNotExists;
-
-	@Value("${validation.email.alreadyExist}")
-	private String emailAlreadyExist;
-
-	@Value("${validation.defectType.notExist}")
-	private String defectTypeNotFound;
-
-	@Value("${validation.employee.notExist}")
-	private String employeeNotExist;
-
-	private String employeeNotFound;
-
+ 
+	
+	
+	//Defect
+	@Value("${validation.defect.notExist}")
+	private String defectNotExist;
+	
+	//priority
+	@Value("${validation.priority.notExist}")
+	private String priorityNotExist;
+	
+	//severity
 	@Value("${validation.severity.notExist}")
 	private String severityNotExist;
 
+	//defect_type
+	@Value("${validation.defectType.notExist}")
+	private String defectTypeNotFound;
+	
+	//defect_status
+	@Value("${validation.defect.statusNotExists}")
+	private String defectStatusNotExist;
+	
+	//designation
+	@Value("${validation.designation.notExist}")
+	private String designationNotExist;
+	
+	//Allocation
+	@Value("${validation.projectAllocation.notExist}")
+	private String projectAllocationNotExist;
+	
+	@Value("${validation.projectAllocation.failed}")
+	private String projectAllocationFailed;
+	
+	//Employee
+	@Value("${validation.employee.notExist}")
+	private String employeeNotExist;
+	
+	@Value("${validation.firstName.notExist}")
+	private String employeeNotExists;
+	
+	
+
+	@Value("${validation.employeeIdType.notExist}")
+	private String employeeIdNotFound;
+	
+	@Value("${validation.employee.alreadyExist}")
+	private String employeeAlreadyExist;
+	
+	@Value("${validation.employee.notFound}")
+	private String employeeNotFound;
+
+	//project
 	@Value("${validation.project.notExist}")
 	private String projectNotExist;
-
+ 
+	
+	@Value("${validation.project.AlreadyExists}")
+	 private String projectNameAlreadyExists;
+	
+	//module
 	@Value("${validation.module.notExist}")
 	private String moduleNotExist;
 
 	@Value("${validation.module.alreadyExist}")
 	private String moduleAlreadyExist;
-
-	@Value("${validation.project.AlreadyExists}")
-	private String proNameAlreadyExists;
-
-	@Value("${validation.defect.notExist}")
-	private String defectNotExist;
-
-	@Value("${validation.projectemp.isProjectempExists}")
-	private String projectempAlreadyExists;
-
-	@Value("${validation.employeeIdType.notExist}")
-	private String employeeIdNotFound;
-
-	@Value("${validation.defect.statusNotExists}")
-	private String defectStatusNotExist;
+	
+	//submodule
+	@Value("${validation.subModule.notExist}")
+	private String subModuleNotExist;
+	
+	@Value("${validation.subModule.AlreadyExist}")
+	private String subModuleAlreadyExist;
+	
+	//projectEmployee
+	@Value("{validation.projectemp.isProjectempExists}")
+	private String projectemployeeAlreadyExists;
 
 	@Value("${validation.projectModule.alreadyExist}")
 	private String projectModuleAlreadyExist;
-
-	@Value("${validation.project.getProjectempNotExist}")
+	
+	@Value("${validation.project.getProjectemployeeNotExists}")
 	private String projectemployeeNotExists;
+	
+	//login
+	@Value("${validation.email.alreadyExist}")
+	private String emailAlreadyExist;
 
-	@Value("${validation.employee.alreadyExist}")
-	private String employeeAlreadyExist;
+	
+	
+	public String getDefectNotExist() {
+		return defectNotExist;
+	}
 
-	@Value("${validation.subModule.notExist}")
-	private String subModuleNotExist;
-
-	@Value("${validation.projectAllocation.notExist}")
-	private String projectAllocationNotExist;
-
-	@Value("${validation.projectAllocation.failed}")
-	private String projectAllocationFailed;
-
-	@Value("${validation.submodule.notExist}")
-	private String subModuleNotExists;
-
-	@Value("${validation.priority.notExist}")
-	private String priorityNotExist;
-
-	@Value("${validation.subModule.AlreadyExist}")
-	private String subModuleAlreadyExist;
-
-	@Value("${validation.designation.notExist}")
-	private String designationNotExist;
+	public void setDefectNotExist(String defectNotExist) {
+		this.defectNotExist = defectNotExist;
+	}
 
 	@Value("${validation.defect.notExist}")
 	private String defectEmployeeNotExist;
 	
-	public String getProjectempAlreadyExists() {
-		return projectempAlreadyExists;
-	}
+	
 
 	public String getDefectEmployeeNotExist() {
 		return defectEmployeeNotExist;
@@ -99,33 +123,6 @@ public class ValidationFailureStatusCodes {
 		this.defectEmployeeNotExist = defectEmployeeNotExist;
 	}
 
-	public void setProjectempAlreadyExists(String projectempAlreadyExists) {
-		this.projectempAlreadyExists = projectempAlreadyExists;
-	}
-
-	public String getProjectemployeeNotExists() {
-		return projectemployeeNotExists;
-	}
-
-	public void setProjectemployeeNotExists(String projectemployeeNotExists) {
-		this.projectemployeeNotExists = projectemployeeNotExists;
-	}
-
-	public String getSubModuleNotExist() {
-		return subModuleNotExist;
-	}
-
-	public void setSubModuleNotExist(String subModuleNotExist) {
-		this.subModuleNotExist = subModuleNotExist;
-	}
-
-	public String getSubModuleNotExists() {
-		return subModuleNotExists;
-	}
-
-	public void setSubModuleNotExists(String subModuleNotExists) {
-		this.subModuleNotExists = subModuleNotExists;
-	}
 
 	public String getPriorityNotExist() {
 		return priorityNotExist;
@@ -133,55 +130,6 @@ public class ValidationFailureStatusCodes {
 
 	public void setPriorityNotExist(String priorityNotExist) {
 		this.priorityNotExist = priorityNotExist;
-	}
-
-	public String getEmailAlreadyExist() {
-		return emailAlreadyExist;
-	}
-
-	public void setEmailAlreadyExist(String emailAlreadyExist) {
-		this.emailAlreadyExist = emailAlreadyExist;
-	}
-
-	public String getDefectTypeNotFound() {
-		return defectTypeNotFound;
-	}
-
-	public void setDefectTypeNotFound(String defectTypeNotFound) {
-		this.defectTypeNotFound = defectTypeNotFound;
-	}
-
-	public void setProNameAlreadyExists(String proNameAlreadyExists) {
-		this.proNameAlreadyExists = proNameAlreadyExists;
-	}
-
-	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
-	}
-
-	public String getEmployeeNotExists() {
-		return employeeNotExists;
-	}
-
-	public void setEmployeeNotExists(String employeeNotExists) {
-		this.employeeNotExists = employeeNotExists;
-
-	}
-
-	public String getEmployeeNotExist() {
-		return employeeNotExist;
-	}
-
-	public void setEmployeeNotExist(String employeeNotExist) {
-		this.employeeNotExist = employeeNotExist;
-	}
-
-	public String getEmployeeNotFound() {
-		return employeeNotFound;
-	}
-
-	public void setEmployeeNotFound(String employeeNotFound) {
-		this.employeeNotFound = employeeNotFound;
 	}
 
 	public String getSeverityNotExist() {
@@ -192,50 +140,20 @@ public class ValidationFailureStatusCodes {
 		this.severityNotExist = severityNotExist;
 	}
 
-	public String getProjectNotExist() {
-		return projectNotExist;
+	public String getDefectTypeNotFound() {
+		return defectTypeNotFound;
 	}
 
-	public void setProjectNotExist(String projectNotExist) {
-		this.projectNotExist = projectNotExist;
+	public void setDefectTypeNotFound(String defectTypeNotFound) {
+		this.defectTypeNotFound = defectTypeNotFound;
 	}
 
-	public String getModuleNotExist() {
-		return moduleNotExist;
+	public String getDefectStatusNotExist() {
+		return defectStatusNotExist;
 	}
 
-	public void setModuleNotExist(String moduleNotExist) {
-		this.moduleNotExist = moduleNotExist;
-	}
-
-	public String getModuleAlreadyExist() {
-		return moduleAlreadyExist;
-	}
-
-	public void setModuleAlreadyExist(String moduleAlreadyExist) {
-		this.moduleAlreadyExist = moduleAlreadyExist;
-	}
-
-	public String getEmployeeAlreadyExist() {
-		return employeeAlreadyExist;
-	}
-
-	public void setEmployeeAlreadyExist(String employeeAlreadyExist) {
-		this.employeeAlreadyExist = employeeAlreadyExist;
-
-	}
-
-	public String getDefectNotExist() {
-		return defectNotExist;
-	}
-
-	public void setDefectNotExist(String defectNotExist) {
-		this.defectNotExist = defectNotExist;
-
-	}
-
-	public String getSubModuleAlreadyExist() {
-		return subModuleAlreadyExist;
+	public void setDefectStatusNotExist(String defectStatusNotExist) {
+		this.defectStatusNotExist = defectStatusNotExist;
 	}
 
 	public String getDesignationNotExist() {
@@ -262,12 +180,20 @@ public class ValidationFailureStatusCodes {
 		this.projectAllocationFailed = projectAllocationFailed;
 	}
 
-	public String getDefectStatusNotExist() {
-		return defectStatusNotExist;
+	public String getEmployeeNotExist() {
+		return employeeNotExist;
 	}
 
-	public void setDefectStatusNotExist(String defectStatusNotExist) {
-		this.defectStatusNotExist = defectStatusNotExist;
+	public void setEmployeeNotExist(String employeeNotExist) {
+		this.employeeNotExist = employeeNotExist;
+	}
+
+	public String getEmployeeNotExists() {
+		return employeeNotExists;
+	}
+
+	public void setEmployeeNotExists(String employeeNotExists) {
+		this.employeeNotExists = employeeNotExists;
 	}
 
 	public String getEmployeeIdNotFound() {
@@ -278,8 +204,79 @@ public class ValidationFailureStatusCodes {
 		this.employeeIdNotFound = employeeIdNotFound;
 	}
 
+	public String getEmployeeAlreadyExist() {
+		return employeeAlreadyExist;
+	}
+
+	public void setEmployeeAlreadyExist(String employeeAlreadyExist) {
+		this.employeeAlreadyExist = employeeAlreadyExist;
+	}
+
+	public String getEmployeeNotFound() {
+		return employeeNotFound;
+	}
+
+	public void setEmployeeNotFound(String employeeNotFound) {
+		this.employeeNotFound = employeeNotFound;
+	}
+
+	public String getProjectNotExist() {
+		return projectNotExist;
+	}
+
+	public void setProjectNotExist(String projectNotExist) {
+		this.projectNotExist = projectNotExist;
+	}
+
+	
+	public String getProjectNameAlreadyExists() {
+		return projectNameAlreadyExists;
+	}
+
+	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
+		this.projectNameAlreadyExists = projectNameAlreadyExists;
+	}
+
+	public String getModuleNotExist() {
+		return moduleNotExist;
+	}
+
+	public void setModuleNotExist(String moduleNotExist) {
+		this.moduleNotExist = moduleNotExist;
+	}
+
+	public String getModuleAlreadyExist() {
+		return moduleAlreadyExist;
+	}
+
+	public void setModuleAlreadyExist(String moduleAlreadyExist) {
+		this.moduleAlreadyExist = moduleAlreadyExist;
+	}
+
+	public String getSubModuleNotExist() {
+		return subModuleNotExist;
+	}
+
+	public void setSubModuleNotExist(String subModuleNotExist) {
+		this.subModuleNotExist = subModuleNotExist;
+	}
+
+	public String getSubModuleAlreadyExist() {
+		return subModuleAlreadyExist;
+	}
+
 	public void setSubModuleAlreadyExist(String subModuleAlreadyExist) {
 		this.subModuleAlreadyExist = subModuleAlreadyExist;
+	}
+
+	
+
+	public String getProjectemployeeAlreadyExists() {
+		return projectemployeeAlreadyExists;
+	}
+
+	public void setProjectemployeeAlreadyExists(String projectemployeeAlreadyExists) {
+		this.projectemployeeAlreadyExists = projectemployeeAlreadyExists;
 	}
 
 	public String getProjectModuleAlreadyExist() {
@@ -290,4 +287,23 @@ public class ValidationFailureStatusCodes {
 		this.projectModuleAlreadyExist = projectModuleAlreadyExist;
 	}
 
+	public String getProjectemployeeNotExists() {
+		return projectemployeeNotExists;
+	}
+
+	public void setProjectemployeeNotExists(String projectemployeeNotExists) {
+		this.projectemployeeNotExists = projectemployeeNotExists;
+	}
+
+	public String getEmailAlreadyExist() {
+		return emailAlreadyExist;
+	}
+
+	public void setEmailAlreadyExist(String emailAlreadyExist) {
+		this.emailAlreadyExist = emailAlreadyExist;
+	}
+
+	
+	
 }
+	

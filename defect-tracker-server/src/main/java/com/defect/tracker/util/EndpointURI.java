@@ -16,7 +16,7 @@ public final class EndpointURI {
 	public static final String GET_EMPLOYEE_BY_NAME = EMPLOYEE + SLASH + "firstname" + SLASH + "{firstName}";
 	public static final String LOGINSTATUS = BASE_API_PATH + "login-status";
 	public static final String GET_EMPLOYEE_BY_DESIGNATION = EMPLOYEE + SLASH + "designation"+ SLASH +"{designationId}";
-
+	
 	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
 	public static final String ACT_PROJECT= PROJECT + ID;
@@ -52,7 +52,8 @@ public final class EndpointURI {
 
 	// projectEmp
 	public static final String UPDATE_PROJECT_EMPLOYEE_ALLOCATION = PROJECT_ALLOCATION;
-
+	public static final String GET_EMPLOYEE_BY_MODULE= PROJECT_ALLOCATION+"/get-emploee-by-module"+ID;
+	
 	// getAllStatus
 	public static final String DEFECTSTATUS = BASE_API_PATH + "defect-status";
 	public static final String DEFECT_STATUS =  DEFECTSTATUS +SLASH+"defect" + ID;
@@ -69,7 +70,14 @@ public final class EndpointURI {
 	// Login
 	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employee-status-update";
 
+		
 
+	
+	
+
+
+
+	
 	private EndpointURI() {
 
 	}
