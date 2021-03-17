@@ -99,9 +99,20 @@ public class ValidationFailureStatusCodes {
 	//login
 	@Value("${validation.email.alreadyExist}")
 	private String emailAlreadyExist;
+	
+	@Value("${validation.email.NotExist}")
+	private String emailNotExist;
 
 	
 	
+	public String getEmailNotExist() {
+		return emailNotExist;
+	}
+
+	public void setEmailNotExist(String emailNotExist) {
+		this.emailNotExist = emailNotExist;
+	}
+
 	public String getDefectNotExist() {
 		return defectNotExist;
 	}
