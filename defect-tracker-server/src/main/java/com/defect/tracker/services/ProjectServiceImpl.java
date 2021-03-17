@@ -1,10 +1,7 @@
 package com.defect.tracker.services;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.repositories.ProjectRepository;
 
@@ -53,6 +50,11 @@ public class ProjectServiceImpl implements ProjectService{
 	@Override
 	public List<Project> findAll() {
 		
+		return projectRepository.findAll();
+	}
+
+	@Override
+	public List<Project> getAllProject() {
 		return projectRepository.findAll();
 	}
 

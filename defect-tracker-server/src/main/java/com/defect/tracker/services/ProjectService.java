@@ -1,6 +1,5 @@
 package com.defect.tracker.services;
 import java.util.List;
-import java.util.Optional;
 import com.defect.tracker.data.entities.Project;
 public interface ProjectService {
 
@@ -11,6 +10,6 @@ public interface ProjectService {
 	public void createProject(Project project);
 	public List<Project> findAll();
 	public void updateProject(Project project);
+	public List<Project> getAllProject();
 	
-
 }
