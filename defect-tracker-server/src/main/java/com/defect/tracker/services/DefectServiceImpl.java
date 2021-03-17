@@ -1,17 +1,26 @@
 package com.defect.tracker.services;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.multipart.MultipartFile;
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.repositories.DefectRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class DefectServiceImpl implements DefectService {
+	
+	private static final String UPLOAD_FOLDER = "C:\\Users\\Admin\\Desktop\\Defect-Tracker\\defect-tracker-back-end\\defect-tracker-server\\src\\main\\resources\\";
 	
 	@Autowired
 	private DefectRepository defectRepository;
@@ -44,8 +53,7 @@ public class DefectServiceImpl implements DefectService {
 	@Override
 	public void addDefect(Defect defect) {
 		defectRepository.save(defect);
-		
-		
+			
 	}
 
 	@Override
@@ -87,5 +95,22 @@ public class DefectServiceImpl implements DefectService {
 		mailServiceImpl.sendListEmail(mails, module, names, openedEmployee, status);
 	}
 
+	@Override
+	public String fileUpload(MultipartFile file) throws IOException {
+		byte [] data = file.getBytes();
+		Path path = Paths.get(UPLOAD_FOLDER+ file.getOriginalFilename());
+		Files.write(path, data);
+		System.out.println(path);
+		Path path1 = Paths.get(file.getOriginalFilename());
+		return path1.toString();	
+	}
+
+	 @Override
+	 public DefectDto getJson(String Defect, MultipartFile file) throws JsonMappingException, JsonProcessingException { 
+		  DefectDto defectJson = new DefectDto();
+		  ObjectMapper objectMapper = new ObjectMapper();
+		  defectJson = objectMapper.readValue(Defect,DefectDto.class); return defectJson; 
+	  }
+	 
 	
 }

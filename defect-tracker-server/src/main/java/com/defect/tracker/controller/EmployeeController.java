@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +23,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.defect.tracker.data.dto.EmployeeDto;
+import com.defect.tracker.data.dto.Employee_login_ResponseDto;
+import com.defect.tracker.data.dto.LoginDto;
 import com.defect.tracker.data.entities.Employee;
+import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.EmployeeService;
+import com.defect.tracker.services.LoginService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -37,6 +43,9 @@ public class EmployeeController {
 	
 	@Autowired
 	EmployeeService employeeService;
+	
+	@Autowired
+	LoginService loginService;
 
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
@@ -48,15 +57,20 @@ public class EmployeeController {
 	private Mapper mapper;
 
 	@PostMapping(value = EndpointURI.EMPLOYEE)
-	public ResponseEntity<Object> addEmployee(@RequestBody EmployeeDto employeeDto) {
-		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
+	public ResponseEntity<Object> addEmployee(@Valid @RequestBody Employee_login_ResponseDto employee_login_ResponseDto) {
+		if (employeeService.isEmailAlreadyExist(employee_login_ResponseDto.getEmail())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_EXISTS,
 					validationFailureStatusCodes.getEmailAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
-		Employee employee = mapper.map(employeeDto, Employee.class);
+		Employee employee = mapper.map(employee_login_ResponseDto, Employee.class);
 		employeeService.createEmployee(employee);
 		
+		LoginDto loginDto = mapper.map(employee_login_ResponseDto, LoginDto.class);
+		loginDto.setEmployeeId(employee.getId());
+		loginDto.setStatus("Inactive");
+		Login login = mapper.map(loginDto, Login.class);
 		
+		loginService.create(login);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
 	}
 	

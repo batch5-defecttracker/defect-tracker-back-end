@@ -26,6 +26,14 @@ public class LoginServiceImpl implements LoginService {
 	public List<Login> getLoginByStatus(String status) {
 		return loginRepositroy.findByStatus(status);
 	}
+
+
+
+	@Override
+	public void create(Login login) {
+		loginRepositroy.save(login);
+		
+	}
 	
 	
 }
