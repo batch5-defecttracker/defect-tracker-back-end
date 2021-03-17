@@ -35,6 +35,7 @@ public final class EndpointURI {
 	public static final String DEFECT = BASE_API_PATH + "defect";
 	public static final String UPDATE_DEFECT_STATUS =DEFECT + ID + SLASH + "status" + SLASH + "{status}";
 	public static final String DEFECT_GET_BY_ID = DEFECT + ID;
+	public static final String GET_DEFECT_BY_SERACH = BASE_API_PATH + "getDefectBySearch";
 
 	// designation
 	public static final String DESIGNATION = BASE_API_PATH + "designation";
@@ -65,7 +66,7 @@ public final class EndpointURI {
 	public static final String PRIORITY = BASE_API_PATH + "priority";
 
 	// Login
-	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employee-status-update";
+	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employee-status-update" + SLASH + "email" + SLASH + "{email}" + SLASH + "status" + SLASH + "{status}";
 
 		
 
