@@ -19,41 +19,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class DefectServiceImpl implements DefectService {
-	
+
 	private static final String UPLOAD_FOLDER = "C:\\Users\\Admin\\Desktop\\Defect-Tracker\\defect-tracker-back-end\\defect-tracker-server\\src\\main\\resources\\";
-	
+
 	@Autowired
 	private DefectRepository defectRepository;
-	
+
 	@Autowired
 	DefectStatusService defectStatusService;
-	
+
 	@Autowired
 	ProjectEmployeeAllocationService projectEmployeeAllocationService;
 
 	@Autowired
 	MailServiceImpl mailServiceImpl;
-	
+
 	@Autowired
 	EmployeeService employeeService;
-	
-	
+
 	@Override
 	public List<Defect> getAllDefect() {
-		return defectRepository.findAll() ;
+		return defectRepository.findAll();
 	}
 
 	@Override
 	public boolean isDefectAlreadyExist(Long id) {
-		
+
 		return defectRepository.existsById(id);
 	}
-
 
 	@Override
 	public void addDefect(Defect defect) {
 		defectRepository.save(defect);
-			
+
 	}
 
 	@Override
@@ -63,9 +61,9 @@ public class DefectServiceImpl implements DefectService {
 
 	@Override
 	public Defect findById(Long id) {
-		return defectRepository.findById(id).get() ;
+		return defectRepository.findById(id).get();
 	}
-	
+
 	public void dataCall(DefectDto defectDto) {
 		String mail = findById(defectDto.getEmployeeId()).getEmployee().getEmail();
 		String module = findById(defectDto.getModuleId()).getModule().getModuleName();
@@ -97,20 +95,20 @@ public class DefectServiceImpl implements DefectService {
 
 	@Override
 	public String fileUpload(MultipartFile file) throws IOException {
-		byte [] data = file.getBytes();
-		Path path = Paths.get(UPLOAD_FOLDER+ file.getOriginalFilename());
+		byte[] data = file.getBytes();
+		Path path = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
 		Files.write(path, data);
 		System.out.println(path);
 		Path path1 = Paths.get(file.getOriginalFilename());
-		return path1.toString();	
+		return path1.toString();
 	}
 
-	 @Override
-	 public DefectDto getJson(String Defect, MultipartFile file) throws JsonMappingException, JsonProcessingException { 
-		  DefectDto defectJson = new DefectDto();
-		  ObjectMapper objectMapper = new ObjectMapper();
-		  defectJson = objectMapper.readValue(Defect,DefectDto.class); return defectJson; 
-	  }
-	 
-	
+	@Override
+	public DefectDto getJson(String Defect, MultipartFile file) throws JsonMappingException, JsonProcessingException {
+		DefectDto defectJson = new DefectDto();
+		ObjectMapper objectMapper = new ObjectMapper();
+		defectJson = objectMapper.readValue(Defect, DefectDto.class);
+		return defectJson;
+	}
+
 }
