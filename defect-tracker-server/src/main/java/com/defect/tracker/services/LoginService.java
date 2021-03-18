@@ -14,13 +14,14 @@ public interface LoginService {
 
 	
 	public List<Login> getLoginByStatus(String status);
-	public void updateEmployeeStatus(Login login);
+	
 	public void create(Login login);
 
 	public void updateEmployeeStatus(String email, String status);
 	
 	public boolean isEmailAlreadyExist(String email);
 	
-
+	public String getUserName (String email);
+	public String getUserPassword (String email);
 	
 }

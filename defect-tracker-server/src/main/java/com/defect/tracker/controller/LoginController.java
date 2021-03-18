@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,8 @@ public class LoginController {
 	@Autowired
 	MailServiceImpl mailServiceImpl;
 
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
@@ -57,6 +60,33 @@ public class LoginController {
 	@GetMapping(value = EndpointURI.LOGINSTATUS)
 	public List<LoginResDto> GetEmpId(@RequestParam String status) {
 		return mapper.map(loginService.getLoginByStatus(status), LoginResDto.class);
+	}
+
+	@GetMapping(value = EndpointURI.LOGIN)
+	public ResponseEntity<Object> login(@RequestParam String userName1, String password2, String email) {
+
+		String userName = loginService.getUserName(email);
+		String password = loginService.getUserPassword(email);
+
+		if (userName1.equals(userName) && passwordEncoder.matches(password2, password)) {
+			return new ResponseEntity<Object>(Constants.LOGIN_SUCCESS, HttpStatus.OK);
+
+		}
+
+		else if (!userName1.equals(userName) && passwordEncoder.matches(password2, password)) {
+			return new ResponseEntity<Object>(Constants.WRONG_USER_NAME, HttpStatus.BAD_REQUEST);
+		}
+
+		else if (userName1.equals(userName) && !passwordEncoder.matches(password2, password)) {
+			return new ResponseEntity<Object>(Constants.WRONG_PASSWORD, HttpStatus.BAD_REQUEST);
+		}
+
+		else if (userName1.isBlank() || (password2.isBlank())) {
+			return new ResponseEntity<Object>(Constants.USER_NAME_OR_PASSWORD_EMPTY, HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<Object>(Constants.LOGIN_FAILED, HttpStatus.BAD_REQUEST);
+
 	}
 
 	@PostMapping(value = EndpointURI.FORGOT_PASSWORD)
