@@ -1,21 +1,22 @@
 package com.defect.tracker.controller;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartFile;
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.dto.DefectResponseDto;
 import com.defect.tracker.data.entities.Defect;
@@ -43,7 +44,7 @@ public class DefectController {
 
 	@Autowired
 	MailServiceImpl mailServiceImpl;
-	
+
 	@Autowired
 	DefectServiceImpl defectServiceImpl;
 
@@ -75,9 +76,13 @@ public class DefectController {
 				HttpStatus.OK);
 	}
 
-		@PostMapping(value = EndpointURI.DEFECT)
-		public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
+	@PostMapping(value = EndpointURI.DEFECT, consumes = { MediaType.APPLICATION_JSON_VALUE,
+			MediaType.MULTIPART_FORM_DATA_VALUE })
+	public ResponseEntity<Object> addDefect(@RequestPart String defect1, @RequestPart("file") MultipartFile file)
+			throws IOException {
 		java.sql.Date date = new Date(System.currentTimeMillis());
+		DefectDto defectDto = defectService.getJson(defect1, file);
+
 		defectDto.setTimeStamp(date);
 		defectDto.setDefectStatusId(6);
 		List<String> mails = new ArrayList<>();
@@ -93,31 +98,36 @@ public class DefectController {
 			mails.add(projectEmp.getEmployee().getEmail());
 		}
 		mailServiceImpl.sendListEmailNew(mails, module, names, assignedEmployee, status);
+		defectDto.setFile(defectServiceImpl.fileUpload(file));
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADD_SUCCESS, HttpStatus.OK);
-	}	
-	
-	@PutMapping(value= EndpointURI.DEFECT)
-	public ResponseEntity<Object> updateDefect(@Valid @RequestBody DefectDto defectDto){
+
+	}
+
+	@PutMapping(value = EndpointURI.DEFECT)
+	public ResponseEntity<Object> updateDefect(@Valid @RequestBody DefectDto defectDto) {
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		defectDto.setTimeStamp(date);
-		if(!defectService.isDefectExists(defectDto.getId())) {
+		if (!defectService.isDefectExists(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Open") || defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Fixed") || defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Reject")) {
+				.equalsIgnoreCase("Open")
+				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+						.equalsIgnoreCase("Fixed")
+				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+						.equalsIgnoreCase("Reject")) {
 			defectServiceImpl.dataCall(defectDto);
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.addDefect(defect);
 			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 		}
 		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Closed") || defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Reopen")) {
+				.equalsIgnoreCase("Closed")
+				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+						.equalsIgnoreCase("Reopen")) {
 			defectServiceImpl.dataListCall(defectDto);
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.addDefect(defect);
@@ -156,7 +166,5 @@ public class DefectController {
 		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 	}
-
-
 
 }

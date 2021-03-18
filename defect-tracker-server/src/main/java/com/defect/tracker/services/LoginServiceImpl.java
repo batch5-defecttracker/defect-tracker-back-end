@@ -109,4 +109,23 @@ public class LoginServiceImpl implements LoginService {
 		return diff.toMinutes() >= EXPIRE_TOKEN_AFTER_MINUTES;
 	}
 
+
+
+
+
+	@Override
+	public void create(Login login) {
+		loginRepositroy.save(login);
+		
+	}
+
+	@Override
+	public void updateEmployeeStatus(Login login) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	
+
 }
