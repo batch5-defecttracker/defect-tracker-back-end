@@ -139,12 +139,15 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public void updateEmployeeStatus(Login login) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+	public String getUserName(String email) {
+		return loginRepository.findByEmail(email).get().getUserName();
 
-	
+	}
+
+	@Override
+	public String getUserPassword(String email) {
+		return loginRepository.findByEmail(email).get().getPassword();
+	}
+
 
 }
