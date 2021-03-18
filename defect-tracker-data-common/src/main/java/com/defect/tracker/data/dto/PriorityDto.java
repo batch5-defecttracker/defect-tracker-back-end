@@ -1,24 +1,22 @@
 package com.defect.tracker.data.dto;
 
 public class PriorityDto {
-	private Long Id;
+
+	private Long id;
+	private String priorityName;
+ 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
-	private String prioName;
-	
-	
-	
-	public String getPrioName() {
-		return prioName;
+	public String getPriorityName() {
+		return priorityName;
 	}
-	public void setPrioName(String prioName) {
-		this.prioName = prioName;
+	public void setPriorityName(String priorityName) {
+		this.priorityName = priorityName;
 	}
-	
 	
 
 }

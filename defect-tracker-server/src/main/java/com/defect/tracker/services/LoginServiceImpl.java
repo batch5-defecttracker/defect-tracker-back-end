@@ -7,21 +7,48 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.defect.tracker.data.dto.LoginDto;
 import com.defect.tracker.data.entities.Login;
+import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.LoginRepository;
 
 import ch.qos.logback.core.util.Duration;
 
 @Service
 public class LoginServiceImpl implements LoginService {
+
 	private static final int EXPIRE_TOKEN_AFTER_MINUTES = 1;
-	@Autowired LoginRepository loginRepository;
+
+	@Autowired 
+	private LoginRepository loginRepository;
+
+	@Autowired
+	Mapper mapper;
 
 	@Override
 	public List<Login> getEmployee(String status) {
 		
 		return loginRepository.getByStatus(status);
 	
+	}
+
+	@Override
+	public List<Login> getLoginByStatus(String status) {
+		return loginRepositroy.findByStatus(status);
+	}
+
+	@Override
+	public void updateEmployeeStatus(String email, String status) {
+		Login login = loginRepositroy.findByEmail(email).get();
+		LoginDto loginDto = mapper.map(login, LoginDto.class);
+		loginDto.setStatus(status);
+		login = mapper.map(loginDto, Login.class);
+		loginRepositroy.save(login);
+	}
+
+	@Override
+	public boolean isEmailAlreadyExist(String email) {
+		return loginRepositroy.existsByEmail(email);
 	}
 	
 	public String forgotPassword(String email) {
@@ -96,8 +123,4 @@ public class LoginServiceImpl implements LoginService {
 //	}
 
 	
-	
-	
-	
-
 }

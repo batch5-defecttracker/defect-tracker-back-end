@@ -3,14 +3,33 @@ package com.defect.tracker.services;
 import java.util.List;
 
 import com.defect.tracker.data.entities.ProjectEmp;
+import com.defect.tracker.data.entities.SubModule;
 
 public interface ProjectEmployeeAllocationService {
+
+	public void deAllocateProject(Long id);
+
+	boolean existsByid(Long id);
+
+	public void addProjectAllocation(ProjectEmp projectEmp);
+
+	public List<ProjectEmp> getAll();
+
+	 //public List<ProjectEmp> getAllModuleAllocations(); 
+		
+		  //public boolean isModuleNotExist(String name);
+		  
+		  public void update(ProjectEmp projectEmp);
+		  public List<ProjectEmp> getEmployeeByModule(Long moduleId);
+		  boolean existsByModuleId(Long moduleId);
+		  public List<ProjectEmp> findbyModule(Long id);
+	// public List<ProjectEmp> getAllModuleAllocations();
+
+	// public boolean isModuleNotExist(String name);
+
 	
-	public void DeleteProjectEmp(Long id);
-	public boolean isProjectempExists(Long id);
-	public List<ProjectEmp> getAPISubmoduleAllocation(Long SubModuleId);
-    public boolean isProjectEmployeeExistsByProjectId(Long SubModuleId);
 	
 	
+
 
 }

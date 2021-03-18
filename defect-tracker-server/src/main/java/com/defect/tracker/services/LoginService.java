@@ -1,8 +1,6 @@
 package com.defect.tracker.services;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.defect.tracker.data.entities.Login;
 
 
@@ -15,5 +13,11 @@ public interface LoginService {
 	public String resetPassword(String token, String password);
 
 	
+	public List<Login> getLoginByStatus(String status);
 
+	public void updateEmployeeStatus(String email, String status);
+	
+	public boolean isEmailAlreadyExist(String email);
+	
+	
 }

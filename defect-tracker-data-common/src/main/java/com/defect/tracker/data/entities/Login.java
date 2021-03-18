@@ -24,7 +24,7 @@ public class Login {
 	@Column(columnDefinition = "TIMESTAMP")
 	private LocalDateTime tokenCreationDate;
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="empId",nullable=false)
+	@JoinColumn(name="employeeId",nullable=false)
 	private Employee employee;
 	
 	public String getEmail() {

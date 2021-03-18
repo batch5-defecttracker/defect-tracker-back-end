@@ -1,8 +1,15 @@
 package com.defect.tracker.data.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class ModuleDto {
 	
 	private Long id;
+	@NotNull(message = "{moduleDto.moduleName.Null}")
+	@NotEmpty(message = "{moduleDto.moduleName.Empty}")
+	@NotBlank(message = "{moduleDto.moduleName.Space}")
 	private String moduleName;
 	private Long projectId;
 	public Long getId() {
