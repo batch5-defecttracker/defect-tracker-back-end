@@ -5,12 +5,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,13 +36,15 @@ import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
 import com.defect.tracker.util.ValidationFailureStatusCodes;
 
+
 @RestController
 public class EmployeeController {
 	private static String UPLOADED_FOLDER = "D://DefectNew/defect-tracker-back-end/defect-tracker-server/src/main/resources/";
-	
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	@Autowired
 	EmployeeService employeeService;
+	
 	
 	@Autowired
 	LoginService loginService;
@@ -50,14 +52,13 @@ public class EmployeeController {
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
-//	@Autowired
-//	Employee employee;
+
 	
 	@Autowired
 	private Mapper mapper;
 
 	@PostMapping(value = EndpointURI.EMPLOYEE)
-	public ResponseEntity<Object> addEmployee(@Valid @RequestBody Employee_login_ResponseDto employee_login_ResponseDto) {
+	public ResponseEntity<Object> addEmployee(@Valid @RequestBody Employee_login_ResponseDto employee_login_ResponseDto ) {
 		if (employeeService.isEmailAlreadyExist(employee_login_ResponseDto.getEmail())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_EXISTS,
 					validationFailureStatusCodes.getEmailAlreadyExist()), HttpStatus.BAD_REQUEST);
@@ -65,8 +66,11 @@ public class EmployeeController {
 		Employee employee = mapper.map(employee_login_ResponseDto, Employee.class);
 		employeeService.createEmployee(employee);
 		
+		 
 		LoginDto loginDto = mapper.map(employee_login_ResponseDto, LoginDto.class);
 		loginDto.setEmployeeId(employee.getId());
+		String encryptedPassword = passwordEncoder.encode(employee_login_ResponseDto.getPassword());
+		loginDto.setPassword(encryptedPassword);
 		loginDto.setStatus("Inactive");
 		Login login = mapper.map(loginDto, Login.class);
 		
