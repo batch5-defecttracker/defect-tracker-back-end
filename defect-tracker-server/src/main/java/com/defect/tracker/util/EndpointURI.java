@@ -65,7 +65,7 @@ public final class EndpointURI {
 
 	// Login
 	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employee-status-update";
-
+	public static final String PASSWORD = BASE_API_PATH + "password";
 
 	private EndpointURI() {
 

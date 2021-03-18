@@ -41,7 +41,7 @@ public class DefectController {
 
 	@Autowired
 	MailServiceImpl mailServiceImpl;
-	
+
 	@Autowired
 	DefectServiceImpl defectServiceImpl;
 
@@ -72,7 +72,7 @@ public class DefectController {
 		return new ResponseEntity<Object>(mapper.map(defectService.getAllDefect(), DefectResponseDto.class),
 				HttpStatus.OK);
 	}
-		
+
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@RequestBody DefectDto defectDto) {
 		java.sql.Date date = new Date(System.currentTimeMillis());
@@ -94,28 +94,31 @@ public class DefectController {
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADD_SUCCESS, HttpStatus.OK);
-	}	
-	
-	@PutMapping(value= EndpointURI.DEFECT)
-	public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto){
+	}
+
+	@PutMapping(value = EndpointURI.DEFECT)
+	public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto) {
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		defectDto.setTimeStamp(date);
-		if(!defectService.isDefectExists(defectDto.getId())) {
+		if (!defectService.isDefectExists(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Open") || defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Fixed") || defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Reject")) {
+				.equalsIgnoreCase("Open")
+				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+						.equalsIgnoreCase("Fixed")
+				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+						.equalsIgnoreCase("Reject")) {
 			defectServiceImpl.dataCall(defectDto);
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.addDefect(defect);
 			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 		}
 		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Closed") || defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase("Reopen")) {
+				.equalsIgnoreCase("Closed")
+				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+						.equalsIgnoreCase("Reopen")) {
 			defectServiceImpl.dataListCall(defectDto);
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.addDefect(defect);
@@ -123,7 +126,6 @@ public class DefectController {
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,
 				validationFailureStatusCodes.getDefectStatusNotExist()), HttpStatus.BAD_REQUEST);
-
 	}
 
 	@GetMapping(value = EndpointURI.DEFECT_GET_BY_ID)
@@ -154,7 +156,5 @@ public class DefectController {
 		defectService.addDefect(defect);
 		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 	}
-
-
 
 }

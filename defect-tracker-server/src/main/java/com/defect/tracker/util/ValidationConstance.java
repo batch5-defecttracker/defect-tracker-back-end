@@ -55,6 +55,8 @@ public class ValidationConstance {
 	public static final String EMPLOYEE_PHOTO_EMPTY = "Employee Photo is Empty";
 	
 	public static final String MODULE_ALREADY_EXIST = "The Name You enterd Module is Already Exists In Project";
+	
+	public static final String PASSWORD_DO_NOT_MATCH= "Password do not match";
 
 	private ValidationConstance() {
 	}

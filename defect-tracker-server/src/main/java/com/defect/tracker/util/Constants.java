@@ -56,6 +56,9 @@ public class Constants {
 
 		
 		public static final String PROJECT_EMP_UPDATE = "updateProjectEmp SuccessFully";
+		
+		//Password
+		public static final String PASSWORD_CHANGED_SUCCESS = "Password changed successfully";
 
 
 		// encaptulate constructor to restrict modification from outside

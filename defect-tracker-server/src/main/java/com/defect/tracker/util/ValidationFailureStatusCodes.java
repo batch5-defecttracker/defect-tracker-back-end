@@ -83,6 +83,9 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.designation.notExist}")
 	private String designationNotExist;
+	
+	@Value("${validation.password.notMatcht}")
+	private String passwordNotMatch;
 
 	public String getProjectempAlreadyExists() {
 		return projectempAlreadyExists;
@@ -278,5 +281,15 @@ public class ValidationFailureStatusCodes {
 	public void setProjectModuleAlreadyExist(String projectModuleAlreadyExist) {
 		this.projectModuleAlreadyExist = projectModuleAlreadyExist;
 	}
+
+	public String getPasswordNotMatch() {
+		return passwordNotMatch;
+	}
+
+	public void setPasswordNotMatch(String passwordNotMatch) {
+		this.passwordNotMatch = passwordNotMatch;
+	}
+	
+	
 
 }
