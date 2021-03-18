@@ -21,7 +21,8 @@ public class SeverityController {
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	
-	@GetMapping(value = EndpointURI.GET_ALL_SEVERITY) 
+
+	@GetMapping(value = EndpointURI.SEVERITY) 
 	public ResponseEntity<Object> getAllSeverity() {
 		if (severityservice.getAllSeverity().isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOTEXIST,

@@ -6,33 +6,27 @@ package com.defect.tracker.util;
 public final class EndpointURI {
 
 	private static final String BASE_API_PATH = "/api/v1/";
-	
-	//Employee
-	public static final String EMPLOYEE = BASE_API_PATH + "employee";
-	
-	public static final String DELETE_EMPLOYEE_PHOTO =  BASE_API_PATH + "deleteEmployeePhoto/{id}";
-	public static final String ADD_EMPLOYEE_PHOTO =  BASE_API_PATH + "addEmployeePhoto/{id}";
-	public static final String UPDATE_EMPLOYEE =  BASE_API_PATH + "updateEmployee";
-
-
+	private static final String ID="/{id}";
+	private static final String SLASH="/";
 
 	//getEmployee 
 	public static final String GET_EMPLOYEE_BY_NAME = BASE_API_PATH + "getEmployeebyName/{firstName}";
-
 	public static final String LOGINSTATUS = BASE_API_PATH + "loginstatus";
 	public static final String DELETE_EMPLOYEE =  BASE_API_PATH + "deleteEmployee/{id}";
 	public static final String EMPLOYEE_GET = BASE_API_PATH + "employeeGet/{id}";
 	public static final String GET_EMPLOYEE_BY_DESIGNATION = BASE_API_PATH + "getEmployeebyDesignation/{designationId}";
+
+	// Employee
+	public static final String EMPLOYEE = BASE_API_PATH + "employee";
+	public static final String EMPLOYEE_PHOTO = EMPLOYEE + SLASH + "photo" + ID;
+	public static final String ACT_EMPLOYEE = EMPLOYEE + ID;
 	
-	//Project	
+	
+	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
-	public static final String PROJECT_FIND = BASE_API_PATH + "find/{id}";
-	public static final String UPDATE_PROJECT = BASE_API_PATH + "update";
-	public static final String PROJECT_DELETE = BASE_API_PATH + "delete/{id}";
-	
-	
- 
-	//Module
+	public static final String ACT_PROJECT= PROJECT + ID;
+
+	// Module
 	public static final String MODULE = BASE_API_PATH + "module";
 	public static final String MODULE_ADD = BASE_API_PATH + "addmodule";
 	public static final String GET_MODULE_BY_PROJECT = BASE_API_PATH + "getModulebyProject/{projectId}";
@@ -47,32 +41,49 @@ public final class EndpointURI {
 	public static final String UpdateSubModule = BASE_API_PATH +"SubModule";
 	public static final String SUBMODULE_DELETE = BASE_API_PATH + "deleteSubModule/{id}";
 
+
+	// SubModule
+	public static final String SUBMODULE = BASE_API_PATH + "submodule";
+	public static final String GET_SUBMODULE = SUBMODULE + SLASH + "module" + SLASH + "{moduleId}";
 	
 
-	//Defect
+	// Defect
 	public static final String DEFECT = BASE_API_PATH + "defect";
-	public static final String DEFECT_ADD = BASE_API_PATH + "addDefect";
-	
-	public static final String DEFECT_UPDATE = BASE_API_PATH + "updateDefect";
-	
-	public static final String UPDATE_DEFECT_STATUS= BASE_API_PATH+ "updateDefectStatus/{id}/status/{status}";
+	public static final String UPDATE_DEFECT_STATUS =DEFECT + ID + SLASH + "status" + SLASH + "{status}";
+	public static final String DEFECT_GET_BY_ID = DEFECT + ID;
+	public static final String GET_DEFECT_BY_SERACH = BASE_API_PATH + "getDefectBySearch";
 
 	//designation
 	public static final String GET_ALL_DESIGNATION = BASE_API_PATH + "designation";
-	public static final String DEFECT_GET_BY_ID= BASE_API_PATH+ "getDefect/{id}";
+	
 	
 
+	// designation
+	public static final String DESIGNATION = BASE_API_PATH + "designation";
 
-	//projectEmployee	
-	public static final String EMPLOYEE_DEALLOCATION_FOR_SUBMODULE=BASE_API_PATH +"ProjectEmployee/{id}";
 
+	// projectEmployee
+	public static final String EMPLOYEE_DEALLOCATION_FOR_SUBMODULE = BASE_API_PATH + "project-employee" + ID;
+	
+	// Project Deallocation
+	public static final String PROJECT_ALLOCATION = BASE_API_PATH + "project-allocation";
+	public static final String DEALLOCATE_PROJECT = PROJECT_ALLOCATION+ ID;
+	public static final String MODULE_ALLOCATION = BASE_API_PATH + "module-allocation";
 
-	//getAllStatus
-	public static final String DEFECTSTATUS = BASE_API_PATH + "getstatus";
-	public static final String DEFECT_STATUS = BASE_API_PATH + "getCurrentStatus/{id}";
+	// projectEmp
+	public static final String UPDATE_PROJECT_EMPLOYEE_ALLOCATION = PROJECT_ALLOCATION;
+	public static final String GET_EMPLOYEE_BY_MODULE= PROJECT_ALLOCATION+"/get-emploee-by-module"+ID;
+	
+	// getAllStatus
+	public static final String DEFECTSTATUS = BASE_API_PATH + "defect-status";
+	public static final String DEFECT_STATUS =  DEFECTSTATUS +SLASH+"defect" + ID;
 
-	//DefectType
-	public static final String DEFECTTYPE = BASE_API_PATH + "defecttype";
+	// DefectType
+	public static final String DEFECTTYPE = BASE_API_PATH + "defect-type";
+
+	// GetAllSeverity
+	public static final String SEVERITY = BASE_API_PATH + "severity";
+
 
 	//GetAllSeverity
 
@@ -85,23 +96,15 @@ public final class EndpointURI {
 	//GetAllPriority
 	public static final String GET_ALL_PRIORITY = BASE_API_PATH + "getAllpriority";
 	
+
+	// GetAllPriority
+	public static final String PRIORITY = BASE_API_PATH + "priority";
+
+
 	// Login
-	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employeeStatusUpdate";
+	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employee-status-update" + SLASH + "email" + SLASH + "{email}" + SLASH + "status" + SLASH + "{status}";
 
-	
 		
-		
-	//Project Deallocation
-	public static final String DEALLOCATE_PROJECT = BASE_API_PATH + "deallocateProject/{id}";
-	public static final String PROJECT_ALLOCATION = BASE_API_PATH + "projectAllocation";
-	public static final String GET_PROJECT_ALLOCATION = BASE_API_PATH + "getProjectAllocation";
-	public static final String MODULE_ALLOCATION = BASE_API_PATH + "moduleAllocation";
-	
-
-	
-//Update Employee Photo
-	public static final String EMPLOYEE_PHOTO_UPDATE = BASE_API_PATH + "employeePhotoUpdate/{id}";
-
 	
 
 	//projectEmp
@@ -110,8 +113,9 @@ public final class EndpointURI {
 	//get image
 	public static final String getImage = BASE_API_PATH + "getImage/{id}";
 
+
+	
 	private EndpointURI() {
-		
+
 	}
 }
-

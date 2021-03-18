@@ -20,7 +20,8 @@ public class PriorityController {
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	
-	@GetMapping(value = EndpointURI.GET_ALL_PRIORITY) 
+
+	@GetMapping(value = EndpointURI.PRIORITY) 
 	public ResponseEntity<Object> getAllSeverity() {
 		if (priorityService.getAllPriority().isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_NOTEXIST,

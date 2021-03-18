@@ -19,7 +19,9 @@ public class DesignationController {
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	
-	@GetMapping(value = EndpointURI.GET_ALL_DESIGNATION )
+
+
+	@GetMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> getAllDesignation(){
 		if (designationService.getAlldesignation().isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXIST,
