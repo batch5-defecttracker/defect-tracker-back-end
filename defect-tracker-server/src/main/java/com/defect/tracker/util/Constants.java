@@ -61,8 +61,10 @@ public class Constants {
 		public static final String PASSWORD_CHANGED_SUCCESS = "Password changed successfully";
 
 
-		// encaptulate constructor to restrict modification from outside
-		
-		private Constants() {
-		}
+	// encaptulate constructor to restrict modification from outside
+	
+	public static final String PASSWORD_UPDATED = "Password Updated";
+	
+	private Constants() {
+	}
 }
