@@ -58,8 +58,10 @@ public class Constants {
 		public static final String PROJECT_EMP_UPDATE = "updateProjectEmp SuccessFully";
 
 
-		// encaptulate constructor to restrict modification from outside
-		
-		private Constants() {
-		}
+	// encaptulate constructor to restrict modification from outside
+	
+	public static final String PASSWORD_UPDATED = "Password Updated";
+	
+	private Constants() {
+	}
 }
