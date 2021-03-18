@@ -57,5 +57,13 @@ public class MailServiceImpl implements CommandLineRunner {
 		}
 
 	}
+	
+	public void sendApprovalEmail(String mail, String employee, String status) {
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(mail);
+		msg.setSubject(" Account Approval ");
+		msg.setText("Hi " + employee + ", \n" + "Your Account is " + status);
+		javaMailSender.send(msg);
+	}
 
 }
