@@ -18,6 +18,8 @@ public interface LoginService {
 	public void updateEmployeeStatus(String email, String status);
 	
 	public boolean isEmailAlreadyExist(String email);
+
+	public String emailVerification(String token, String email);
 	
 	
 }

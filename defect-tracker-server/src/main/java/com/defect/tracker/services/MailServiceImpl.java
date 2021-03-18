@@ -73,5 +73,13 @@ public class MailServiceImpl implements CommandLineRunner {
 		msg.setText("This is the Token to Change your Password \n" + token);
 		javaMailSender.send(msg);
 	}
+	
+	public void sendVerifyEmail(String email, String token) {
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(email);
+		msg.setSubject(" Email Verification ");
+		msg.setText("This is the Token to Verify your Email \n" + token);
+		javaMailSender.send(msg);
+	}
 
 }

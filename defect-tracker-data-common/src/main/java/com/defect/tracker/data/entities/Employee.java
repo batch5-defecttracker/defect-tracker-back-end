@@ -33,7 +33,28 @@ public class Employee{
 	private String contactNumber;
 	private String nic;
 	private String image;
+	private String verification;
+	private String token;
 	
+	public String getToken() {
+		return token;
+	}
+
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+
+	public String getVerification() {
+		return verification;
+	}
+
+
+	public void setVerification(String verification) {
+		this.verification = verification;
+	}
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "timeStamp", nullable = false)
 	private Date timeStamp;

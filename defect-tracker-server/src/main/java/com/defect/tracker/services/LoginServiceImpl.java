@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.dto.LoginDto;
+import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.mapper.Mapper;
+import com.defect.tracker.data.repositories.EmployeeRepository;
 import com.defect.tracker.data.repositories.LoginRepository;
 
 @Service
@@ -20,6 +22,9 @@ public class LoginServiceImpl implements LoginService {
 	private static final int EXPIRE_TOKEN_AFTER_MINUTES = 2;
 	@Autowired
 	private LoginRepository loginRepository;
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
 
 	@Autowired
 	Mapper mapper;
@@ -107,6 +112,23 @@ public class LoginServiceImpl implements LoginService {
 		Duration diff = Duration.between(tokenCreationDate, now);
 
 		return diff.toMinutes() >= EXPIRE_TOKEN_AFTER_MINUTES;
+	}
+
+	@Override
+	public String emailVerification(String token, String email) {
+		String response;
+		Optional<Employee> employeeOptional = employeeRepository.findByEmail(email);
+		Employee employee = employeeOptional.get();
+		if(employee.getToken().equals(token)) {
+			employee.setVerification("verified");
+			employee.setToken(null);
+			employeeRepository.save(employee);
+			response = "Email Verified";
+		}
+		else {
+			response = "Token is not Valid";
+		}
+		return response ;
 	}
 
 }
