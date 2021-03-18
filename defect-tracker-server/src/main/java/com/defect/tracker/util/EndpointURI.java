@@ -72,9 +72,12 @@ public final class EndpointURI {
 //GetAPIsubModuleAllocation
 	public static final String GETAPI_SUBMODULEALLOCATION = BASE_API_PATH + "SubmoduleAllocation/{SubModuleId}";
 
-		
+//LogIn
+	public static final String FORGOT_PASSWORD = BASE_API_PATH + "forgotpassword";
+	public static final String RESET_PASSWORD =  BASE_API_PATH + "reset-password";
+	
 	private EndpointURI() {
-		
+	
 	}
 }
 

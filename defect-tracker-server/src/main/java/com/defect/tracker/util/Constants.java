@@ -37,6 +37,8 @@ public class Constants {
 
 	// encaptulate constructor to restrict modification from outside
 	
+	public static final String PASSWORD_UPDATED = "Password Updated";
+	
 	private Constants() {
 	}
 }
