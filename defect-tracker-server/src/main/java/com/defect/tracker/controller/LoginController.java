@@ -28,10 +28,10 @@ public class LoginController {
 
 	@Autowired
 	LoginService loginService;
-	
+
 	@Autowired
 	LoginRepository loginRepository;
-	
+
 	@Autowired
 	MailServiceImpl mailServiceImpl;
 
@@ -40,11 +40,10 @@ public class LoginController {
 
 	@Autowired
 	private Mapper mapper;
-	
 
 	@PutMapping(value = EndpointURI.UPDATE_EMPLOYEE_STATUS)
-	public ResponseEntity<Object> updateEmployeeStatus(@PathVariable String email,@PathVariable String status) {
-		
+	public ResponseEntity<Object> updateEmployeeStatus(@PathVariable String email, @PathVariable String status) {
+
 		if (!loginService.isEmailAlreadyExist(email)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_NOT_EXISTS,
 					validationFailureStatusCodes.getEmailNotExist()), HttpStatus.BAD_REQUEST);
@@ -62,7 +61,6 @@ public class LoginController {
 
 	@PostMapping(value = EndpointURI.FORGOT_PASSWORD)
 	public String forgotPassword(@PathVariable String email) {
-
 		String response = loginService.forgotPassword(email);
 
 		if (!response.startsWith("Invalid")) {
@@ -73,7 +71,6 @@ public class LoginController {
 
 	@PutMapping(value = EndpointURI.RESET_PASSWORD)
 	public String resetPassword(@PathVariable String token, @PathVariable String password) {
-
 		return loginService.resetPassword(token, password);
 	}
 }

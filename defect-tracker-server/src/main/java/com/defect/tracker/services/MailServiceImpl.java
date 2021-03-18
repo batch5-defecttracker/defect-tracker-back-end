@@ -57,7 +57,7 @@ public class MailServiceImpl implements CommandLineRunner {
 		}
 
 	}
-	
+
 	public void sendApprovalEmail(String mail, String employee, String status) {
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setTo(mail);
@@ -65,7 +65,7 @@ public class MailServiceImpl implements CommandLineRunner {
 		msg.setText("Hi " + employee + ", \n" + "Your Account is " + status);
 		javaMailSender.send(msg);
 	}
-	
+
 	public void sendForgotEmail(String email, String token) {
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setTo(email);

@@ -1,4 +1,5 @@
 package com.defect.tracker.services;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,26 +14,24 @@ import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.LoginRepository;
 
-
-
 @Service
 public class LoginServiceImpl implements LoginService {
 
 	private static final int EXPIRE_TOKEN_AFTER_MINUTES = 2;
-	@Autowired 
+	@Autowired
 	private LoginRepository loginRepository;
 
 	@Autowired
 	Mapper mapper;
-	
+
 	@Autowired
 	MailServiceImpl mailServiceImpl;
 
 	@Override
 	public List<Login> getEmployee(String status) {
-		
+
 		return loginRepository.getByStatus(status);
-	
+
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public class LoginServiceImpl implements LoginService {
 	public boolean isEmailAlreadyExist(String email) {
 		return loginRepository.existsByEmail(email);
 	}
-	
+
 	public String forgotPassword(String email) {
 
 		Optional<Login> loginOptional = loginRepository.findByEmail(email);
@@ -96,15 +95,12 @@ public class LoginServiceImpl implements LoginService {
 		return "Your password successfully updated.";
 	}
 
-	
 	private String generateToken() {
 		StringBuilder token = new StringBuilder();
 
-		return token.append(UUID.randomUUID().toString())
-				.append(UUID.randomUUID().toString()).toString();
+		return token.append(UUID.randomUUID().toString()).append(UUID.randomUUID().toString()).toString();
 	}
 
-	
 	private boolean isTokenExpired(final LocalDateTime tokenCreationDate) {
 
 		LocalDateTime now = LocalDateTime.now();
@@ -113,5 +109,4 @@ public class LoginServiceImpl implements LoginService {
 		return diff.toMinutes() >= EXPIRE_TOKEN_AFTER_MINUTES;
 	}
 
-	
 }
