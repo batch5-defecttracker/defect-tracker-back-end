@@ -13,5 +13,7 @@ public interface LoginService {
 	
 	public boolean isEmailAlreadyExist(String email);
 	
+	public String getUserName (String email);
+	public String getUserPassword (String email);
 	
 }

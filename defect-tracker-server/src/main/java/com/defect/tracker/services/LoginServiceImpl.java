@@ -38,5 +38,15 @@ public class LoginServiceImpl implements LoginService {
 		return loginRepositroy.existsByEmail(email);
 	}
 
-	
+	@Override
+	public String getUserName(String email) {
+		return loginRepositroy.findByEmail(email).get().getUserName();
+
+	}
+
+	@Override
+	public String getUserPassword(String email) {
+		return loginRepositroy.findByEmail(email).get().getPassword();
+	}
+
 }
