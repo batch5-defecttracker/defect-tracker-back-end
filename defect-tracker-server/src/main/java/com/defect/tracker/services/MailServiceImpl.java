@@ -65,5 +65,13 @@ public class MailServiceImpl implements CommandLineRunner {
 		msg.setText("Hi " + employee + ", \n" + "Your Account is " + status);
 		javaMailSender.send(msg);
 	}
+	
+	public void sendForgotEmail(String email, String token) {
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(email);
+		msg.setSubject(" Forgort Password ");
+		msg.setText("This is the Token to Change your Password \n" + token);
+		javaMailSender.send(msg);
+	}
 
 }

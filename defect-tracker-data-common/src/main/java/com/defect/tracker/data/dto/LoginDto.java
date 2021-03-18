@@ -1,5 +1,6 @@
 package com.defect.tracker.data.dto;
 
+
 public class LoginDto {
 	
 	private String email;

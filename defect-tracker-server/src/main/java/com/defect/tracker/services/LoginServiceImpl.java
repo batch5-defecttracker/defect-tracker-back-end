@@ -1,4 +1,5 @@
 package com.defect.tracker.services;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -12,18 +13,20 @@ import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.LoginRepository;
 
-import ch.qos.logback.core.util.Duration;
+
 
 @Service
 public class LoginServiceImpl implements LoginService {
 
-	private static final int EXPIRE_TOKEN_AFTER_MINUTES = 1;
-
+	private static final int EXPIRE_TOKEN_AFTER_MINUTES = 2;
 	@Autowired 
 	private LoginRepository loginRepository;
 
 	@Autowired
 	Mapper mapper;
+	
+	@Autowired
+	MailServiceImpl mailServiceImpl;
 
 	@Override
 	public List<Login> getEmployee(String status) {
@@ -34,27 +37,26 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public List<Login> getLoginByStatus(String status) {
-		return loginRepositroy.findByStatus(status);
+		return loginRepository.findByStatus(status);
 	}
 
 	@Override
 	public void updateEmployeeStatus(String email, String status) {
-		Login login = loginRepositroy.findByEmail(email).get();
+		Login login = loginRepository.findByEmail(email).get();
 		LoginDto loginDto = mapper.map(login, LoginDto.class);
 		loginDto.setStatus(status);
 		login = mapper.map(loginDto, Login.class);
-		loginRepositroy.save(login);
+		loginRepository.save(login);
 	}
 
 	@Override
 	public boolean isEmailAlreadyExist(String email) {
-		return loginRepositroy.existsByEmail(email);
+		return loginRepository.existsByEmail(email);
 	}
 	
 	public String forgotPassword(String email) {
 
-		Optional<Login> loginOptional = Optional
-				.ofNullable(loginRepository.findByEmail(email));
+		Optional<Login> loginOptional = loginRepository.findByEmail(email);
 
 		if (!loginOptional.isPresent()) {
 			return "Invalid email id.";
@@ -63,9 +65,9 @@ public class LoginServiceImpl implements LoginService {
 		Login login = loginOptional.get();
 		login.setToken(generateToken());
 		login.setTokenCreationDate(LocalDateTime.now());
+		loginRepository.save(login);
 
-		login = loginRepository.save(login);
-
+		mailServiceImpl.sendForgotEmail(login.getEmail(), login.getToken());
 		return login.getToken();
 	}
 
@@ -79,13 +81,12 @@ public class LoginServiceImpl implements LoginService {
 
 		LocalDateTime tokenCreationDate = loginOptional.get().getTokenCreationDate();
 
-//		if (isTokenExpired(tokenCreationDate)) {
-//			return "Token expired.";
-//
-//		}
+		if (isTokenExpired(tokenCreationDate)) {
+			return "Token expired.";
+
+		}
 
 		Login login = loginOptional.get();
-
 		login.setPassword(password);
 		login.setToken(null);
 		login.setTokenCreationDate(null);
@@ -95,12 +96,7 @@ public class LoginServiceImpl implements LoginService {
 		return "Your password successfully updated.";
 	}
 
-	/**
-	 * Generate unique token. You may add multiple parameters to create a strong
-	 * token.
-	 * 
-	 * @return unique token
-	 */
+	
 	private String generateToken() {
 		StringBuilder token = new StringBuilder();
 
@@ -108,19 +104,14 @@ public class LoginServiceImpl implements LoginService {
 				.append(UUID.randomUUID().toString()).toString();
 	}
 
-	/**
-	 * Check whether the created token expired or not.
-	 * 
-	 * @param tokenCreationDate
-	 * @return true or false
-	 */
-//	private boolean isTokenExpired(final LocalDateTime tokenCreationDate) {
-//
-//		LocalDateTime now = LocalDateTime.now();
-//		Duration diff = Duration.between(tokenCreationDate, now);
-//
-//		return diff.toMinutes() >= EXPIRE_TOKEN_AFTER_MINUTES;
-//	}
+	
+	private boolean isTokenExpired(final LocalDateTime tokenCreationDate) {
+
+		LocalDateTime now = LocalDateTime.now();
+		Duration diff = Duration.between(tokenCreationDate, now);
+
+		return diff.toMinutes() >= EXPIRE_TOKEN_AFTER_MINUTES;
+	}
 
 	
 }

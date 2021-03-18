@@ -60,20 +60,19 @@ public class LoginController {
 		return mapper.map(loginService.getLoginByStatus(status), LoginResDto.class);
 	}
 
-	@PostMapping("/forgot-password")
-	public String forgotPassword(@RequestParam String email) {
+	@PostMapping(value = EndpointURI.FORGOT_PASSWORD)
+	public String forgotPassword(@PathVariable String email) {
 
 		String response = loginService.forgotPassword(email);
 
 		if (!response.startsWith("Invalid")) {
-			response = "http://localhost:1725/defect-tracker/reset-password?token=" + response;
+			response = "Password reset Token is Sent to your Email Address Successfully \n" + response;
 		}
 		return response;
 	}
 
-	@PutMapping("/reset-password")
-	public String resetPassword(@RequestParam String token,
-			@RequestParam String password) {
+	@PutMapping(value = EndpointURI.RESET_PASSWORD)
+	public String resetPassword(@PathVariable String token, @PathVariable String password) {
 
 		return loginService.resetPassword(token, password);
 	}
