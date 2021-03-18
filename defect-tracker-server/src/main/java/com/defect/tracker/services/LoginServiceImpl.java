@@ -115,19 +115,20 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public void create(Login login) {
-		loginRepositroy.save(login);
+		loginRepository.save(login);
 		
 	}
 
 	@Override
 	public String getUserName(String email) {
-		return loginRepositroy.findByEmail(email).get().getUserName();
+		return loginRepository.findByEmail(email).get().getUserName();
 
 	}
 
 	@Override
 	public String getUserPassword(String email) {
-		return loginRepositroy.findByEmail(email).get().getPassword();
+		return loginRepository.findByEmail(email).get().getPassword();
 	}
+
 
 }
