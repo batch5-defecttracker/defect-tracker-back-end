@@ -111,11 +111,9 @@ public class LoginServiceImpl implements LoginService {
 
 
 
-
-
 	@Override
 	public void create(Login login) {
-		loginRepositroy.save(login);
+		loginRepository.save(login);
 		
 	}
 

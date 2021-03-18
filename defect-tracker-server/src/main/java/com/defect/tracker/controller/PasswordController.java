@@ -28,7 +28,7 @@ public class PasswordController {
 	@PutMapping(value = EndpointURI.PASSWORD)
 	public ResponseEntity<Object> changePassword(@RequestParam String oldPassword, String newPassword, String email) {
 		String password = passwordService.getPassword(email);
-		if (oldPassword.equals(password)) {
+		if (bCryptPasswordEncoder.matches(oldPassword, password)) {
 			String code = bCryptPasswordEncoder.encode(newPassword);
 			passwordService.changePassword(code, email);
 			return new ResponseEntity<Object>(Constants.PASSWORD_CHANGED_SUCCESS, HttpStatus.OK);
