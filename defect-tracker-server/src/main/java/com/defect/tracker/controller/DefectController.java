@@ -135,7 +135,6 @@ public class DefectController {
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,
 				validationFailureStatusCodes.getDefectStatusNotExist()), HttpStatus.BAD_REQUEST);
-
 	}
 
 	@GetMapping(value = EndpointURI.DEFECT_GET_BY_ID)
