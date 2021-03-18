@@ -66,7 +66,7 @@ public class LoginController {
 		String response = loginService.forgotPassword(email);
 
 		if (!response.startsWith("Invalid")) {
-			response = "http://localhost:1724/reset-password?token=" + response;
+			response = "http://localhost:1725/defect-tracker/reset-password?token=" + response;
 		}
 		return response;
 	}
