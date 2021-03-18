@@ -104,6 +104,7 @@ public final class EndpointURI {
 	// Login
 	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employee-status-update" + SLASH + "email" + SLASH + "{email}" + SLASH + "status" + SLASH + "{status}";
 
+
 		
 	
 
@@ -114,8 +115,18 @@ public final class EndpointURI {
 	public static final String getImage = BASE_API_PATH + "getImage/{id}";
 
 
+
+	public static final String FORGOT_PASSWORD = BASE_API_PATH + "forgot-password" + SLASH + "email" + SLASH + "{email}";
+	public static final String RESET_PASSWORD =  BASE_API_PATH + "reset-password" + SLASH + "token" + SLASH + "{token}" + SLASH + "password" + SLASH + "{password}" ;
+	
+//GetAllPriority
+	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
+	
+//GetAPIsubModuleAllocation
+	public static final String GETAPI_SUBMODULEALLOCATION = BASE_API_PATH + "SubmoduleAllocation/{SubModuleId}";
+
 	
 	private EndpointURI() {
-
+	
 	}
 }

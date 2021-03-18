@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,10 +28,10 @@ public class LoginController {
 
 	@Autowired
 	LoginService loginService;
-	
+
 	@Autowired
 	LoginRepository loginRepository;
-	
+
 	@Autowired
 	MailServiceImpl mailServiceImpl;
 
@@ -39,11 +40,10 @@ public class LoginController {
 
 	@Autowired
 	private Mapper mapper;
-	
 
 	@PutMapping(value = EndpointURI.UPDATE_EMPLOYEE_STATUS)
-	public ResponseEntity<Object> updateEmployeeStatus(@PathVariable String email,@PathVariable String status) {
-		
+	public ResponseEntity<Object> updateEmployeeStatus(@PathVariable String email, @PathVariable String status) {
+
 		if (!loginService.isEmailAlreadyExist(email)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_NOT_EXISTS,
 					validationFailureStatusCodes.getEmailNotExist()), HttpStatus.BAD_REQUEST);
@@ -59,4 +59,18 @@ public class LoginController {
 		return mapper.map(loginService.getLoginByStatus(status), LoginResDto.class);
 	}
 
+	@PostMapping(value = EndpointURI.FORGOT_PASSWORD)
+	public String forgotPassword(@PathVariable String email) {
+		String response = loginService.forgotPassword(email);
+
+		if (!response.startsWith("Invalid")) {
+			response = "Password reset Token is Sent to your Email Address Successfully \n" + response;
+		}
+		return response;
+	}
+
+	@PutMapping(value = EndpointURI.RESET_PASSWORD)
+	public String resetPassword(@PathVariable String token, @PathVariable String password) {
+		return loginService.resetPassword(token, password);
+	}
 }
