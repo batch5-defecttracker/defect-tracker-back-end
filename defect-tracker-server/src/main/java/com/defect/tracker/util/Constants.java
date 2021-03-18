@@ -50,13 +50,9 @@ public class Constants {
 
 	// Login
 	public static final String LOGIN_SUCCESS = "Login Success";
-
 	public static final String WRONG_USER_NAME = "User Name Invalid !";
-
 	public static final String WRONG_PASSWORD = "Password Invalid !";
-
 	public static final String LOGIN_FAILED = "Login Failed";
-
 	public static final String USER_NAME_OR_PASSWORD_EMPTY = "Empty field !!";
 
 	// encaptulate constructor to restrict modification from outside
