@@ -131,4 +131,20 @@ public class LoginServiceImpl implements LoginService {
 		return response ;
 	}
 
+
+	@Override
+	public void create(Login login) {
+		loginRepository.save(login);
+		
+	}
+
+	@Override
+	public void updateEmployeeStatus(Login login) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	
+
 }
