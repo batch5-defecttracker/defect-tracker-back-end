@@ -51,8 +51,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.firstName.notExist}")
 	private String employeeNotExists;
 	
-	
-
 	@Value("${validation.employeeIdType.notExist}")
 	private String employeeIdNotFound;
 	
@@ -121,6 +119,20 @@ public class ValidationFailureStatusCodes {
 	public void setDefectNotExist(String defectNotExist) {
 		this.defectNotExist = defectNotExist;
 	}
+
+	@Value("${validation.defect.notExist}")
+	private String defectEmployeeNotExist;
+	
+	
+
+	public String getDefectEmployeeNotExist() {
+		return defectEmployeeNotExist;
+	}
+
+	public void setDefectEmployeeNotExist(String defectEmployeeNotExist) {
+		this.defectEmployeeNotExist = defectEmployeeNotExist;
+	}
+
 
 	public String getPriorityNotExist() {
 		return priorityNotExist;
