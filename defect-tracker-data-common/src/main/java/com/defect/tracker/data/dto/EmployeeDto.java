@@ -1,19 +1,47 @@
 package com.defect.tracker.data.dto;
 
 import java.util.Date;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 
 public class EmployeeDto {
 	
+	
 	private Long id;
-	private String firstName;
+	@NotNull(message="{employeeDto.FirstName.empty}")
+	@NotBlank(message="{employeeDto.FirstName.blank}")
+	@Pattern(regexp="^[a-zA-Z ]*$",message="No Special Charcter Accepeted")
+	private String firstName;  
+	@NotNull(message="{employeeDto.lastName.empty}")
+	@NotBlank(message="{employeeDto.lastName.blank}")
+	@Pattern(regexp="^[a-zA-Z ]*$",message="No Special Charcter Accepeted")
 	private String lastName;
 	private Long designationId;
+	
+	@Pattern(regexp = " Pattern.compile(\"@[.]\"",message="Please Put Valid Characters For Email Ex- abc@yahoo.com")
+	@NotNull(message="{employeeDto.email.empty}")
+	@NotBlank(message="{employeeDto.email.blank}")
 	private String email;
+	
+	
+	
+	@NotNull(message="{employeeDto.address.empty}")
+	@NotBlank(message="{employeeDto.address.blank}")
 	private String address;
+	@NotNull(message="{employeeDto.contactNumber.empty}")
+	@NotBlank(message="{employeeDto.contactNumber.blank}")
 	private String contactNumber;
+	
+	@NotNull(message="{employeeDto.nic.empty}")
+	@NotBlank(message="{employeeDto.nic.blank}")
+	@Pattern(regexp="^[a-zA-Z ]*$",message="No Special Charcter Accepeted")
 	private String nic;
 	private String image;
 	private Date timeStamp;
+	@NotNull(message="{employeeDto.gender.empty}")
+	@NotBlank(message="{employeeDto.gender.blank}")
 	private String gender;
 	public Long getId() {
 		return id;
