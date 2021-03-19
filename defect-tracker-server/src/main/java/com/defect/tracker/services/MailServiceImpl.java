@@ -78,7 +78,7 @@ public class MailServiceImpl implements CommandLineRunner {
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setTo(email);
 		msg.setSubject(" Email Verification ");
-		msg.setText("This is the Token to Verify your Email \n" + token);
+		msg.setText("Click the Link to Verify your Email \n" + token);
 		javaMailSender.send(msg);
 	}
 

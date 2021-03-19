@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -100,7 +102,7 @@ public class LoginServiceImpl implements LoginService {
 		return "Your password successfully updated.";
 	}
 
-	private String generateToken() {
+	public String generateToken() {
 		StringBuilder token = new StringBuilder();
 
 		return token.append(UUID.randomUUID().toString()).append(UUID.randomUUID().toString()).toString();
@@ -130,6 +132,11 @@ public class LoginServiceImpl implements LoginService {
 		}
 		return response ;
 	}
+	
+	public String getSiteURL(HttpServletRequest request) {
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
+    }  
 
 
 	@Override
