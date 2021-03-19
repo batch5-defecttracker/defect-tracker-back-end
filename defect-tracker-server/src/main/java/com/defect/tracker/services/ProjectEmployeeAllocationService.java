@@ -3,7 +3,6 @@ package com.defect.tracker.services;
 import java.util.List;
 
 import com.defect.tracker.data.entities.ProjectEmp;
-import com.defect.tracker.data.entities.SubModule;
 
 public interface ProjectEmployeeAllocationService {
 
