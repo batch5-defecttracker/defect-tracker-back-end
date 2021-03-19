@@ -121,28 +121,26 @@ public class LoginServiceImpl implements LoginService {
 		String response;
 		Optional<Employee> employeeOptional = employeeRepository.findByEmail(email);
 		Employee employee = employeeOptional.get();
-		if(employee.getToken().equals(token)) {
+		if (employee.getToken().equals(token)) {
 			employee.setVerification("verified");
 			employee.setToken(null);
 			employeeRepository.save(employee);
 			response = "Email Verified";
-		}
-		else {
+		} else {
 			response = "Token is not Valid";
 		}
-		return response ;
+		return response;
 	}
-	
-	public String getSiteURL(HttpServletRequest request) {
-        String siteURL = request.getRequestURL().toString();
-        return siteURL.replace(request.getServletPath(), "");
-    }  
 
+	public String getSiteURL(HttpServletRequest request) {
+		String siteURL = request.getRequestURL().toString();
+		return siteURL.replace(request.getServletPath(), "");
+	}
 
 	@Override
 	public void create(Login login) {
 		loginRepository.save(login);
-		
+
 	}
 
 	@Override
@@ -155,6 +153,5 @@ public class LoginServiceImpl implements LoginService {
 	public String getUserPassword(String email) {
 		return loginRepository.findByEmail(email).get().getPassword();
 	}
-
 
 }

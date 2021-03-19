@@ -46,13 +46,13 @@ public class EmployeeController {
 
 	@Autowired
 	EmployeeService employeeService;
-	
+
 	@Autowired
 	MailServiceImpl mailServiceImpl;
 
 	@Autowired
 	LoginService loginService;
-	
+
 	@Autowired
 	LoginServiceImpl loginServiceImpl;
 
@@ -63,8 +63,8 @@ public class EmployeeController {
 	private Mapper mapper;
 
 	@PostMapping(value = EndpointURI.EMPLOYEE)
-	public ResponseEntity<Object> addEmployee(
-			@Valid @RequestBody Employee_login_ResponseDto employee_login_ResponseDto, HttpServletRequest request) {
+	public ResponseEntity<Object> addEmployee(@Valid @RequestBody Employee_login_ResponseDto employee_login_ResponseDto,
+			HttpServletRequest request) {
 		if (employeeService.isEmailAlreadyExist(employee_login_ResponseDto.getEmail())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_EXISTS,
 					validationFailureStatusCodes.getEmailAlreadyExist()), HttpStatus.BAD_REQUEST);
@@ -75,8 +75,9 @@ public class EmployeeController {
 		employee.setVerification("Not-Verified");
 		employee.setToken(loginServiceImpl.generateToken());
 		employeeService.createEmployee(employee);
-		
-		String link = loginServiceImpl.getSiteURL(request) + "/api/v1/email-verification/email/" + employee.getEmail() + "/token/" + employee.getToken();
+
+		String link = loginServiceImpl.getSiteURL(request) + "/api/v1/email-verification/email/" + employee.getEmail()
+				+ "/token/" + employee.getToken();
 		mailServiceImpl.sendVerifyEmail(employee.getEmail(), link);
 		LoginDto loginDto = mapper.map(employee_login_ResponseDto, LoginDto.class);
 		loginDto.setEmployeeId(employee.getId());
@@ -84,7 +85,7 @@ public class EmployeeController {
 		loginDto.setPassword(encryptedPassword);
 		loginDto.setStatus("Inactive");
 		Login login = mapper.map(loginDto, Login.class);
-		
+
 		loginService.create(login);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
 	}
