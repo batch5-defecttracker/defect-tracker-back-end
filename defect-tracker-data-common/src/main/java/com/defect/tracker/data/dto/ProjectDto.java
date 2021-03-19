@@ -15,23 +15,29 @@ public class ProjectDto {
 	@NotBlank(message = "{projectDto.abbrevation.empty}")
 	@Pattern(regexp="^[a-zA-Z ]*$",message="No Special Charcter Accepeted")
 	private String abbrevation;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getProjectName() {
 		return projectName;
 	}
+
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
+
 	public String getAbbrevation() {
 		return abbrevation;
 	}
+
 	public void setAbbrevation(String abbrevation) {
 		this.abbrevation = abbrevation;
 	}
-	
+
 }

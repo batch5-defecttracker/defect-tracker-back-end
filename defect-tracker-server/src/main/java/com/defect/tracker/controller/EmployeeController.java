@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,8 @@ import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.LoginService;
+import com.defect.tracker.services.LoginServiceImpl;
+import com.defect.tracker.services.MailServiceImpl;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -44,7 +48,13 @@ public class EmployeeController {
 	EmployeeService employeeService;
 
 	@Autowired
+	MailServiceImpl mailServiceImpl;
+
+	@Autowired
 	LoginService loginService;
+
+	@Autowired
+	LoginServiceImpl loginServiceImpl;
 
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
@@ -54,15 +64,22 @@ public class EmployeeController {
 	private Mapper mapper;
 
 	@PostMapping(value = EndpointURI.EMPLOYEE)
-	public ResponseEntity<Object> addEmployee(
-			@Valid @RequestBody Employee_login_ResponseDto employee_login_ResponseDto) {
+	public ResponseEntity<Object> addEmployee(@Valid @RequestBody Employee_login_ResponseDto employee_login_ResponseDto,
+			HttpServletRequest request) {
 		if (employeeService.isEmailAlreadyExist(employee_login_ResponseDto.getEmail())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_EXISTS,
 					validationFailureStatusCodes.getEmailAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
 		Employee employee = mapper.map(employee_login_ResponseDto, Employee.class);
+		java.sql.Date date = new Date(System.currentTimeMillis());
+		employee.setTimeStamp(date);
+		employee.setVerification("Not-Verified");
+		employee.setToken(loginServiceImpl.generateToken());
 		employeeService.createEmployee(employee);
 
+		String link = loginServiceImpl.getSiteURL(request) + "/api/v1/email-verification/email/" + employee.getEmail()
+				+ "/token/" + employee.getToken();
+		mailServiceImpl.sendVerifyEmail(employee.getEmail(), link);
 		LoginDto loginDto = mapper.map(employee_login_ResponseDto, LoginDto.class);
 		loginDto.setEmployeeId(employee.getId());
 		String encryptedPassword = passwordEncoder.encode(employee_login_ResponseDto.getPassword());
@@ -71,7 +88,7 @@ public class EmployeeController {
 		Login login = mapper.map(loginDto, Login.class);
 
 		loginService.create(login);
-		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS + link, HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.GET_EMPLOYEE_BY_NAME)
