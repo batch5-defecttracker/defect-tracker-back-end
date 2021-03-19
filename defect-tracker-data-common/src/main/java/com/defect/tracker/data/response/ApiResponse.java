@@ -14,8 +14,6 @@ public class ApiResponse {
 		this.statusCode = restApiResponseStatus.getCode();
 	}
 
-	
-
 	public String getStatus() {
 		return status;
 	}
