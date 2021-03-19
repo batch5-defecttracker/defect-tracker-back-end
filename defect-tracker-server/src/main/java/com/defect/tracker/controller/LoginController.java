@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.dto.LoginResDto;
 import com.defect.tracker.data.mapper.Mapper;
+import com.defect.tracker.data.repositories.EmployeeRepository;
 import com.defect.tracker.data.repositories.LoginRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.LoginService;
@@ -29,6 +30,9 @@ public class LoginController {
 
 	@Autowired
 	LoginService loginService;
+	
+	@Autowired
+	EmployeeRepository employeeRepository;
 
 	@Autowired
 	LoginRepository loginRepository;
@@ -102,5 +106,13 @@ public class LoginController {
 	@PutMapping(value = EndpointURI.RESET_PASSWORD)
 	public String resetPassword(@PathVariable String token, @PathVariable String password) {
 		return loginService.resetPassword(token, password);
+	}
+	
+	@PutMapping(value = EndpointURI.EMAIL_VERIFICATION)
+	public String emailVerification(@PathVariable String token, @PathVariable String email) {
+		if(!employeeRepository.existsByEmail(email)) {
+			return "Invalid email";
+		}
+		return loginService.emailVerification(token, email);
 	}
 }

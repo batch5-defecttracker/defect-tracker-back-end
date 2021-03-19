@@ -6,12 +6,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.dto.LoginDto;
+import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.mapper.Mapper;
+import com.defect.tracker.data.repositories.EmployeeRepository;
 import com.defect.tracker.data.repositories.LoginRepository;
 
 @Service
@@ -20,6 +24,9 @@ public class LoginServiceImpl implements LoginService {
 	private static final int EXPIRE_TOKEN_AFTER_MINUTES = 2;
 	@Autowired
 	private LoginRepository loginRepository;
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
 
 	@Autowired
 	Mapper mapper;
@@ -95,7 +102,7 @@ public class LoginServiceImpl implements LoginService {
 		return "Your password successfully updated.";
 	}
 
-	private String generateToken() {
+	public String generateToken() {
 		StringBuilder token = new StringBuilder();
 
 		return token.append(UUID.randomUUID().toString()).append(UUID.randomUUID().toString()).toString();
@@ -109,12 +116,31 @@ public class LoginServiceImpl implements LoginService {
 		return diff.toMinutes() >= EXPIRE_TOKEN_AFTER_MINUTES;
 	}
 
+	@Override
+	public String emailVerification(String token, String email) {
+		String response;
+		Optional<Employee> employeeOptional = employeeRepository.findByEmail(email);
+		Employee employee = employeeOptional.get();
+		if (employee.getToken().equals(token)) {
+			employee.setVerification("verified");
+			employee.setToken(null);
+			employeeRepository.save(employee);
+			response = "Email Verified";
+		} else {
+			response = "Token is not Valid";
+		}
+		return response;
+	}
 
+	public String getSiteURL(HttpServletRequest request) {
+		String siteURL = request.getRequestURL().toString();
+		return siteURL.replace(request.getServletPath(), "");
+	}
 
 	@Override
 	public void create(Login login) {
 		loginRepository.save(login);
-		
+
 	}
 
 	@Override
@@ -127,6 +153,5 @@ public class LoginServiceImpl implements LoginService {
 	public String getUserPassword(String email) {
 		return loginRepository.findByEmail(email).get().getPassword();
 	}
-
 
 }
