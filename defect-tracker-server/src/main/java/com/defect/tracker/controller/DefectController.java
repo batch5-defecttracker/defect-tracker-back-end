@@ -31,6 +31,7 @@ import com.defect.tracker.services.DefectStatusService;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.MailServiceImpl;
 import com.defect.tracker.services.ProjectEmployeeAllocationService;
+import com.defect.tracker.services.ProjectService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -38,6 +39,8 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class DefectController {
+	@Autowired
+	ProjectService projectService;
 
 	@Autowired
 	DefectService defectService;
@@ -163,7 +166,27 @@ public class DefectController {
 		DefectStatus ds = defectStatusRepository.getOne(status);
 		defect.setDefectStatus(ds);
 		defectService.addDefect(defect);
+
 		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 	}
 
+	@GetMapping(value = EndpointURI.GET_DEFECT_BY_ASSIGN_TO_ID)
+	public ResponseEntity<Object> getDefByAssignId(@PathVariable Long id) {
+		if (!employeeService.isEmployeeExists(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<Object>(defectService.getByEmpIdAndStatus(id), HttpStatus.OK);
+	}
+
+	@GetMapping(value = EndpointURI.GET_ALL_DEFECT_BY_PROJECT_ID)
+	public ResponseEntity<Object> getAllDefectByProId(@PathVariable Long id) {
+		if (!projectService.existProject(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
+					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<Object>(defectService.getAllDefectByProId(id), HttpStatus.OK);
+	}
 }

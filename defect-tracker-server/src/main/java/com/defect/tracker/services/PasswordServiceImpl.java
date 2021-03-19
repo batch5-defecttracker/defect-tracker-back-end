@@ -8,18 +8,18 @@ import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.LoginRepository;
 
 @Service
-public class PasswordServiceImpl implements PasswordService{
+public class PasswordServiceImpl implements PasswordService {
 	@Autowired
 	LoginRepository loginRepository;
-	
+
 	@Autowired
 	Mapper mapper;
-	
+
 	@Override
 	public String getPassword(String email) {
 		return loginRepository.findByEmail(email).get().getPassword();
 	}
-	
+
 	@Override
 	public void changePassword(String newPassword, String email) {
 		Login login = loginRepository.findByEmail(email).get();

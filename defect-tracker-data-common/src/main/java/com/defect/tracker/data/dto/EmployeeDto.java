@@ -43,6 +43,20 @@ public class EmployeeDto {
 	@NotNull(message="{employeeDto.gender.empty}")
 	@NotBlank(message="{employeeDto.gender.blank}")
 	private String gender;
+	private String verification;
+	private String token;
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	public String getVerification() {
+		return verification;
+	}
+	public void setVerification(String verification) {
+		this.verification = verification;
+	}
 	public Long getId() {
 		return id;
 	}

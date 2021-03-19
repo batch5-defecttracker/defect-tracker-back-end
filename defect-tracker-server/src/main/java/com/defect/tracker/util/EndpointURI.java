@@ -36,6 +36,8 @@ public final class EndpointURI {
 	public static final String DEFECT = BASE_API_PATH + "defect";
 	public static final String UPDATE_DEFECT_STATUS = DEFECT + ID + SLASH + "status" + SLASH + "{status}";
 	public static final String DEFECT_GET_BY_ID = DEFECT + ID;
+	public static final String GET_DEFECT_BY_ASSIGN_TO_ID = BASE_API_PATH + "get-all-defectlby-employee-id"+ID;
+	public static final String GET_ALL_DEFECT_BY_PROJECT_ID = BASE_API_PATH + "get-all-defect-by-project-id"+ID;
 	public static final String GET_DEFECT_BY_SERACH = BASE_API_PATH + "getDefectBySearch";
 
 	// designation
@@ -72,7 +74,7 @@ public final class EndpointURI {
 	public static final String UPDATE_EMPLOYEE_STATUS = BASE_API_PATH + "employee-status-update" + SLASH + "email" + SLASH + "{email}" + SLASH + "status" + SLASH + "{status}";
 	public static final String FORGOT_PASSWORD = BASE_API_PATH + "forgot-password" + SLASH + "email" + SLASH + "{email}";
 	public static final String RESET_PASSWORD =  BASE_API_PATH + "reset-password" + SLASH + "token" + SLASH + "{token}" + SLASH + "password" + SLASH + "{password}" ;
-	
+	public static final String EMAIL_VERIFICATION =  BASE_API_PATH + "email-verification" + SLASH + "email" + SLASH + "{email}" + SLASH + "token" + SLASH + "{token}";
 //GetAllPriority
 	public static final String getAllPriority = BASE_API_PATH + "getAllpriority";
 	
