@@ -23,11 +23,11 @@ INSERT INTO `defect-tracker`.`severity` (`id`, `severity_name`) VALUES ('2', 'Me
 INSERT INTO `defect-tracker`.`severity` (`id`, `severity_name`) VALUES ('3', 'High');
 --Defect Status
 INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('1', 'New');
-INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('1', 'Open');
-INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('2', 'Closed');
-INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('3', 'Fixed');
-INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('4', 'Reopen');
-INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('5', 'Reject');
+INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('2', 'Open');
+INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('3', 'Closed');
+INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('4', 'Fixed');
+INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('5', 'Reopen');
+INSERT INTO `defect-tracker`.`defect_status` (`id`, `defect_status_name`) VALUES ('6', 'Reject');
 --Defect Type
 INSERT INTO `defect-tracker`.`defecttype` (`id`, `defect_type_name`) VALUES ('1', 'UI');
 INSERT INTO `defect-tracker`.`defecttype` (`id`, `defect_type_name`) VALUES ('2', 'CR');
