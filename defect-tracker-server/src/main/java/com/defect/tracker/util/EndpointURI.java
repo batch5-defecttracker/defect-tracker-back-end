@@ -35,9 +35,8 @@ public final class EndpointURI {
 	public static final String DEFECT = BASE_API_PATH + "defect";
 	public static final String UPDATE_DEFECT_STATUS =DEFECT + ID + SLASH + "status" + SLASH + "{status}";
 	public static final String DEFECT_GET_BY_ID = DEFECT + ID;
-	
-	public static final String GET_BY_ASSIGN_ID = BASE_API_PATH + "assign"+SLASH+ID;
-	public static final String GET_ALL_DEFECT = BASE_API_PATH + "getAllDefect";
+	public static final String GET_DEFECT_BY_ASSIGN_TO_ID = BASE_API_PATH + "get-all-defectlby-employee-id"+ID;
+	public static final String GET_ALL_DEFECT_BY_PROJECT_ID = BASE_API_PATH + "get-all-defect-by-project-id"+ID;
 	
 	// designation
 	public static final String DESIGNATION = BASE_API_PATH + "designation";

@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.defect.tracker.data.dto.DefectByProjectIdDto;
+import com.defect.tracker.data.dto.DefectByEmployeeIdDto;
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.entities.Defect;
+import com.defect.tracker.data.entities.DefectStatus;
 import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.repositories.DefectRepository;
 
 @Service
 public class DefectServiceImpl implements DefectService {
+	@Autowired
+	ModuleService moduleService;
 	
 	@Autowired
 	private DefectRepository defectRepository;
@@ -88,9 +93,47 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public List<Defect> getByAssignedId(Long id) {
-		return defectRepository.findByEmployee2Id(id);
+	public List<DefectByEmployeeIdDto> getByEmpIdAndStatus(Long empId) {
+		List<DefectByEmployeeIdDto> ListOfDefect=new ArrayList<>();
+		
+		for (DefectStatus defectStatus :defectStatusService.getAllDefectStatus()) {
+			DefectByEmployeeIdDto defectAssignDto=new DefectByEmployeeIdDto();
+			defectAssignDto.setStatus(defectStatus.getDefectStatusName());
+			defectAssignDto.setCount(defectRepository.findByEmployee2IdAndDefectStatusId(empId,defectStatus.getId()).size());
+			ListOfDefect.add(defectAssignDto);
+		}
+		
+		return ListOfDefect;
+		
 	}
 
+	@Override
+	public DefectByProjectIdDto getAllDefectByProId(Long proId) {
+		DefectByProjectIdDto defecProjectByIdDto=new DefectByProjectIdDto();
+		List<DefectByEmployeeIdDto> ListOfDefect=new ArrayList<>();
+		
+		int total=0;
+		
+		for (DefectStatus defectStatus : defectStatusService.getAllDefectStatus()) {
+			DefectByEmployeeIdDto defectAssignDto=new DefectByEmployeeIdDto();
+		
+		int count = 0;
+		
+		for (Long modId : moduleService.getModIdByProId(proId)) {
+		count=count +	defectRepository.findByModuleIdAndDefectStatusId(modId,defectStatus.getId()).size();	
+		total=total+count;
+		
+			}	
+		
+		defectAssignDto.setStatus(defectStatus.getDefectStatusName());
+		defectAssignDto.setCount(count); 
+		ListOfDefect.add(defectAssignDto);	
+		
+		}
+		
+		defecProjectByIdDto.setDefectAssignDto(ListOfDefect);
+		defecProjectByIdDto.setTotal(total);
+		return defecProjectByIdDto;
+	}
 	
 }

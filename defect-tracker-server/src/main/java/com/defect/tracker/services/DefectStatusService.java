@@ -9,6 +9,7 @@ public interface DefectStatusService {
 	public List<DefectStatus> getAllDefectStatus();
 	public Optional<DefectStatus> getDefectStatusById(Long id);
 	public DefectStatus getDefectStatusByName(String name);
+	public List<Long> GetStatusIdOnly();
 		
 	
 }

@@ -53,8 +53,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.firstName.notExist}")
 	private String employeeNotExists;
 	
-	
-
 	@Value("${validation.employeeIdType.notExist}")
 	private String employeeIdNotFound;
 	

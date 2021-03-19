@@ -1,4 +1,5 @@
 package com.defect.tracker.services;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,19 @@ public class DefectStatusServiceImpl implements DefectStatusService{
 	public Optional<DefectStatus> getDefectStatusById(Long id) {
 		return defectStatusRepository.findById(id);
 	}
+
+
+	@Override
+	public List<Long> GetStatusIdOnly() {
+		List<Long> statusId=new ArrayList<Long>();
+		List<DefectStatus> GetAllDefectStatus=defectStatusRepository.findAll();
+				for (DefectStatus defectStatus : GetAllDefectStatus) {
+					statusId.add(defectStatus.getId());
+				}
+				return statusId;
+	}
+	
+	
 	
 	
 
