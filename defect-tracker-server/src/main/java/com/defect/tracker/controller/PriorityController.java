@@ -21,7 +21,7 @@ public class PriorityController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	
 	@GetMapping(value = EndpointURI.PRIORITY) 
-	public ResponseEntity<Object> getAllSeverity() {
+	public ResponseEntity<Object> getAllPriority() {
 		if (priorityService.getAllPriority().isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_NOTEXIST,
 					validationFailureStatusCodes.getPriorityNotExist()), HttpStatus.BAD_REQUEST);

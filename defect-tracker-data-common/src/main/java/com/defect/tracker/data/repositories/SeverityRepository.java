@@ -6,8 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.defect.tracker.data.entities.Severity;
 
 @Repository
-public interface SeverityRepository extends JpaRepository<Severity, Long>{
-	
-	
+public interface SeverityRepository extends JpaRepository<Severity, Long> {
 
 }
