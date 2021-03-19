@@ -87,7 +87,7 @@ public class DefectController {
 		DefectDto defectDto = defectService.getJson(defect1, file);
 
 		defectDto.setTimeStamp(date);
-		defectDto.setDefectStatusId(6);
+		defectDto.setDefectStatusId(1);
 		List<String> mails = new ArrayList<>();
 		List<String> names = new ArrayList<>();
 		String module = defectService.findById(defectDto.getModuleId()).getModule().getModuleName();
