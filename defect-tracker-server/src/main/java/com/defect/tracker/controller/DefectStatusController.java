@@ -27,8 +27,8 @@ public class DefectStatusController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
 	@GetMapping(value = EndpointURI.DEFECTSTATUS)
-	public List<DefectStatus> getAllDefectStatus() {
-		return defectStatusService.getAllDefectStatus();
+	public ResponseEntity<Object> getAllDefectStatus() {
+		return new ResponseEntity<Object>(defectStatusService.getAllDefectStatus(),HttpStatus.OK);
 
 	}
 

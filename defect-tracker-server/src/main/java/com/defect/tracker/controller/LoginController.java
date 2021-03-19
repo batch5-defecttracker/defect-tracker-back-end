@@ -58,8 +58,8 @@ public class LoginController {
 	}
 
 	@GetMapping(value = EndpointURI.LOGINSTATUS)
-	public List<LoginResDto> GetEmpId(@RequestParam String status) {
-		return mapper.map(loginService.getLoginByStatus(status), LoginResDto.class);
+	public ResponseEntity<Object> GetEmpId(@RequestParam String status) {
+		return new ResponseEntity<Object>(mapper.map(loginService.getLoginByStatus(status), LoginResDto.class),HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.LOGIN)
@@ -90,17 +90,17 @@ public class LoginController {
 	}
 
 	@PostMapping(value = EndpointURI.FORGOT_PASSWORD)
-	public String forgotPassword(@PathVariable String email) {
+	public ResponseEntity<Object> forgotPassword(@PathVariable String email) {
 		String response = loginService.forgotPassword(email);
 
 		if (!response.startsWith("Invalid")) {
 			response = "Password reset Token is Sent to your Email Address Successfully \n" + response;
 		}
-		return response;
+		return new ResponseEntity<Object>(response, HttpStatus.OK);
 	}
 
 	@PutMapping(value = EndpointURI.RESET_PASSWORD)
-	public String resetPassword(@PathVariable String token, @PathVariable String password) {
-		return loginService.resetPassword(token, password);
+	public ResponseEntity<Object> resetPassword(@PathVariable String token, @PathVariable String password) {
+		return new ResponseEntity<Object>( loginService.resetPassword(token, password),HttpStatus.OK);
 	}
 }
