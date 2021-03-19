@@ -124,7 +124,8 @@ public class LoginController {
 					validationFailureStatusCodes.getTokenExpired()), HttpStatus.BAD_REQUEST);
 
 		}
-		loginService.resetPassword(token, password);
+		String encryptedPassword = passwordEncoder.encode(password);
+		loginService.resetPassword(token, encryptedPassword);
 		return new ResponseEntity<Object>(Constants.CHANGED_SUCCESS, HttpStatus.OK);
 	}
 
