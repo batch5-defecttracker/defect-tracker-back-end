@@ -173,8 +173,8 @@ public class DefectController {
 	@GetMapping(value = EndpointURI.GET_DEFECT_BY_ASSIGN_TO_ID)
 	public ResponseEntity<Object> getDefByAssignId(@PathVariable Long id) {
 		if(!employeeService.isEmployeeExists(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPTY_PROJECT_ALLOCATION,
-					validationFailureStatusCodes.getProjectAllocationFailed()),HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()),HttpStatus.BAD_REQUEST);
 		}
 		
 		return new ResponseEntity<Object>(defectService.getByEmpIdAndStatus(id), HttpStatus.OK);
@@ -192,4 +192,4 @@ public class DefectController {
 		return new ResponseEntity<Object>(defectService.getAllDefectByProId(id), HttpStatus.OK);	
 	}
 }
-}
+
