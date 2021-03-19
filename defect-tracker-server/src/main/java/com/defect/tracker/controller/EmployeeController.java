@@ -87,7 +87,7 @@ public class EmployeeController {
 		Login login = mapper.map(loginDto, Login.class);
 
 		loginService.create(login);
-		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS + link, HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.GET_EMPLOYEE_BY_NAME)

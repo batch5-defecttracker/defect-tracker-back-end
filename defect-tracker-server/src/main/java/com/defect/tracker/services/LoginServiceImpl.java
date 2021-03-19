@@ -64,43 +64,23 @@ public class LoginServiceImpl implements LoginService {
 	public String forgotPassword(String email) {
 
 		Optional<Login> loginOptional = loginRepository.findByEmail(email);
-
-		if (!loginOptional.isPresent()) {
-			return "Invalid email id.";
-		}
-
 		Login login = loginOptional.get();
 		login.setToken(generateToken());
 		login.setTokenCreationDate(LocalDateTime.now());
 		loginRepository.save(login);
-
 		mailServiceImpl.sendForgotEmail(login.getEmail(), login.getToken());
 		return login.getToken();
 	}
 
-	public String resetPassword(String token, String password) {
+	public void resetPassword(String token, String password) {
 
 		Optional<Login> loginOptional = Optional.ofNullable(loginRepository.findByToken(token));
-
-		if (!loginOptional.isPresent()) {
-			return "Invalid token.";
-		}
-
-		LocalDateTime tokenCreationDate = loginOptional.get().getTokenCreationDate();
-
-		if (isTokenExpired(tokenCreationDate)) {
-			return "Token expired.";
-
-		}
 
 		Login login = loginOptional.get();
 		login.setPassword(password);
 		login.setToken(null);
 		login.setTokenCreationDate(null);
-
 		loginRepository.save(login);
-
-		return "Your password successfully updated.";
 	}
 
 	public String generateToken() {
@@ -109,7 +89,7 @@ public class LoginServiceImpl implements LoginService {
 		return token.append(UUID.randomUUID().toString()).append(UUID.randomUUID().toString()).toString();
 	}
 
-	private boolean isTokenExpired(final LocalDateTime tokenCreationDate) {
+	public boolean isTokenExpired(final LocalDateTime tokenCreationDate) {
 
 		LocalDateTime now = LocalDateTime.now();
 		Duration diff = Duration.between(tokenCreationDate, now);
@@ -118,19 +98,12 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String emailVerification(String token, String email) {
-		String response;
+	public void emailVerification(String token, String email) {
 		Optional<Employee> employeeOptional = employeeRepository.findByEmail(email);
 		Employee employee = employeeOptional.get();
-		if (employee.getToken().equals(token)) {
-			employee.setVerification("verified");
-			employee.setToken(null);
-			employeeRepository.save(employee);
-			response = "Email Verified";
-		} else {
-			response = "Token is not Valid";
-		}
-		return response;
+		employee.setVerification("verified");
+		employee.setToken(null);
+		employeeRepository.save(employee);
 	}
 
 	public String getSiteURL(HttpServletRequest request) {
