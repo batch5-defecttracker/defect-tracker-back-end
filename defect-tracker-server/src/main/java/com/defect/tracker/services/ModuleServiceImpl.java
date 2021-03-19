@@ -1,4 +1,5 @@
 package com.defect.tracker.services;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public void deleteModule(Long id) {
 		moduleRepository.deleteById(id);
-		
+
 	}
 
 	@Override
@@ -26,7 +27,7 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public void addModule(Module module) {
 		moduleRepository.save(module);
-		
+
 	}
 
 	@Override
@@ -34,17 +35,14 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleRepository.existsByModuleName(name);
 	}
 
-
-	
 	@Override
 	public List<Module> findAll() {
 		return moduleRepository.findAll();
 	}
-	
-	
-	  public List<Module> findByProject(Long projectId) { return
-	  moduleRepository.findByProjectId(projectId); }
-	 
+
+	public List<Module> findByProject(Long projectId) {
+		return moduleRepository.findByProjectId(projectId);
+	}
 
 	@Override
 	public boolean isModuleExistsByProjectId(Long projectId) {
@@ -53,22 +51,14 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Override
 	public List<Long> getModIdByProId(Long id) {
-		
-		List<Long> lisOfModuleId=new ArrayList<Long>();
-		List<Module> ListOfModule=moduleRepository.findByProjectId(id);
+
+		List<Long> lisOfModuleId = new ArrayList<Long>();
+		List<Module> ListOfModule = moduleRepository.findByProjectId(id);
 		for (Module module : ListOfModule) {
 			lisOfModuleId.add(module.getId());
 		}
-		
+
 		return lisOfModuleId;
 	}
 
-
-	
-
-	
-
-	
-
-	
 }
