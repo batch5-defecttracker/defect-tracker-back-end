@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:ValidationMessages.properties")
 public class ValidationFailureStatusCodes {
- 
-	
 	
 	//Defect
 	@Value("${validation.defect.notExist}")
@@ -99,13 +97,27 @@ public class ValidationFailureStatusCodes {
 	//login
 	@Value("${validation.email.alreadyExist}")
 	private String emailAlreadyExist;
+	
+	@Value("${validation.email.NotExist}")
+	private String emailNotExist;
+	
+	@Value("${validation.password.notMatcht}")
+	private String passwordNotMatch;
 
 	
 	
+	public String getEmailNotExist() {
+		return emailNotExist;
+	}
+
+	public void setEmailNotExist(String emailNotExist) {
+		this.emailNotExist = emailNotExist;
+	}
+
 	public String getDefectNotExist() {
 		return defectNotExist;
 	}
-
+	
 	public void setDefectNotExist(String defectNotExist) {
 		this.defectNotExist = defectNotExist;
 	}
@@ -255,8 +267,6 @@ public class ValidationFailureStatusCodes {
 		this.subModuleAlreadyExist = subModuleAlreadyExist;
 	}
 
-	
-
 	public String getProjectemployeeAlreadyExists() {
 		return projectemployeeAlreadyExists;
 	}
@@ -289,7 +299,13 @@ public class ValidationFailureStatusCodes {
 		this.emailAlreadyExist = emailAlreadyExist;
 	}
 
-	
+	public String getPasswordNotMatch() {
+		return passwordNotMatch;
+	}
+
+	public void setPasswordNotMatch(String passwordNotMatch) {
+		this.passwordNotMatch = passwordNotMatch;
+	}
 	
 }
 	
