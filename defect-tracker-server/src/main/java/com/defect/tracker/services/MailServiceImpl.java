@@ -58,4 +58,28 @@ public class MailServiceImpl implements CommandLineRunner {
 
 	}
 
+	public void sendApprovalEmail(String mail, String employee, String status) {
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(mail);
+		msg.setSubject(" Account Approval ");
+		msg.setText("Hi " + employee + ", \n" + "Your Account is " + status);
+		javaMailSender.send(msg);
+	}
+
+	public void sendForgotEmail(String email, String token) {
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(email);
+		msg.setSubject(" Forgort Password ");
+		msg.setText("This is the Token to Change your Password \n" + token);
+		javaMailSender.send(msg);
+	}
+	
+	public void sendVerifyEmail(String email, String token) {
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(email);
+		msg.setSubject(" Email Verification ");
+		msg.setText("Click the Link to Verify your Email \n" + token);
+		javaMailSender.send(msg);
+	}
+
 }
