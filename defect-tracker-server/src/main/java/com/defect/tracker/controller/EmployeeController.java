@@ -9,6 +9,7 @@ import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,15 +35,13 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 public class EmployeeController {
 	private static String UPLOADED_FOLDER = "D://DefectNew/defect-tracker-back-end/defect-tracker-server/src/main/resources/";
 	
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	@Autowired
 	EmployeeService employeeService;
 
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-
-//	@Autowired
-//	Employee employee;
 	
 	@Autowired
 	private Mapper mapper;
@@ -91,7 +90,9 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMPTY,
 					validationFailureStatusCodes.getEmployeeNotFound()), HttpStatus.BAD_REQUEST);
 		}
-		
+		String coded = passwordEncoder.encode("ssss");
+		System.out.println(coded);
+		System.out.println(passwordEncoder.matches("555",coded));
 		return new ResponseEntity<Object>(employeeService.getAll(), HttpStatus.OK);
 	}
 	

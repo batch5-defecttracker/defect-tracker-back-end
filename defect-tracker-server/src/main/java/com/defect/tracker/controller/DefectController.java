@@ -89,6 +89,7 @@ public class DefectController {
 		String assignedEmployee = employeeService.findById(defectDto.getEmployeeId()).get().getFirstName();
 		String status = "New";
 		List<ProjectEmp> projectList = projectEmployeeAllocationService.findbyModule(defectDto.getModuleId());
+		
 		for (ProjectEmp projectEmp : projectList) {
 			names.add(projectEmp.getEmployee().getFirstName());
 		}
