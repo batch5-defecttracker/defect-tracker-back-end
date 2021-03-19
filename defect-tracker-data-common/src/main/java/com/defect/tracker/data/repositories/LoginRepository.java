@@ -9,4 +9,6 @@ import com.defect.tracker.data.entities.Login;
 public interface LoginRepository extends JpaRepository<Login, String> {
 
 	List<Login> findByStatus(String status);
+
+	
 }

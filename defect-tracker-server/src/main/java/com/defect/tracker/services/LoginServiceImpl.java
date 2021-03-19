@@ -26,7 +26,9 @@ public class LoginServiceImpl implements LoginService {
 	public List<Login> getLoginByStatus(String status) {
 		return loginRepositroy.findByStatus(status);
 	}
-	
+
+
+
 	
 }
 
