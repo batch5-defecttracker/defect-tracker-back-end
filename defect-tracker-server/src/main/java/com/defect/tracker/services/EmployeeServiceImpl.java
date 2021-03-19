@@ -11,18 +11,14 @@ import com.defect.tracker.data.repositories.EmployeeRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-	
 
-	
-	
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
 	@Override
 	public void createEmployee(Employee employee) {
 		employeeRepository.save(employee);
-		
-		
+
 	}
 
 	@Override
@@ -37,23 +33,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean idExist(Long id) {
-	
+
 		return employeeRepository.existsById(id);
 	}
-	
+
 	@Override
 	public boolean isEmployeeExists(Long id) {
-		
+
 		return employeeRepository.existsByDesignationId(id);
 	}
-	
+
 	public List<Employee> getAll() {
-		
+
 		return employeeRepository.findAll();
 	}
 
 	public void deleteEmployee(Long id) {
-		employeeRepository.deleteById(id);	
+		employeeRepository.deleteById(id);
 	}
 
 	@Override
@@ -61,25 +57,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findByDesignationId(id);
 	}
 
-
 	@Override
 	public Optional<Employee> findById(Long id) {
-		
-		return  employeeRepository.findById(id);
+
+		return employeeRepository.findById(id);
 	}
 
 	@Override
 
-
 	public boolean isEmployeeAlreadyExists(Long id) {
-		
+
 		return employeeRepository.existsById(id);
 	}
 
 	@Override
 	public boolean ExistByFirstName(String firstName) {
-	
-		return employeeRepository.existsByfirstName(firstName) ;
+
+		return employeeRepository.existsByfirstName(firstName);
 	}
 }
-

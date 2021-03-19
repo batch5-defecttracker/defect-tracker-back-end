@@ -8,7 +8,7 @@ import com.defect.tracker.data.entities.Priority;
 import com.defect.tracker.data.repositories.PriorityRepository;
 
 @Service
-public class PriorityServiceImpl implements PriorityService{
+public class PriorityServiceImpl implements PriorityService {
 
 	@Autowired
 	PriorityRepository priorityRepository;
@@ -17,5 +17,5 @@ public class PriorityServiceImpl implements PriorityService{
 	public List<Priority> getAllPriority() {
 		return priorityRepository.findAll();
 	}
-	
+
 }
