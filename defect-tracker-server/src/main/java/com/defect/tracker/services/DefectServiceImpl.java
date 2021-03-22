@@ -16,6 +16,7 @@ import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.DefectStatus;
 import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.repositories.DefectRepository;
+import com.defect.tracker.data.repositories.ModuleRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,6 +36,9 @@ public class DefectServiceImpl implements DefectService {
 
 	@Autowired
 	ProjectEmployeeAllocationService projectEmployeeAllocationService;
+	
+	@Autowired
+	ModuleRepository moduleRepository;
 
 	@Autowired
 	MailServiceImpl mailServiceImpl;
@@ -68,7 +72,7 @@ public class DefectServiceImpl implements DefectService {
 	public Defect findById(Long id) {
 		return defectRepository.findById(id).get();
 	}
-
+	
 	public void dataCall(DefectDto defectDto) {
 		String mail = findById(defectDto.getEmployeeId()).getEmployee().getEmail();
 		String module = findById(defectDto.getModuleId()).getModule().getModuleName();
