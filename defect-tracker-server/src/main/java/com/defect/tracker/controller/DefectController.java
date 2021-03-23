@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.dto.DefectResponseDto;
+import com.defect.tracker.data.dto.DefectSearchDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.DefectStatusRepository;
@@ -181,5 +184,11 @@ public class DefectController {
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Object>(defectService.getAllDefectByProId(id), HttpStatus.OK);
+	}
+	
+	@GetMapping (value = EndpointURI.GET_DEFECT_BY_SERACH)
+	public ResponseEntity<Object> getDefects(@RequestParam String keyword) {
+		return new ResponseEntity<Object>(mapper.map(defectService.listAll(keyword), DefectSearchDto.class),
+				HttpStatus.OK);
 	}
 }

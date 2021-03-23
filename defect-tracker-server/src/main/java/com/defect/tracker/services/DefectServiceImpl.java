@@ -182,6 +182,15 @@ public class DefectServiceImpl implements DefectService {
 		return defectJson;
 	}
 
+	@Override
+	public List<Defect> listAll(String keyword) {
+		if (keyword != null) {
+			return defectRepository.findAll(keyword);
+		}
+		
+		return defectRepository.findAll();
+	}
+
 
 	
 	public void fileUploadCall(DefectDto defectDto, MultipartFile file) throws IOException {

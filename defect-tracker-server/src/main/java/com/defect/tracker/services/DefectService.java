@@ -30,5 +30,6 @@ public interface DefectService {
 
 	public DefectDto getJson(String Defect, MultipartFile file) throws JsonMappingException, JsonProcessingException;
 	
+	public List<Defect> listAll(String keyword);
 	
 }

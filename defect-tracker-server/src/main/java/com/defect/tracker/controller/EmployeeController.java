@@ -144,13 +144,26 @@ public class EmployeeController {
 
 	@PutMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> UpdateEmployee(@RequestBody EmployeeDto employeeDto) {
-		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_EXISTS,
-					validationFailureStatusCodes.getEmailAlreadyExist()), HttpStatus.BAD_REQUEST);
-		}
+
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		employeeDto.setTimeStamp(date);
-		Employee employee = mapper.map(employeeDto, Employee.class);
+		Employee employee = employeeService.findById(employeeDto.getId()).get();
+		String firstName = employeeDto.getFirstName();
+		employee.setFirstName(firstName);
+		String lastName = employeeDto.getLastName();
+		employee.setLastName(lastName);
+		String address =employeeDto.getAddress();
+		employee.setAddress(address);
+		String contactNumber =employeeDto.getContactNumber();
+		employee.setContactNumber(contactNumber);
+		String nic = employeeDto.getNic();
+		employee.setNic(nic);
+		
+		if(employeeDto.getLastName().isEmpty() || employeeDto.getAddress().isEmpty() || employeeDto.getContactNumber().isEmpty() || employeeDto.getFirstName().isEmpty() || employeeDto.getNic().isEmpty()) {
+			return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_FIELD_IS_EMPTY, HttpStatus.BAD_REQUEST);
+		}
+	
+		
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
@@ -158,8 +171,13 @@ public class EmployeeController {
 	@DeleteMapping(value = EndpointURI.EMPLOYEE_PHOTO)
 	public ResponseEntity<Object> DeleteEmployeePhotoById(@PathVariable Long id) {
 
+		
+		
 		Employee employee = employeeService.findById(id).get();
 		EmployeeDto employeedto = mapper.map(employee, EmployeeDto.class);
+		if(employeedto.getImage() == null) {
+			return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_NULL, HttpStatus.BAD_REQUEST);
+		}
 		employeedto.setImage(null);
 		employee = mapper.map(employeedto, Employee.class);
 		employeeService.createEmployee(employee);
