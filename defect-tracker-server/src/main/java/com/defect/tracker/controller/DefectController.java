@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.dto.DefectResponseDto;
 import com.defect.tracker.data.entities.Defect;
-import com.defect.tracker.data.entities.DefectStatus;
 import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.DefectStatusRepository;
@@ -87,13 +88,14 @@ public class DefectController {
 		DefectDto defectDto = defectService.getJson(defect1, file);
 
 		defectDto.setTimeStamp(date);
-		defectDto.setDefectStatusId(6);
+		defectDto.setDefectStatusId(1);
 		List<String> mails = new ArrayList<>();
 		List<String> names = new ArrayList<>();
 		String module = defectService.findById(defectDto.getModuleId()).getModule().getModuleName();
 		String assignedEmployee = employeeService.findById(defectDto.getEmployeeId()).get().getFirstName();
 		String status = "New";
 		List<ProjectEmp> projectList = projectEmployeeAllocationService.findbyModule(defectDto.getModuleId());
+
 		for (ProjectEmp projectEmp : projectList) {
 			names.add(projectEmp.getEmployee().getFirstName());
 		}
@@ -122,6 +124,12 @@ public class DefectController {
 						.equalsIgnoreCase("Fixed")
 				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
 						.equalsIgnoreCase("Reject")) {
+			if (defectService.findById(defectDto.getId()).getDefectStatus().getId() == defectDto.getDefectStatusId()) {
+
+				Defect defect = mapper.map(defectDto, Defect.class);
+				defectService.addDefect(defect);
+				return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
+			}
 			defectServiceImpl.dataCall(defectDto);
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.addDefect(defect);
@@ -131,6 +139,13 @@ public class DefectController {
 				.equalsIgnoreCase("Closed")
 				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
 						.equalsIgnoreCase("Reopen")) {
+			if (defectService.findById(defectDto.getId()).getDefectStatus().getId() == defectDto.getDefectStatusId()) {
+
+				Defect defect = mapper.map(defectDto, Defect.class);
+				defectService.addDefect(defect);
+				return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
+			}
+			
 			defectServiceImpl.dataListCall(defectDto);
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.addDefect(defect);
@@ -149,27 +164,7 @@ public class DefectController {
 		DefectResponseDto defectDto = mapper.map(defectService.findById(id), DefectResponseDto.class);
 		return new ResponseEntity<Object>(defectDto, HttpStatus.OK);
 	}
-
-	@PutMapping(value = EndpointURI.UPDATE_DEFECT_STATUS)
-	public ResponseEntity<Object> updateDefectStatus(@PathVariable Long id, @PathVariable Long status) {
-		if (defectService.isDefectExists(id)) {
-			if (!defectStatusRepository.existsById(status)) {
-				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,
-						validationFailureStatusCodes.getDefectStatusNotExist()), HttpStatus.BAD_REQUEST);
-			}
-		} else {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
-					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
-		}
-
-		Defect defect = defectService.findById(id);
-		DefectStatus ds = defectStatusRepository.getOne(status);
-		defect.setDefectStatus(ds);
-		defectService.addDefect(defect);
-
-		return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
-	}
-
+	
 	@GetMapping(value = EndpointURI.GET_DEFECT_BY_ASSIGN_TO_ID)
 	public ResponseEntity<Object> getDefByAssignId(@PathVariable Long id) {
 		if (!employeeService.isEmployeeExists(id)) {
