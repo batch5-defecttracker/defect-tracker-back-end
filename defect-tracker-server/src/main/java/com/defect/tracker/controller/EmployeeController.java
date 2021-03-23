@@ -58,6 +58,7 @@ public class EmployeeController {
 
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
+	
 
 	@Autowired
 	private Mapper mapper;
@@ -116,7 +117,6 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMPTY,
 					validationFailureStatusCodes.getEmployeeNotFound()), HttpStatus.BAD_REQUEST);
 		}
-
 		return new ResponseEntity<Object>(employeeService.getAll(), HttpStatus.OK);
 	}
 
