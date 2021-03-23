@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.entities.DefectStatus;
+import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DefectStatusService;
 import com.defect.tracker.util.EndpointURI;
@@ -24,12 +25,20 @@ public class DefectStatusController {
 	private DefectStatusService defectStatusService;
 
 	@Autowired
+	Mapper mapper;
+
+	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
 	@GetMapping(value = EndpointURI.DEFECTSTATUS)
-	public List<DefectStatus> getAllDefectStatus() {
-		return defectStatusService.getAllDefectStatus();
+	public ResponseEntity<Object> getAllDefectStatus() {
+		if (defectStatusService.getAllDefectStatus().isEmpty()) {
+			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_EMPTY,
+					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
+		}
 
+		return new ResponseEntity<Object>(mapper.map(defectStatusService.getAllDefectStatus(), DefectStatus.class),
+				HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.DEFECT_STATUS)
