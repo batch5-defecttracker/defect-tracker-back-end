@@ -57,4 +57,21 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 
 	}
 
+	
+	@Override
+	public boolean existsByEmployeeId(Long id) {
+		return  projectemployeeallocationRepository.existsByEmployeeId(id);
+	}
+
+	
+	@Override
+	public boolean existsBySubmoduleId(Long id) {
+		return projectemployeeallocationRepository.existsBySubmoduleId(id);
+		
+	}
+
+	
+	
+	
+
 }
