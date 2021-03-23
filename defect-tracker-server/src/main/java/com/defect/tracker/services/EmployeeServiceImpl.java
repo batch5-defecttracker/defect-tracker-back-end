@@ -40,7 +40,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public boolean isEmployeeExists(Long id) {
 
-		return employeeRepository.existsByDesignationId(id);
+		return employeeRepository.existsById(id);
 	}
 
 	public List<Employee> getAll() {
