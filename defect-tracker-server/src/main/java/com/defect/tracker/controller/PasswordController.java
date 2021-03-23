@@ -28,11 +28,15 @@ public class PasswordController {
 	@PutMapping(value = EndpointURI.PASSWORD)
 	public ResponseEntity<Object> changePassword(@RequestParam String oldPassword, String newPassword, String email) {
 		String password = passwordService.getPassword(email);
+		if (oldPassword.isBlank() || (newPassword.isBlank())) {
+			return new ResponseEntity<Object>(Constants.USER_NAME_OR_PASSWORD_EMPTY, HttpStatus.BAD_REQUEST);
+		}
 		if (bCryptPasswordEncoder.matches(oldPassword, password)) {
 			String code = bCryptPasswordEncoder.encode(newPassword);
 			passwordService.changePassword(code, email);
 			return new ResponseEntity<Object>(Constants.PASSWORD_CHANGED_SUCCESS, HttpStatus.OK);
 		}
+		
 		return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.PASSWORD_DO_NOT_MATCH,
 				validationFailureStatusCodes.getPasswordNotMatch()), HttpStatus.BAD_REQUEST);
 	}
