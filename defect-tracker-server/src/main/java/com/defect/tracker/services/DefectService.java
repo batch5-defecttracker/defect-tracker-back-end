@@ -28,4 +28,6 @@ public interface DefectService {
 	public String fileUpload(MultipartFile file) throws IOException;
 
 	public DefectDto getJson(String Defect, MultipartFile file) throws JsonMappingException, JsonProcessingException;
+	
+	public List<Defect> listAll(String keyword);
 }
