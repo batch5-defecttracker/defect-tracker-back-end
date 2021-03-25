@@ -1,4 +1,5 @@
 package com.defect.tracker.services;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public interface DefectService {
 
 	public boolean isDefectExists(Long id);
 
-	public Optional<Defect>findById(Long id);
+	public Optional<Defect> findById(Long id);
 
 	public List<DefectByEmployeeIdDto> getByEmpIdAndStatus(Long id);
 
@@ -29,7 +30,5 @@ public interface DefectService {
 	public String fileUpload(MultipartFile file) throws IOException;
 
 	public DefectDto getJson(String Defect, MultipartFile file) throws JsonMappingException, JsonProcessingException;
-	
-	public List<Defect> listAll(String keyword);
-	
+
 }
