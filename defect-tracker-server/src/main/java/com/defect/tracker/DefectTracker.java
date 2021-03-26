@@ -2,9 +2,12 @@ package com.defect.tracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+import com.defect.tracker.data.repositories.LoginRepository;
+
+@SpringBootApplication
+@EnableJpaRepositories(basePackageClasses = LoginRepository.class)
 public class DefectTracker {
 
 	public static void main(String[] args) {

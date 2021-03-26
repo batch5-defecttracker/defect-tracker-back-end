@@ -29,7 +29,7 @@ public class DefectServiceImpl implements DefectService {
 	@Autowired
 	ModuleService moduleService;
 
-	private static final String UPLOAD_FOLDER = "C:\\Users\\Admin\\Desktop\\DT\\defect-tracker-back-end\\defect-tracker-server\\src\\main\\resources\\";
+	private static final String UPLOAD_FOLDER = "C:\\Users\\Admin\\Documents\\workspace-spring-tool-suite-4-4.9.0.RELEASE\\defect-tracker-back-end\\defect-tracker-server\\src\\main\\resources\\";
 
 	@Autowired
 	private DefectRepository defectRepository;
