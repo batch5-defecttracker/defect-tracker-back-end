@@ -1,8 +1,12 @@
 package com.defect.tracker.controller;
+
 import java.io.IOException;
 import java.sql.Date;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,16 +14,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.dto.DefectResponseDto;
 import com.defect.tracker.data.dto.DefectSearchDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.mapper.Mapper;
+import com.defect.tracker.data.repositories.DefectRepository;
 import com.defect.tracker.data.repositories.DefectStatusRepository;
 import com.defect.tracker.data.repositories.ModuleRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
@@ -34,6 +38,7 @@ import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
 import com.defect.tracker.util.ValidationFailureStatusCodes;
+import com.sipios.springsearch.anotation.SearchSpec;
 
 @RestController
 public class DefectController {
@@ -70,6 +75,9 @@ public class DefectController {
 	@Autowired
 	DefectStatusRepository defectStatusRepository;
 
+	@Autowired
+	DefectRepository defectRepository;
+
 	@GetMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> findById() {
 		if (defectService.getAllDefect().isEmpty()) {
@@ -79,21 +87,27 @@ public class DefectController {
 		return new ResponseEntity<Object>(mapper.map(defectService.getAllDefect(), DefectResponseDto.class),
 				HttpStatus.OK);
 	}
-	
 
-	@PostMapping(value = EndpointURI.DEFECT, consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE })
-	public ResponseEntity<Object> addDefect(@Valid @RequestPart String defect1, @RequestPart("file") MultipartFile file)throws IOException {
+	@PostMapping(value = EndpointURI.DEFECT, consumes = { MediaType.APPLICATION_JSON_VALUE,
+			MediaType.MULTIPART_FORM_DATA_VALUE })
+	public ResponseEntity<Object> addDefect(@Valid @RequestPart String defect1, @RequestPart("file") MultipartFile file)
+			throws IOException {
 		DefectDto defectDto = defectService.getJson(defect1, file);
-		if(!(projectEmployeeAllocationService.existsByEmployeeId(defectDto.getEmployee2Id()))) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.EMPTY_PROJECT_ALLOCATION, validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
+		if (!(projectEmployeeAllocationService.existsByEmployeeId(defectDto.getEmployee2Id()))) {
+			return new ResponseEntity<Object>(
+					new ValidationFailureResponse(ValidationConstance.EMPTY_PROJECT_ALLOCATION,
+							validationFailureStatusCodes.getEmployeeNotExist()),
+					HttpStatus.BAD_REQUEST);
 		}
-		 if(!(projectEmployeeAllocationService.existsByModuleId(defectDto.getModuleId()))) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS, validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
-		 }
-		if(!(projectEmployeeAllocationService.existsBySubmoduleId(defectDto.getSubmoduleId()))) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS, validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
+		if (!(projectEmployeeAllocationService.existsByModuleId(defectDto.getModuleId()))) {
+			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		
+		if (!(projectEmployeeAllocationService.existsBySubmoduleId(defectDto.getSubmoduleId()))) {
+			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS,
+					validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
+		}
+
 		defectServiceImpl.fileUploadCall(defectDto, file);
 		defectService.addDefect(mapper.map(defectDto, Defect.class));
 		defectServiceImpl.dataPassForAddDefect(defectDto);
@@ -101,7 +115,8 @@ public class DefectController {
 
 	}
 
-	@PutMapping(value = EndpointURI.DEFECT, consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
+	@PutMapping(value = EndpointURI.DEFECT, consumes = { MediaType.APPLICATION_JSON_VALUE,
+			MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<Object> updateDefect(@Valid @RequestPart String defect1, @RequestPart MultipartFile file)
 			throws IOException {
 		java.sql.Date date = new Date(System.currentTimeMillis());
@@ -130,7 +145,7 @@ public class DefectController {
 			defectDto.setFile(defectServiceImpl.fileUpload(file));
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.addDefect(defect);
-		
+
 			defectServiceImpl.dataPassForMail(defectDto);
 			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 		}
@@ -173,7 +188,7 @@ public class DefectController {
 		if (!employeeService.isEmployeeExists(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
-			}
+		}
 		return new ResponseEntity<Object>(defectService.getByEmpIdAndStatus(id), HttpStatus.OK);
 	}
 
@@ -185,10 +200,10 @@ public class DefectController {
 		}
 		return new ResponseEntity<Object>(defectService.getAllDefectByProId(id), HttpStatus.OK);
 	}
-	
-	@GetMapping (value = EndpointURI.GET_DEFECT_BY_SERACH)
-	public ResponseEntity<Object> getDefects(@RequestParam String keyword) {
-		return new ResponseEntity<Object>(mapper.map(defectService.listAll(keyword), DefectSearchDto.class),
-				HttpStatus.OK);
+
+	@GetMapping(value = EndpointURI.GET_DEFECT_BY_SERACH)
+	public ResponseEntity<Object> search(@SearchSpec Specification<Defect> specs) {
+		return new ResponseEntity<Object>(
+				mapper.map(defectRepository.findAll(Specification.where(specs)), DefectSearchDto.class), HttpStatus.OK);
 	}
 }

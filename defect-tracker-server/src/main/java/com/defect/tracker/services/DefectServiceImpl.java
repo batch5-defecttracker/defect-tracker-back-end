@@ -11,9 +11,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.defect.tracker.data.dto.DefectByProjectIdDto;
-import com.defect.tracker.data.dto.DefectByEmployeeIdDto;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.defect.tracker.data.dto.DefectByEmployeeIdDto;
+import com.defect.tracker.data.dto.DefectByProjectIdDto;
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.DefectStatus;
@@ -39,7 +40,7 @@ public class DefectServiceImpl implements DefectService {
 
 	@Autowired
 	ProjectEmployeeAllocationService projectEmployeeAllocationService;
-	
+
 	@Autowired
 	ModuleRepository moduleRepository;
 
@@ -75,7 +76,7 @@ public class DefectServiceImpl implements DefectService {
 	public Optional<Defect> findById(Long id) {
 		return defectRepository.findById(id);
 	}
-	
+
 	public void dataPassForMail(DefectDto defectDto) {
 		String mail = employeeService.findById(defectDto.getEmployeeId()).get().getEmail();
 		String module = moduleRepository.getOne(defectDto.getModuleId()).getModuleName();
@@ -104,7 +105,7 @@ public class DefectServiceImpl implements DefectService {
 
 		mailServiceImpl.sendListEmail(mails, module, names, openedEmployee, status);
 	}
-	
+
 	public void dataPassForAddDefect(DefectDto defectDto) {
 		List<String> mails = new ArrayList<>();
 		List<String> names = new ArrayList<>();
@@ -170,7 +171,7 @@ public class DefectServiceImpl implements DefectService {
 		Path path = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
 		Files.write(path, data);
 		System.out.println(path);
-		Path path1 = Paths.get(UPLOAD_FOLDER+file.getOriginalFilename());
+		Path path1 = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
 		return path1.toString();
 	}
 
@@ -182,22 +183,12 @@ public class DefectServiceImpl implements DefectService {
 		return defectJson;
 	}
 
-	@Override
-	public List<Defect> listAll(String keyword) {
-		if (keyword != null) {
-			return defectRepository.findAll(keyword);
-		}
-		
-		return defectRepository.findAll();
-	}
-
-
-	
 	public void fileUploadCall(DefectDto defectDto, MultipartFile file) throws IOException {
 		java.sql.Date date = new Date(System.currentTimeMillis());
-		
+
 		defectDto.setTimeStamp(date);
 		defectDto.setDefectStatusId(1);
 		defectDto.setFile(fileUpload(file));
 	}
+
 }
