@@ -28,10 +28,10 @@ public class Defect {
 	private SubModule submodule;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assignedBy", nullable = false)
-	private Employee employee;
+	private Employee assignedBy;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assignedTo", nullable = false)
-	private Employee employee2;
+	private Employee assignedTo;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "priorityId", nullable = false)
 	private Priority priority;
@@ -87,20 +87,22 @@ public class Defect {
 		this.submodule = submodule;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	
+
+	public Employee getAssignedBy() {
+		return assignedBy;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setAssignedBy(Employee assignedBy) {
+		this.assignedBy = assignedBy;
 	}
 
-	public Employee getEmployee2() {
-		return employee2;
+	public Employee getAssignedTo() {
+		return assignedTo;
 	}
 
-	public void setEmployee2(Employee employee2) {
-		this.employee2 = employee2;
+	public void setAssignedTo(Employee assignedTo) {
+		this.assignedTo = assignedTo;
 	}
 
 	public Priority getPriority() {

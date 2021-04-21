@@ -42,39 +42,29 @@ import com.sipios.springsearch.anotation.SearchSpec;
 
 @RestController
 public class DefectController {
+
 	@Autowired
 	ProjectService projectService;
-
 	@Autowired
 	DefectService defectService;
-
 	@Autowired
 	ModuleRepository moduleRepository;
-
 	@Autowired
 	MailServiceImpl mailServiceImpl;
-
 	@Autowired
 	DefectServiceImpl defectServiceImpl;
-
 	@Autowired
 	EmployeeService employeeService;
-
 	@Autowired
 	ProjectEmployeeAllocationService projectEmployeeAllocationService;
-
 	@Autowired
 	DefectStatusService defectStatusService;
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-
 	@Autowired
 	private Mapper mapper;
-
 	@Autowired
 	DefectStatusRepository defectStatusRepository;
-
 	@Autowired
 	DefectRepository defectRepository;
 
@@ -93,7 +83,7 @@ public class DefectController {
 	public ResponseEntity<Object> addDefect(@Valid @RequestPart String defect1, @RequestPart("file") MultipartFile file)
 			throws IOException {
 		DefectDto defectDto = defectService.getJson(defect1, file);
-		if (!(projectEmployeeAllocationService.existsByEmployeeId(defectDto.getEmployee2Id()))) {
+		if (!(projectEmployeeAllocationService.existsByEmployeeId(defectDto.getAssignedToId()))) {
 			return new ResponseEntity<Object>(
 					new ValidationFailureResponse(ValidationConstance.EMPTY_PROJECT_ALLOCATION,
 							validationFailureStatusCodes.getEmployeeNotExist()),
@@ -107,12 +97,10 @@ public class DefectController {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS,
 					validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
-
 		defectServiceImpl.fileUploadCall(defectDto, file);
 		defectService.addDefect(mapper.map(defectDto, Defect.class));
 		defectServiceImpl.dataPassForAddDefect(defectDto);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADD_SUCCESS, HttpStatus.OK);
-
 	}
 
 	@PutMapping(value = EndpointURI.DEFECT, consumes = { MediaType.APPLICATION_JSON_VALUE,
@@ -122,7 +110,6 @@ public class DefectController {
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		DefectDto defectDto = defectService.getJson(defect1, file);
 		defectDto.setTimeStamp(date);
-
 		if (!defectService.isDefectExists(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
@@ -141,11 +128,9 @@ public class DefectController {
 				defectService.addDefect(defect);
 				return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 			}
-
 			defectDto.setFile(defectServiceImpl.fileUpload(file));
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.addDefect(defect);
-
 			defectServiceImpl.dataPassForMail(defectDto);
 			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 		}
@@ -155,17 +140,14 @@ public class DefectController {
 						.equalsIgnoreCase("Reopen")) {
 			if (defectService.findById(defectDto.getId()).get().getDefectStatus().getId() == defectDto
 					.getDefectStatusId()) {
-
 				defectDto.setFile(defectServiceImpl.fileUpload(file));
 				Defect defect = mapper.map(defectDto, Defect.class);
 				defectService.addDefect(defect);
-
 				return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 			}
 			defectDto.setFile(defectServiceImpl.fileUpload(file));
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.addDefect(defect);
-
 			defectServiceImpl.dataPassForListMail(defectDto);
 			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 		}
