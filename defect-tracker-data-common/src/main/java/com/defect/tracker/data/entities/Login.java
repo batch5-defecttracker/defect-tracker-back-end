@@ -19,6 +19,15 @@ public class Login {
 	private String email;
 	private String userName;
 	private String password;
+	private String role;
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	private String token;
 	private String status;
 	@Column(columnDefinition = "TIMESTAMP")

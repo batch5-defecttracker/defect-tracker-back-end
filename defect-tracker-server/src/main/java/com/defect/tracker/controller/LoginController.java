@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +31,7 @@ import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
 import com.defect.tracker.util.ValidationFailureStatusCodes;
 
+@RequestMapping("api/v1")
 @RestController
 public class LoginController {
 

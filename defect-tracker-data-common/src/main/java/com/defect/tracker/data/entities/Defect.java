@@ -44,6 +44,7 @@ public class Defect {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "defectTypeId", nullable = false)
 	private DefectType defectType;
+	
 	private Date timeStamp;
 	private String file;
 
