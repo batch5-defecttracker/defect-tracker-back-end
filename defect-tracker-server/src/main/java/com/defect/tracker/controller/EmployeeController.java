@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.EmployeeLoginResponseDto;
+import com.defect.tracker.data.dto.EmployeeUpdateDto;
 import com.defect.tracker.data.dto.LoginDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Login;
@@ -133,25 +134,20 @@ public class EmployeeController {
 	}
 
 	@PutMapping(value = EndpointURI.EMPLOYEE)
-	public ResponseEntity<Object> UpdateEmployee(@Valid @Email @RequestBody EmployeeDto employeeDto) {
+	public ResponseEntity<Object> UpdateEmployee(@Valid @RequestBody EmployeeUpdateDto employeeUpdateDto) {
 		java.sql.Date date = new Date(System.currentTimeMillis());
-		employeeDto.setTimeStamp(date);
-		Employee employee = employeeService.findById(employeeDto.getId()).get();
-		String firstName = employeeDto.getFirstName();
+		employeeUpdateDto.setTimeStamp(date);
+		Employee employee = employeeService.findById(employeeUpdateDto.getId()).get();
+		String firstName = employeeUpdateDto.getFirstName();
 		employee.setFirstName(firstName);
-		String lastName = employeeDto.getLastName();
+		String lastName = employeeUpdateDto.getLastName();
 		employee.setLastName(lastName);
-		String address = employeeDto.getAddress();
+		String address = employeeUpdateDto.getAddress();
 		employee.setAddress(address);
-		String contactNumber = employeeDto.getContactNumber();
+		String contactNumber = employeeUpdateDto.getContactNumber();
 		employee.setContactNumber(contactNumber);
-		String nic = employeeDto.getNic();
+		String nic = employeeUpdateDto.getNic();
 		employee.setNic(nic);
-		if (employeeDto.getLastName().isEmpty() || employeeDto.getAddress().isEmpty()
-				|| employeeDto.getContactNumber().isEmpty() || employeeDto.getFirstName().isEmpty()
-				|| employeeDto.getNic().isEmpty()) {
-			return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_FIELD_IS_EMPTY, HttpStatus.BAD_REQUEST);
-		}
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
