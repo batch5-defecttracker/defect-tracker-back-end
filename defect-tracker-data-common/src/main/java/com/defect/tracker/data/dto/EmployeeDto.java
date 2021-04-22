@@ -12,10 +12,12 @@ public class EmployeeDto {
 	@NotBlank(message = "{employeeDto.FirstName.blank}")
 	@Pattern(regexp = "^[a-zA-Z ]*$", message = "No Special Charcter Accepeted")
 	private String firstName;
+	
 	@NotNull(message = "{employeeDto.lastName.empty}")
 	@NotBlank(message = "{employeeDto.lastName.blank}")
 	@Pattern(regexp = "^[a-zA-Z ]*$", message = "No Special Charcter Accepeted")
 	private String lastName;
+	
 	private Long designationId;
 
 	@Pattern(regexp = " Pattern.compile(\"@[.]\"", message = "Please Put Valid Characters For Email Ex- abc@yahoo.com")

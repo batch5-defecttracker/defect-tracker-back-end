@@ -13,9 +13,9 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class DesignationController {
+	
 	@Autowired
 	private DesignationService designationService;
-	
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	
@@ -25,7 +25,6 @@ public class DesignationController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXIST,
 					validationFailureStatusCodes.getDesignationNotExist()),HttpStatus.BAD_REQUEST);
 		}
-		
 		return new ResponseEntity<Object>(designationService.getAlldesignation(),HttpStatus.OK);
 	}
 }
