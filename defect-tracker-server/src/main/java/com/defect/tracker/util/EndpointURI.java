@@ -20,7 +20,7 @@ public final class EndpointURI {
 
 	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
-	public static final String ACT_PROJECT = PROJECT + ID;
+	public static final String PROJECT_BY_ID = PROJECT + ID;
 
 	// Module
 	public static final String MODULE = BASE_API_PATH + "module";
@@ -81,6 +81,5 @@ public final class EndpointURI {
 			+ "{email}" + SLASH + "token" + SLASH + "{token}";
 
 	private EndpointURI() {
-
 	}
 }
