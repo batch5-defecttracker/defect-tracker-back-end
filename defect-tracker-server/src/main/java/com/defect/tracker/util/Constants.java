@@ -5,6 +5,9 @@ public class Constants {
 	public static final String EMPLOYEE_ADD_SUCCESS = "Employee Added Successfully";
 	public static final String EMPLOYEE_DELETE_SUCCESS = "Employee Deleted Successfully";
 	public static final String EMPLOYEE_STATUS_UPDATED = "Employee Status Updated Successfully";
+	public static final String EMPLOYEE_PHOTO_NULL = "Employee Photo is NULL";
+	public static final String EMPLOYEE_UPDATE_FIELD_IS_EMPTY = "Empty Employee field ";
+	public static final String EMPLOYEE_NOT_EXISTS = "Employee Not Exists";
 
 	// project
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";

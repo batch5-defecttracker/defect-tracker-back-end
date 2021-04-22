@@ -4,18 +4,23 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.defect.tracker.data.dto.DefectByProjectIdDto;
-import com.defect.tracker.data.dto.DefectByEmployeeIdDto;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.defect.tracker.data.dto.DefectByEmployeeIdDto;
+import com.defect.tracker.data.dto.DefectByProjectIdDto;
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.DefectStatus;
 import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.repositories.DefectRepository;
+import com.defect.tracker.data.repositories.ModuleRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +30,7 @@ public class DefectServiceImpl implements DefectService {
 	@Autowired
 	ModuleService moduleService;
 
-	private static final String UPLOAD_FOLDER = "C:\\Users\\Admin\\Desktop\\Defect-Tracker\\defect-tracker-back-end\\defect-tracker-server\\src\\main\\resources\\";
+	private static final String UPLOAD_FOLDER = "src//main//resources//";
 
 	@Autowired
 	private DefectRepository defectRepository;
@@ -35,6 +40,9 @@ public class DefectServiceImpl implements DefectService {
 
 	@Autowired
 	ProjectEmployeeAllocationService projectEmployeeAllocationService;
+
+	@Autowired
+	ModuleRepository moduleRepository;
 
 	@Autowired
 	MailServiceImpl mailServiceImpl;
@@ -65,28 +73,28 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public Defect findById(Long id) {
-		return defectRepository.findById(id).get();
+	public Optional<Defect> findById(Long id) {
+		return defectRepository.findById(id);
 	}
 
-	public void dataCall(DefectDto defectDto) {
-		String mail = findById(defectDto.getEmployeeId()).getEmployee().getEmail();
-		String module = findById(defectDto.getModuleId()).getModule().getModuleName();
+	public void dataPassForMail(DefectDto defectDto) {
+		String mail = employeeService.findById(defectDto.getAssignedById()).get().getEmail();
+		String module = moduleRepository.getOne(defectDto.getModuleId()).getModuleName();
 		String status = defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get()
 				.getDefectStatusName();
-		String assignedEmployee = employeeService.findById(defectDto.getEmployeeId()).get().getFirstName();
-		String openedEmployee = findById(defectDto.getEmployee2Id()).getEmployee2().getFirstName();
+		String assignedEmployee = employeeService.findById(defectDto.getAssignedById()).get().getFirstName();
+		String openedEmployee = employeeService.findById(defectDto.getAssignedToId()).get().getFirstName();
 
 		mailServiceImpl.sendEmail(mail, module, assignedEmployee, openedEmployee, status);
 	}
 
-	public void dataListCall(DefectDto defectDto) {
+	public void dataPassForListMail(DefectDto defectDto) {
 		List<String> mails = new ArrayList<>();
 		List<String> names = new ArrayList<>();
-		String module = findById(defectDto.getModuleId()).getModule().getModuleName();
+		String module = moduleRepository.getOne(defectDto.getModuleId()).getModuleName();
 		String status = defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get()
 				.getDefectStatusName();
-		String openedEmployee = findById(defectDto.getEmployee2Id()).getEmployee2().getFirstName();
+		String openedEmployee = employeeService.findById(defectDto.getAssignedToId()).get().getFirstName();
 		List<ProjectEmp> projectList = projectEmployeeAllocationService.findbyModule(defectDto.getModuleId());
 		for (ProjectEmp projectEmp : projectList) {
 			names.add(projectEmp.getEmployee().getFirstName());
@@ -98,6 +106,22 @@ public class DefectServiceImpl implements DefectService {
 		mailServiceImpl.sendListEmail(mails, module, names, openedEmployee, status);
 	}
 
+	public void dataPassForAddDefect(DefectDto defectDto) {
+		List<String> mails = new ArrayList<>();
+		List<String> names = new ArrayList<>();
+		String module = moduleRepository.getOne(defectDto.getModuleId()).getModuleName();
+		String assignedEmployee = employeeService.findById(defectDto.getAssignedById()).get().getFirstName();
+		String status = "New";
+		List<ProjectEmp> projectList = projectEmployeeAllocationService.findbyModule(defectDto.getModuleId());
+		for (ProjectEmp projectEmp : projectList) {
+			names.add(projectEmp.getEmployee().getFirstName());
+		}
+		for (ProjectEmp projectEmp : projectList) {
+			mails.add(projectEmp.getEmployee().getEmail());
+		}
+		mailServiceImpl.sendListEmailNew(mails, module, names, assignedEmployee, status);
+	}
+
 	@Override
 	public List<DefectByEmployeeIdDto> getByEmpIdAndStatus(Long empId) {
 		List<DefectByEmployeeIdDto> ListOfDefect = new ArrayList<>();
@@ -106,7 +130,7 @@ public class DefectServiceImpl implements DefectService {
 			DefectByEmployeeIdDto defectAssignDto = new DefectByEmployeeIdDto();
 			defectAssignDto.setStatus(defectStatus.getDefectStatusName());
 			defectAssignDto
-					.setCount(defectRepository.findByEmployee2IdAndDefectStatusId(empId, defectStatus.getId()).size());
+					.setCount(defectRepository.findByAssignedToIdAndDefectStatusId(empId, defectStatus.getId()).size());
 			ListOfDefect.add(defectAssignDto);
 		}
 
@@ -147,7 +171,7 @@ public class DefectServiceImpl implements DefectService {
 		Path path = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
 		Files.write(path, data);
 		System.out.println(path);
-		Path path1 = Paths.get(file.getOriginalFilename());
+		Path path1 = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
 		return path1.toString();
 	}
 
@@ -157,6 +181,14 @@ public class DefectServiceImpl implements DefectService {
 		ObjectMapper objectMapper = new ObjectMapper();
 		defectJson = objectMapper.readValue(Defect, DefectDto.class);
 		return defectJson;
+	}
+
+	public void fileUploadCall(DefectDto defectDto, MultipartFile file) throws IOException {
+		java.sql.Date date = new Date(System.currentTimeMillis());
+
+		defectDto.setTimeStamp(date);
+		defectDto.setDefectStatusId(1);
+		defectDto.setFile(fileUpload(file));
 	}
 
 }
