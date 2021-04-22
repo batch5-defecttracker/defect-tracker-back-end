@@ -26,5 +26,9 @@ public interface LoginService {
 	
 	public String getUserPassword (String email);
 	
+	public String getPassword(String email);
+	
+	void changePassword(String newPassword, String email);
+	
 
 }

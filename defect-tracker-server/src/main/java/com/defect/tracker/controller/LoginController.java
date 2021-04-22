@@ -50,6 +50,8 @@ public class LoginController {
 
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+	BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+	
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
@@ -145,4 +147,20 @@ public class LoginController {
 		loginService.emailVerification(token, email);
 		return new ResponseEntity<Object>(Constants.VERIFIED, HttpStatus.OK);
 	}
+
+
+	@PutMapping(value = EndpointURI.PASSWORD)
+	public ResponseEntity<Object> changePassword(@RequestParam String oldPassword, String newPassword, String email) {
+	String password = loginService.getPassword(email);
+	if (oldPassword.isBlank() || (newPassword.isBlank())) {
+		return new ResponseEntity<Object>(Constants.USER_NAME_OR_PASSWORD_EMPTY, HttpStatus.BAD_REQUEST);
+	}
+	if (bCryptPasswordEncoder.matches(oldPassword, password)) {
+		String code = bCryptPasswordEncoder.encode(newPassword);
+		loginService.changePassword(code, email);
+		return new ResponseEntity<Object>(Constants.PASSWORD_CHANGED_SUCCESS, HttpStatus.OK);
+	}
+	return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.PASSWORD_DO_NOT_MATCH,
+			validationFailureStatusCodes.getPasswordNotMatch()), HttpStatus.BAD_REQUEST);
+}
 }

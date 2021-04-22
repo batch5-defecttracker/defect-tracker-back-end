@@ -128,4 +128,20 @@ public class LoginServiceImpl implements LoginService {
 		return loginRepository.findByEmail(email).get().getPassword();
 	}
 
-}
+	@Override
+	public String getPassword(String email) {
+		return loginRepository.findByEmail(email).get().getPassword();
+	}
+
+	@Override
+	public void changePassword(String newPassword, String email) {
+		Login login = loginRepository.findByEmail(email).get();
+		LoginDto loginDto = mapper.map(login, LoginDto.class);
+		loginDto.setPassword(newPassword);
+		login = mapper.map(loginDto, Login.class);
+		loginRepository.save(login);
+	}
+		
+	}
+
+
