@@ -42,6 +42,7 @@ import com.sipios.springsearch.anotation.SearchSpec;
 
 @RestController
 public class DefectController {
+
 	@Autowired
 	ProjectService projectService;
 	@Autowired
@@ -78,11 +79,17 @@ public class DefectController {
 	public ResponseEntity<Object> addDefect(@Valid @RequestPart String defect1, @RequestPart("file") MultipartFile file)
 			throws IOException {
 		DefectDto defectDto = defectService.getJson(defect1);
+		if (!(projectEmployeeAllocationService.existsByEmployeeId(defectDto.getAssignedToId()))) {
+			return new ResponseEntity<Object>(
+					new ValidationFailureResponse(ValidationConstance.EMPTY_PROJECT_ALLOCATION,
+							validationFailureStatusCodes.getEmployeeNotExist()),
+					HttpStatus.BAD_REQUEST);
+		}
 		if (!(projectEmployeeAllocationService.existsByModuleId(defectDto.getModuleId()))) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
 					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		if (!(projectEmployeeAllocationService.existsByEmployeeId(defectDto.getEmployee2Id()))) {
+		if (!(projectEmployeeAllocationService.existsByEmployeeId(defectDto.getAssignedToId()))) {
 			return new ResponseEntity<Object>(
 					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_DOES_NOT_EXISTS,
 							validationFailureStatusCodes.getModuleNotExist()),

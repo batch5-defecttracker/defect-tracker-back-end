@@ -8,6 +8,8 @@ import java.sql.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.defect.tracker.data.dto.EmployeeDto;
-import com.defect.tracker.data.dto.Employee_login_ResponseDto;
+import com.defect.tracker.data.dto.EmployeeLoginResponseDto;
+import com.defect.tracker.data.dto.EmployeeUpdateDto;
 import com.defect.tracker.data.dto.LoginDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Login;
@@ -56,13 +59,13 @@ public class EmployeeController {
 	private Mapper mapper;
 
 	@PostMapping(value = EndpointURI.EMPLOYEE)
-	public ResponseEntity<Object> addEmployee(@Valid @RequestBody Employee_login_ResponseDto employee_login_ResponseDto,
+	public ResponseEntity<Object> addEmployee(@Valid @RequestBody EmployeeLoginResponseDto employeeLoginResponseDto,
 			HttpServletRequest request) {
-		if (employeeService.isEmailAlreadyExist(employee_login_ResponseDto.getEmail())) {
+		if (employeeService.isEmailAlreadyExist(employeeLoginResponseDto.getEmail())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_EXISTS,
 					validationFailureStatusCodes.getEmailAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
-		Employee employee = mapper.map(employee_login_ResponseDto, Employee.class);
+		Employee employee = mapper.map(employeeLoginResponseDto, Employee.class);
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		employee.setTimeStamp(date);
 		employee.setVerification(Constants.DEFAULT_VERIFICATION);
@@ -72,13 +75,12 @@ public class EmployeeController {
 		String link = loginServiceImpl.getSiteURL(request) + Constants.VERIFICATION_PATH + employee.getEmail()
 				+ Constants.VERIFICATION_TOKEN + employee.getToken();
 		mailServiceImpl.sendVerifyEmail(employee.getEmail(), link);
-		LoginDto loginDto = mapper.map(employee_login_ResponseDto, LoginDto.class);
+		LoginDto loginDto = mapper.map(employeeLoginResponseDto, LoginDto.class);
 		loginDto.setEmployeeId(employee.getId());
-		String encryptedPassword = passwordEncoder.encode(employee_login_ResponseDto.getPassword());
+		String encryptedPassword = passwordEncoder.encode(employeeLoginResponseDto.getPassword());
 		loginDto.setPassword(encryptedPassword);
 		loginDto.setStatus(Constants.DEFAULT_STATUS);
 		Login login = mapper.map(loginDto, Login.class);
-
 		loginService.create(login);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS + link, HttpStatus.OK);
 	}
@@ -127,26 +129,20 @@ public class EmployeeController {
 	}
 
 	@PutMapping(value = EndpointURI.EMPLOYEE)
-	public ResponseEntity<Object> UpdateEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
+	public ResponseEntity<Object> UpdateEmployee(@Valid @RequestBody EmployeeUpdateDto employeeUpdateDto) {
 		java.sql.Date date = new Date(System.currentTimeMillis());
-		employeeDto.setTimeStamp(date);
-		Employee employee = employeeService.findById(employeeDto.getId()).get();
-		String firstName = employeeDto.getFirstName();
+		employeeUpdateDto.setTimeStamp(date);
+		Employee employee = employeeService.findById(employeeUpdateDto.getId()).get();
+		String firstName = employeeUpdateDto.getFirstName();
 		employee.setFirstName(firstName);
-		String lastName = employeeDto.getLastName();
+		String lastName = employeeUpdateDto.getLastName();
 		employee.setLastName(lastName);
-		String address = employeeDto.getAddress();
+		String address = employeeUpdateDto.getAddress();
 		employee.setAddress(address);
-		String contactNumber = employeeDto.getContactNumber();
+		String contactNumber = employeeUpdateDto.getContactNumber();
 		employee.setContactNumber(contactNumber);
-		String nic = employeeDto.getNic();
+		String nic = employeeUpdateDto.getNic();
 		employee.setNic(nic);
-
-		if (employeeDto.getLastName().isEmpty() || employeeDto.getAddress().isEmpty()
-				|| employeeDto.getContactNumber().isEmpty() || employeeDto.getFirstName().isEmpty()
-				|| employeeDto.getNic().isEmpty()) {
-			return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_FIELD_IS_EMPTY, HttpStatus.BAD_REQUEST);
-		}
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
@@ -184,7 +180,6 @@ public class EmployeeController {
 	@PutMapping(value = EndpointURI.EMPLOYEE_PHOTO)
 	public ResponseEntity<Object> updateEmployeePhoto(@PathVariable Long id, @RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes) throws IOException {
-
 		if (!employeeService.isEmployeeAlreadyExists(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
@@ -197,5 +192,4 @@ public class EmployeeController {
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_UPDATE_SUCCESS, HttpStatus.OK);
 	}
-
 }

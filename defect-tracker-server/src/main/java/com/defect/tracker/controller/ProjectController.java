@@ -43,7 +43,7 @@ public class ProjectController {
 		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
-	@GetMapping(value = EndpointURI.ACT_PROJECT)
+	@GetMapping(value = EndpointURI.PROJECT_BY_ID)
 	public ResponseEntity<Object> findById(@Valid @PathVariable Long id) {
 		if (!projectService.existProject(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
@@ -76,7 +76,7 @@ public class ProjectController {
 		return new ResponseEntity<Object>(Constants.PROJECT_UPDATED, HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = EndpointURI.ACT_PROJECT)
+	@DeleteMapping(value = EndpointURI.PROJECT_BY_ID)
 	public ResponseEntity<Object> deleteById(@PathVariable Long id) {
 		if (!projectService.existProject(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,

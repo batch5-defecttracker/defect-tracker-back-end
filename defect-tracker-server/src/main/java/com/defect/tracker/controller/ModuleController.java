@@ -80,5 +80,4 @@ public class ModuleController {
 		moduleService.deleteModule(id);
 		return new ResponseEntity<Object>(Constants.MODULE_DELETE_SUCCESS, HttpStatus.OK);
 	}
-
 }
