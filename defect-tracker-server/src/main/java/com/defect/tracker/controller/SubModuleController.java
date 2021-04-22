@@ -29,16 +29,12 @@ public class SubModuleController {
 
 	@Autowired
 	Mapper mapper;
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-
 	@Autowired
 	SubModuleService subModuleService;
-
 	@Autowired
 	SubModuleRepository subModuleRepository;
-
 	@PostMapping(value = EndpointURI.SUBMODULE)
 	public ResponseEntity<Object> createSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		if (subModuleRepository.existsBySubmoduleNameAndModuleId(subModuleDto.getSubmoduleName(),
@@ -66,11 +62,9 @@ public class SubModuleController {
 		if (subModuleService.findAllSubModule().isEmpty()) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS,
 					validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
-
 		}
 		return new ResponseEntity<Object>(mapper.map(subModuleService.findAllSubModule(), SubModuleResponseDto.class),
 				HttpStatus.OK);
-
 	}
 
 	@PutMapping(value = EndpointURI.SUBMODULE)

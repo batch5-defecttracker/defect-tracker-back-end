@@ -26,4 +26,6 @@ public interface LoginService {
 
 	public String getUserPassword(String email);
 
+	public boolean isStatusAlreadyExist(String status);
+
 }

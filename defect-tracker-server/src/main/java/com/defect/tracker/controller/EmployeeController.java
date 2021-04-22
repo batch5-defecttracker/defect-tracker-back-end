@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
-
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.Employee_login_ResponseDto;
 import com.defect.tracker.data.dto.LoginDto;
@@ -41,25 +40,18 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class EmployeeController {
-	private static String UPLOADED_FOLDER = "D://DefectNew/defect-tracker-back-end/defect-tracker-server/src/main/resources/";
+	private static String UPLOADED_FOLDER = "src\\main\\resources\\image\\";
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
 	@Autowired
 	EmployeeService employeeService;
-
 	@Autowired
 	MailServiceImpl mailServiceImpl;
-
 	@Autowired
 	LoginService loginService;
-
 	@Autowired
 	LoginServiceImpl loginServiceImpl;
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-	
-
 	@Autowired
 	private Mapper mapper;
 
@@ -73,18 +65,18 @@ public class EmployeeController {
 		Employee employee = mapper.map(employee_login_ResponseDto, Employee.class);
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		employee.setTimeStamp(date);
-		employee.setVerification("Not-Verified");
+		employee.setVerification(Constants.DEFAULT_VERIFICATION);
 		employee.setToken(loginServiceImpl.generateToken());
 		employeeService.createEmployee(employee);
 
-		String link = loginServiceImpl.getSiteURL(request) + "/api/v1/email-verification/email/" + employee.getEmail()
-				+ "/token/" + employee.getToken();
+		String link = loginServiceImpl.getSiteURL(request) + Constants.VERIFICATION_PATH + employee.getEmail()
+				+ Constants.VERIFICATION_TOKEN + employee.getToken();
 		mailServiceImpl.sendVerifyEmail(employee.getEmail(), link);
 		LoginDto loginDto = mapper.map(employee_login_ResponseDto, LoginDto.class);
 		loginDto.setEmployeeId(employee.getId());
 		String encryptedPassword = passwordEncoder.encode(employee_login_ResponseDto.getPassword());
 		loginDto.setPassword(encryptedPassword);
-		loginDto.setStatus("Inactive");
+		loginDto.setStatus(Constants.DEFAULT_STATUS);
 		Login login = mapper.map(loginDto, Login.class);
 
 		loginService.create(login);
@@ -97,12 +89,10 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
 		}
-
 		return new ResponseEntity<Object>(employeeService.findByFirstName(firstName), HttpStatus.OK);
-
 	}
 
-	@GetMapping(value = EndpointURI.ACT_EMPLOYEE)
+	@GetMapping(value = EndpointURI.EMPLOYEE_BY_ID)
 	public ResponseEntity<Object> findEmployeeById(@PathVariable Long id) {
 		if (!employeeService.idExist(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
@@ -113,14 +103,10 @@ public class EmployeeController {
 
 	@GetMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> getAllEmp() {
-		if (employeeService.getAll().isEmpty()) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMPTY,
-					validationFailureStatusCodes.getEmployeeNotFound()), HttpStatus.BAD_REQUEST);
-		}
 		return new ResponseEntity<Object>(employeeService.getAll(), HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = EndpointURI.ACT_EMPLOYEE)
+	@DeleteMapping(value = EndpointURI.EMPLOYEE_BY_ID)
 	public ResponseEntity<Object> deleteEmployee(@PathVariable Long id) {
 		if (!employeeService.isEmployeeAlreadyExists(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
@@ -132,19 +118,16 @@ public class EmployeeController {
 
 	@GetMapping(value = EndpointURI.GET_EMPLOYEE_BY_DESIGNATION)
 	public ResponseEntity<Object> findEmployeeByDesignation(@PathVariable Long designationId) {
-		if (!employeeService.isEmployeeExists(designationId)) {
+		List<Employee> employeeList = employeeService.findByDes(designationId);
+		if (employeeList.isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMPTY,
 					validationFailureStatusCodes.getEmployeeNotFound()), HttpStatus.BAD_REQUEST);
 		}
-
-		return new ResponseEntity<Object>(mapper.map(employeeService.findByDes(designationId), EmployeeDto.class),
-				HttpStatus.OK);
-
+		return new ResponseEntity<Object>(mapper.map(employeeList, EmployeeDto.class), HttpStatus.OK);
 	}
 
 	@PutMapping(value = EndpointURI.EMPLOYEE)
-	public ResponseEntity<Object> UpdateEmployee(@RequestBody EmployeeDto employeeDto) {
-
+	public ResponseEntity<Object> UpdateEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		employeeDto.setTimeStamp(date);
 		Employee employee = employeeService.findById(employeeDto.getId()).get();
@@ -152,61 +135,50 @@ public class EmployeeController {
 		employee.setFirstName(firstName);
 		String lastName = employeeDto.getLastName();
 		employee.setLastName(lastName);
-		String address =employeeDto.getAddress();
+		String address = employeeDto.getAddress();
 		employee.setAddress(address);
-		String contactNumber =employeeDto.getContactNumber();
+		String contactNumber = employeeDto.getContactNumber();
 		employee.setContactNumber(contactNumber);
 		String nic = employeeDto.getNic();
 		employee.setNic(nic);
-		
-		if(employeeDto.getLastName().isEmpty() || employeeDto.getAddress().isEmpty() || employeeDto.getContactNumber().isEmpty() || employeeDto.getFirstName().isEmpty() || employeeDto.getNic().isEmpty()) {
+
+		if (employeeDto.getLastName().isEmpty() || employeeDto.getAddress().isEmpty()
+				|| employeeDto.getContactNumber().isEmpty() || employeeDto.getFirstName().isEmpty()
+				|| employeeDto.getNic().isEmpty()) {
 			return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_FIELD_IS_EMPTY, HttpStatus.BAD_REQUEST);
 		}
-	
-		
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = EndpointURI.EMPLOYEE_PHOTO)
 	public ResponseEntity<Object> DeleteEmployeePhotoById(@PathVariable Long id) {
-
-		
-		
 		Employee employee = employeeService.findById(id).get();
 		EmployeeDto employeedto = mapper.map(employee, EmployeeDto.class);
-		if(employeedto.getImage() == null) {
+		
+		if (employeedto.getImage() == null) {
 			return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_NULL, HttpStatus.BAD_REQUEST);
 		}
 		employeedto.setImage(null);
 		employee = mapper.map(employeedto, Employee.class);
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_DELETE_SUCCESS, HttpStatus.OK);
-
 	}
 
 	@PostMapping(value = EndpointURI.EMPLOYEE_PHOTO)
 	public ResponseEntity<Object> AddEmployeePhoto(@PathVariable Long id, @RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes) throws IOException {
-
+		
 		if (file.isEmpty()) {
 			return new ResponseEntity<Object>(ValidationConstance.EMPLOYEE_PHOTO_EMPTY, HttpStatus.BAD_REQUEST);
-
 		}
-
 		byte[] bytes = file.getBytes();
 		Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
 		Files.write(path, bytes);
-
-		Path path1 = Paths.get(file.getOriginalFilename());
 		Employee employee = employeeService.findById(id).get();
-		EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
-		employeeDto.setImage(path1.toString());
-		employee = mapper.map(employeeDto, Employee.class);
+		employee.setImage(path.toString());
 		employeeService.createEmployee(employee);
-
 		return new ResponseEntity<Object>(Constants.ADD_EMPLOYEE_PHOTO_SUCCESS, HttpStatus.OK);
-
 	}
 
 	@PutMapping(value = EndpointURI.EMPLOYEE_PHOTO)
@@ -217,20 +189,13 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
 		}
-
 		byte[] bytes = file.getBytes();
 		Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
 		Files.write(path, bytes);
-
-		Path path1 = Paths.get(file.getOriginalFilename());
 		Employee employee = employeeService.findById(id).get();
-		EmployeeDto employeedto = mapper.map(employee, EmployeeDto.class);
-		employeedto.setImage(path1.toString());
-		employee = mapper.map(employeedto, Employee.class);
+		employee.setImage(path.toString());
 		employeeService.createEmployee(employee);
-
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_UPDATE_SUCCESS, HttpStatus.OK);
-
 	}
 
 }

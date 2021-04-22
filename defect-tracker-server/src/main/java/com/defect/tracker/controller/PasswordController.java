@@ -21,7 +21,6 @@ public class PasswordController {
 
 	@Autowired
 	PasswordService passwordService;
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
@@ -36,7 +35,6 @@ public class PasswordController {
 			passwordService.changePassword(code, email);
 			return new ResponseEntity<Object>(Constants.PASSWORD_CHANGED_SUCCESS, HttpStatus.OK);
 		}
-		
 		return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.PASSWORD_DO_NOT_MATCH,
 				validationFailureStatusCodes.getPasswordNotMatch()), HttpStatus.BAD_REQUEST);
 	}

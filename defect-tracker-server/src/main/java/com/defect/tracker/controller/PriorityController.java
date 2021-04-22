@@ -16,7 +16,6 @@ public class PriorityController {
 
 	@Autowired
 	private PriorityService priorityService;
-	
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	
@@ -26,9 +25,6 @@ public class PriorityController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PRIORITY_NOTEXIST,
 					validationFailureStatusCodes.getPriorityNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		
 		return new ResponseEntity<Object>(priorityService.getAllPriority(), HttpStatus.OK);
-	 
 	}
-	
 }

@@ -18,4 +18,6 @@ public interface LoginRepository extends JpaRepository<Login, String> {
 
 	boolean existsByEmail(String email);
 
+	boolean existsByStatus(String status);
+
 }

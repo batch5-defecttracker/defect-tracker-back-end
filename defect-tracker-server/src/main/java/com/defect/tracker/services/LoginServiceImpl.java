@@ -127,4 +127,9 @@ public class LoginServiceImpl implements LoginService {
 		return loginRepository.findByEmail(email).get().getPassword();
 	}
 
+	@Override
+	public boolean isStatusAlreadyExist(String status) {
+		return loginRepository.existsByStatus(status);
+	}
+
 }
