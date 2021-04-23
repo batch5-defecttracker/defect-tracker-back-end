@@ -34,7 +34,6 @@ public class ProjectController {
 
 	@PostMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto proDto) {
-
 		if (projectService.isProNameAlreadyExist(proDto.getProjectName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
 					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);

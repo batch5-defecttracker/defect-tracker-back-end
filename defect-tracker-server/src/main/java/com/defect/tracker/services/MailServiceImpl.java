@@ -81,5 +81,25 @@ public class MailServiceImpl implements CommandLineRunner {
 		msg.setText("Click the Link to Verify your Email \n" + token);
 		javaMailSender.send(msg);
 	}
+	
+	public void sendEmailQA(String email, String module,String assignedEmployee) {
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo(email);
+		msg.setSubject(" Defect Update ");
+		msg.setText("Hi " + assignedEmployee + ", \n" + "Your Added Defect in " + module+ "is updated");
+		javaMailSender.send(msg);
+	}
+	
+	public void sendListEmailDV(List<String> mails, String module, List<String> names) {
+		SimpleMailMessage msg = new SimpleMailMessage();
+
+		for (String mail : mails) {
+			msg.setTo(mail);
+			msg.setSubject("Defect " + module);
+			msg.setText("Hi all, \n" + names.toString().replace("[", "").replace("]", "") + ", \n" + "Your Defect in "+ module+"is updated");
+			javaMailSender.send(msg);
+		}
+
+	}
 
 }

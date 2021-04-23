@@ -1,5 +1,6 @@
 package com.defect.tracker.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,11 @@ public class DefectStatusServiceImpl implements DefectStatusService {
 		return defectStatusRepository.findById(id);
 	}
 
+	@Override
+	public List<DefectStatus> addDropDownStatus(String fixed, String reject) {
+		List<DefectStatus> defectStatusList = new ArrayList<>();
+		defectStatusList.add(getDefectStatusByName(fixed));
+		defectStatusList.add(getDefectStatusByName(reject));
+		return defectStatusList;
+	}
 }

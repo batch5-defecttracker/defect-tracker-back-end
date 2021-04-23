@@ -30,7 +30,7 @@ public class DefectServiceImpl implements DefectService {
 	@Autowired
 	ModuleService moduleService;
 
-	private static final String UPLOAD_FOLDER = "src//main//resources//";
+	private static final String UPLOAD_FOLDER = "src\\main\\resources\\file\\";
 
 	@Autowired
 	private DefectRepository defectRepository;
@@ -87,6 +87,15 @@ public class DefectServiceImpl implements DefectService {
 
 		mailServiceImpl.sendEmail(mail, module, assignedEmployee, openedEmployee, status);
 	}
+	
+	public void defectUpdateQA(DefectDto defectDto) {
+		String mail = employeeService.findById(defectDto.getAssignedById()).get().getEmail();
+		String module = moduleRepository.getOne(defectDto.getModuleId()).getModuleName();
+		
+		String assignedEmployee = employeeService.findById(defectDto.getAssignedById()).get().getFirstName();
+		
+		mailServiceImpl.sendEmailQA(mail, module, assignedEmployee);
+	}
 
 	public void dataPassForListMail(DefectDto defectDto) {
 		List<String> mails = new ArrayList<>();
@@ -104,6 +113,22 @@ public class DefectServiceImpl implements DefectService {
 		}
 
 		mailServiceImpl.sendListEmail(mails, module, names, openedEmployee, status);
+	}
+	
+	public void defectUpdateDV(DefectDto defectDto) {
+		List<String> mails = new ArrayList<>();
+		List<String> names = new ArrayList<>();
+		String module = moduleRepository.getOne(defectDto.getModuleId()).getModuleName();
+		List<ProjectEmp> projectList = projectEmployeeAllocationService.findbyModule(defectDto.getModuleId());
+		
+		for (ProjectEmp projectEmp : projectList) {
+			names.add(projectEmp.getEmployee().getFirstName());
+		}
+		for (ProjectEmp projectEmp : projectList) {
+			mails.add(projectEmp.getEmployee().getEmail());
+		}
+
+		mailServiceImpl.sendListEmailDV(mails, module, names);
 	}
 
 	public void dataPassForAddDefect(DefectDto defectDto) {
@@ -170,13 +195,11 @@ public class DefectServiceImpl implements DefectService {
 		byte[] data = file.getBytes();
 		Path path = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
 		Files.write(path, data);
-		System.out.println(path);
-		Path path1 = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
-		return path1.toString();
+		return path.toString();
 	}
 
 	@Override
-	public DefectDto getJson(String Defect, MultipartFile file) throws JsonMappingException, JsonProcessingException {
+	public DefectDto getJson(String Defect) throws JsonMappingException, JsonProcessingException {
 		DefectDto defectJson = new DefectDto();
 		ObjectMapper objectMapper = new ObjectMapper();
 		defectJson = objectMapper.readValue(Defect, DefectDto.class);
@@ -185,7 +208,6 @@ public class DefectServiceImpl implements DefectService {
 
 	public void fileUploadCall(DefectDto defectDto, MultipartFile file) throws IOException {
 		java.sql.Date date = new Date(System.currentTimeMillis());
-
 		defectDto.setTimeStamp(date);
 		defectDto.setDefectStatusId(1);
 		defectDto.setFile(fileUpload(file));

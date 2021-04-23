@@ -11,4 +11,6 @@ public interface DefectStatusService {
 
 	public DefectStatus getDefectStatusByName(String name);
 
+	public List<DefectStatus> addDropDownStatus(String fixed, String reject);
+
 }

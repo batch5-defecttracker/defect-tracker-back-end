@@ -25,7 +25,6 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @Controller
 public class ModuleController {
-
 	@Autowired
 	ModuleService moduleService;
 	@Autowired
