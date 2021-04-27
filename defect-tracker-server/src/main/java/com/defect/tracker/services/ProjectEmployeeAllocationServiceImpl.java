@@ -1,4 +1,5 @@
 package com.defect.tracker.services;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,39 +7,38 @@ import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
 
 @Service
-public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllocationService{
-	
+public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllocationService {
+
 	@Autowired
-	 ProjectEmployeeAllocationRepository projectemployeeallocationRepository; 
+	ProjectEmployeeAllocationRepository projectemployeeallocationRepository;
 
 	@Override
 	public void deAllocateProject(Long id) {
 		projectemployeeallocationRepository.deleteById(id);
-		
+
 	}
 
-	
-	  @Override public boolean existsByid(Long id) { return
-	  projectemployeeallocationRepository.existsById(id); }
-	 
+	@Override
+	public boolean existsByid(Long id) {
+		return projectemployeeallocationRepository.existsById(id);
+	}
 
 	@Override
 	public void addProjectAllocation(ProjectEmp projectEmp) {
 		projectemployeeallocationRepository.save(projectEmp);
-		
+
 	}
 
-	
-	  @Override public List<ProjectEmp> getAll() { return
-	  projectemployeeallocationRepository.findAll(); 
-	  }
-	  
-	  @Override
-		public void update(ProjectEmp projectEmp) {
-			projectemployeeallocationRepository.save(projectEmp);
-			
-		}
+	@Override
+	public List<ProjectEmp> getAll() {
+		return projectemployeeallocationRepository.findAll();
+	}
 
+	@Override
+	public void update(ProjectEmp projectEmp) {
+		projectemployeeallocationRepository.save(projectEmp);
+
+	}
 
 	@Override
 
@@ -46,10 +46,9 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 		return projectemployeeallocationRepository.findEmployeeByModuleId(moduleId);
 	}
 
-
 	@Override
 	public boolean existsByModuleId(Long moduleId) {
-		
+
 		return projectemployeeallocationRepository.existsByModuleId(moduleId);
 	}
 
@@ -58,5 +57,23 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 
 	}
 
+	
+	@Override
+	public boolean existsByEmployeeId(Long id) {
+		return  projectemployeeallocationRepository.existsByEmployeeId(id);
+	}
+
+	
+	@Override
+	public boolean existsBySubmoduleId(Long id) {
+		return projectemployeeallocationRepository.existsBySubmoduleId(id);
 		
+	}
+
+	
+
+	
+	
+	
+
 }

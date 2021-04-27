@@ -16,11 +16,11 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class DefectTypeController {
+	
 	@Autowired
 	DefectTypeService defectTypeService;
-	
-	@Autowired ValidationFailureStatusCodes validationFailureStatusCodes;
-	
+	@Autowired 
+	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
 	
@@ -29,11 +29,7 @@ public class DefectTypeController {
 		if (defectTypeService.getAllDefectType().isEmpty()) {
 			return new ResponseEntity<> (new ValidationFailureResponse(ValidationConstance.DEFECT_EMPTY,
 					validationFailureStatusCodes.getDefectTypeNotFound()),HttpStatus.BAD_REQUEST);
-		}
-		
+		}	
 		return new ResponseEntity<Object>(mapper.map(defectTypeService.getAllDefectType(), DefectTypeDto.class),HttpStatus.OK);
 	}
-	
-
 }
-

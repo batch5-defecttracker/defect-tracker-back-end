@@ -21,13 +21,15 @@ public class PasswordController {
 
 	@Autowired
 	PasswordService passwordService;
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
 	@PutMapping(value = EndpointURI.PASSWORD)
 	public ResponseEntity<Object> changePassword(@RequestParam String oldPassword, String newPassword, String email) {
 		String password = passwordService.getPassword(email);
+		if (oldPassword.isBlank() || (newPassword.isBlank())) {
+			return new ResponseEntity<Object>(Constants.USER_NAME_OR_PASSWORD_EMPTY, HttpStatus.BAD_REQUEST);
+		}
 		if (bCryptPasswordEncoder.matches(oldPassword, password)) {
 			String code = bCryptPasswordEncoder.encode(newPassword);
 			passwordService.changePassword(code, email);
