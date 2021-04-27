@@ -25,16 +25,12 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @Controller
 public class ModuleController {
-
 	@Autowired
 	ModuleService moduleService;
-
 	@Autowired
 	ModuleRepository moduleRepository;
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-
 	@Autowired
 	private Mapper mapper;
 
@@ -61,13 +57,7 @@ public class ModuleController {
 
 	@GetMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> findAllModule() {
-		if (moduleService.findAll().isEmpty()) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
-					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
-		}
-
 		return new ResponseEntity<Object>(mapper.map(moduleService.findAll(), ModuleDto.class), HttpStatus.OK);
-
 	}
 
 	@PutMapping(value = EndpointURI.MODULE)
@@ -90,5 +80,4 @@ public class ModuleController {
 		moduleService.deleteModule(id);
 		return new ResponseEntity<Object>(Constants.MODULE_DELETE_SUCCESS, HttpStatus.OK);
 	}
-
 }

@@ -31,4 +31,6 @@ public interface LoginService {
 	void changePassword(String newPassword, String email);
 	
 
+	public boolean isStatusAlreadyExist(String status);
+
 }

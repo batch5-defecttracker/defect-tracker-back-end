@@ -1,6 +1,6 @@
 package com.defect.tracker.data.dto;
 
-public class Project_EmpDto {
+public class ProjectEmployeeDto {
 
 	private long id;
 	private long projectId;

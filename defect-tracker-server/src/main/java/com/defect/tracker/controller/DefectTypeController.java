@@ -19,7 +19,8 @@ public class DefectTypeController {
 	
 	@Autowired
 	DefectTypeService defectTypeService;
-	@Autowired ValidationFailureStatusCodes validationFailureStatusCodes;
+	@Autowired 
+	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
 	

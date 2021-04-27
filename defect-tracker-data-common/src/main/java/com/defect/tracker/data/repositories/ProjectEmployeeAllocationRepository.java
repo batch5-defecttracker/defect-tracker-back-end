@@ -16,4 +16,5 @@ public interface ProjectEmployeeAllocationRepository extends JpaRepository<Proje
 	boolean existsByEmployeeId(Long id);
 
 	boolean existsBySubmoduleId(Long id);
+
 }

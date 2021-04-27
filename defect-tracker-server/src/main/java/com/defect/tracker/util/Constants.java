@@ -8,7 +8,10 @@ public class Constants {
 	public static final String EMPLOYEE_PHOTO_NULL = "Employee Photo is NULL";
 	public static final String EMPLOYEE_UPDATE_FIELD_IS_EMPTY = "Empty Employee field ";
 	public static final String EMPLOYEE_NOT_EXISTS = "Employee Not Exists";
-
+	public static final String DEFAULT_VERIFICATION = "Not-Verified";
+	public static final String VERIFICATION_PATH = "/api/v1/email-verification/email/";
+	public static final String VERIFICATION_TOKEN = "/token/";
+	
 	// project
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
 	public static final String PROJECT_FOUND = "Project Found";
@@ -60,10 +63,19 @@ public class Constants {
 	public static final String CHANGED_SUCCESS = "Success fully Changed ";
 	public static final String SENT_SUCCESS = "Email Sent Successfully ";
 	public static final String VERIFIED = "Email is Verified Successfully";
+	public static final String DEFAULT_STATUS = "Inactive";
 
+	
 	// Password
 	public static final String PASSWORD_CHANGED_SUCCESS = "Password changed successfully";
 
+//	DefectStatus
+	public static final String OPEN = "Open";
+	public static final String NEW = "New";
+	public static final String RE_OPEN = "Reopen";
+	public static final String FIXED = "Fixed";
+	public static final String CLOSED = "Closed";
+	public static final String REJECT = "Reject";
 	// encaptulate constructor to restrict modification from outside
 
 	private Constants() {

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.defect.tracker.data.dto.ProjectEmp_Module_ResponseDto;
 import com.defect.tracker.data.dto.ProjectEmp_ResponseDto;
-import com.defect.tracker.data.dto.Project_EmpDto;
+import com.defect.tracker.data.dto.ProjectEmployeeDto;
 import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
@@ -30,41 +30,30 @@ public class ProjectEmployeeAllocationController {
 
 	@Autowired
 	ProjectEmployeeAllocationRepository projectemployeeallocationRepository;
-
 	@Autowired
 	ProjectEmployeeAllocationService projectemployeeallocationService;
-
 	@Autowired
 	ProjectService projectService;
-
 	@Autowired
 	EmployeeService employeeService;
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-
 	@Autowired
 	private Mapper mapper;
 
 	@PostMapping(value = EndpointURI.PROJECT_ALLOCATION)
-	public ResponseEntity<Object> addPojectAllocation(@RequestBody Project_EmpDto project_EmpDto) {
-
-		if (!employeeService.idExist(project_EmpDto.getEmployeeId())) {
+	public ResponseEntity<Object> addPojectAllocation(@RequestBody ProjectEmployeeDto projectEmployeeDto) {
+		if (!employeeService.idExist(projectEmployeeDto.getEmployeeId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPTY_PROJECT_ALLOCATION,
 					validationFailureStatusCodes.getProjectAllocationFailed()), HttpStatus.BAD_REQUEST);
 		}
-		ProjectEmp projectEmp = mapper.map(project_EmpDto, ProjectEmp.class);
+		ProjectEmp projectEmp = mapper.map(projectEmployeeDto, ProjectEmp.class);
 		projectemployeeallocationService.addProjectAllocation(projectEmp);
 		return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATED, HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> getAllProjectAllocation() {
-		if (projectemployeeallocationService.getAll().isEmpty()) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_ALLOCATED,
-					validationFailureStatusCodes.getProjectAllocationNotExist()), HttpStatus.BAD_REQUEST);
-		}
-
 		return new ResponseEntity<Object>(
 				mapper.map(projectemployeeallocationService.getAll(), ProjectEmp_ResponseDto.class), HttpStatus.OK);
 	}
@@ -90,17 +79,15 @@ public class ProjectEmployeeAllocationController {
 	}
 
 	@PutMapping(value = EndpointURI.UPDATE_PROJECT_EMPLOYEE_ALLOCATION)
-	public ResponseEntity<Object> updateProjectAllocation(@RequestBody Project_EmpDto project_EmpDto) {
+	public ResponseEntity<Object> updateProjectAllocation(@RequestBody ProjectEmployeeDto project_EmpDto) {
 		if (!projectemployeeallocationService.existsByid(project_EmpDto.getId())) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.PROJECT_EMPLOYEE_NOT_AVAILABLE,
 							validationFailureStatusCodes.getProjectemployeeNotExists()),
 					HttpStatus.BAD_REQUEST);
 		}
-
 		ProjectEmp projectEmp = mapper.map(project_EmpDto, ProjectEmp.class);
 		projectemployeeallocationService.update(projectEmp);
 		return new ResponseEntity<Object>(Constants.PROJECT_EMP_UPDATE, HttpStatus.OK);
-
 	}
 }

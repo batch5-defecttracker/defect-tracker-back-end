@@ -129,6 +129,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
+
 	public String getPassword(String email) {
 		return loginRepository.findByEmail(email).get().getPassword();
 	}
@@ -142,6 +143,8 @@ public class LoginServiceImpl implements LoginService {
 		loginRepository.save(login);
 	}
 		
+
+	public boolean isStatusAlreadyExist(String status) {
+		return loginRepository.existsByStatus(status);
 	}
-
-
+}
