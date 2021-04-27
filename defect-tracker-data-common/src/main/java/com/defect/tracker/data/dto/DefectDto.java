@@ -19,8 +19,8 @@ public class DefectDto {
 	private String str;
 	private long moduleId;
 	private long submoduleId;
-	private long employeeId;
-	private long employee2Id;
+	private long assignedById;
+	private long assignedToId;
 	private long priorityId;
 	private long severityId;
 	private long defectStatusId;
@@ -68,20 +68,20 @@ public class DefectDto {
 		this.submoduleId = submoduleId;
 	}
 
-	public long getEmployeeId() {
-		return employeeId;
+	public long getAssignedById() {
+		return assignedById;
 	}
 
-	public void setEmployeeId(long employeeId) {
-		this.employeeId = employeeId;
+	public void setAssignedById(long assignedById) {
+		this.assignedById = assignedById;
 	}
 
-	public long getEmployee2Id() {
-		return employee2Id;
+	public long getAssignedToId() {
+		return assignedToId;
 	}
 
-	public void setEmployee2Id(long employee2Id) {
-		this.employee2Id = employee2Id;
+	public void setAssignedToId(long assignedToId) {
+		this.assignedToId = assignedToId;
 	}
 
 	public long getPriorityId() {

@@ -13,10 +13,8 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class SeverityController {
-
 	@Autowired
 	private SeverityService severityservice;
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
@@ -26,8 +24,6 @@ public class SeverityController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOTEXIST,
 					validationFailureStatusCodes.getSeverityNotExist()), HttpStatus.BAD_REQUEST);
 		}
-
 		return new ResponseEntity<Object>(severityservice.getAllSeverity(), HttpStatus.OK);
-
 	}
 }

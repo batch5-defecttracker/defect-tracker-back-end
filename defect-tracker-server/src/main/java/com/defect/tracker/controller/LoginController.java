@@ -1,7 +1,6 @@
 package com.defect.tracker.controller;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,33 +31,24 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class LoginController {
-
 	@Autowired
 	LoginService loginService;
-
 	@Autowired
 	EmployeeRepository employeeRepository;
-
 	@Autowired
 	LoginRepository loginRepository;
-
 	@Autowired
 	MailServiceImpl mailServiceImpl;
-
 	@Autowired
 	LoginServiceImpl loginServiceImpl;
-
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-
 	@Autowired
 	private Mapper mapper;
 
 	@PutMapping(value = EndpointURI.UPDATE_EMPLOYEE_STATUS)
 	public ResponseEntity<Object> updateEmployeeStatus(@PathVariable String email, @PathVariable String status) {
-
 		if (!loginService.isEmailAlreadyExist(email)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_NOT_EXISTS,
 					validationFailureStatusCodes.getEmailNotExist()), HttpStatus.BAD_REQUEST);
@@ -70,35 +60,32 @@ public class LoginController {
 	}
 
 	@GetMapping(value = EndpointURI.LOGINSTATUS)
-	public List<LoginResDto> GetEmpId(@RequestParam String status) {
-		return mapper.map(loginService.getLoginByStatus(status), LoginResDto.class);
+	public ResponseEntity<Object> GetEmpId(@RequestParam String status) {
+		if (!loginService.isStatusAlreadyExist(status)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Object>(mapper.map(loginService.getLoginByStatus(status), LoginResDto.class),
+				HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.LOGIN)
 	public ResponseEntity<Object> login(@RequestParam String userName1, String password2, String email) {
-
 		String userName = loginService.getUserName(email);
 		String password = loginService.getUserPassword(email);
-
 		if (userName1.equals(userName) && passwordEncoder.matches(password2, password)) {
 			return new ResponseEntity<Object>(Constants.LOGIN_SUCCESS, HttpStatus.OK);
-
 		}
-
 		else if (!userName1.equals(userName) && passwordEncoder.matches(password2, password)) {
 			return new ResponseEntity<Object>(Constants.WRONG_USER_NAME, HttpStatus.BAD_REQUEST);
 		}
-
 		else if (userName1.equals(userName) && !passwordEncoder.matches(password2, password)) {
 			return new ResponseEntity<Object>(Constants.WRONG_PASSWORD, HttpStatus.BAD_REQUEST);
 		}
-
 		else if (userName1.isBlank() || (password2.isBlank())) {
 			return new ResponseEntity<Object>(Constants.USER_NAME_OR_PASSWORD_EMPTY, HttpStatus.BAD_REQUEST);
 		}
-
 		return new ResponseEntity<Object>(Constants.LOGIN_FAILED, HttpStatus.BAD_REQUEST);
-
 	}
 
 	@PostMapping(value = EndpointURI.FORGOT_PASSWORD)
@@ -122,7 +109,6 @@ public class LoginController {
 		if (loginServiceImpl.isTokenExpired(tokenCreationDate)) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.TOKEN_EXPIRED,
 					validationFailureStatusCodes.getTokenExpired()), HttpStatus.BAD_REQUEST);
-
 		}
 		String encryptedPassword = passwordEncoder.encode(password);
 		loginService.resetPassword(token, encryptedPassword);

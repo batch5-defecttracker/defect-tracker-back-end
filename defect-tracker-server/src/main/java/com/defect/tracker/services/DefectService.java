@@ -2,6 +2,8 @@ package com.defect.tracker.services;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.web.multipart.MultipartFile;
 import com.defect.tracker.data.dto.DefectByEmployeeIdDto;
 import com.defect.tracker.data.dto.DefectByProjectIdDto;
@@ -19,7 +21,7 @@ public interface DefectService {
 
 	public boolean isDefectExists(Long id);
 
-	public Defect findById(Long id);
+	public Optional<Defect> findById(Long id);
 
 	public List<DefectByEmployeeIdDto> getByEmpIdAndStatus(Long id);
 
@@ -27,5 +29,6 @@ public interface DefectService {
 
 	public String fileUpload(MultipartFile file) throws IOException;
 
-	public DefectDto getJson(String Defect, MultipartFile file) throws JsonMappingException, JsonProcessingException;
+	public DefectDto getJson(String Defect) throws JsonMappingException, JsonProcessingException;
+
 }

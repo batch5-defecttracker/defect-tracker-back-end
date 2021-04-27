@@ -22,4 +22,10 @@ public interface ProjectEmployeeAllocationService {
 
 	public List<ProjectEmp> findbyModule(Long id);
 
+	boolean existsBySubmoduleId(Long id);
+
+	boolean existsByEmployeeId(Long id);
+
+
+
 }

@@ -12,7 +12,7 @@ public final class EndpointURI {
 	// Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 	public static final String EMPLOYEE_PHOTO = EMPLOYEE + SLASH + "photo" + ID;
-	public static final String ACT_EMPLOYEE = EMPLOYEE + ID;
+	public static final String EMPLOYEE_BY_ID = EMPLOYEE + ID;
 	public static final String GET_EMPLOYEE_BY_NAME = EMPLOYEE + SLASH + "firstname" + SLASH + "{firstName}";
 	public static final String LOGINSTATUS = BASE_API_PATH + "login-status";
 	public static final String GET_EMPLOYEE_BY_DESIGNATION = EMPLOYEE + SLASH + "designation" + SLASH
@@ -20,7 +20,7 @@ public final class EndpointURI {
 
 	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
-	public static final String ACT_PROJECT = PROJECT + ID;
+	public static final String PROJECT_BY_ID = PROJECT + ID;
 
 	// Module
 	public static final String MODULE = BASE_API_PATH + "module";
@@ -81,6 +81,5 @@ public final class EndpointURI {
 			+ "{email}" + SLASH + "token" + SLASH + "{token}";
 
 	private EndpointURI() {
-
 	}
 }
