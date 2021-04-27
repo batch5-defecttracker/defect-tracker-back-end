@@ -1,9 +1,18 @@
 package com.defect.tracker.data.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class LoginDto {
 
+	@NotBlank(message = "{loginDto.loginEmail.Blank}")
+	@NotNull(message = "{loginDto.loginEmail.Null}")
 	private String email;
+	@NotBlank(message = "{loginDto.loginUserName.Blank}")
+	@NotNull(message = "{loginDto.loginUserName.Null}")
 	private String userName;
+	@NotBlank(message = "{loginDto.loginPassword.Blank}")
+	@NotNull(message = "{loginDto.loginPassword.Null}")
 	private String password;
 	private String status;
 	private Long employeeId;
