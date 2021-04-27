@@ -20,10 +20,6 @@ public class SeverityController {
 
 	@GetMapping(value = EndpointURI.SEVERITY)
 	public ResponseEntity<Object> getAllSeverity() {
-		if (severityservice.getAllSeverity().isEmpty()) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SEVERITY_NOTEXIST,
-					validationFailureStatusCodes.getSeverityNotExist()), HttpStatus.BAD_REQUEST);
-		}
 		return new ResponseEntity<Object>(severityservice.getAllSeverity(), HttpStatus.OK);
 	}
 }

@@ -49,9 +49,7 @@ public class Constants {
 
 	public static final String EMPLOYEE_PHOTO_DELETE_SUCCESS = "Employee Photo Delete Successfully";
 	public static final String EMPLOYEE_PHOTO_UPDATE_SUCCESS = "Employee Photo Successfully Updated";
-	// severity
-	public static final String Get_All_Severity = "Severity got Successfully";
-
+	
 	public static final String PROJECT_EMP_UPDATE = "updateProjectEmp SuccessFully";
 
 	// Login

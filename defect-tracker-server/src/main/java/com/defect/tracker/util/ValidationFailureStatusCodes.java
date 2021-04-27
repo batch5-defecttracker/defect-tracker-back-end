@@ -24,10 +24,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.priority.notExist}")
 	private String priorityNotExist;
 
-	// severity
-	@Value("${validation.severity.notExist}")
-	private String severityNotExist;
-
 	// defect_type
 	@Value("${validation.defectType.notExist}")
 	private String defectTypeNotFound;
@@ -169,14 +165,7 @@ public class ValidationFailureStatusCodes {
 		this.priorityNotExist = priorityNotExist;
 	}
 
-	public String getSeverityNotExist() {
-		return severityNotExist;
-	}
-
-	public void setSeverityNotExist(String severityNotExist) {
-		this.severityNotExist = severityNotExist;
-	}
-
+	
 	public String getDefectTypeNotFound() {
 		return defectTypeNotFound;
 	}
