@@ -31,13 +31,6 @@ public class DefectStatusController {
 	@GetMapping(value = EndpointURI.DEFECTSTATUS)
 	public ResponseEntity<Object> getAllDefectStatus() {
 		return new ResponseEntity<Object>(defectStatusService.getAllDefectStatus(),HttpStatus.OK);
-
-		if (defectStatusService.getAllDefectStatus().isEmpty()) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_EMPTY,
-					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<Object>(mapper.map(defectStatusService.getAllDefectStatus(), DefectStatus.class),
-				HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.DEFECT_STATUS)

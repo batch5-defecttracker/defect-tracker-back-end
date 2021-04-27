@@ -62,12 +62,6 @@ public class LoginController {
 	@GetMapping(value = EndpointURI.LOGINSTATUS)
 	public ResponseEntity<Object> GetEmpId(@RequestParam String status) {
 		return new ResponseEntity<Object>(mapper.map(loginService.getLoginByStatus(status), LoginResDto.class),HttpStatus.OK);
-		if (!loginService.isStatusAlreadyExist(status)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
-					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<Object>(mapper.map(loginService.getLoginByStatus(status), LoginResDto.class),
-				HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.LOGIN)
@@ -100,7 +94,7 @@ public class LoginController {
 	}
 
 	@PutMapping(value = EndpointURI.RESET_PASSWORD)
-	public ResponseEntity<Object> resetPassword(@PathVariable String token, @PathVariable String password) {
+	public ResponseEntity<Object> Password(@PathVariable String token, @PathVariable String password) {
 		Optional<Login> loginOptional = Optional.ofNullable(loginRepository.findByToken(token));
 		if (!loginOptional.isPresent()) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.INVALID_TOKEN,
@@ -111,12 +105,6 @@ public class LoginController {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.TOKEN_EXPIRED,
 					validationFailureStatusCodes.getTokenExpired()), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(response, HttpStatus.OK);
-	}
-
-	@PutMapping(value = EndpointURI.RESET_PASSWORD)
-	public ResponseEntity<Object> resetPassword(@PathVariable String token, @PathVariable String password) {
-		return new ResponseEntity<Object>( loginService.resetPassword(token, password),HttpStatus.OK);
 		String encryptedPassword = passwordEncoder.encode(password);
 		loginService.resetPassword(token, encryptedPassword);
 		return new ResponseEntity<Object>(Constants.CHANGED_SUCCESS, HttpStatus.OK);
