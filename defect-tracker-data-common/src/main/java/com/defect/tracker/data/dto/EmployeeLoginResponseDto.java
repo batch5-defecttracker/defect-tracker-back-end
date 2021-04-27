@@ -8,45 +8,45 @@ import javax.validation.constraints.NotNull;
 public class EmployeeLoginResponseDto {
 
 	private Long id;
-	@NotEmpty(message = "{employeeDto.FirstName.null}")
-	@NotNull(message = "{employeeDto.FirstName.empty}")
+	@NotEmpty(message = "{employeeDto.FirstName.empty}")
+	@NotNull(message = "{employeeDto.FirstName.null}")
 	@NotBlank(message = "{employeeDto.FirstName.blank}")
 	private String firstName;
-	@NotEmpty(message = "{employeeDto.lastName.null}")
-	@NotNull(message = "{employeeDto.lastName.empty}")
+	@NotEmpty(message = "{employeeDto.lastName.empty}")
+	@NotNull(message = "{employeeDto.lastName.null}")
 	@NotBlank(message = "{employeeDto.lastName.blank}")
 	private String lastName;
 	private Long designationId;
-	@NotEmpty(message = "{employeeDto.email.null}")
-	@NotNull(message = "{employeeDto.email.empty}")
+	@NotEmpty(message = "{employeeDto.email.empty}")
+	@NotNull(message = "{employeeDto.email.null}")
 	@NotBlank(message = "{employeeDto.email.blank}")
 	private String email;
-	@NotEmpty(message = "{employeeDto.address.null}")
-	@NotNull(message = "{employeeDto.address.empty}")
+	@NotEmpty(message = "{employeeDto.address.empty}")
+	@NotNull(message = "{employeeDto.address.null}")
 	@NotBlank(message = "{employeeDto.address.blank}")
 	private String address;
-	@NotEmpty(message = "{employeeDto.contactNumber.null}")
-	@NotNull(message = "{employeeDto.contactNumber.empty}")
+	@NotEmpty(message = "{employeeDto.contactNumber.empty}")
+	@NotNull(message = "{employeeDto.contactNumber.null}")
 	@NotBlank(message = "{employeeDto.contactNumber.blank}")
 	private String contactNumber;
-	@NotEmpty(message = "{employeeDto.nic.null}")
-	@NotNull(message = "{employeeDto.nic.empty}")
+	@NotEmpty(message = "{employeeDto.nic.empty}")
+	@NotNull(message = "{employeeDto.nic.null}")
 	@NotBlank(message = "{employeeDto.nic.blank}")
 	private String nic;
 	private String image;
 	private Date timeStamp;
-	@NotEmpty(message = "{employeeDto.gender.null}")
-	@NotNull(message = "{employeeDto.gender.empty}")
+	@NotEmpty(message = "{employeeDto.gender.empty}")
+	@NotNull(message = "{employeeDto.gender.null}")
 	@NotBlank(message = "{employeeDto.gender.blank}")
 	private String gender;
 
-	@NotEmpty(message = "{loginDto.userName.null}")
-	@NotNull(message = "{loginDto.userName.empty}")
-	@NotBlank(message = "{loginDto.userName.blank}")
+	@NotBlank(message = "{loginDto.loginUserName.Blank}")
+	@NotNull(message = "{loginDto.loginUserName.Null}")
+	@NotEmpty(message = "{loginDto.loginUserName.empty}")
 	private String userName;
-	@NotEmpty(message = "{loginDto.password.null}")
-	@NotNull(message = "{loginDto.password.empty}")
-	@NotBlank(message = "{loginDto.password.blank}")
+	@NotBlank(message = "{loginDto.loginPassword.Blank}")
+	@NotNull(message = "{loginDto.loginPassword.Null}")
+	@NotEmpty(message = "{loginDto.loginPassword.empty}")
 	private String password;
 	private String status;
 

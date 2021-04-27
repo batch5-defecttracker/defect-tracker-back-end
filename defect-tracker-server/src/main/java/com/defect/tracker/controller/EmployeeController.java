@@ -6,9 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.EmployeeLoginResponseDto;
 import com.defect.tracker.data.dto.EmployeeUpdateDto;
@@ -68,10 +69,9 @@ public class EmployeeController {
 		Employee employee = mapper.map(employeeLoginResponseDto, Employee.class);
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		employee.setTimeStamp(date);
-		employee.setVerification(Constants.DEFAULT_VERIFICATION);
+		employee.setVerification(false);
 		employee.setToken(loginServiceImpl.generateToken());
 		employeeService.createEmployee(employee);
-
 		String link = loginServiceImpl.getSiteURL(request) + Constants.VERIFICATION_PATH + employee.getEmail()
 				+ Constants.VERIFICATION_TOKEN + employee.getToken();
 		mailServiceImpl.sendVerifyEmail(employee.getEmail(), link);
@@ -79,7 +79,7 @@ public class EmployeeController {
 		loginDto.setEmployeeId(employee.getId());
 		String encryptedPassword = passwordEncoder.encode(employeeLoginResponseDto.getPassword());
 		loginDto.setPassword(encryptedPassword);
-		loginDto.setStatus(Constants.DEFAULT_STATUS);
+		loginDto.setStatus(false);
 		Login login = mapper.map(loginDto, Login.class);
 		loginService.create(login);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS + link, HttpStatus.OK);
@@ -122,7 +122,7 @@ public class EmployeeController {
 	public ResponseEntity<Object> findEmployeeByDesignation(@PathVariable Long designationId) {
 		List<Employee> employeeList = employeeService.findByDes(designationId);
 		if (employeeList.isEmpty()) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMPTY,
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getEmployeeNotFound()), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Object>(mapper.map(employeeList, EmployeeDto.class), HttpStatus.OK);
@@ -151,7 +151,6 @@ public class EmployeeController {
 	public ResponseEntity<Object> DeleteEmployeePhotoById(@PathVariable Long id) {
 		Employee employee = employeeService.findById(id).get();
 		EmployeeDto employeedto = mapper.map(employee, EmployeeDto.class);
-		
 		if (employeedto.getImage() == null) {
 			return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_NULL, HttpStatus.BAD_REQUEST);
 		}
@@ -159,22 +158,6 @@ public class EmployeeController {
 		employee = mapper.map(employeedto, Employee.class);
 		employeeService.createEmployee(employee);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_DELETE_SUCCESS, HttpStatus.OK);
-	}
-
-	@PostMapping(value = EndpointURI.EMPLOYEE_PHOTO)
-	public ResponseEntity<Object> AddEmployeePhoto(@PathVariable Long id, @RequestParam("file") MultipartFile file,
-			RedirectAttributes redirectAttributes) throws IOException {
-		
-		if (file.isEmpty()) {
-			return new ResponseEntity<Object>(ValidationConstance.EMPLOYEE_PHOTO_EMPTY, HttpStatus.BAD_REQUEST);
-		}
-		byte[] bytes = file.getBytes();
-		Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-		Files.write(path, bytes);
-		Employee employee = employeeService.findById(id).get();
-		employee.setImage(path.toString());
-		employeeService.createEmployee(employee);
-		return new ResponseEntity<Object>(Constants.ADD_EMPLOYEE_PHOTO_SUCCESS, HttpStatus.OK);
 	}
 
 	@PutMapping(value = EndpointURI.EMPLOYEE_PHOTO)
@@ -190,6 +173,6 @@ public class EmployeeController {
 		Employee employee = employeeService.findById(id).get();
 		employee.setImage(path.toString());
 		employeeService.createEmployee(employee);
-		return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_UPDATE_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_UPLOAD, HttpStatus.OK);
 	}
 }

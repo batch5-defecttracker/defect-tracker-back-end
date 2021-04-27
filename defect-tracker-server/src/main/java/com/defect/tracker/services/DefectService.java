@@ -14,21 +14,12 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 public interface DefectService {
 	public List<Defect> getAllDefect();
-
 	boolean isDefectAlreadyExist(Long id);
-
 	public void addDefect(Defect defect);
-
 	public boolean isDefectExists(Long id);
-
 	public Optional<Defect> findById(Long id);
-
 	public List<DefectByEmployeeIdDto> getByEmpIdAndStatus(Long id);
-
 	public DefectByProjectIdDto getAllDefectByProId(Long id);
-
 	public String fileUpload(MultipartFile file) throws IOException;
-
 	public DefectDto getJson(String Defect) throws JsonMappingException, JsonProcessingException;
-
 }

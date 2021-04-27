@@ -11,7 +11,6 @@ import com.defect.tracker.data.repositories.LoginRepository;
 public class PasswordServiceImpl implements PasswordService {
 	@Autowired
 	LoginRepository loginRepository;
-
 	@Autowired
 	Mapper mapper;
 
@@ -28,5 +27,4 @@ public class PasswordServiceImpl implements PasswordService {
 		login = mapper.map(loginDto, Login.class);
 		loginRepository.save(login);
 	}
-
 }

@@ -13,25 +13,20 @@ import javax.persistence.Table;
 @Table(name = "projectEmployeeAllocation")
 public class ProjectEmp {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "projectId", nullable = false)
 	private Project project;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "moduleId", nullable = true)
 	private Module module;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employeeId", nullable = true)
 	private Employee employee;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "designationId", nullable = true)
 	private Designation designation;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "submoduleId", nullable = true)
 	private SubModule submodule;

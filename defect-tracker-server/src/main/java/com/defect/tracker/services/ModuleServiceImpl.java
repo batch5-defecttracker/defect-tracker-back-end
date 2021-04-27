@@ -9,30 +9,27 @@ import com.defect.tracker.data.repositories.ModuleRepository;
 
 @Service
 public class ModuleServiceImpl implements ModuleService {
-
 	@Autowired
 	private ModuleRepository moduleRepository;
 
 	@Override
 	public void deleteModule(Long id) {
 		moduleRepository.deleteById(id);
-
 	}
 
 	@Override
 	public boolean isModuleExists(Long id) {
-		return moduleRepository.existsByProjectId(id);
+		return moduleRepository.existsById(id);
 	}
 
 	@Override
 	public void addModule(Module module) {
 		moduleRepository.save(module);
-
 	}
 
 	@Override
-	public boolean isModuleExistsByName(String name) {
-		return moduleRepository.existsByModuleName(name);
+	public boolean existByModuleName(String name) {
+		return moduleRepository.existsByName(name);
 	}
 
 	@Override
@@ -40,25 +37,34 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleRepository.findAll();
 	}
 
+	@Override
 	public List<Module> findByProject(Long projectId) {
 		return moduleRepository.findByProjectId(projectId);
 	}
 
 	@Override
-	public boolean isModuleExistsByProjectId(Long projectId) {
-		return moduleRepository.existsById(projectId);
+	public boolean existsByProjectId(Long projectId) {
+		return moduleRepository.existsByProjectId(projectId);
 	}
 
 	@Override
 	public List<Long> getModIdByProId(Long id) {
-
 		List<Long> lisOfModuleId = new ArrayList<Long>();
 		List<Module> ListOfModule = moduleRepository.findByProjectId(id);
 		for (Module module : ListOfModule) {
 			lisOfModuleId.add(module.getId());
 		}
-
 		return lisOfModuleId;
+	}
+
+	@Override
+	public boolean existByModuleNameAndProjectId(String name, Long projectId) {
+		return moduleRepository.existsByProjectIdAndName(projectId,name);
+	}
+
+	@Override
+	public Module findById(Long id) {
+		return moduleRepository.findById(id).get();
 	}
 
 }

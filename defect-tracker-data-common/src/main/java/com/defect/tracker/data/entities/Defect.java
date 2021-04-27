@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Defect {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String defectDescription;
 	private String str;
@@ -86,8 +86,6 @@ public class Defect {
 	public void setSubmodule(SubModule submodule) {
 		this.submodule = submodule;
 	}
-
-	
 
 	public Employee getAssignedBy() {
 		return assignedBy;

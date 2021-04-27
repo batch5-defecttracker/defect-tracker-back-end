@@ -34,7 +34,7 @@ public class ProjectController {
 
 	@PostMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto proDto) {
-		if (projectService.isProNameAlreadyExist(proDto.getProjectName())) {
+		if (projectService.isProNameAlreadyExist(proDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
 					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
@@ -54,10 +54,6 @@ public class ProjectController {
 
 	@GetMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> getAllProject() {
-		if (projectService.getAllProject().isEmpty()) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
-					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
-		}
 		return new ResponseEntity<Object>(mapper.map(projectService.findAll(), ProjectDto.class), HttpStatus.OK);
 	}
 
@@ -67,7 +63,7 @@ public class ProjectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		if (projectService.isProNameAlreadyExist(projectDto.getProjectName())) {
+		if (projectService.isProNameAlreadyExist(projectDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NAME_EXISTS,
 					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}

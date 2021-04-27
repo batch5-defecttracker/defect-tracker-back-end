@@ -8,12 +8,11 @@ import com.defect.tracker.data.repositories.SubModuleRepository;
 
 @Service
 public class SubModuleServiceImpl implements SubModuleService {
-
 	@Autowired
 	private SubModuleRepository subModuleUpdateRepository;
 
 	@Override
-	public void createSubModule(SubModule subModule) {
+	public void addSubModule(SubModule subModule) {
 		subModuleUpdateRepository.save(subModule);
 	}
 
@@ -23,18 +22,8 @@ public class SubModuleServiceImpl implements SubModuleService {
 	}
 
 	@Override
-	public void Update(SubModule submodule) {
-		subModuleUpdateRepository.save(submodule);
-	}
-
-	@Override
 	public void deleteSubModuleById(Long id) {
 		subModuleUpdateRepository.deleteById(id);
-	}
-
-	@Override
-	public boolean existById(Long id) {
-		return subModuleUpdateRepository.existsByModuleId(id);
 	}
 
 	@Override
@@ -49,7 +38,7 @@ public class SubModuleServiceImpl implements SubModuleService {
 
 	@Override
 	public boolean existsBySubModuleName(String name) {
-		return subModuleUpdateRepository.existsBysubmoduleName(name);
+		return subModuleUpdateRepository.existsByName(name);
 	}
 
 	@Override
@@ -57,4 +46,8 @@ public class SubModuleServiceImpl implements SubModuleService {
 		return subModuleUpdateRepository.findAll();
 	}
 
+	@Override
+	public boolean existsBySubmoduleNameAndModuleId(String name, Long moduleId) {
+		return subModuleUpdateRepository.existsByNameAndModuleId(name, moduleId);
+	}
 }

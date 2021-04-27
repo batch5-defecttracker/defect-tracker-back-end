@@ -2,46 +2,49 @@ package com.defect.tracker.data.dto;
 
 import java.util.Date;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class EmployeeDto {
 
 	private Long id;
-	@NotNull(message = "{employeeDto.FirstName.empty}")
+	@NotNull(message = "{employeeDto.FirstName.null}")
 	@NotBlank(message = "{employeeDto.FirstName.blank}")
+	@NotEmpty(message = "{employeeDto.FirstName.empty}")
 	@Pattern(regexp = "^[a-zA-Z ]*$", message = "No Special Charcter Accepeted")
 	private String firstName;
-	
-	@NotNull(message = "{employeeDto.lastName.empty}")
+	@NotNull(message = "{employeeDto.lastName.null}")
 	@NotBlank(message = "{employeeDto.lastName.blank}")
+	@NotEmpty(message = "{employeeDto.lastName.empty}")
 	@Pattern(regexp = "^[a-zA-Z ]*$", message = "No Special Charcter Accepeted")
 	private String lastName;
-	
 	private Long designationId;
-
 	@Pattern(regexp = " Pattern.compile(\"@[.]\"", message = "Please Put Valid Characters For Email Ex- abc@yahoo.com")
-	@NotNull(message = "{employeeDto.email.empty}")
+	@NotNull(message = "{employeeDto.email.null}")
+	@NotEmpty(message = "{employeeDto.email.empty}")
 	@NotBlank(message = "{employeeDto.email.blank}")
 	private String email;
-
-	@NotNull(message = "{employeeDto.address.empty}")
+	@NotNull(message = "{employeeDto.address.null}")
 	@NotBlank(message = "{employeeDto.address.blank}")
+	@NotEmpty(message = "{employeeDto.address.empty}")
 	private String address;
-	@NotNull(message = "{employeeDto.contactNumber.empty}")
+	@NotNull(message = "{employeeDto.contactNumber.null}")
 	@NotBlank(message = "{employeeDto.contactNumber.blank}")
+	@NotEmpty(message = "{employeeDto.contactNumber.empty}")
 	private String contactNumber;
-
-	@NotNull(message = "{employeeDto.nic.empty}")
+	@NotNull(message = "{employeeDto.nic.null}")
 	@NotBlank(message = "{employeeDto.nic.blank}")
-	@Pattern(regexp = "^[a-zA-Z ]*$", message = "No Special Charcter Accepeted")
+	@NotEmpty(message = "{employeeDto.nic.empty}")
+	@Pattern(regexp = "^([0-9]{9}[x|X|v|V]|[0-9]{12})$", message = "Invalid NIC")
 	private String nic;
 	private String image;
 	private Date timeStamp;
-	@NotNull(message = "{employeeDto.gender.empty}")
+	@NotNull(message = "{employeeDto.gender.null}")
 	@NotBlank(message = "{employeeDto.gender.blank}")
+	@NotEmpty(message = "{employeeDto.gender.empty}")
 	private String gender;
-	private String verification;
+	private boolean verification;
 	private String token;
 
 	public String getToken() {
@@ -52,11 +55,11 @@ public class EmployeeDto {
 		this.token = token;
 	}
 
-	public String getVerification() {
+	public boolean isVerification() {
 		return verification;
 	}
 
-	public void setVerification(String verification) {
+	public void setVerification(boolean verification) {
 		this.verification = verification;
 	}
 

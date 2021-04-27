@@ -9,5 +9,4 @@ import com.defect.tracker.data.entities.Designation;
 @Service
 public interface DesignationService {
 	public List<Designation> getAlldesignation();
-
 }

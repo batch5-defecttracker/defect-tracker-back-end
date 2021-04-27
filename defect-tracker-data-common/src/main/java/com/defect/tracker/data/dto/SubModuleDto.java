@@ -1,15 +1,18 @@
 package com.defect.tracker.data.dto;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class SubModuleDto {
 	private Long id;
-
-	@NotNull(message = "{subModuleDto.submoduleName.null}")
-	@NotEmpty(message = "{subModuleDto.submoduleName.empty}")
-	private String submoduleName;
+	@NotNull(message = "{subModuleDto.name.null}")
+	@NotBlank(message = "{subModuleDto.name.blank}")
+	@NotEmpty(message = "{subModuleDto.name.empty}")
+	private String name;
+	@NotNull(message = "{subModuleDto.id.null}")
 	private Long moduleId;
+
 
 	public Long getId() {
 		return id;
@@ -19,12 +22,12 @@ public class SubModuleDto {
 		this.id = id;
 	}
 
-	public String getSubmoduleName() {
-		return submoduleName;
+	public String getName() {
+		return name;
 	}
 
-	public void setSubmoduleName(String submoduleName) {
-		this.submoduleName = submoduleName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getModuleId() {

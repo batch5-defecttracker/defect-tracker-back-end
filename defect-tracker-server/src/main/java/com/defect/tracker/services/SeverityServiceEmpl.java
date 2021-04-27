@@ -8,7 +8,6 @@ import com.defect.tracker.data.repositories.SeverityRepository;
 
 @Service
 public class SeverityServiceEmpl implements SeverityService {
-
 	@Autowired
 	private SeverityRepository severityrepository;
 

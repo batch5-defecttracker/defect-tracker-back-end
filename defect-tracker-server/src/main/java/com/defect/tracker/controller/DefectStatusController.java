@@ -27,13 +27,9 @@ public class DefectStatusController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	DefectStatusRepository defectStatusRepository;
-	
+
 	@GetMapping(value = EndpointURI.DEFECTSTATUS)
 	public ResponseEntity<Object> getAllDefectStatus() {
-		if (defectStatusService.getAllDefectStatus().isEmpty()) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_EMPTY,
-					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
-		}
 		return new ResponseEntity<Object>(mapper.map(defectStatusService.getAllDefectStatus(), DefectStatus.class),
 				HttpStatus.OK);
 	}
