@@ -20,6 +20,10 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.notExist}")
 	private String defectEmployeeNotExist;
 
+	// priority
+	@Value("${validation.priority.notExist}")
+	private String priorityNotExist;
+
 	// severity
 	@Value("${validation.severity.notExist}")
 	private String severityNotExist;
@@ -155,6 +159,14 @@ public class ValidationFailureStatusCodes {
 
 	public void setDefectEmployeeNotExist(String defectEmployeeNotExist) {
 		this.defectEmployeeNotExist = defectEmployeeNotExist;
+	}
+
+	public String getPriorityNotExist() {
+		return priorityNotExist;
+	}
+
+	public void setPriorityNotExist(String priorityNotExist) {
+		this.priorityNotExist = priorityNotExist;
 	}
 
 	public String getSeverityNotExist() {
