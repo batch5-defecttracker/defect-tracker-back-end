@@ -55,5 +55,4 @@ public class ProjectEmployeeResponseDto {
 	public void setSubmodule(SubModuleDto submodule) {
 		this.submodule = submodule;
 	}
-
 }

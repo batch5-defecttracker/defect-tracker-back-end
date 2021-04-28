@@ -62,7 +62,6 @@ public class DefectStatusController {
 					.equalsIgnoreCase("Reject")) {
 				DefectStatus defectStatus = defectStatusService.getDefectStatusByName("Reopen");
 				return new ResponseEntity<Object>(defectStatus, HttpStatus.OK);
-
 			}
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,

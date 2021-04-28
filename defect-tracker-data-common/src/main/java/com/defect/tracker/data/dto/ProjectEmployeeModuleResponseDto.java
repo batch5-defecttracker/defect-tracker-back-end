@@ -29,5 +29,4 @@ public class ProjectEmployeeModuleResponseDto {
 	public void setEmployee(EmployeeDto employee) {
 		this.employee = employee;
 	}
-
 }
