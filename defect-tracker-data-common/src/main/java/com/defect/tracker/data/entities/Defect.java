@@ -2,6 +2,7 @@ package com.defect.tracker.data.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -45,6 +46,7 @@ public class Defect {
 	@JoinColumn(name = "defectTypeId", nullable = false)
 	private DefectType defectType;
 	private Date timeStamp;
+	@Column(nullable = true)
 	private String file;
 
 	public long getId() {

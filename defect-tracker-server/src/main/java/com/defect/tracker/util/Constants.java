@@ -2,7 +2,7 @@ package com.defect.tracker.util;
 
 public class Constants {
 	//employee
-	public static final String EMPLOYEE_ADD_SUCCESS = "Employee Added Successfully";
+	public static final String EMPLOYEE_ADD_SUCCESS = "Employee Added Successfully ,Verification Code Send To Your Mail";
 	public static final String EMPLOYEE_DELETE_SUCCESS = "Employee Deleted Successfully";
 	public static final String EMPLOYEE_STATUS_UPDATED = "Employee Status Updated Successfully";
 	public static final String EMPLOYEE_PHOTO_NULL = "Employee Photo is NULL";
@@ -42,6 +42,7 @@ public class Constants {
 	public static final String PASSWORD_RESET_SUCCESS = "Password Reset Successfully";
 	public static final String SENT_SUCCESS = "Email Sent Successfully ";
 	public static final String VERIFIED = "Email Verified Successfully";
+	public static final String ACTIVATED = "Activated";
 	//Password
 	public static final String PASSWORD_CHANGED_SUCCESS = "Password Changed Successfully";
 	//DefectStatus

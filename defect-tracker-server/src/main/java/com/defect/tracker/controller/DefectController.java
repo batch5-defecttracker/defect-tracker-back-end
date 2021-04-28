@@ -74,9 +74,9 @@ public class DefectController {
 		return new ResponseEntity<Object>(mapper.map(defectService.getAllDefect(), DefectResponseDto.class),
 				HttpStatus.OK);
 	}
-
+	
 	@PostMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> addDefect(@Valid @RequestPart String defect1, @RequestPart("file") MultipartFile file)
+	public ResponseEntity<Object> addDefect(@Valid @RequestPart String defect1, @RequestPart MultipartFile file)
 			throws IOException {
 		DefectDto defectDto = defectService.getJson(defect1);
 		if (!(projectEmployeeAllocationService.existsByEmployeeIdAndProjectId(defectDto.getAssignedToId(),moduleService.findById(defectDto.getModuleId()).getProject().getId()))) {

@@ -58,7 +58,7 @@ public class EmployeeController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
-
+	
 	@PostMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestBody EmployeeLoginResponseDto employeeLoginResponseDto,
 			HttpServletRequest request) {
@@ -82,7 +82,8 @@ public class EmployeeController {
 		loginDto.setStatus(false);
 		Login login = mapper.map(loginDto, Login.class);
 		loginService.create(login);
-		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS + link, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
+		
 	}
 
 	@GetMapping(value = EndpointURI.GET_EMPLOYEE_BY_NAME)

@@ -2,6 +2,7 @@ package com.defect.tracker.data.dto;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,7 @@ public class DefectDto {
 	private long defectStatusId;
 	private long defectTypeId;
 	private Date timeStamp;
+	@Column(nullable = true)
 	private String file;
 
 	public long getId() {

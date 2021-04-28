@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.defect.tracker.data.dto.LoginDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.mapper.Mapper;
@@ -36,17 +35,16 @@ public class LoginServiceImpl implements LoginService {
 
 	}
 
+
 	@Override
-	public List<Login> getLoginByStatus(String status) {
+	public List<Login> getLoginByStatus(boolean status) {
 		return loginRepository.findByStatus(status);
 	}
 
 	@Override
-	public void updateEmployeeStatus(String email, String status) {
+	public void updateEmployeeStatus(String email) {
 		Login login = loginRepository.findByEmail(email).get();
-		LoginDto loginDto = mapper.map(login, LoginDto.class);
-		loginDto.setStatus(true);
-		login = mapper.map(loginDto, Login.class);
+		login.setStatus(true);
 		loginRepository.save(login);
 	}
 
@@ -115,7 +113,9 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public boolean isStatusAlreadyExist(String status) {
+	public boolean isStatusAlreadyExist(boolean status) {
 		return loginRepository.existsByStatus(status);
 	}
+
+
 }
