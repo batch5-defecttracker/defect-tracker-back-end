@@ -9,26 +9,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "defecttype")
 public class DefectType {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String defTypeName;
-	
-	
+	private String defectTypeName;
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getDefTypeName() {
-		return defTypeName;
+
+	public String getDefectTypeName() {
+		return defectTypeName;
 	}
-	public void setDefTypeName(String defTypeName) {
-		this.defTypeName = defTypeName;
+
+	public void setDefectTypeName(String defectTypeName) {
+		this.defectTypeName = defectTypeName;
 	}
-	
-	
 
 }

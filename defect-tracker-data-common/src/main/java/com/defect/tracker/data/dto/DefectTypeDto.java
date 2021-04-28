@@ -1,21 +1,24 @@
 package com.defect.tracker.data.dto;
 
 public class DefectTypeDto {
-	
-	private long defTypeId;
-	private String defTypeName;
-	public long getDefTypeId() {
-		return defTypeId;
+
+	private long id;
+	private String defectTypeName;
+
+	public long getId() {
+		return id;
 	}
-	public void setDefTypeId(long defTypeId) {
-		this.defTypeId = defTypeId;
+
+	public void setId(long id) {
+		this.id = id;
 	}
-	public String getDefTypeName() {
-		return defTypeName;
+
+	public String getDefectTypeName() {
+		return defectTypeName;
 	}
-	public void setDefTypeName(String defTypeName) {
-		this.defTypeName = defTypeName;
+
+	public void setDefectTypeName(String defectTypeName) {
+		this.defectTypeName = defectTypeName;
 	}
-	
 
 }

@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.entities.DefectType;
 import com.defect.tracker.data.repositories.DefectTypeRepository;
+
 @Service
 public class DefectTypeServiceImpl implements DefectTypeService {
-	@Autowired DefectTypeRepository defectTypeRepository;
+	@Autowired
+	DefectTypeRepository defectTypeRepository;
 
 	@Override
 	public List<DefectType> getAllDefectType() {

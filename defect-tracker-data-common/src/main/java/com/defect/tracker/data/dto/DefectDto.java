@@ -2,103 +2,133 @@ package com.defect.tracker.data.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class DefectDto {
 
-	private long defId;
-	private String defDescription;
+	private long id;
+	@NotEmpty(message = "{defectDto.defectDescription.Empty}")
+	@NotNull(message = "{defectDto.defectDescription.Null}")
+	@NotBlank(message = "{defectDto.defectDescription.Space}")
+	private String defectDescription;
+	@NotEmpty(message = "{defectDto.str.Empty}")
+	@NotNull(message = "{defectDto.str.Null}")
+	@NotBlank(message = "{defectDto.str.Space}")
 	private String str;
-	private long modId;
-	private long subModId;
-	private long assignedBy;
-	private long assignedTo;
-	private long prioId;
-	private long sevId;
-	private long defStId;
-	private long defTypeId;
+	private long moduleId;
+	private long submoduleId;
+	private long assignedById;
+	private long assignedToId;
+	private long priorityId;
+	private long severityId;
+	private long defectStatusId;
+	private long defectTypeId;
 	private Date timeStamp;
 	private String file;
-	
-	//Getters and Setters
-	public long getDefId() {
-		return defId;
+
+	public long getId() {
+		return id;
 	}
-	public void setDefId(long defId) {
-		this.defId = defId;
+
+	public void setId(long id) {
+		this.id = id;
 	}
-	public String getDefDescription() {
-		return defDescription;
+
+	public String getDefectDescription() {
+		return defectDescription;
 	}
-	public void setDefDescription(String defDescription) {
-		this.defDescription = defDescription;
+
+	public void setDefectDescription(String defectDescription) {
+		this.defectDescription = defectDescription;
 	}
+
 	public String getStr() {
 		return str;
 	}
+
 	public void setStr(String str) {
 		this.str = str;
 	}
-	public long getModId() {
-		return modId;
+
+	public long getModuleId() {
+		return moduleId;
 	}
-	public void setModId(long modId) {
-		this.modId = modId;
+
+	public void setModuleId(long moduleId) {
+		this.moduleId = moduleId;
 	}
-	public long getSubModId() {
-		return subModId;
+
+	public long getSubmoduleId() {
+		return submoduleId;
 	}
-	public void setSubModId(long subModId) {
-		this.subModId = subModId;
+
+	public void setSubmoduleId(long submoduleId) {
+		this.submoduleId = submoduleId;
 	}
-	public long getAssignedBy() {
-		return assignedBy;
+
+	public long getAssignedById() {
+		return assignedById;
 	}
-	public void setAssignedBy(long assignedBy) {
-		this.assignedBy = assignedBy;
+
+	public void setAssignedById(long assignedById) {
+		this.assignedById = assignedById;
 	}
-	public long getAssignedTo() {
-		return assignedTo;
+
+	public long getAssignedToId() {
+		return assignedToId;
 	}
-	public void setAssignedTo(long assignedTo) {
-		this.assignedTo = assignedTo;
+
+	public void setAssignedToId(long assignedToId) {
+		this.assignedToId = assignedToId;
 	}
-	public long getPrioId() {
-		return prioId;
+
+	public long getPriorityId() {
+		return priorityId;
 	}
-	public void setPrioId(long prioId) {
-		this.prioId = prioId;
+
+	public void setPriorityId(long priorityId) {
+		this.priorityId = priorityId;
 	}
-	public long getSevId() {
-		return sevId;
+
+	public long getSeverityId() {
+		return severityId;
 	}
-	public void setSevId(long sevId) {
-		this.sevId = sevId;
+
+	public void setSeverityId(long severityId) {
+		this.severityId = severityId;
 	}
-	public long getDefStId() {
-		return defStId;
+
+	public long getDefectStatusId() {
+		return defectStatusId;
 	}
-	public void setDefStId(long defStId) {
-		this.defStId = defStId;
+
+	public void setDefectStatusId(long defectStatusId) {
+		this.defectStatusId = defectStatusId;
 	}
-	public long getDefTypeId() {
-		return defTypeId;
+
+	public long getDefectTypeId() {
+		return defectTypeId;
 	}
-	public void setDefTypeId(long defTypeId) {
-		this.defTypeId = defTypeId;
+
+	public void setDefectTypeId(long defectTypeId) {
+		this.defectTypeId = defectTypeId;
 	}
+
 	public Date getTimeStamp() {
 		return timeStamp;
 	}
+
 	public void setTimeStamp(Date timeStamp) {
 		this.timeStamp = timeStamp;
 	}
+
 	public String getFile() {
 		return file;
 	}
+
 	public void setFile(String file) {
 		this.file = file;
 	}
-	
-	//Constructors
-	
-
 }
