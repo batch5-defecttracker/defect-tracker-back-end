@@ -1,6 +1,6 @@
 package com.defect.tracker.data.dto;
 
-public class ProjectEmp_Module_ResponseDto {
+public class ProjectEmployeeModuleResponseDto {
 
 	private long id;
 	private ModuleDto module;

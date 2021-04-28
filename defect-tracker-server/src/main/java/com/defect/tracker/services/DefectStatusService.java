@@ -13,4 +13,7 @@ public interface DefectStatusService {
 
 	public List<DefectStatus> addDropDownStatus(String fixed, String reject);
 
+	public boolean existById(Long id);
+	
+
 }

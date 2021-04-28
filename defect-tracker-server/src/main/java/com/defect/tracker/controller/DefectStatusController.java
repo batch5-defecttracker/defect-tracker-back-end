@@ -27,20 +27,16 @@ public class DefectStatusController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	DefectStatusRepository defectStatusRepository;
-	
+
 	@GetMapping(value = EndpointURI.DEFECTSTATUS)
 	public ResponseEntity<Object> getAllDefectStatus() {
-		if (defectStatusService.getAllDefectStatus().isEmpty()) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_EMPTY,
-					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
-		}
 		return new ResponseEntity<Object>(mapper.map(defectStatusService.getAllDefectStatus(), DefectStatus.class),
 				HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.DEFECT_STATUS)
 	public ResponseEntity<Object> getDefectStatusById(@PathVariable Long id) {
-		if (!defectStatusService.getDefectStatusById(id).isEmpty()) {
+		if (defectStatusService.existById(id)) {
 			if (defectStatusService.getDefectStatusById(id).get().getDefectStatusName()
 					.equalsIgnoreCase(Constants.OPEN)) {
 				return new ResponseEntity<Object>(
