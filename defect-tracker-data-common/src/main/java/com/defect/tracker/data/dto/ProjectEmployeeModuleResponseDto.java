@@ -1,6 +1,6 @@
 package com.defect.tracker.data.dto;
 
-public class ProjectEmp_Module_ResponseDto {
+public class ProjectEmployeeModuleResponseDto {
 
 	private long id;
 	private ModuleDto module;
@@ -29,5 +29,4 @@ public class ProjectEmp_Module_ResponseDto {
 	public void setEmployee(EmployeeDto employee) {
 		this.employee = employee;
 	}
-
 }

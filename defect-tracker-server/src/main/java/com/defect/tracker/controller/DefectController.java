@@ -1,6 +1,9 @@
 package com.defect.tracker.controller;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Date;
 
 import javax.validation.Valid;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,7 +46,6 @@ import com.sipios.springsearch.anotation.SearchSpec;
 
 @RestController
 public class DefectController {
-
 	@Autowired
 	ProjectService projectService;
 	@Autowired
@@ -76,8 +79,8 @@ public class DefectController {
 	}
 	
 	@PostMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> addDefect(@Valid @RequestPart String defect1, @RequestPart MultipartFile file)
-			throws IOException {
+	public ResponseEntity<Object> addDefect(@Valid @RequestParam String defect1,
+			@RequestParam("file") MultipartFile file) throws IOException {
 		DefectDto defectDto = defectService.getJson(defect1);
 		if (!(projectEmployeeAllocationService.existsByEmployeeIdAndProjectId(defectDto.getAssignedToId(),moduleService.getModuleById(defectDto.getModuleId()).getProject().getId()))) {
 			return new ResponseEntity<Object>(
@@ -93,9 +96,10 @@ public class DefectController {
 				return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS,
 					validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		defectServiceImpl.fileUploadCall(defectDto, file);
+
 		defectService.addDefect(mapper.map(defectDto, Defect.class));
 		defectServiceImpl.dataPassForAddDefect(defectDto);
+		defectServiceImpl.fileUploadCall(defectDto, file);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADD_SUCCESS, HttpStatus.OK);
 	}
 
@@ -106,20 +110,19 @@ public class DefectController {
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		DefectDto defectDto = defectService.getJson(defect1);
 		defectDto.setTimeStamp(date);
-			if (!defectService.isDefectExists(defectDto.getId())) {
-				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
-						validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
-			}
-			if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-					.equalsIgnoreCase(Constants.OPEN)
-					|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get()
-							.getDefectStatusName().equalsIgnoreCase(Constants.FIXED)
-					|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get()
-							.getDefectStatusName().equalsIgnoreCase(Constants.REJECT)) {
+		if (!defectService.isDefectExists(defectDto.getId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
+					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+				.equalsIgnoreCase("Open")
+				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+						.equalsIgnoreCase("Fixed")
+				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
+						.equalsIgnoreCase("Reject")) {
 			if (defectService.findById(defectDto.getId()).get().getDefectStatus().getId() == defectDto
 					.getDefectStatusId()) {
-				defectServiceImpl.defectUpdateQA(defectDto);
-				defectServiceImpl.defectUpdateDV(defectDto);
+
 				defectDto.setFile(defectServiceImpl.fileUpload(file));
 				Defect defect = mapper.map(defectDto, Defect.class);
 				defectService.addDefect(defect);
@@ -132,34 +135,14 @@ public class DefectController {
 			return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 		}
 		if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-				.equalsIgnoreCase(Constants.CLOSED)
+				.equalsIgnoreCase("Closed")
 				|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-						.equalsIgnoreCase(Constants.RE_OPEN)) {
+						.equalsIgnoreCase("Reopen")) {
 			if (defectService.findById(defectDto.getId()).get().getDefectStatus().getId() == defectDto
 					.getDefectStatusId()) {
 				defectDto.setFile(defectServiceImpl.fileUpload(file));
 				Defect defect = mapper.map(defectDto, Defect.class);
 				defectService.addDefect(defect);
-				defectServiceImpl.dataPassForMail(defectDto);
-				return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
-			}
-			if (defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get().getDefectStatusName()
-					.equalsIgnoreCase(Constants.CLOSED)
-					|| defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get()
-							.getDefectStatusName().equalsIgnoreCase(Constants.RE_OPEN)) {
-				if (defectService.findById(defectDto.getId()).get().getDefectStatus().getId() == defectDto
-						.getDefectStatusId()) {
-					defectServiceImpl.defectUpdateQA(defectDto);
-					defectServiceImpl.defectUpdateDV(defectDto);
-					defectDto.setFile(defectServiceImpl.fileUpload(file));
-					Defect defect = mapper.map(defectDto, Defect.class);
-					defectService.addDefect(defect);
-					return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
-				}
-				defectDto.setFile(defectServiceImpl.fileUpload(file));
-				Defect defect = mapper.map(defectDto, Defect.class);
-				defectService.addDefect(defect);
-				defectServiceImpl.dataPassForListMail(defectDto);
 				return new ResponseEntity<Object>(Constants.UPDATE_DEFECT, HttpStatus.OK);
 			}
 			defectDto.setFile(defectServiceImpl.fileUpload(file));
@@ -171,7 +154,7 @@ public class DefectController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,
 				validationFailureStatusCodes.getDefectStatusNotExist()), HttpStatus.BAD_REQUEST);
 	}
-
+	
 	@GetMapping(value = EndpointURI.DEFECT_GET_BY_ID)
 	public ResponseEntity<Object> getDefectById(@PathVariable Long id) {
 		if (!defectService.isDefectExists(id)) {
