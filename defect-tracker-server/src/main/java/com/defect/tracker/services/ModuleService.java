@@ -20,5 +20,7 @@ public interface ModuleService {
 	public boolean isModuleExistsByProjectId(Long projectId);
 
 	public List<Long> getModIdByProId(Long id);
+	
+	public Module getModuleById(Long id);
 
 }

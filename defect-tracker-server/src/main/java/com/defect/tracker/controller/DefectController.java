@@ -112,8 +112,7 @@ public class DefectController {
 		java.sql.Date date = new Date(System.currentTimeMillis());
 		DefectDto defectDto = defectService.getJson(defect1);
 		defectDto.setTimeStamp(date);
-		defectServiceImpl.defectUpdateQA(defectDto);
-		defectServiceImpl.defectUpdateDV(defectDto);
+		
 			if (!defectService.isDefectExists(defectDto.getId())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS,
 						validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
@@ -126,7 +125,8 @@ public class DefectController {
 							.getDefectStatusName().equalsIgnoreCase(Constants.REJECT)) {
 			if (defectService.findById(defectDto.getId()).get().getDefectStatus().getId() == defectDto
 					.getDefectStatusId()) {
-
+				defectServiceImpl.defectUpdateQA(defectDto);
+				defectServiceImpl.defectUpdateDV(defectDto);
 				defectDto.setFile(defectServiceImpl.fileUpload(file));
 				Defect defect = mapper.map(defectDto, Defect.class);
 				defectService.addDefect(defect);
@@ -145,7 +145,8 @@ public class DefectController {
 							.getDefectStatusName().equalsIgnoreCase(Constants.RE_OPEN)) {
 				if (defectService.findById(defectDto.getId()).get().getDefectStatus().getId() == defectDto
 						.getDefectStatusId()) {
-
+					defectServiceImpl.defectUpdateQA(defectDto);
+					defectServiceImpl.defectUpdateDV(defectDto);
 					defectDto.setFile(defectServiceImpl.fileUpload(file));
 					Defect defect = mapper.map(defectDto, Defect.class);
 					defectService.addDefect(defect);
