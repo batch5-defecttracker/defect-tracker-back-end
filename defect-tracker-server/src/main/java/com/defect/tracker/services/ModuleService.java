@@ -13,6 +13,5 @@ public interface ModuleService {
 	public List<Module> findAll();
 	public List<Module> findByProject(Long projectId);
 	public List<Long> getModIdByProId(Long id);
-	public Module findById(Long id);
-	
+	public Module getModuleById(Long id);
 }
