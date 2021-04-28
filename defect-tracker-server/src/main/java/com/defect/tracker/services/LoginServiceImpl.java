@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.defect.tracker.data.dto.LoginDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.mapper.Mapper;
@@ -20,39 +19,31 @@ import com.defect.tracker.data.repositories.LoginRepository;
 
 @Service
 public class LoginServiceImpl implements LoginService {
-
 	private static final int EXPIRE_TOKEN_AFTER_MINUTES = 2;
 	@Autowired
 	private LoginRepository loginRepository;
-
 	@Autowired
 	private EmployeeRepository employeeRepository;
-
 	@Autowired
 	Mapper mapper;
-
 	@Autowired
 	MailServiceImpl mailServiceImpl;
 
 	@Override
 	public List<Login> getEmployee(String status) {
-
 		return loginRepository.getByStatus(status);
 
 	}
 
 	@Override
-	public List<Login> getLoginByStatus(String status) {
+	public List<Login> getLoginByStatus(boolean status) {
 		return loginRepository.findByStatus(status);
 	}
 
-
 	@Override
-	public void updateEmployeeStatus(String email, String status) {
+	public void updateEmployeeStatus(String email) {
 		Login login = loginRepository.findByEmail(email).get();
-		LoginDto loginDto = mapper.map(login, LoginDto.class);
-		loginDto.setStatus(status);
-		login = mapper.map(loginDto, Login.class);
+		login.setStatus(true);
 		loginRepository.save(login);
 	}
 
@@ -62,7 +53,6 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	public String forgotPassword(String email) {
-
 		Optional<Login> loginOptional = loginRepository.findByEmail(email);
 		Login login = loginOptional.get();
 		login.setToken(generateToken());
@@ -73,9 +63,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	public void resetPassword(String token, String password) {
-
 		Optional<Login> loginOptional = Optional.ofNullable(loginRepository.findByToken(token));
-
 		Login login = loginOptional.get();
 		login.setPassword(password);
 		login.setToken(null);
@@ -85,15 +73,12 @@ public class LoginServiceImpl implements LoginService {
 
 	public String generateToken() {
 		StringBuilder token = new StringBuilder();
-
 		return token.append(UUID.randomUUID().toString()).append(UUID.randomUUID().toString()).toString();
 	}
 
 	public boolean isTokenExpired(final LocalDateTime tokenCreationDate) {
-
 		LocalDateTime now = LocalDateTime.now();
 		Duration diff = Duration.between(tokenCreationDate, now);
-
 		return diff.toMinutes() >= EXPIRE_TOKEN_AFTER_MINUTES;
 	}
 
@@ -101,7 +86,7 @@ public class LoginServiceImpl implements LoginService {
 	public void emailVerification(String token, String email) {
 		Optional<Employee> employeeOptional = employeeRepository.findByEmail(email);
 		Employee employee = employeeOptional.get();
-		employee.setVerification("verified");
+		employee.setVerification(true);
 		employee.setToken(null);
 		employeeRepository.save(employee);
 	}
@@ -114,13 +99,11 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public void create(Login login) {
 		loginRepository.save(login);
-
 	}
 
 	@Override
 	public String getUserName(String email) {
 		return loginRepository.findByEmail(email).get().getUserName();
-
 	}
 
 	@Override
@@ -129,6 +112,9 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
+	public boolean isStatusAlreadyExist(boolean status) {
+		return loginRepository.existsByStatus(status);
+	}
 
 	public String getPassword(String email) {
 		return loginRepository.findByEmail(email).get().getPassword();
@@ -137,14 +123,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public void changePassword(String newPassword, String email) {
 		Login login = loginRepository.findByEmail(email).get();
-		LoginDto loginDto = mapper.map(login, LoginDto.class);
-		loginDto.setPassword(newPassword);
-		login = mapper.map(loginDto, Login.class);
+		login.setPassword(newPassword);
 		loginRepository.save(login);
-	}
-		
-
-	public boolean isStatusAlreadyExist(String status) {
-		return loginRepository.existsByStatus(status);
 	}
 }

@@ -7,10 +7,10 @@ import javax.validation.constraints.NotNull;
 public class ModuleDto {
 
 	private Long id;
-	@NotNull(message = "{moduleDto.moduleName.Null}")
-	@NotEmpty(message = "{moduleDto.moduleName.Empty}")
-	@NotBlank(message = "{moduleDto.moduleName.Space}")
-	private String moduleName;
+	@NotNull(message = "{moduleDto.Name.Null}")
+	@NotEmpty(message = "{moduleDto.Name.Empty}")
+	@NotBlank(message = "{moduleDto.Name.Space}")
+	private String name;
 	private Long projectId;
 
 	public Long getId() {
@@ -21,12 +21,12 @@ public class ModuleDto {
 		this.id = id;
 	}
 
-	public String getModuleName() {
-		return moduleName;
+	public String getName() {
+		return name;
 	}
 
-	public void setModuleName(String moduleName) {
-		this.moduleName = moduleName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getProjectId() {

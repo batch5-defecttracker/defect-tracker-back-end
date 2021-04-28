@@ -52,22 +52,22 @@ public class LoginController {
 	@Autowired
 	private Mapper mapper;
 
-
-	@PutMapping(value = EndpointURI.UPDATE_EMPLOYEE_STATUS)
-	public ResponseEntity<Object> updateEmployeeStatus(@PathVariable String email, @PathVariable String status) {
+	@PutMapping(value = EndpointURI.LOGINUPDATE)
+	public ResponseEntity<Object> updateEmployeeStatus(@PathVariable String email) {
 		if (!loginService.isEmailAlreadyExist(email)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMAIL_NOT_EXISTS,
 					validationFailureStatusCodes.getEmailNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		String employee = loginRepository.findByEmail(email).get().getUserName();
-		mailServiceImpl.sendApprovalEmail(email, employee, status);
-		loginService.updateEmployeeStatus(email, status);
+		mailServiceImpl.sendApprovalEmail(email, employee, Constants.ACTIVATED);
+		loginService.updateEmployeeStatus(email);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_STATUS_UPDATED, HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.LOGINSTATUS)
-	public ResponseEntity<Object> GetEmpId(@RequestParam String status) {
-		return new ResponseEntity<Object>(mapper.map(loginService.getLoginByStatus(status), LoginResDto.class),HttpStatus.OK);
+	public ResponseEntity<Object> GetEmployeeByStatus(@RequestParam boolean status) {
+		return new ResponseEntity<Object>(mapper.map(loginService.getLoginByStatus(status), LoginResDto.class),
+				HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.LOGIN)
@@ -76,20 +76,17 @@ public class LoginController {
 		String password = loginService.getUserPassword(email);
 		if (userName1.equals(userName) && passwordEncoder.matches(password2, password)) {
 			return new ResponseEntity<Object>(Constants.LOGIN_SUCCESS, HttpStatus.OK);
-		}
-		else if (!userName1.equals(userName) && passwordEncoder.matches(password2, password)) {
+		} else if (!userName1.equals(userName) && passwordEncoder.matches(password2, password)) {
 			return new ResponseEntity<Object>(Constants.WRONG_USER_NAME, HttpStatus.BAD_REQUEST);
-		}
-		else if (userName1.equals(userName) && !passwordEncoder.matches(password2, password)) {
+		} else if (userName1.equals(userName) && !passwordEncoder.matches(password2, password)) {
 			return new ResponseEntity<Object>(Constants.WRONG_PASSWORD, HttpStatus.BAD_REQUEST);
-		}
-		else if (userName1.isBlank() || (password2.isBlank())) {
+		} else if (userName1.isBlank() || (password2.isBlank())) {
 			return new ResponseEntity<Object>(Constants.USER_NAME_OR_PASSWORD_EMPTY, HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Object>(Constants.LOGIN_FAILED, HttpStatus.BAD_REQUEST);
 	}
 
-	@PostMapping(value = EndpointURI.FORGOT_PASSWORD)
+	@PostMapping(value = EndpointURI.LOGINUPDATE)
 	public ResponseEntity<Object> forgotPassword(@PathVariable String email) {
 		if (!loginRepository.existsByEmail(email)) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.INVALID_EMAIL,
@@ -113,10 +110,10 @@ public class LoginController {
 		}
 		String encryptedPassword = passwordEncoder.encode(password);
 		loginService.resetPassword(token, encryptedPassword);
-		return new ResponseEntity<Object>(Constants.CHANGED_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.PASSWORD_RESET_SUCCESS, HttpStatus.OK);
 	}
 
-	@PutMapping(value = EndpointURI.EMAIL_VERIFICATION)
+	@GetMapping(value = EndpointURI.EMAIL_VERIFICATION)
 	public ResponseEntity<Object> emailVerification(@PathVariable String token, @PathVariable String email) {
 		Optional<Employee> employeeOptional = employeeRepository.findByEmail(email);
 		Employee employee = employeeOptional.get();

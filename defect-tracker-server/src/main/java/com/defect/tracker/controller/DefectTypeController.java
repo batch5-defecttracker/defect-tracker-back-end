@@ -14,10 +14,10 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class DefectTypeController {
-	
+
 	@Autowired
 	DefectTypeService defectTypeService;
-	@Autowired 
+	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;

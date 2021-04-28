@@ -14,9 +14,9 @@ import javax.persistence.Table;
 public class SubModule {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String submoduleName;
+	private String name;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "moduleId", nullable = false)
 	private Module module;
@@ -29,12 +29,12 @@ public class SubModule {
 		this.id = id;
 	}
 
-	public String getSubmoduleName() {
-		return submoduleName;
+	public String getName() {
+		return name;
 	}
 
-	public void setSubmoduleName(String submoduleName) {
-		this.submoduleName = submoduleName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Module getModule() {

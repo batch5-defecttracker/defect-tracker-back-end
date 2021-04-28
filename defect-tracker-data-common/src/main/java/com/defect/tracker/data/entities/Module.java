@@ -16,9 +16,9 @@ public class Module {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String moduleName;
+	private String name;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "projectId", nullable = false)
 	private Project project;
@@ -39,12 +39,12 @@ public class Module {
 		this.id = id;
 	}
 
-	public String getModuleName() {
-		return moduleName;
+	public String getName() {
+		return name;
 	}
 
-	public void setModuleName(String moduleName) {
-		this.moduleName = moduleName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public static long getSerialversionuid() {

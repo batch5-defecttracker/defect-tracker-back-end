@@ -9,7 +9,6 @@ import com.defect.tracker.data.repositories.PriorityRepository;
 
 @Service
 public class PriorityServiceImpl implements PriorityService {
-
 	@Autowired
 	PriorityRepository priorityRepository;
 

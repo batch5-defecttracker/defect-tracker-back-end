@@ -44,7 +44,7 @@ public class ProjectEmployeeAllocationController {
 	@PostMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> addPojectAllocation(@RequestBody ProjectEmployeeDto projectEmployeeDto) {
 		if (!employeeService.idExist(projectEmployeeDto.getEmployeeId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPTY_PROJECT_ALLOCATION,
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectAllocationFailed()), HttpStatus.BAD_REQUEST);
 		}
 		ProjectEmp projectEmp = mapper.map(projectEmployeeDto, ProjectEmp.class);
@@ -60,8 +60,8 @@ public class ProjectEmployeeAllocationController {
 
 	@DeleteMapping(value = EndpointURI.DEALLOCATE_PROJECT)
 	public ResponseEntity<Object> deAllocateProject(@PathVariable Long id) {
-		if (!projectemployeeallocationService.existsByid(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_ALLOCATED,
+		if (!projectemployeeallocationService.existsByEmployeeId(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_ALLOCATED,
 					validationFailureStatusCodes.getProjectAllocationNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		projectemployeeallocationService.deAllocateProject(id);
@@ -71,7 +71,7 @@ public class ProjectEmployeeAllocationController {
 	@GetMapping(value = EndpointURI.GET_EMPLOYEE_BY_MODULE)
 	public ResponseEntity<Object> getEmployeeByModule(@PathVariable Long id) {
 		if (!projectemployeeallocationService.existsByModuleId(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMPTY,
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectemployeeNotExists()), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Object>(mapper.map(projectemployeeallocationService.getEmployeeByModule(id),
@@ -88,6 +88,6 @@ public class ProjectEmployeeAllocationController {
 		}
 		ProjectEmp projectEmp = mapper.map(project_EmpDto, ProjectEmp.class);
 		projectemployeeallocationService.update(projectEmp);
-		return new ResponseEntity<Object>(Constants.PROJECT_EMP_UPDATE, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.PROJECT_EMPLOYEE_UPDATE, HttpStatus.OK);
 	}
 }

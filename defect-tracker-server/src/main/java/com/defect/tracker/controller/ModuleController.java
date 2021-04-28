@@ -18,6 +18,7 @@ import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.ModuleRepository;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ModuleService;
+import com.defect.tracker.services.ProjectService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -25,6 +26,8 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @Controller
 public class ModuleController {
+	@Autowired
+	ProjectService projectService;
 	@Autowired
 	ModuleService moduleService;
 	@Autowired
@@ -36,7 +39,11 @@ public class ModuleController {
 
 	@PostMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> addModule(@Valid @RequestBody ModuleDto moduleDto) {
-		if (moduleRepository.existsByModuleNameAndProjectId(moduleDto.getModuleName(), moduleDto.getProjectId())) {
+		if (!projectService.existProject(moduleDto.getProjectId())) {
+			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
+					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		if (moduleService.existByModuleNameAndProjectId(moduleDto.getName(),moduleDto.getProjectId())) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_ALREADY_EXIST,
 					validationFailureStatusCodes.getProjectModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
@@ -45,13 +52,13 @@ public class ModuleController {
 		return new ResponseEntity<Object>(Constants.MODULE_ADD_SUCCESS, HttpStatus.OK);
 	}
 
-	@GetMapping(value = EndpointURI.GET_MODULE_BY_PROJECT)
-	public ResponseEntity<Object> findModuleByProject(@PathVariable Long projectId) {
-		if (!moduleService.isModuleExistsByProjectId(projectId)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EMPTY,
+	@GetMapping(value = EndpointURI.MODULE_BY_ID)
+	public ResponseEntity<Object> findModuleByProject(@PathVariable Long id) {
+		if (!moduleService.existsByProjectId(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(mapper.map(moduleService.findByProject(projectId), ModuleDto.class),
+		return new ResponseEntity<Object>(mapper.map(moduleService.findByProject(id), ModuleDto.class),
 				HttpStatus.OK);
 	}
 
@@ -71,7 +78,7 @@ public class ModuleController {
 		return new ResponseEntity<Object>(Constants.MODULE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = EndpointURI.MODULE_DELETE)
+	@DeleteMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
 		if (!moduleService.isModuleExists(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,

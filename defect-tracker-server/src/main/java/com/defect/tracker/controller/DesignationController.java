@@ -14,7 +14,7 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class DesignationController {
-	
+
 	@Autowired
 	private DesignationService designationService;
 	@Autowired

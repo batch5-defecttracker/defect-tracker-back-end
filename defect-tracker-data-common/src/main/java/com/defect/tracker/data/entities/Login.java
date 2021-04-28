@@ -20,7 +20,7 @@ public class Login {
 	private String userName;
 	private String password;
 	private String token;
-	private String status;
+	private boolean status;
 	@Column(columnDefinition = "TIMESTAMP")
 	private LocalDateTime tokenCreationDate;
 	@OneToOne(fetch = FetchType.LAZY)
@@ -59,11 +59,11 @@ public class Login {
 		this.token = token;
 	}
 
-	public String getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 

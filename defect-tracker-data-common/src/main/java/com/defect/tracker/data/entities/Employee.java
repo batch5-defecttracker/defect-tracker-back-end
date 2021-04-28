@@ -20,7 +20,7 @@ public class Employee {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String firstName;
 	private String lastName;
@@ -28,14 +28,17 @@ public class Employee {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "designationId", nullable = false)
 	private Designation designation;
-
 	private String email;
 	private String address;
 	private String contactNumber;
 	private String nic;
 	private String image;
-	private String verification;
+	private boolean verification;
 	private String token;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "timeStamp", nullable = false)
+	private Date timeStamp;
+	private String gender;
 
 	public String getToken() {
 		return token;
@@ -45,19 +48,13 @@ public class Employee {
 		this.token = token;
 	}
 
-	public String getVerification() {
+	public boolean isVerification() {
 		return verification;
 	}
 
-	public void setVerification(String verification) {
+	public void setVerification(boolean verification) {
 		this.verification = verification;
 	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "timeStamp", nullable = false)
-	private Date timeStamp;
-
-	private String gender;
 
 	public Long getId() {
 		return id;

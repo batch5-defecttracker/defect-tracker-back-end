@@ -13,43 +13,36 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public Project findById(Long id) {
-
 		return projectRepository.findById(id).get();
 	}
 
 	@Override
 	public void deleteById(Long id) {
 		projectRepository.deleteById(id);
-
 	}
 
 	@Override
 	public boolean existProject(Long id) {
-
 		return projectRepository.existsById(id);
 	}
 
 	@Override
 	public boolean isProNameAlreadyExist(String proName) {
-		return projectRepository.existsByprojectName(proName);
+		return projectRepository.existsByName(proName);
 	}
 
 	@Override
 	public void createProject(Project project) {
 		projectRepository.save(project);
-
 	}
 
 	@Override
 	public void updateProject(Project project) {
-
 		projectRepository.save(project);
-
 	}
 
 	@Override
 	public List<Project> findAll() {
-
 		return projectRepository.findAll();
 	}
 
@@ -57,5 +50,4 @@ public class ProjectServiceImpl implements ProjectService {
 	public List<Project> getAllProject() {
 		return projectRepository.findAll();
 	}
-
 }

@@ -1,27 +1,16 @@
 package com.defect.tracker.services;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.mail.MessagingException;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MailServiceImpl implements CommandLineRunner {
+public class MailServiceImpl{
 	@Autowired
 	private JavaMailSender javaMailSender;
-
-//	@Autowired
-//	ModuleService moduleService;
-	@Override
-	public void run(String... args) throws MessagingException, IOException {
-
-	}
 
 	public void sendListEmailNew(List<String> mails, String module, List<String> names, String assignedEmployee,
 			String status) {
@@ -34,7 +23,6 @@ public class MailServiceImpl implements CommandLineRunner {
 					+ " Defect Assigned by " + assignedEmployee + " in " + module);
 			javaMailSender.send(msg);
 		}
-
 	}
 
 	public void sendEmail(String mail, String module, String project, String assignedEmployee, String openedEmployee, String status) {
@@ -57,7 +45,6 @@ public class MailServiceImpl implements CommandLineRunner {
 					+ status + " by " + asignedByEmployee + " in " + module);
 			javaMailSender.send(msg);
 		}
-
 	}
 
 	public void sendApprovalEmail(String mail, String employee, String status) {
@@ -101,7 +88,5 @@ public class MailServiceImpl implements CommandLineRunner {
 			msg.setText("Hi " + names.toString().replace("[", "").replace("]", "") + ", \n" + "Your Defect in "+ module+"is updated");
 			javaMailSender.send(msg);
 		}
-
 	}
-
 }

@@ -13,9 +13,9 @@ public class Project {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String projectName;
+	private String name;
 	private String abbrevation;
 
 	public Long getId() {
@@ -26,12 +26,12 @@ public class Project {
 		this.id = id;
 	}
 
-	public String getProjectName() {
-		return projectName;
+	public String getName() {
+		return name;
 	}
 
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getAbbrevation() {

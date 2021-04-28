@@ -6,5 +6,4 @@ import com.defect.tracker.data.entities.Priority;
 
 public interface PriorityService {
 	public List<Priority> getAllPriority();
-
 }

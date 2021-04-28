@@ -2,6 +2,7 @@ package com.defect.tracker.data.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 public class Defect {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String defectDescription;
 	private String str;
@@ -45,6 +46,7 @@ public class Defect {
 	@JoinColumn(name = "defectTypeId", nullable = false)
 	private DefectType defectType;
 	private Date timeStamp;
+	@Column(nullable = true)
 	private String file;
 
 	public long getId() {
@@ -86,8 +88,6 @@ public class Defect {
 	public void setSubmodule(SubModule submodule) {
 		this.submodule = submodule;
 	}
-
-	
 
 	public Employee getAssignedBy() {
 		return assignedBy;
