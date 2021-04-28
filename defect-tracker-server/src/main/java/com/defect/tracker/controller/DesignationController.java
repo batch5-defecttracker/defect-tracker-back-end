@@ -18,6 +18,7 @@ public class DesignationController {
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 
+
 	@GetMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> getAllDesignation() {
 		return new ResponseEntity<Object>(designationService.getAlldesignation(), HttpStatus.OK);
