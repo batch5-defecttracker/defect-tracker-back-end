@@ -36,4 +36,9 @@ public class DefectStatusServiceImpl implements DefectStatusService {
 		defectStatusList.add(getDefectStatusByName(reject));
 		return defectStatusList;
 	}
+
+	@Override
+	public boolean existById(Long id) {
+		return defectStatusRepository.existsById(id);
+	}
 }

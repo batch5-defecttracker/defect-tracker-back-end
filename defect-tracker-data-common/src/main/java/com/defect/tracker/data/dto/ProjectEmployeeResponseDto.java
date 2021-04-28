@@ -1,6 +1,6 @@
 package com.defect.tracker.data.dto;
 
-public class ProjectEmp_ResponseDto {
+public class ProjectEmployeeResponseDto {
 	private long id;
 	private ProjectDto project;
 	private ModuleDto module;
@@ -55,5 +55,4 @@ public class ProjectEmp_ResponseDto {
 	public void setSubmodule(SubModuleDto submodule) {
 		this.submodule = submodule;
 	}
-
 }

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.defect.tracker.data.dto.ProjectEmp_Module_ResponseDto;
-import com.defect.tracker.data.dto.ProjectEmp_ResponseDto;
 import com.defect.tracker.data.dto.ProjectEmployeeDto;
+import com.defect.tracker.data.dto.ProjectEmployeeModuleResponseDto;
+import com.defect.tracker.data.dto.ProjectEmployeeResponseDto;
 import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
@@ -55,7 +55,7 @@ public class ProjectEmployeeAllocationController {
 	@GetMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> getAllProjectAllocation() {
 		return new ResponseEntity<Object>(
-				mapper.map(projectemployeeallocationService.getAll(), ProjectEmp_ResponseDto.class), HttpStatus.OK);
+				mapper.map(projectemployeeallocationService.getAll(), ProjectEmployeeResponseDto.class), HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = EndpointURI.DEALLOCATE_PROJECT)
@@ -75,7 +75,7 @@ public class ProjectEmployeeAllocationController {
 					validationFailureStatusCodes.getProjectemployeeNotExists()), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Object>(mapper.map(projectemployeeallocationService.getEmployeeByModule(id),
-				ProjectEmp_Module_ResponseDto.class), HttpStatus.OK);
+				ProjectEmployeeModuleResponseDto.class), HttpStatus.OK);
 	}
 
 	@PutMapping(value = EndpointURI.UPDATE_PROJECT_EMPLOYEE_ALLOCATION)

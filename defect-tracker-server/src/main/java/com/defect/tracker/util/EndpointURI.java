@@ -33,7 +33,7 @@ public final class EndpointURI {
 	public static final String SUBMODULE_DELETE = SUBMODULE + SLASH + "delete" + ID;
 
 	// Defect
-	public static final String DEFECT = BASE_API_PATH + "defect";
+	public static final String DEFECT = BASE_API_PATH + "defect"+SLASH+ID;
 	public static final String UPDATE_DEFECT_STATUS = DEFECT + ID + SLASH + "status" + SLASH + "{status}";
 	public static final String DEFECT_GET_BY_ID = DEFECT + ID;
 	public static final String GET_DEFECT_BY_ASSIGN_TO_ID = BASE_API_PATH + "get-all-defectlby-employee-id" + ID;
