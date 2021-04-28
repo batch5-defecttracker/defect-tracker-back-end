@@ -60,10 +60,6 @@ public class SubModuleController {
 
 	@GetMapping(value = EndpointURI.SUBMODULE)
 	public ResponseEntity<Object> findAllSubModule() {
-		if (subModuleService.findAllSubModule().isEmpty()) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS,
-					validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
-		}
 		return new ResponseEntity<Object>(mapper.map(subModuleService.findAllSubModule(), SubModuleResponseDto.class),
 				HttpStatus.OK);
 	}
