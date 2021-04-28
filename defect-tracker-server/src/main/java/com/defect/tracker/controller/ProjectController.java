@@ -54,10 +54,6 @@ public class ProjectController {
 
 	@GetMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> getAllProject() {
-		if (projectService.getAllProject().isEmpty()) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
-					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
-		}
 		return new ResponseEntity<Object>(mapper.map(projectService.findAll(), ProjectDto.class), HttpStatus.OK);
 	}
 
