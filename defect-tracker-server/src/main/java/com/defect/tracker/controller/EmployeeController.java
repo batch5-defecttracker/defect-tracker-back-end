@@ -161,22 +161,6 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_PHOTO_DELETE_SUCCESS, HttpStatus.OK);
 	}
 
-	@PostMapping(value = EndpointURI.EMPLOYEE_PHOTO)
-	public ResponseEntity<Object> AddEmployeePhoto(@PathVariable Long id, @RequestParam("file") MultipartFile file,
-			RedirectAttributes redirectAttributes) throws IOException {
-		
-		if (file.isEmpty()) {
-			return new ResponseEntity<Object>(ValidationConstance.EMPLOYEE_PHOTO_EMPTY, HttpStatus.BAD_REQUEST);
-		}
-		byte[] bytes = file.getBytes();
-		Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-		Files.write(path, bytes);
-		Employee employee = employeeService.findById(id).get();
-		employee.setImage(path.toString());
-		employeeService.createEmployee(employee);
-		return new ResponseEntity<Object>(Constants.ADD_EMPLOYEE_PHOTO_SUCCESS, HttpStatus.OK);
-	}
-
 	@PutMapping(value = EndpointURI.EMPLOYEE_PHOTO)
 	public ResponseEntity<Object> updateEmployeePhoto(@PathVariable Long id, @RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes) throws IOException {

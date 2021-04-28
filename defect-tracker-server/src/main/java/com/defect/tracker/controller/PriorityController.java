@@ -18,6 +18,7 @@ public class PriorityController {
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	
+
 	@GetMapping(value = EndpointURI.PRIORITY) 
 	public ResponseEntity<Object> getAllPriority() {
 		return new ResponseEntity<Object>(priorityService.getAllPriority(), HttpStatus.OK);

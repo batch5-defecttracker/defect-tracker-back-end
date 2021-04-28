@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class EmployeeLoginResponseDto {
 
@@ -29,9 +30,9 @@ public class EmployeeLoginResponseDto {
 	@NotNull(message = "{employeeDto.contactNumber.empty}")
 	@NotBlank(message = "{employeeDto.contactNumber.blank}")
 	private String contactNumber;
-	@NotEmpty(message = "{employeeDto.nic.null}")
 	@NotNull(message = "{employeeDto.nic.empty}")
 	@NotBlank(message = "{employeeDto.nic.blank}")
+	@Pattern(regexp = "^([0-9]{9}[x|X|v|V]|[0-9]{12})$", message = "Invalid NIC")
 	private String nic;
 	private String image;
 	private Date timeStamp;
