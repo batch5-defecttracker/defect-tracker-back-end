@@ -47,6 +47,7 @@ public class SubModuleController {
 		return new ResponseEntity<Object>(Constants.SUBMODULE_ADDED, HttpStatus.OK);
 	}
 
+
 	@GetMapping(value = EndpointURI.GET_SUBMODULE)
 	public ResponseEntity<Object> getSubmodule(@PathVariable Long moduleId) {
 		if (!subModuleService.existById(moduleId)) {

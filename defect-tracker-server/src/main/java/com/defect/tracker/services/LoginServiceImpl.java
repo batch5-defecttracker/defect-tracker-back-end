@@ -46,6 +46,7 @@ public class LoginServiceImpl implements LoginService {
 		return loginRepository.findByStatus(status);
 	}
 
+
 	@Override
 	public void updateEmployeeStatus(String email, String status) {
 		Login login = loginRepository.findByEmail(email).get();
@@ -128,8 +129,22 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
+
+	public String getPassword(String email) {
+		return loginRepository.findByEmail(email).get().getPassword();
+	}
+
+	@Override
+	public void changePassword(String newPassword, String email) {
+		Login login = loginRepository.findByEmail(email).get();
+		LoginDto loginDto = mapper.map(login, LoginDto.class);
+		loginDto.setPassword(newPassword);
+		login = mapper.map(loginDto, Login.class);
+		loginRepository.save(login);
+	}
+		
+
 	public boolean isStatusAlreadyExist(String status) {
 		return loginRepository.existsByStatus(status);
 	}
-
 }
