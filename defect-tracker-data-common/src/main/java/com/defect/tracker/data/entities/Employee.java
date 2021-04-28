@@ -24,7 +24,8 @@ public class Employee {
 	private Long id;
 	private String firstName;
 	private String lastName;
-	@ManyToOne(fetch = FetchType.LAZY)
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "designationId", nullable = false)
 	private Designation designation;
 	private String email;

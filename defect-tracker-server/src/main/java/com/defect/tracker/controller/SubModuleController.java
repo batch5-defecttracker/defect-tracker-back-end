@@ -54,6 +54,7 @@ public class SubModuleController {
 		return new ResponseEntity<Object>(Constants.SUBMODULE_ADDED, HttpStatus.OK);
 	}
 
+
 	@GetMapping(value = EndpointURI.SUBMODULE_BY_ID)
 	public ResponseEntity<Object> getSubmodule(@PathVariable Long moduleId) {
 		if (!subModuleService.existsSubModule(moduleId)) {
@@ -66,10 +67,6 @@ public class SubModuleController {
 
 	@GetMapping(value = EndpointURI.SUBMODULE)
 	public ResponseEntity<Object> findAllSubModule() {
-		if (subModuleService.findAllSubModule().isEmpty()) {
-			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS,
-					validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
-		}
 		return new ResponseEntity<Object>(mapper.map(subModuleService.findAllSubModule(), SubModuleResponseDto.class),
 				HttpStatus.OK);
 	}

@@ -23,7 +23,6 @@ public final class EndpointURI {
 	public static final String MODULE_BY_ID = MODULE + ID;
 	// SubModule
 	public static final String SUBMODULE = BASE_API_PATH + "submodule";
-//	public static final String GET_SUBMODULE = SUBMODULE + SLASH + "module" + SLASH + "{moduleId}";
 	public static final String SUBMODULE_BY_ID = SUBMODULE + ID;
 	// Defect
 	public static final String DEFECT = BASE_API_PATH + "defect";

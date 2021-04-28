@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.defect.tracker.data.dto.DefectStatusDto;
 import com.defect.tracker.data.entities.DefectStatus;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.DefectStatusRepository;
@@ -30,10 +31,9 @@ public class DefectStatusController {
 
 	@GetMapping(value = EndpointURI.DEFECTSTATUS)
 	public ResponseEntity<Object> getAllDefectStatus() {
-		return new ResponseEntity<Object>(mapper.map(defectStatusService.getAllDefectStatus(), DefectStatus.class),
-				HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(defectStatusService.getAllDefectStatus(), DefectStatusDto.class), HttpStatus.OK);
 	}
-
+	
 	@GetMapping(value = EndpointURI.DEFECT_STATUS)
 	public ResponseEntity<Object> getDefectStatusById(@PathVariable Long id) {
 		if (!defectStatusService.getDefectStatusById(id).isEmpty()) {
@@ -61,6 +61,7 @@ public class DefectStatusController {
 					.equalsIgnoreCase("Reject")) {
 				DefectStatus defectStatus = defectStatusService.getDefectStatusByName("Reopen");
 				return new ResponseEntity<Object>(defectStatus, HttpStatus.OK);
+
 			}
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,

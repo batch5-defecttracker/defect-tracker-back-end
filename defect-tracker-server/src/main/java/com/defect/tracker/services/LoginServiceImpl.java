@@ -35,7 +35,6 @@ public class LoginServiceImpl implements LoginService {
 
 	}
 
-
 	@Override
 	public List<Login> getLoginByStatus(boolean status) {
 		return loginRepository.findByStatus(status);
@@ -117,5 +116,14 @@ public class LoginServiceImpl implements LoginService {
 		return loginRepository.existsByStatus(status);
 	}
 
+	public String getPassword(String email) {
+		return loginRepository.findByEmail(email).get().getPassword();
+	}
 
+	@Override
+	public void changePassword(String newPassword, String email) {
+		Login login = loginRepository.findByEmail(email).get();
+		login.setPassword(newPassword);
+		loginRepository.save(login);
+	}
 }

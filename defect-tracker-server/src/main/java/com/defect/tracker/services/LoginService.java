@@ -15,5 +15,7 @@ public interface LoginService {
 	public String getUserName(String email);
 	public String getUserPassword(String email);
 	public boolean isStatusAlreadyExist(boolean status);
-	public void updateEmployeeStatus(String email);
+	public void updateEmployeeStatus(String email);	
+	public String getPassword(String email);
+	void changePassword(String newPassword, String email);
 }

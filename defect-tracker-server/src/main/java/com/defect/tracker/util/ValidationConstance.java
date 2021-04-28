@@ -35,5 +35,4 @@ public class ValidationConstance {
 	public static final String TOKEN_EXPIRED = "Token Expired !";
 	private ValidationConstance() {
 	}
-
 }
