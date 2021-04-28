@@ -80,12 +80,13 @@ public class DefectServiceImpl implements DefectService {
 	public void dataPassForMail(DefectDto defectDto) {
 		String mail = employeeService.findById(defectDto.getAssignedById()).get().getEmail();
 		String module = moduleRepository.getOne(defectDto.getModuleId()).getModuleName();
+		String project=moduleService.getModuleById(defectDto.getModuleId()).getProject().getProjectName();
 		String status = defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get()
 				.getDefectStatusName();
 		String assignedEmployee = employeeService.findById(defectDto.getAssignedById()).get().getFirstName();
 		String openedEmployee = employeeService.findById(defectDto.getAssignedToId()).get().getFirstName();
 
-		mailServiceImpl.sendEmail(mail, module, assignedEmployee, openedEmployee, status);
+		mailServiceImpl.sendEmail(mail, module,project, assignedEmployee, openedEmployee, status);
 	}
 	
 	public void defectUpdateQA(DefectDto defectDto) {
@@ -103,7 +104,7 @@ public class DefectServiceImpl implements DefectService {
 		String module = moduleRepository.getOne(defectDto.getModuleId()).getModuleName();
 		String status = defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get()
 				.getDefectStatusName();
-		String openedEmployee = employeeService.findById(defectDto.getAssignedToId()).get().getFirstName();
+		String asignedByEmployee = employeeService.findById(defectDto.getAssignedById()).get().getFirstName();
 		List<ProjectEmp> projectList = projectEmployeeAllocationService.findbyModule(defectDto.getModuleId());
 		for (ProjectEmp projectEmp : projectList) {
 			names.add(projectEmp.getEmployee().getFirstName());
@@ -112,7 +113,7 @@ public class DefectServiceImpl implements DefectService {
 			mails.add(projectEmp.getEmployee().getEmail());
 		}
 
-		mailServiceImpl.sendListEmail(mails, module, names, openedEmployee, status);
+		mailServiceImpl.sendListEmail(mails, module, names, asignedByEmployee, status);
 	}
 	
 	public void defectUpdateDV(DefectDto defectDto) {

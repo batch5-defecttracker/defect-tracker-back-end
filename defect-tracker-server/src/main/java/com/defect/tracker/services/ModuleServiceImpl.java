@@ -61,4 +61,9 @@ public class ModuleServiceImpl implements ModuleService {
 		return lisOfModuleId;
 	}
 
+	@Override
+	public Module getModuleById(Long id) {
+		return moduleRepository.findById(id).get();
+	}
+
 }
