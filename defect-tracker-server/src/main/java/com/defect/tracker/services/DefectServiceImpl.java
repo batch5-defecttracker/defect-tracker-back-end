@@ -194,7 +194,6 @@ public class DefectServiceImpl implements DefectService {
 				Files.write(path, data);
 				return path.toString();
 			} catch (IOException e) {
-				e.printStackTrace();
 				return null;
 			}
 	}
