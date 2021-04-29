@@ -13,4 +13,5 @@ public interface ProjectEmployeeAllocationRepository extends JpaRepository<Proje
 	public List<ProjectEmp> findByModuleId(Long id);
 	public ProjectEmp findByEmployeeId(Long id);
 	boolean existsByEmployeeIdAndProjectId(Long eId, Long pId);
+	boolean existsByEmployeeIdAndModuleId(Long assignedToId, Long moduleId2);
 }
