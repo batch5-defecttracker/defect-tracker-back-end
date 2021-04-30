@@ -11,7 +11,6 @@ public class DefectSearchDto {
 	private String defectStatusName;
 	private String defectTypeName;
 
-	
 	public String getModuleName() {
 		return moduleName;
 	}
@@ -59,7 +58,6 @@ public class DefectSearchDto {
 	public void setDefectTypeName(String defectTypeName) {
 		this.defectTypeName = defectTypeName;
 	}
-
 
 	public long getId() {
 		return id;

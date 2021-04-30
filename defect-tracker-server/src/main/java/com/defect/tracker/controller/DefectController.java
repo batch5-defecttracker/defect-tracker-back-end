@@ -1,9 +1,6 @@
 package com.defect.tracker.controller;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Date;
 
 import javax.validation.Valid;
@@ -77,20 +74,37 @@ public class DefectController {
 		return new ResponseEntity<Object>(mapper.map(defectService.getAllDefect(), DefectResponseDto.class),
 				HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@Valid @RequestParam String defect1,
 			@RequestParam("file") MultipartFile file) throws IOException {
 		DefectDto defectDto = defectService.getJson(defect1);
-		
+
+		if (!(projectEmployeeAllocationService.existsByEmployeeIdAndProjectId(defectDto.getAssignedToId(),
+				moduleService.getModuleById(defectDto.getModuleId()).getProject().getId()))) {
+			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		if (!(projectEmployeeAllocationService.existsByEmployeeIdAndProjectId(defectDto.getModuleId(),
+				moduleService.getModuleById(defectDto.getModuleId()).getProject().getId()))) {
+			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
+		}
+		if (!(projectEmployeeAllocationService.existsByEmployeeIdAndProjectId(defectDto.getSubmoduleId(),
+				moduleService.getModuleById(defectDto.getModuleId()).getProject().getId()))) {
+			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS,
+					validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
+		}
+
 		if (!moduleService.isModuleExists(defectDto.getModuleId())) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
-					validationFailureStatusCodes.getModuleNotExist()),HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		
-		if(!projectEmployeeAllocationService.existsByEmployeeIdAndModuleIdId(defectDto.getAssignedToId(),defectDto.getModuleId())) {
+
+		if (!projectEmployeeAllocationService.existsByEmployeeIdAndModuleIdId(defectDto.getAssignedToId(),
+				defectDto.getModuleId())) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
-					validationFailureStatusCodes.getEmployeeNotExist()),HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		defectServiceImpl.fileUploadCall(defectDto, file);
 		defectService.addDefect(mapper.map(defectDto, Defect.class));
@@ -149,7 +163,7 @@ public class DefectController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,
 				validationFailureStatusCodes.getDefectStatusNotExist()), HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@GetMapping(value = EndpointURI.DEFECT_GET_BY_ID)
 	public ResponseEntity<Object> getDefectById(@PathVariable Long id) {
 		if (!defectService.isDefectExists(id)) {

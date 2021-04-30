@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.defect.tracker.data.dto.SubModuleDto;
 import com.defect.tracker.data.dto.SubModuleResponseDto;
 import com.defect.tracker.data.entities.SubModule;
@@ -40,12 +41,11 @@ public class SubModuleController {
 
 	@PostMapping(value = EndpointURI.SUBMODULE)
 	public ResponseEntity<Object> createSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
-		if(!moduleService.isModuleExists(subModuleDto.getModuleId())) {
+		if (!moduleService.isModuleExists(subModuleDto.getModuleId())) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
 					validationFailureStatusCodes.getSubModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
-		if (subModuleService.existsBySubmoduleNameAndModuleId(subModuleDto.getName(),
-				subModuleDto.getModuleId())) {
+		if (subModuleService.existsBySubmoduleNameAndModuleId(subModuleDto.getName(), subModuleDto.getModuleId())) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUBMODULE_ALREADY_EXIST,
 					validationFailureStatusCodes.getSubModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
@@ -53,7 +53,6 @@ public class SubModuleController {
 		subModuleService.addSubModule(subModule);
 		return new ResponseEntity<Object>(Constants.SUBMODULE_ADDED, HttpStatus.OK);
 	}
-
 
 	@GetMapping(value = EndpointURI.SUBMODULE_BY_ID)
 	public ResponseEntity<Object> getSubmodule(@PathVariable Long moduleId) {

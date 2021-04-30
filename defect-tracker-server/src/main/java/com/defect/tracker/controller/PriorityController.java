@@ -22,8 +22,9 @@ public class PriorityController {
 	@Autowired
 	private Mapper mapper;
 
-	@GetMapping(value = EndpointURI.PRIORITY) 
+	@GetMapping(value = EndpointURI.PRIORITY)
 	public ResponseEntity<Object> getAllPriority() {
-		return new ResponseEntity<Object>(mapper.map(priorityService.getAllPriority(), PriorityDto.class), HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(priorityService.getAllPriority(), PriorityDto.class),
+				HttpStatus.OK);
 	}
 }
