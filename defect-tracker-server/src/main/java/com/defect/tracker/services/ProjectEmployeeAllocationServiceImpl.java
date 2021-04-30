@@ -66,8 +66,12 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 
 	@Override
 	public boolean existsByEmployeeId(Long id) {
-		// TODO Auto-generated method stub
 		return projectemployeeallocationRepository.existsByEmployeeId(id);
+	}
+
+	@Override
+	public boolean existsByEmployeeIdAndModuleIdId(Long assignedToId, Long moduleId) {
+		return projectemployeeallocationRepository.existsByEmployeeIdAndModuleId(assignedToId, moduleId);
 	}
 
 }

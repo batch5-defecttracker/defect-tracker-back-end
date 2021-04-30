@@ -186,11 +186,16 @@ public class DefectServiceImpl implements DefectService {
 		return defecProjectByIdDto;
 	}
 
-	public String fileUpload(MultipartFile file) throws IOException {
-		byte[] data = file.getBytes();
-		Path path = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
-		Files.write(path, data);
-		return path.toString();
+	public String fileUpload(MultipartFile file)  {
+			try {
+				byte[] data;
+				data = file.getBytes();
+				Path path = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
+				Files.write(path, data);
+				return path.toString();
+			} catch (IOException e) {
+				return null;
+			}
 	}
 
 	@Override

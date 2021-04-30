@@ -26,4 +26,7 @@ public interface ProjectEmployeeAllocationService {
 	boolean existsByEmployeeId(Long id);
 
 	public boolean existsByEmployeeIdAndProjectId(Long assignedToId, Long projectId);
+
+	public boolean existsByEmployeeIdAndModuleIdId(Long assignedToId, Long moduleId);
+
 }
