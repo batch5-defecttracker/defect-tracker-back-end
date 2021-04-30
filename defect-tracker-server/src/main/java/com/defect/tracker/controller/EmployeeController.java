@@ -29,6 +29,7 @@ import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.EmployeeLoginResponseDto;
 import com.defect.tracker.data.dto.EmployeeUpdateDto;
 import com.defect.tracker.data.dto.LoginDto;
+import com.defect.tracker.data.entities.DefectStatus;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Login;
 import com.defect.tracker.data.mapper.Mapper;
@@ -92,7 +93,7 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(employeeService.findByFirstName(firstName), HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(employeeService.findByFirstName(firstName), EmployeeDto.class), HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.EMPLOYEE_BY_ID)
@@ -101,12 +102,12 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(employeeService.findById(id), HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(employeeService.findById(id), EmployeeDto.class), HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> getAllEmp() {
-		return new ResponseEntity<Object>(employeeService.getAll(), HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(employeeService.getAll(), EmployeeDto.class), HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = EndpointURI.EMPLOYEE_BY_ID)
