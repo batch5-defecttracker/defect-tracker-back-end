@@ -59,7 +59,7 @@ public class EmployeeController {
 	@Autowired
 	private Mapper mapper;
 	
-	@PostMapping(value = EndpointURI.EMPLOYEE)
+	@PostMapping(value = EndpointURI.ADD_EMPLOYEE)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestBody EmployeeLoginResponseDto employeeLoginResponseDto,
 			HttpServletRequest request) {
 		if (employeeService.isEmailAlreadyExist(employeeLoginResponseDto.getEmail())) {

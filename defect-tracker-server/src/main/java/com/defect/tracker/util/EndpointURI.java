@@ -8,6 +8,7 @@ public final class EndpointURI {
 	private static final String ID = "/{id}";
 	private static final String SLASH = "/";
 	// Employee
+	public static final String ADD_EMPLOYEE = BASE_API_PATH + "addemployee";
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 	public static final String EMPLOYEE_PHOTO = EMPLOYEE + SLASH + "photo" + ID;
 	public static final String EMPLOYEE_BY_ID = EMPLOYEE + ID;

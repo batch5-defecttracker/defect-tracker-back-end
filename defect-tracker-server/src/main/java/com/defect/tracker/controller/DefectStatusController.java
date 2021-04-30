@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.defect.tracker.data.dto.DefectStatusDto;
 import com.defect.tracker.data.entities.DefectStatus;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.DefectStatusRepository;
