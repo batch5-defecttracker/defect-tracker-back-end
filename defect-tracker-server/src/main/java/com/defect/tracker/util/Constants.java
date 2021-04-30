@@ -35,8 +35,6 @@ public class Constants {
 	public static final String PROJECT_EMPLOYEE_UPDATE = "Project Allocation Updated Successfully";
 	//Login
 	public static final String LOGIN_SUCCESS = "Login Successed";
-	public static final String WRONG_USER_NAME = "UserName Invalid !";
-	public static final String WRONG_PASSWORD = "Password Invalid !";
 	public static final String LOGIN_FAILED = "Login Failed";
 	public static final String USER_NAME_OR_PASSWORD_EMPTY = "Empty Field !!";
 	public static final String PASSWORD_RESET_SUCCESS = "Password Reset Successfully";

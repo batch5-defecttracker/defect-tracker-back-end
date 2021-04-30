@@ -19,4 +19,5 @@ public interface LoginRepository extends JpaRepository<Login, String> {
 	Login findByToken(String token);
 
 	boolean existsByStatus(boolean status);
+	 
 }

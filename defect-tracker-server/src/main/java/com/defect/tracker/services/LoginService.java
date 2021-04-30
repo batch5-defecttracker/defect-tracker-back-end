@@ -30,4 +30,5 @@ public interface LoginService {
 	public String getPassword(String email);
 
 	void changePassword(String newPassword, String email);
+	public Login findByEmail(String email);
 }

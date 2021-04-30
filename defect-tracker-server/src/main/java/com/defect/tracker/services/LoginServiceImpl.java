@@ -126,4 +126,9 @@ public class LoginServiceImpl implements LoginService {
 		login.setPassword(newPassword);
 		loginRepository.save(login);
 	}
+
+	@Override
+	public Login findByEmail(String email) {
+		return loginRepository.findByEmail(email).get();
+	}
 }
