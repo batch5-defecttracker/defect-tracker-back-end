@@ -22,10 +22,13 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.defect.tracker.data.dto.DefectByEmployeeIdDto;
+import com.defect.tracker.data.dto.DefectByProjectIdDto;
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.dto.DefectResponseDto;
 import com.defect.tracker.data.dto.DefectSearchDto;
 import com.defect.tracker.data.entities.Defect;
+import com.defect.tracker.data.entities.DefectStatus;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.DefectRepository;
 import com.defect.tracker.data.repositories.DefectStatusRepository;
@@ -73,24 +76,24 @@ public class DefectController {
 
 	@GetMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> getAllDefect() {
-
 		return new ResponseEntity<Object>(mapper.map(defectService.getAllDefect(), DefectResponseDto.class),
 				HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@Valid @RequestParam String defect1,
 			@RequestParam("file") MultipartFile file) throws IOException {
 		DefectDto defectDto = defectService.getJson(defect1);
-		
+
 		if (!moduleService.isModuleExists(defectDto.getModuleId())) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
-					validationFailureStatusCodes.getModuleNotExist()),HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		
-		if(!projectEmployeeAllocationService.existsByEmployeeIdAndModuleIdId(defectDto.getAssignedToId(),defectDto.getModuleId())) {
+
+		if (!projectEmployeeAllocationService.existsByEmployeeIdAndModuleIdId(defectDto.getAssignedToId(),
+				defectDto.getModuleId())) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
-					validationFailureStatusCodes.getEmployeeNotExist()),HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
 		}
 		defectServiceImpl.fileUploadCall(defectDto, file);
 		defectService.addDefect(mapper.map(defectDto, Defect.class));
@@ -149,7 +152,7 @@ public class DefectController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NOT_EXISTS,
 				validationFailureStatusCodes.getDefectStatusNotExist()), HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@GetMapping(value = EndpointURI.DEFECT_GET_BY_ID)
 	public ResponseEntity<Object> getDefectById(@PathVariable Long id) {
 		if (!defectService.isDefectExists(id)) {
@@ -166,7 +169,8 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getEmployeeNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(defectService.getByEmpIdAndStatus(id), HttpStatus.OK);
+		return new ResponseEntity<Object>(
+				mapper.map(defectService.getByEmpIdAndStatus(id), DefectByEmployeeIdDto.class), HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.GET_ALL_DEFECT_BY_PROJECT_ID)
@@ -175,7 +179,8 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(defectService.getAllDefectByProId(id), HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(defectService.getAllDefectByProId(id), DefectByProjectIdDto.class),
+				HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.GET_DEFECT_BY_SERACH)
