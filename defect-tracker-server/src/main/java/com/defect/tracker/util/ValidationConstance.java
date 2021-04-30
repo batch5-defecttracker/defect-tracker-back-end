@@ -2,10 +2,8 @@ package com.defect.tracker.util;
 
 public class ValidationConstance {
 	public static final String EMAIL_EXISTS = "Email already exist";
-//	public static final String EMPLOYEE_NOT_EXISTS = "Employee does not exist";
 	public static final String EMPLOYEE_NAME_NOT_EXISTS = "Employee name does not exist";
 	public static final String EMPLOYEE_NOT_EXISTS = "Employee not exist";
-//	public static final String EMPTY_PROJECT_ALLOCATION = "Employee Not Exist";
 	public static final String EMPLOYEE_DOES_NOT_EXISTS = "This employee have not defect";
 	public static final String EMPLOYEEID_EMPTY = "Employeeid not exist";
 	public static final String EMPLOYEE_PHOTO_EMPTY = "Employee Photo is Empty";
@@ -33,6 +31,7 @@ public class ValidationConstance {
 	public static final String INVALID_EMAIL = "Email is Wrong !";
 	public static final String INVALID_TOKEN = "Invalid Token !";
 	public static final String TOKEN_EXPIRED = "Token Expired !";
+
 	private ValidationConstance() {
 	}
 }

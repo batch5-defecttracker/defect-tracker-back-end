@@ -58,7 +58,7 @@ public class EmployeeController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
-	
+
 	@PostMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestBody EmployeeLoginResponseDto employeeLoginResponseDto,
 			HttpServletRequest request) {
@@ -83,7 +83,7 @@ public class EmployeeController {
 		Login login = mapper.map(loginDto, Login.class);
 		loginService.create(login);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_ADD_SUCCESS, HttpStatus.OK);
-		
+
 	}
 
 	@GetMapping(value = EndpointURI.GET_EMPLOYEE_BY_NAME)
@@ -121,7 +121,7 @@ public class EmployeeController {
 
 	@GetMapping(value = EndpointURI.GET_EMPLOYEE_BY_DESIGNATION)
 	public ResponseEntity<Object> findEmployeeByDesignation(@PathVariable Long designationId) {
-		List<Employee> employeeList = employeeService.findByDes(designationId);
+		List<Employee> employeeList = employeeService.findByDesignation(designationId);
 		if (employeeList.isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
 					validationFailureStatusCodes.getEmployeeNotFound()), HttpStatus.BAD_REQUEST);

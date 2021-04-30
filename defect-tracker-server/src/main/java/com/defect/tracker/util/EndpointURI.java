@@ -25,7 +25,7 @@ public final class EndpointURI {
 	public static final String SUBMODULE = BASE_API_PATH + "submodule";
 	public static final String SUBMODULE_BY_ID = SUBMODULE + ID;
 	// Defect
-	public static final String DEFECT = BASE_API_PATH + "defect"+SLASH+ID;
+	public static final String DEFECT = BASE_API_PATH + "defect";
 	public static final String UPDATE_DEFECT_STATUS = DEFECT + ID + SLASH + "status" + SLASH + "{status}";
 	public static final String DEFECT_GET_BY_ID = DEFECT + ID;
 	public static final String GET_DEFECT_BY_ASSIGN_TO_ID = BASE_API_PATH + "get-all-defectlby-employee-id" + ID;
@@ -54,12 +54,12 @@ public final class EndpointURI {
 	// Login
 	public static final String LOGIN = BASE_API_PATH + "login";
 	public static final String PASSWORD = BASE_API_PATH + "password";
-	public static final String LOGINUPDATE = BASE_API_PATH + "email" + SLASH
-			+ "{email}";
+	public static final String LOGINUPDATE = BASE_API_PATH + "email" + SLASH + "{email}";
 	public static final String RESET_PASSWORD = BASE_API_PATH + "reset-password" + SLASH + "token" + SLASH + "{token}"
 			+ SLASH + "password" + SLASH + "{password}";
 	public static final String EMAIL_VERIFICATION = BASE_API_PATH + "email-verification" + SLASH + "email" + SLASH
 			+ "{email}" + SLASH + "token" + SLASH + "{token}";
+
 	private EndpointURI() {
 	}
 }

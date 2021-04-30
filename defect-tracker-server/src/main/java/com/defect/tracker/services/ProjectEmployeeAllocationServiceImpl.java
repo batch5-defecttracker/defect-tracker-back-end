@@ -1,8 +1,10 @@
 package com.defect.tracker.services;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.defect.tracker.data.entities.ProjectEmp;
 import com.defect.tracker.data.repositories.ProjectEmployeeAllocationRepository;
 
@@ -14,7 +16,8 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 	@Override
 	public void deAllocateProject(Long id) {
 //		projectemployeeallocationRepository.deleteById(id);
-		projectemployeeallocationRepository.deleteById(projectemployeeallocationRepository.findByEmployeeId(id).getId());	
+		projectemployeeallocationRepository
+				.deleteById(projectemployeeallocationRepository.findByEmployeeId(id).getId());
 	}
 
 	@Override
@@ -52,11 +55,10 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 	}
 
 	@Override
-	public boolean existsByEmployeeIdAndProjectId(Long eId,Long pId) {
-		return  projectemployeeallocationRepository.existsByEmployeeIdAndProjectId(eId,pId);
+	public boolean existsByEmployeeIdAndProjectId(Long eId, Long pId) {
+		return projectemployeeallocationRepository.existsByEmployeeIdAndProjectId(eId, pId);
 	}
 
-	
 	@Override
 	public boolean existsBySubmoduleId(Long id) {
 		return projectemployeeallocationRepository.existsBySubmoduleId(id);
