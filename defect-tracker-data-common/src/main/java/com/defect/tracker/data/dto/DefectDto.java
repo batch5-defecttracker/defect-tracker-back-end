@@ -27,7 +27,6 @@ public class DefectDto {
 	private long defectStatusId;
 	private long defectTypeId;
 	private Date timeStamp;
-	@Column(nullable = true)
 	private String file;
 
 	public long getId() {

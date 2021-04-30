@@ -1,6 +1,7 @@
 package com.defect.tracker.data.dto;
 
 import java.util.Date;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

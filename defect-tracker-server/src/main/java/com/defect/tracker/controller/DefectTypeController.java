@@ -21,9 +21,10 @@ public class DefectTypeController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
-	
-	@GetMapping(value=EndpointURI.DEFECTTYPE)
-	public ResponseEntity<Object>getAllDefectType(){	
-		return new ResponseEntity<Object>(mapper.map(defectTypeService.getAllDefectType(), DefectTypeDto.class),HttpStatus.OK);
+
+	@GetMapping(value = EndpointURI.DEFECTTYPE)
+	public ResponseEntity<Object> getAllDefectType() {
+		return new ResponseEntity<Object>(mapper.map(defectTypeService.getAllDefectType(), DefectTypeDto.class),
+				HttpStatus.OK);
 	}
 }

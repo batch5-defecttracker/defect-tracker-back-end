@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.web.multipart.MultipartFile;
+
 import com.defect.tracker.data.dto.DefectByEmployeeIdDto;
 import com.defect.tracker.data.dto.DefectByProjectIdDto;
 import com.defect.tracker.data.dto.DefectDto;
@@ -14,12 +15,20 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 public interface DefectService {
 	public List<Defect> getAllDefect();
+
 	boolean isDefectAlreadyExist(Long id);
+
 	public void addDefect(Defect defect);
+
 	public boolean isDefectExists(Long id);
+
 	public Optional<Defect> findById(Long id);
+
 	public List<DefectByEmployeeIdDto> getByEmpIdAndStatus(Long id);
+
 	public DefectByProjectIdDto getAllDefectByProId(Long id);
+
 	public String fileUpload(MultipartFile file) throws IOException;
+
 	public DefectDto getJson(String Defect) throws JsonMappingException, JsonProcessingException;
 }

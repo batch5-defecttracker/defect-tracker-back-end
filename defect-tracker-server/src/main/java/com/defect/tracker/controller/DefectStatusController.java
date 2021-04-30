@@ -33,7 +33,7 @@ public class DefectStatusController {
 		return new ResponseEntity<Object>(mapper.map(defectStatusService.getAllDefectStatus(), DefectStatus.class),
 				HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = EndpointURI.DEFECT_STATUS)
 	public ResponseEntity<Object> getDefectStatusById(@PathVariable Long id) {
 		if (defectStatusService.existById(id)) {

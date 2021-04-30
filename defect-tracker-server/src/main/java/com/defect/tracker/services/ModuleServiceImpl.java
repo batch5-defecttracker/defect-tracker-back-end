@@ -2,8 +2,10 @@ package com.defect.tracker.services;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.repositories.ModuleRepository;
 
@@ -59,7 +61,7 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Override
 	public boolean existByModuleNameAndProjectId(String name, Long projectId) {
-		return moduleRepository.existsByProjectIdAndName(projectId,name);
+		return moduleRepository.existsByProjectIdAndName(projectId, name);
 	}
 
 	@Override

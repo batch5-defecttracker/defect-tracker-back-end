@@ -74,21 +74,21 @@ public class DefectServiceImpl implements DefectService {
 	public void dataPassForMail(DefectDto defectDto) {
 		String mail = employeeService.findById(defectDto.getAssignedById()).get().getEmail();
 		String module = moduleRepository.getOne(defectDto.getModuleId()).getName();
-		String project=moduleService.getModuleById(defectDto.getModuleId()).getProject().getName();
+		String project = moduleService.getModuleById(defectDto.getModuleId()).getProject().getName();
 		String status = defectStatusService.getDefectStatusById(defectDto.getDefectStatusId()).get()
 				.getDefectStatusName();
 		String assignedEmployee = employeeService.findById(defectDto.getAssignedById()).get().getFirstName();
 		String openedEmployee = employeeService.findById(defectDto.getAssignedToId()).get().getFirstName();
 
-		mailServiceImpl.sendEmail(mail, module,project, assignedEmployee, openedEmployee, status);
+		mailServiceImpl.sendEmail(mail, module, project, assignedEmployee, openedEmployee, status);
 	}
-	
+
 	public void defectUpdateQA(DefectDto defectDto) {
 		String mail = employeeService.findById(defectDto.getAssignedById()).get().getEmail();
 		String module = moduleRepository.getOne(defectDto.getModuleId()).getName();
-		
+
 		String assignedEmployee = employeeService.findById(defectDto.getAssignedById()).get().getFirstName();
-		
+
 		mailServiceImpl.sendEmailQA(mail, module, assignedEmployee);
 	}
 
@@ -109,13 +109,13 @@ public class DefectServiceImpl implements DefectService {
 
 		mailServiceImpl.sendListEmail(mails, module, names, asignedByEmployee, status);
 	}
-	
+
 	public void defectUpdateDV(DefectDto defectDto) {
 		List<String> mails = new ArrayList<>();
 		List<String> names = new ArrayList<>();
 		String module = moduleRepository.getOne(defectDto.getModuleId()).getName();
 		List<ProjectEmp> projectList = projectEmployeeAllocationService.findbyModule(defectDto.getModuleId());
-		
+
 		for (ProjectEmp projectEmp : projectList) {
 			names.add(projectEmp.getEmployee().getFirstName());
 		}
@@ -186,11 +186,16 @@ public class DefectServiceImpl implements DefectService {
 		return defecProjectByIdDto;
 	}
 
-	public String fileUpload(MultipartFile file) throws IOException {
-		byte[] data = file.getBytes();
-		Path path = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
-		Files.write(path, data);
-		return path.toString();
+	public String fileUpload(MultipartFile file)  {
+			try {
+				byte[] data;
+				data = file.getBytes();
+				Path path = Paths.get(UPLOAD_FOLDER + file.getOriginalFilename());
+				Files.write(path, data);
+				return path.toString();
+			} catch (IOException e) {
+				return null;
+			}
 	}
 
 	@Override
