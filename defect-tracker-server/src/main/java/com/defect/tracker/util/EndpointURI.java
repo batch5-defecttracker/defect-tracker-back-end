@@ -54,12 +54,12 @@ public final class EndpointURI {
 	// Login
 	public static final String LOGIN = BASE_API_PATH + "login";
 	public static final String PASSWORD = BASE_API_PATH + "password";
-	public static final String LOGINUPDATE = BASE_API_PATH + "email" + SLASH
-			+ "{email}";
+	public static final String LOGINUPDATE = BASE_API_PATH + "email" + SLASH + "{email}";
 	public static final String RESET_PASSWORD = BASE_API_PATH + "reset-password" + SLASH + "token" + SLASH + "{token}"
 			+ SLASH + "password" + SLASH + "{password}";
 	public static final String EMAIL_VERIFICATION = BASE_API_PATH + "email-verification" + SLASH + "email" + SLASH
 			+ "{email}" + SLASH + "token" + SLASH + "{token}";
+
 	private EndpointURI() {
 	}
 }

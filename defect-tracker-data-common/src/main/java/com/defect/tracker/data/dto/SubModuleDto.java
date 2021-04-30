@@ -13,7 +13,6 @@ public class SubModuleDto {
 	@NotNull(message = "{subModuleDto.id.null}")
 	private Long moduleId;
 
-
 	public Long getId() {
 		return id;
 	}

@@ -1,9 +1,6 @@
 package com.defect.tracker.controller;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Date;
 
 import javax.validation.Valid;

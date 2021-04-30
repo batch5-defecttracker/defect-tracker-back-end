@@ -24,6 +24,7 @@ public class DesignationController {
 
 	@GetMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> getAllDesignation() {
-		return new ResponseEntity<Object>(mapper.map(designationService.getAlldesignation(), DesignationDto.class), HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(designationService.getAlldesignation(), DesignationDto.class),
+				HttpStatus.OK);
 	}
 }

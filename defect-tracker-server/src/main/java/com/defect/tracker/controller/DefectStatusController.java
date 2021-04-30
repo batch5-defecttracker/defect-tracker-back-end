@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.defect.tracker.data.dto.DefectStatusDto;
 import com.defect.tracker.data.entities.DefectStatus;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.DefectStatusRepository;
@@ -34,7 +33,7 @@ public class DefectStatusController {
 		return new ResponseEntity<Object>(mapper.map(defectStatusService.getAllDefectStatus(), DefectStatus.class),
 				HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = EndpointURI.DEFECT_STATUS)
 	public ResponseEntity<Object> getDefectStatusById(@PathVariable Long id) {
 		if (defectStatusService.existById(id)) {

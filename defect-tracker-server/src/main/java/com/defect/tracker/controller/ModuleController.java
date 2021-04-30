@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.mapper.Mapper;
@@ -43,7 +44,7 @@ public class ModuleController {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		if (moduleService.existByModuleNameAndProjectId(moduleDto.getName(),moduleDto.getProjectId())) {
+		if (moduleService.existByModuleNameAndProjectId(moduleDto.getName(), moduleDto.getProjectId())) {
 			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_ALREADY_EXIST,
 					validationFailureStatusCodes.getProjectModuleAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
@@ -58,8 +59,7 @@ public class ModuleController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_DOES_NOT_EXISTS,
 					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(mapper.map(moduleService.findByProject(id), ModuleDto.class),
-				HttpStatus.OK);
+		return new ResponseEntity<Object>(mapper.map(moduleService.findByProject(id), ModuleDto.class), HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.MODULE)
