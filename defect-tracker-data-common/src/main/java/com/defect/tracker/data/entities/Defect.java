@@ -46,7 +46,6 @@ public class Defect {
 	@JoinColumn(name = "defectTypeId", nullable = false)
 	private DefectType defectType;
 	private Date timeStamp;
-	@Column(nullable = true)
 	private String file;
 
 	public long getId() {

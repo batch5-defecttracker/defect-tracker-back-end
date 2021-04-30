@@ -50,12 +50,6 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 	public List<ProjectEmp> findbyModule(Long id) {
 		return projectemployeeallocationRepository.findByModuleId(id);
 	}
-
-	@Override
-	public boolean existsByEmployeeIdAndProjectId(Long eId,Long pId) {
-		return  projectemployeeallocationRepository.existsByEmployeeIdAndProjectId(eId,pId);
-	}
-
 	
 	@Override
 	public boolean existsBySubmoduleId(Long id) {
@@ -64,8 +58,12 @@ public class ProjectEmployeeAllocationServiceImpl implements ProjectEmployeeAllo
 
 	@Override
 	public boolean existsByEmployeeId(Long id) {
-		// TODO Auto-generated method stub
 		return projectemployeeallocationRepository.existsByEmployeeId(id);
+	}
+
+	@Override
+	public boolean existsByEmployeeIdAndModuleIdId(Long assignedToId, Long moduleId) {
+		return projectemployeeallocationRepository.existsByEmployeeIdAndModuleId(assignedToId, moduleId);
 	}
 
 }

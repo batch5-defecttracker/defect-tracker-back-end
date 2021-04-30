@@ -82,24 +82,19 @@ public class DefectController {
 	public ResponseEntity<Object> addDefect(@Valid @RequestParam String defect1,
 			@RequestParam("file") MultipartFile file) throws IOException {
 		DefectDto defectDto = defectService.getJson(defect1);
-		if (!(projectEmployeeAllocationService.existsByEmployeeIdAndProjectId(defectDto.getAssignedToId(),moduleService.getModuleById(defectDto.getModuleId()).getProject().getId()))) {
-			return new ResponseEntity<Object>(
-					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
-							validationFailureStatusCodes.getEmployeeNotExist()),
-					HttpStatus.BAD_REQUEST);
+		
+		if (!moduleService.isModuleExists(defectDto.getModuleId())) {
+			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
+					validationFailureStatusCodes.getModuleNotExist()),HttpStatus.BAD_REQUEST);
 		}
-		if (!(projectEmployeeAllocationService.existsByEmployeeIdAndProjectId(defectDto.getModuleId(),moduleService.getModuleById(defectDto.getModuleId()).getProject().getId()))) {
-				return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
-					validationFailureStatusCodes.getModuleNotExist()), HttpStatus.BAD_REQUEST);
+		
+		if(!projectEmployeeAllocationService.existsByEmployeeIdAndModuleIdId(defectDto.getAssignedToId(),defectDto.getModuleId())) {
+			return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_EXISTS,
+					validationFailureStatusCodes.getEmployeeNotExist()),HttpStatus.BAD_REQUEST);
 		}
-		if (!(projectEmployeeAllocationService.existsByEmployeeIdAndProjectId(defectDto.getSubmoduleId(),moduleService.getModuleById(defectDto.getModuleId()).getProject().getId()))) {
-				return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS,
-					validationFailureStatusCodes.getSubModuleNotExist()), HttpStatus.BAD_REQUEST);
-		}
-
+		defectServiceImpl.fileUploadCall(defectDto, file);
 		defectService.addDefect(mapper.map(defectDto, Defect.class));
 		defectServiceImpl.dataPassForAddDefect(defectDto);
-		defectServiceImpl.fileUploadCall(defectDto, file);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADD_SUCCESS, HttpStatus.OK);
 	}
 
