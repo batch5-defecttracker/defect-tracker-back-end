@@ -1,13 +1,13 @@
 --Designation 
 INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('1', 'Associate Software Engineer');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('1', 'Software Engineer');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('2', 'Senoir Software Engineer');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('5', 'Associate Technical Lead');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('2', 'Software Engineer');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('3', 'Senoir Software Engineer');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('4', 'Associate Technical Lead');
 INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('5', 'Technical Lead');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('3', 'Associate Quality Assurance Engineer');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('3', 'Quality Assurance Engineer');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('4', 'Senior Quality Assurance Engineer');
-INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('6', 'Project Manager');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('6', 'Associate Quality Assurance Engineer');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('7', 'Quality Assurance Engineer');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('8', 'Senior Quality Assurance Engineer');
+INSERT INTO `defect-tracker`.`designation` (`id`, `designation_name`) VALUES ('9', 'Project Manager');
 --Priority
 INSERT INTO `defect-tracker`.`priority` (`id`, `priority_name`) VALUES ('1', 'Low');
 INSERT INTO `defect-tracker`.`priority` (`id`, `priority_name`) VALUES ('2', 'Medium');
