@@ -156,7 +156,7 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectNotExist()), HttpStatus.BAD_REQUEST);
 		}
-		DefectResponseDto defectDto = mapper.map(defectService.findById(id), DefectResponseDto.class);
+		DefectResponseDto defectDto = mapper.map(defectService.findById(id).get(), DefectResponseDto.class);
 		return new ResponseEntity<Object>(defectDto, HttpStatus.OK);
 	}
 

@@ -34,7 +34,7 @@ public class MailServiceImpl{
 		javaMailSender.send(msg);
 	}
 
-	public void sendListEmail(List<String> mails, String module, List<String> names, String asignedByEmployee,
+	public void sendListEmail(List<String> mails, String module, List<String> names, String assignedByEmployee,
 			String status) {
 		SimpleMailMessage msg = new SimpleMailMessage();
 
@@ -42,7 +42,7 @@ public class MailServiceImpl{
 			msg.setTo(mail);
 			msg.setSubject("Defect " + module);
 			msg.setText("Hi " + names.toString().replace("[", "").replace("]", "") + ", \n" + " Your Defect "
-					+ status + " by " + asignedByEmployee + " in " + module);
+					+ status + " by " + assignedByEmployee + " in " + module);
 			javaMailSender.send(msg);
 		}
 	}

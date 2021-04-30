@@ -9,8 +9,8 @@ public class DefectResponseDto {
 	private String str;
 	private ModuleDto module;
 	private SubModuleDto submodule;
-	private EmployeeDto employee;
-	private EmployeeDto employee2;
+	private EmployeeDto assignedBy;
+	private EmployeeDto assignedTo;
 	private PriorityDto priority;
 	private SeverityDto severity;
 	private DefectStatusDto defectStatus;
@@ -58,20 +58,20 @@ public class DefectResponseDto {
 		this.submodule = submodule;
 	}
 
-	public EmployeeDto getEmployee() {
-		return employee;
+	public EmployeeDto getAssignedBy() {
+		return assignedBy;
 	}
 
-	public void setEmployee(EmployeeDto employee) {
-		this.employee = employee;
+	public void setAssignedBy(EmployeeDto assignedBy) {
+		this.assignedBy = assignedBy;
 	}
 
-	public EmployeeDto getEmployee2() {
-		return employee2;
+	public EmployeeDto getAssignedTo() {
+		return assignedTo;
 	}
 
-	public void setEmployee2(EmployeeDto employee2) {
-		this.employee2 = employee2;
+	public void setAssignedTo(EmployeeDto assignedTo) {
+		this.assignedTo = assignedTo;
 	}
 
 	public PriorityDto getPriority() {
