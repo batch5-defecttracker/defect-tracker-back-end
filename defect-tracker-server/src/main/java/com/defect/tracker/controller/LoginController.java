@@ -6,17 +6,24 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.dto.LoginResDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.Login;
+import com.defect.tracker.data.entities.LoginResponce;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.EmployeeRepository;
 import com.defect.tracker.data.repositories.LoginRepository;
@@ -26,11 +33,14 @@ import com.defect.tracker.services.LoginServiceImpl;
 import com.defect.tracker.services.MailServiceImpl;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
+import com.defect.tracker.util.JwtUtil;
 import com.defect.tracker.util.ValidationConstance;
 import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class LoginController {
+	@Autowired
+	private AuthenticationManager authenticationManager;
 	@Autowired
 	LoginService loginService;
 	@Autowired
@@ -41,6 +51,10 @@ public class LoginController {
 	MailServiceImpl mailServiceImpl;
 	@Autowired
 	LoginServiceImpl loginServiceImpl;
+	@Autowired
+	private UserDetailsService userDetailsService;
+	@Autowired
+	private JwtUtil jwtTokenUtil;
 
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -69,20 +83,22 @@ public class LoginController {
 				HttpStatus.OK);
 	}
 
-	@GetMapping(value = EndpointURI.LOGIN)
-	public ResponseEntity<Object> login(@RequestParam String userName1, String password2, String email) {
-		String userName = loginService.getUserName(email);
-		String password = loginService.getUserPassword(email);
-		if (userName1.equals(userName) && passwordEncoder.matches(password2, password)) {
-			return new ResponseEntity<Object>(Constants.LOGIN_SUCCESS, HttpStatus.OK);
-		} else if (!userName1.equals(userName) && passwordEncoder.matches(password2, password)) {
-			return new ResponseEntity<Object>(Constants.WRONG_USER_NAME, HttpStatus.BAD_REQUEST);
-		} else if (userName1.equals(userName) && !passwordEncoder.matches(password2, password)) {
-			return new ResponseEntity<Object>(Constants.WRONG_PASSWORD, HttpStatus.BAD_REQUEST);
-		} else if (userName1.isBlank() || (password2.isBlank())) {
-			return new ResponseEntity<Object>(Constants.USER_NAME_OR_PASSWORD_EMPTY, HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<Object>(Constants.LOGIN_FAILED, HttpStatus.BAD_REQUEST);
+	@PostMapping(value = "/api/v1/login")
+	public ResponseEntity<Object> login(@RequestBody Login login) throws Exception {
+		try {
+			authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(
+							login.getUserName(), 
+							login.getPassword())
+					);
+			}
+			catch (BadCredentialsException e) {
+				throw new Exception("Incorrect Email or Password", e);
+			}
+			final UserDetails userDetails = userDetailsService
+					.loadUserByUsername(login.getUserName());
+			final String jwt = jwtTokenUtil.generateToken(userDetails);
+			return ResponseEntity.ok(new LoginResponce(jwt));
 	}
 
 	@PostMapping(value = EndpointURI.LOGINUPDATE)
